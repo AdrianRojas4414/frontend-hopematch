@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HopematchService } from './hopematch.service';
+import { PadrinoService } from './padrino.service';
 
-describe('HopematchService', () => {
-  let service: HopematchService;
+describe('PadrinoService', () => {
+  let service: PadrinoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HopematchService);
+    service = TestBed.inject(PadrinoService);
   });
 
   it('should be created', () => {

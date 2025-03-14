@@ -1,0 +1,24 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PadrinoService {
+  private backendUrl = "http://localhost:8080/padrino";
+
+  constructor(private http: HttpClient) { }
+  
+  getPadrinos(): Observable<any>{
+    return this.http.get(`${this.backendUrl}/list`);
+  }
+
+  getPadrinoById(id: number): Observable<any>{
+    return this.http.get(`${this.backendUrl}/${id}`);
+  }
+
+  createPadrino(padrino:any): Observable<any>{
+    return this.http.post(`${this.backendUrl}/add`, padrino);
+  }
+}
