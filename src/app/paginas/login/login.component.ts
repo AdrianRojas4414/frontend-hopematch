@@ -17,7 +17,7 @@ export class LoginComponent {
   constructor(private authService: UserAuthenticationService, private router: Router) {}
 
   onLogin() {
-    this.authService.login(this.email, this.password).subscribe({
+    this.authService.login(this.email, this.password, this.userType).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso');
         alert('Inicio de sesion exitoso');

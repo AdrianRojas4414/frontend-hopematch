@@ -29,20 +29,19 @@
       <form (ngSubmit)="onLogin()">
         <div class="input-group">
           <i class="fa fa-user"></i>
-          <input type="email" placeholder="Email" [(ngModel)]="email" required>
+          <input type="email" placeholder="Email" name="email" [(ngModel)]="email" required>
         </div>
         
         <div class="input-group">
           <i class="fa fa-lock"></i>
-          <input type="password" placeholder="*********" [(ngModel)]="password" required>
+          <input type="password" placeholder="*********" name="password" [(ngModel)]="password" required>
         </div>
   
         <div class="input-group">
-            
-            <select [(ngModel)]="userType" name="userType">
-                <option value="padrino">Padrino</option>
-                <option value="encargadoo">Encargado</option>
-            </select>              
+          <select [(ngModel)]="userType" name="userType">
+            <option value="Padrino">Padrino</option>
+            <option value="Encargado">Encargado del hogar</option>
+          </select>             
         </div>
   
         <button type="submit" class="login-btn">LOGIN</button>
