@@ -5,7 +5,7 @@ import { CrearEncargadoComponent } from './paginas/crear-encargado/crear-encarga
 import { LoginComponent } from './paginas/login/login.component';
 
 export const routes: Routes = [
-    //{path:'', component: InicioComponent, title:"Pagina de Inicio"},
+    {path:'', component: InicioComponent, title:"Pagina de Inicio"},
     {path:'crearpadrino', component: CrearPadrinoComponent, title:"Forulario para la creacion de un Padrino"},
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Forulario para la creacion de un Encargado"},
     {path:'login', component: LoginComponent, title: "Log in"},
