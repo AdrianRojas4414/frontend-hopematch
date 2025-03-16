@@ -18,9 +18,12 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login(this.email, this.password, this.userType).subscribe({
-      next: (response) => {
-        console.log('Inicio de sesión exitoso');
-        alert('Inicio de sesion exitoso');
+      next: (response: string) => {
+        const parsedResponse = JSON.parse(response);
+        console.log('Response completo:', parsedResponse);
+        if(parsedResponse.userType == "Encargado"){
+          this.router.navigate([`/perfil-encargado/${parsedResponse.id}`]);
+        }        
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);
