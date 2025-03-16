@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
   selector: 'app-login',
   imports: [RouterLink, FormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   email: string = '';

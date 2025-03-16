@@ -1,4 +1,4 @@
-<div class="login-form">
+<!-- <div class="login-form">
     <h2>Inicio de sesión</h2>
     <form (ngSubmit)="onLogin()">
       <div>
@@ -18,5 +18,34 @@
       </div>
       <button type="submit">Login</button>
     </form>
-  </div>
+  </div> 
+  ESTE SI MOSTRABA A PADRINO POR DEFECTO, NO ENTIENDO POR QUE
+  - D
+  -->
   
+<div class="login-container">
+    <div class="login-box">
+      <img src="assets/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+      <form (ngSubmit)="onLogin()">
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="email" placeholder="Email" [(ngModel)]="email" required>
+        </div>
+        
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" placeholder="*********" [(ngModel)]="password" required>
+        </div>
+  
+        <div class="input-group">
+            
+            <select [(ngModel)]="userType" name="userType">
+                <option value="padrino">Padrino</option>
+                <option value="encargadoo">Encargado</option>
+            </select>              
+        </div>
+  
+        <button type="submit" class="login-btn">LOGIN</button>
+      </form>
+    </div>
+</div>
