@@ -23,7 +23,10 @@ export class LoginComponent {
         console.log('Response completo:', parsedResponse);
         if(parsedResponse.userType == "Encargado"){
           this.router.navigate([`/perfil-encargado/${parsedResponse.id}`]);
-        }        
+        }
+        if(parsedResponse.userType == "Padrino"){
+          this.router.navigate([`/perfil-padrino/${parsedResponse.id}`]);
+        }
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);
