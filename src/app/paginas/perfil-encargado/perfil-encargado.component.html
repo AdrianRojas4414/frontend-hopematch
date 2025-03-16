@@ -1,0 +1,16 @@
+<h2>Perfil del Encargado</h2>
+
+<div *ngIf="encargado">
+  <p><strong>Foto:</strong> {{ encargado.foto }}</p>
+  <p><strong>Nombre:</strong> {{ encargado.nombre }}</p>
+  <p><strong>Email:</strong> {{ encargado.email }}</p>
+  <p><strong>Celular:</strong> {{ encargado.celular }}</p>
+  <p><strong>Hogar:</strong> {{ encargado.nombre_hogar }}</p>
+  <p><strong>Direccion de Hogar:</strong> {{ encargado.direccion_hogar }}</p>
+
+  <button (click)="irCrearNino()">Crear Niño</button>
+</div>
+
+<div *ngIf="!encargado">
+  <p>Cargando datos...</p>
+</div>

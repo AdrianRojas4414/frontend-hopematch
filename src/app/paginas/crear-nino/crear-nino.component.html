@@ -1,1 +1,35 @@
-<p>crear-nino works!</p>
+<div class="container">
+    <h2>Registrar Niño</h2>
+  
+    <form [formGroup]="ninoForm" (ngSubmit)="onSubmit()">
+      <!-- CI -->
+      <label for="ci">CI:</label>
+      <input id="ci" type="text" formControlName="ci" required>
+  
+      <!-- Nombre -->
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" required>
+  
+      <!-- Fecha de Nacimiento -->
+      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" required>
+  
+      <!-- Necesidades -->
+      <label for="necesidad">Necesidades:</label>
+      <div class="necesidades">
+        <input id="necesidad" type="text" #necesidadInput>
+        <button type="button" (click)="addNecesidad(necesidadInput)">Agregar</button>
+      </div>
+  
+      <!-- Lista de necesidades agregadas -->
+      <ul>
+        <li *ngFor="let necesidad of necesidadesArray.controls; let i = index">
+          {{ necesidad.value }}
+          <button type="button" (click)="removeNecesidad(i)">X</button>
+        </li>
+      </ul>
+  
+      <!-- Botón de envío -->
+      <button type="submit" [disabled]="ninoForm.invalid">Registrar Niño</button>
+    </form>
+  </div>

@@ -25,13 +25,11 @@ export class CrearEncargadoComponent {
 
   registrarEncargado(): void {
 
-    console.log('Datos enviados:', this.encargado);
-
     this.encargadoService.createEncargado(this.encargado).subscribe({
-      next: () => {
-        console.log('Encargado registrado con éxito!');
+      next: (response) => {
+        console.log('Encargado registrado con éxito!', response);
         alert('Encargado registrado con éxito!');
-        this.router.navigate(['/inicio']);
+        this.router.navigate([`/perfil-encargado/${response.id}`]);
       },
       error: (err) => {
         console.error('Error al registrar encargado:', err);

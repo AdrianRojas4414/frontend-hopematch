@@ -19,8 +19,8 @@
       return this.http.get(`${this.backendUrl}/${id}`);
     }
 
-    createEncargado(padrino:any): Observable<any>{
-      return this.http.post(`${this.backendUrl}/add`, padrino);
+    createEncargado(encargado:any): Observable<any>{
+      return this.http.post(`${this.backendUrl}/add`, encargado);
     }
 
     createNino(idEncargado: number, nino: any): Observable<any> {

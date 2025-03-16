@@ -24,8 +24,8 @@ export class CrearPadrinoComponent {
 
   registrarPadrino(): void {
     this.padrinoService.createPadrino(this.padrino).subscribe({
-      next: () => {
-        console.log('Padrino registrado con éxito!');
+      next: (response) => {
+        console.log('Padrino registrado con éxito!', response);
         alert('Padrino registrado con éxito!');
         this.router.navigate(['/inicio']);
       },
