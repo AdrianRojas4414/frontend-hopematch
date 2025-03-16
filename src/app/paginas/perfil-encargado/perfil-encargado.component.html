@@ -9,6 +9,16 @@
   <p><strong>Direccion de Hogar:</strong> {{ encargado.direccion_hogar }}</p>
 
   <button (click)="irCrearNino()">Crear Niño</button>
+
+  <h3>Niños del Hogar</h3>
+  <ul>
+    <li *ngFor="let nino of encargado.ninos">
+      <a [routerLink]="['/perfil-nino', nino.ci]">
+        {{ nino.nombre }}
+      </a>
+    </li>
+  </ul>
+
 </div>
 
 <div *ngIf="!encargado">

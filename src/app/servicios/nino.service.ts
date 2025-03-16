@@ -1,0 +1,18 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NinoService {
+
+  private backendUrl = "http://localhost:8080/nino";
+
+  constructor(private http: HttpClient) { }
+
+
+  getNinoByCi(ci: number): Observable<any>{
+    return this.http.get(`${this.backendUrl}/ci/${ci}`);
+  }
+}
