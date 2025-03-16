@@ -15,9 +15,9 @@ export class CrearPadrinoComponent {
     nombre: '',
     celular: '',
     email: '',
-    foto: '', // Opcional
+    foto: '',
     contrasenia: '',
-    estado: 'En revision' // Se asigna automáticamente
+    estado: 'En revision'
   };
 
   constructor(private padrinoService: PadrinoService, private router: Router) {}
@@ -27,7 +27,7 @@ export class CrearPadrinoComponent {
       next: () => {
         console.log('Padrino registrado con éxito!');
         alert('Padrino registrado con éxito!');
-        this.router.navigate(['/inicio']); // Redirige tras éxito
+        this.router.navigate(['/inicio']);
       },
       error: (err) => {
         console.error('Error al registrar padrino:', err);

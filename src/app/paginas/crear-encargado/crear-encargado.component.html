@@ -1,2 +1,28 @@
-<p>crear-encargado works!</p>
-<a routerLink = '/crearpadrino'>CREAR PADRINO</a>
+<h2>Registrar Encargado</h2>
+<div class="form-container">
+  <h2>Registrar Encargado</h2>
+  <form (ngSubmit)="registrarEncargado()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="encargado.nombre" name="nombre" required>
+    
+    <label for="celular">Celular:</label>
+    <input type="text" id="celular" [(ngModel)]="encargado.celular" name="celular" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="encargado.email" name="email" required>
+    
+    <label for="foto">Foto (URL):</label>
+    <input type="text" id="foto" [(ngModel)]="encargado.foto" name="foto">
+    
+    <label for="contrasenia">Contraseña:</label>
+    <input type="password" id="contrasenia" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
+
+    <label for="nombre_hogar">Nombre del Hogar:</label>
+    <input type="text" id="nombre_hogar" [(ngModel)]="encargado.nombre_hogar" name="nombre_hogar" required>
+
+    <label for="direccion_hogar">Dirección del Hogar:</label>
+    <input type="text" id="direccion_hogar" [(ngModel)]="encargado.direccion_hogar" name="direccion_hogar" required>
+    
+    <button type="submit">Registrar</button>
+  </form>
+</div>
