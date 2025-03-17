@@ -1,35 +1,6 @@
-<!-- <h2>Perfil del Encargado</h2>
-
-<div *ngIf="encargado">
-  <p><strong>Foto:</strong> {{ encargado.foto }}</p>
-  <p><strong>Nombre:</strong> {{ encargado.nombre }}</p>
-  <p><strong>Email:</strong> {{ encargado.email }}</p>
-  <p><strong>Celular:</strong> {{ encargado.celular }}</p>
-  <p><strong>Hogar:</strong> {{ encargado.nombre_hogar }}</p>
-  <p><strong>Direccion de Hogar:</strong> {{ encargado.direccion_hogar }}</p>
-
-  <button (click)="irCrearNino()">Crear Niño</button>
-
-  <h3>Niños del Hogar</h3>
-  <ul>
-    <li *ngFor="let nino of encargado.ninos">
-      <a [routerLink]="['/perfil-nino', nino.ci]">
-        {{ nino.nombre }}
-      </a>
-    </li>
-  </ul>
-
-</div>
-
-<div *ngIf="!encargado">
-  <p>Cargando datos...</p>
-</div> -->
-
-
-
 <div class="perfil-container" *ngIf="encargado">
   <div class="perfil-header">
-    <img src="assets/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
       <a routerLink="#">Perfil</a>
       <a routerLink="#">Cerrar Sesión</a>
@@ -53,17 +24,6 @@
       </div>
     </div>
 
-    <!--
-    <div class="ninos-del-hogar">
-      <h3>Niños del Hogar</h3>
-      <ul>
-        <li *ngFor="let nino of encargado.ninos">
-          <a [routerLink]="['/perfil-nino', nino.ci]">{{ nino.nombre }}</a>
-        </li>
-      </ul>
-      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
-    </div>
-    -->
     <div class="ninos-del-hogar">
       <h3>Niños del Hogar</h3>
       <div class="ninos-container">
