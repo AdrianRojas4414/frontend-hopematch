@@ -7,6 +7,8 @@ import { PerfilEncargadoComponent } from './paginas/perfil-encargado/perfil-enca
 import { PerfilPadrinoComponent } from './paginas/perfil-padrino/perfil-padrino.component';
 import { CrearNinoComponent } from './paginas/crear-nino/crear-nino.component';
 import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component';
+import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
+import { EditarNinoComponent } from './paginas/editar-nino/editar-nino/editar-nino.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -16,6 +18,9 @@ export const routes: Routes = [
     {path:'perfil-encargado/:id', component: PerfilEncargadoComponent, title: "Encargado"},
     {path:'perfil-padrino/:id', component: PerfilPadrinoComponent, title: 'Padrino'},
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
+    {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
+    //{path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
+    {path:'editar-perfil-nino/:ci', component: EditarNinoComponent, title:'Nino'},
     {path:'login', component: LoginComponent, title: "Log in"},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
