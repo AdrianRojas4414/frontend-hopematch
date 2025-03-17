@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>Editar Perfil de Padrino</h2>
+    <form (ngSubmit)="updatePadrino()">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="padrino.nombre" name="nombre" required>
+
+        <label>Celular:</label>
+        <input type="text" [(ngModel)]="padrino.celular" name="celular" placeholder="+### ####" required>
+
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="padrino.email" name="email" required>
+
+        <label>Foto URL:</label>
+        <input type="text" [(ngModel)]="padrino.foto" name="foto">
+
+        <label>Contraseña:</label>
+        <input type="password" [(ngModel)]="padrino.contrasenia" name="contrasenia" required>
+
+        <div class="input-group">
+            <label for="birthday">Fecha de Nacimiento:</label>
+            <select id="month" name="month" [(ngModel)]="padrino.mesNacimiento">
+                <option>Ene</option>
+                <option>Feb</option>
+                <option>Mar</option>
+                <option>Abr</option>
+                <option>May</option>
+                <option>Jun</option>
+                <option>Jul</option>
+                <option>Ago</option>
+                <option>Sep</option>
+                <option>Oct</option>
+                <option>Nov</option>
+                <option>Dec</option>
+            </select>
+            <select id="day" name="day" [(ngModel)]="padrino.diaNacimiento">
+                <option>1</option>
+                <option>2</option>
+            </select>
+            <select id="year" name="year" [(ngModel)]="padrino.anioNacimiento">
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="gender">Género:</label>
+            <select id="gender" name="gender" [(ngModel)]="padrino.genero">
+                <option>Masculino</option>
+                <option>Femenino</option>
+            </select>
+        </div>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</div>

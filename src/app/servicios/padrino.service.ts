@@ -21,4 +21,8 @@ export class PadrinoService {
   createPadrino(padrino:any): Observable<any>{
     return this.http.post(`${this.backendUrl}/add`, padrino);
   }
+
+  updatePadrino(id: number, encargado: any): Observable<any> {
+    return this.http.put(`${this.backendUrl}/update/${id}`, encargado);
+  }
 }
