@@ -37,4 +37,10 @@ export class PerfilEncargadoComponent implements OnInit{
     }
   }
 
+  irEditarPerfil(): void{
+    if (this.encargado) {
+      this.router.navigate([`/editar-perfil-encargado/${this.encargado.id}`]);
+    }
+  }
+
 }
