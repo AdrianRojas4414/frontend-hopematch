@@ -25,6 +25,7 @@
 
     <div class="ninos-del-hogar">
       <h3 style="color: #e65c4f;">Niños del Hogar</h3>
+      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
       <div class="ninos-container">
         <div class="nino-card" *ngFor="let nino of encargado.ninos">
           <div class="nino-detalles">
@@ -40,7 +41,6 @@
           </div>
         </div>
       </div>
-      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
     </div>
   </div>
 </div>
