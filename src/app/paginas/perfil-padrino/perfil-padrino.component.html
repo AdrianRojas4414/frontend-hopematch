@@ -1,1 +1,30 @@
-<p>perfil-padrino works!</p>
+<div class="perfil-container" *ngIf="padrino">
+    <div class="perfil-header">
+      <img src="assets/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+      <nav class="perfil-nav">
+        <a routerLink="#">Perfil</a>
+        <a routerLink="#">Cerrar Sesión</a>
+      </nav>
+    </div>
+  
+    <div class="perfil-content">
+      <div class="perfil-info">
+        <div class="perfil-foto">
+          <img [src]="padrino.foto" alt="Foto del Encargado" />
+        </div>
+        <div class="perfil-detalles">
+          <h2>Mi Perfil</h2>
+          <h3>{{ padrino.nombre }}</h3>
+          <p><strong>E-mail:</strong> {{ padrino.email }}</p>
+          <p><strong>Celular:</strong> {{ padrino.celular }}</p>
+          <!-- <p><strong>Estado del perfil:</strong> {{ padrino.estado }}</p> -->
+          <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <div *ngIf="!padrino">
+    <p>Cargando datos...</p>
+  </div>
