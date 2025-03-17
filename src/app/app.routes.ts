@@ -8,7 +8,7 @@ import { PerfilPadrinoComponent } from './paginas/perfil-padrino/perfil-padrino.
 import { CrearNinoComponent } from './paginas/crear-nino/crear-nino.component';
 import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component';
 import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
-import { EditarNinoComponent } from './paginas/editar-nino/editar-nino/editar-nino.component';
+import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
