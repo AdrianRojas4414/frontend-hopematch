@@ -2,25 +2,25 @@
     <h2>Editar Encargado</h2>
     <form (ngSubmit)="updateEncargado()">
       <label>Nombre:</label>
-      <input type="text" [(ngModel)]="this.encargado.nombre" name="nombre" required>
+      <input type="text" [(ngModel)]="encargado.nombre" name="nombre" required>
   
       <label>Celular:</label>
-      <input type="number" [(ngModel)]="this.encargado.celular" name="celular" required>
+      <input type="number" [(ngModel)]="encargado.celular" name="celular" required>
   
       <label>Email:</label>
-      <input type="email" [(ngModel)]="this.encargado.email" name="email" required>
+      <input type="email" [(ngModel)]="encargado.email" name="email" required>
   
       <label>Foto URL:</label>
-      <input type="text" [(ngModel)]="this.encargado.foto" name="foto">
+      <input type="text" [(ngModel)]="encargado.foto" name="foto">
   
       <label>Contraseña:</label>
-      <input type="password" [(ngModel)]="this.encargado.contrasenia" name="contrasenia">
+      <input type="password" [(ngModel)]="encargado.contrasenia" name="contrasenia">
   
       <label>Nombre del Hogar:</label>
-      <input type="text" [(ngModel)]="this.encargado.nombre_hogar" name="nombre_hogar" required>
+      <input type="text" [(ngModel)]="encargado.nombre_hogar" name="nombre_hogar" required>
   
       <label>Dirección del Hogar:</label>
-      <input type="text" [(ngModel)]="this.encargado.direccion_hogar" name="direccion_hogar" required>
+      <input type="text" [(ngModel)]="encargado.direccion_hogar" name="direccion_hogar" required>
   
       <button type="submit">Guardar Cambios</button>
     </form>

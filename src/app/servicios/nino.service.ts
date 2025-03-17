@@ -15,4 +15,12 @@ export class NinoService {
   getNinoByCi(ci: number): Observable<any>{
     return this.http.get(`${this.backendUrl}/ci/${ci}`);
   }
+
+  getNinoById(id: number): Observable<any> {
+    return this.http.get(`${this.backendUrl}/${id}`);
+  }
+
+  updateNino(id: number, nino: any): Observable<any> {
+    return this.http.put(`${this.backendUrl}/update/${id}`, nino);
+  }
 }

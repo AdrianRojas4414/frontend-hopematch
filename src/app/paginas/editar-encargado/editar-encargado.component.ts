@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-editar-encargado',
-  standalone: true, // Indica que es un componente independiente
+  standalone: true, 
   imports: [CommonModule, FormsModule],
   templateUrl: './editar-encargado.component.html',
   styleUrl: './editar-encargado.component.scss'

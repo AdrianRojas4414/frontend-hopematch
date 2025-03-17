@@ -20,7 +20,7 @@ export const routes: Routes = [
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     //{path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
-    //{path:'editar-perfil-nino/:ci', component: EditarNinoComponent, title:'Nino'},
+    {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
     {path:'login', component: LoginComponent, title: "Log in"},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

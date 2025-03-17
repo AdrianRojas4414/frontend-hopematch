@@ -43,4 +43,12 @@ export class PerfilEncargadoComponent implements OnInit{
     }
   }
 
+  /*editarNino(id: number): void {
+    this.router.navigate([`/editar-nino/${id}`]);
+  }*/
+
+  editarNino(idNino: number, idEncargado: number): void {
+    this.router.navigate([`/editar-nino/${idNino}`], { queryParams: { encargado: idEncargado } });
+  }
+  
 }
