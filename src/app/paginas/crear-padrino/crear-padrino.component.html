@@ -9,46 +9,9 @@
         <input type="text" id="nombre" placeholder="Nombre" [(ngModel)]="padrino.nombre" name="nombre" required>
       </div>
 
-      <div class="input-group">
-        <label for="birthday">Birthday |Not included in Model|</label>
-        <select id="month" name="month">
-          <option>Ene</option>
-          <option>Feb</option>
-          <option>Mar</option>
-          <option>Abr</option>
-          <option>May</option>
-          <option>Jun</option>
-          <option>Jul</option>
-          <option>Ago</option>
-          <option>Sep</option>
-          <option>Oct</option>
-          <option>Nov</option>
-          <option>Dec</option>
-        </select>
-        <select id="day" name="day">
-          <option>1</option>
-          <option>2</option>          
-          <!-- Más opciones? -->
-        </select>
-        <select id="year" name="year">
-          <option>2025</option>
-          <option>2024</option>
-          <option>2023</option>
-          <!-- Más opciones? -->
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label for="gender">Gender |Not included in Model|</label>
-        <select id="gender" name="gender">
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
-
       <input type="email" id="email" placeholder="Email" [(ngModel)]="padrino.email" name="email" required>
 
-      <input type="text" id="celular" placeholder="+### ####" [(ngModel)]="padrino.celular" name="celular" required>
+      <input type="text" id="celular" placeholder="Numero de Celular" [(ngModel)]="padrino.celular" name="celular" required>
 
       <input type="text" id="foto" placeholder="Url Foto" [(ngModel)]="padrino.foto" name="foto">
 

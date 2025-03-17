@@ -2,8 +2,7 @@
     <div class="perfil-header">
       <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
       <nav class="perfil-nav">
-        <a routerLink="#">Perfil</a>
-        <a routerLink="#">Cerrar Sesión</a>
+        <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
       </nav>
     </div>
   
@@ -17,7 +16,6 @@
           <h3>{{ padrino.nombre }}</h3>
           <p><strong>E-mail:</strong> {{ padrino.email }}</p>
           <p><strong>Celular:</strong> {{ padrino.celular }}</p>
-          <!-- <p><strong>Estado del perfil:</strong> {{ padrino.estado }}</p> -->
           <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
         </div>
       </div>

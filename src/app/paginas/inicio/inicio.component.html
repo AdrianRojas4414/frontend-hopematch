@@ -6,9 +6,9 @@
         <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="/login">Log In</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#register-section">Sign Up</a></li>
+        <li><a href="/login" style="color: #e65c4f;">Log In</a></li>
+        <li><a href="#footer-content">Contact</a></li>
         </ul>
     </nav>
     </header>
@@ -21,23 +21,23 @@
     </div>
     </section>
     
-    <section class="register-section">
+    <section id="register-section" class="register-section">
         <div class="register-card padrino">
             <h2>QUIERO SER PADRINO</h2>
-            <img src="padrino_image.png" alt="Quiero Ser Padrino">
+            <img src="imgs/Padrino.png" alt="Quiero Ser Padrino">
             <button class="register-btn" [routerLink]="['/crearpadrino']">Registrarse</button>
         </div>
         
         <div class="register-card hogar">
             <h2>QUIERO REGISTRAR A MI HOGAR</h2>
-            <img src="hogar_image.png" alt="Quiero Registrar a Mi Hogar">
+            <img src="imgs/Hogar.png" alt="Quiero Registrar a Mi Hogar">
             <button class="register-btn" [routerLink]="['/crearencargado']">Registrarse</button>
         </div>
     </section>
 
 
 <footer>
-    <div class="footer-content">
+    <div id="footer-content" class="footer-content">
         <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="footer-logo">
         <ul class="social-links">
         <li><a href="#">Facebook</a></li>

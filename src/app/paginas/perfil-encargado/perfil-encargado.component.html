@@ -2,8 +2,7 @@
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
-      <a routerLink="#">Perfil</a>
-      <a routerLink="#">Cerrar Sesión</a>
+      <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
     </nav>
   </div>
 
@@ -13,7 +12,7 @@
         <img [src]="encargado.foto" alt="Foto del Encargado" />
       </div>
       <div class="perfil-detalles">
-        <h2>Mi Perfil</h2>
+        <h2 style="color: #e65c4f;">Mi Perfil</h2>
         <h3>{{ encargado.nombre }}</h3>
         <p><strong>E-mail:</strong> {{ encargado.email }}</p>
         <p><strong>Nombre del Hogar:</strong> {{ encargado.nombre_hogar }}</p>
@@ -25,7 +24,7 @@
     </div>
 
     <div class="ninos-del-hogar">
-      <h3>Niños del Hogar</h3>
+      <h3 style="color: #e65c4f;">Niños del Hogar</h3>
       <div class="ninos-container">
         <div class="nino-card" *ngFor="let nino of encargado.ninos">
           <div class="nino-detalles">

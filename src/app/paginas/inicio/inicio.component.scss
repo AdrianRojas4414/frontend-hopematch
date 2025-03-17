@@ -47,7 +47,7 @@
   }
   
   .nav-links li a:hover {
-    color: #ff6347;
+    color: #e65c4f;
   }
   
   .hero {
@@ -55,7 +55,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: red;//url('background_hands.png');
+    background-color: #e65c4f;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -110,7 +110,7 @@
   .register-card h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: #ff6347;
+    color: #e65c4f;
   }
   
   .register-card img {
@@ -120,7 +120,7 @@
   }
   
   .register-btn {
-    background-color: #ff6347;
+    background-color: #e65c4f;
     color: white;
     padding: 0.8rem 2rem;
     border: none;
@@ -130,7 +130,7 @@
   }
   
   .register-btn:hover {
-    background-color: #e14a34;
+    background-color: #e65c4f;
   }
   
   footer {
@@ -165,6 +165,9 @@
   }
   
   .social-links li a:hover {
-    color: #ff6347;
+    color: #e65c4f;
   }
   
+  html {
+    scroll-behavior: smooth;
+}
