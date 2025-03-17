@@ -27,4 +27,7 @@
       return this.http.post(`${this.backendUrl}/${idEncargado}/add-nino`, nino);
     }
 
+    updateEncargado(id: number, encargado: any): Observable<any> {
+      return this.http.put(`${this.backendUrl}/update/${id}`, encargado);
+    }
   }
