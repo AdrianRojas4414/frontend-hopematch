@@ -8,10 +8,24 @@
   
       <label>Fecha de Nacimiento:</label>
       <input type="date" [(ngModel)]="nino.fechaNacimiento" name="fechaNacimiento" required>
-  
+  <!--
       <label>Necesidades:</label>
       <textarea [(ngModel)]="nino.necesidades" name="necesidades"></textarea>
-  
+    -->
+      <label>Necesidades:</label>
+      
+       <div class="input-container">
+        <input type="text" [(ngModel)]="nuevaNecesidad" name="nuevaNecesidad" placeholder="Añadir necesidad">
+        <button type="button" (click)="agregarNecesidad()">➕</button>
+    </div>
+
+     <div class="necesidades-lista">
+        <div *ngFor="let necesidad of nino.necesidades; let i = index" class="necesidad-item">
+            {{ necesidad }}
+            <button type="button" (click)="eliminarNecesidad(i)">❌</button>
+        </div>
+    </div>
+
       <button type="submit">Guardar Cambios</button>
     </form>
   </div>
