@@ -27,13 +27,18 @@ export class CrearEncargadoComponent {
 
     this.encargadoService.createEncargado(this.encargado).subscribe({
       next: (response) => {
-        console.log('Encargado registrado con éxito!', response);
-        alert('Encargado registrado con éxito!');
-        this.router.navigate([`/perfil-encargado/${response.id}`]);
+        if(this.encargado.nombre == '' || this.encargado.celular == '' || this.encargado.email == '' || this.encargado.contrasenia == '' || this.encargado.nombre_hogar == '' || this.encargado.direccion_hogar == ''){
+          alert("Todos los campos deben ser llenados");
+        }
+        else{
+          console.log('Encargado registrado con éxito!', response);
+          alert('Encargado registrado con éxito!');
+          this.router.navigate([`/perfil-encargado/${response.id}`]);
+        }
       },
       error: (err) => {
-        console.error('Error al registrar encargado:', err);
-        alert('Error al registrar encargado.');
+        console.error('Error al registrar encargado. Todos los campos deben ser llenados:', err);
+        alert('Error al registrar encargado. Todos los campos deben ser llenados.');
       }
     });
   }

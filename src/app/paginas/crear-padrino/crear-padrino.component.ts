@@ -25,13 +25,18 @@ export class CrearPadrinoComponent {
   registrarPadrino(): void {
     this.padrinoService.createPadrino(this.padrino).subscribe({
       next: (response) => {
-        console.log('Padrino registrado con éxito!', response);
-        alert('Padrino registrado con éxito!');
-        this.router.navigate([`/perfil-padrino/${response.id}`]);
+        if(this.padrino.nombre == '' || this.padrino.celular == '' || this.padrino.email == '' || this.padrino.contrasenia == ''){
+          alert("Todos los campos deben ser llenados");
+        }
+        else{
+          console.log('Padrino registrado con éxito!', response);
+          alert('Padrino registrado con éxito!');
+          this.router.navigate([`/perfil-padrino/${response.id}`]);
+        }
       },
       error: (err) => {
-        console.error('Error al registrar padrino:', err);
-        alert('Error al registrar padrino.');
+        console.error('Error al registrar padrino. Todos los campos deben ser llenados:', err);
+        alert('Error al registrar padrino. Todos los campos deben ser llenados.');
       }
     });
   }
