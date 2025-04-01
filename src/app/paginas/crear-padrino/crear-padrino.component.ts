@@ -31,7 +31,7 @@ export class CrearPadrinoComponent {
         else{
           console.log('Padrino registrado con éxito!', response);
           alert('Padrino registrado con éxito!');
-          this.router.navigate([`/perfil-padrino/${response.id}`]);
+          this.router.navigate([`/home-padrino/${response.id}`]);
         }
       },
       error: (err) => {

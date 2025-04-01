@@ -25,7 +25,7 @@ export class LoginComponent {
           this.router.navigate([`/perfil-encargado/${parsedResponse.id}`]);
         }
         if(parsedResponse.userType == "Padrino"){
-          this.router.navigate([`/perfil-padrino/${parsedResponse.id}`]);
+          this.router.navigate([`/home-padrino/${parsedResponse.id}`]);
         }
       },
       error: (err) => {
