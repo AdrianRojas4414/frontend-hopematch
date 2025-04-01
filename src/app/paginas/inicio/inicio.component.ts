@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-inicio',
@@ -8,5 +9,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './inicio.component.scss'
 })
 export class InicioComponent {
-
+  public tittle = TEXTOS.principalTittle;
+  public principalSlogan = TEXTOS.principalSlogan;
 }
