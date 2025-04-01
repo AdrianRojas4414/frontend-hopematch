@@ -1,0 +1,47 @@
+<div class="container">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    
+    <h2>Registrar Donación</h2>
+    
+    <form (ngSubmit)="registrarDonacion()" *ngIf="!isLoading">
+        <input type="hidden" [(ngModel)]="donacion.padrino_id" name="padrino_id">
+        <input type="hidden" [(ngModel)]="donacion.encargado_id" name="encargado_id">
+
+        <label>Monto a donar ($):</label>
+        <input type="number" 
+               [(ngModel)]="donacion.cantidad_donacion" 
+               name="cantidad_donacion" 
+               min="0.01" 
+               step="0.01"
+               placeholder="Ej: 50.00"
+               required>
+
+        <label>Fecha de donación:</label>
+        <input type="date" 
+               [(ngModel)]="donacion.fecha_donacion" 
+               name="fecha_donacion"
+               required>
+
+        <label>URL de foto (opcional):</label>
+        <input type="text" 
+               [(ngModel)]="donacion.foto_donacion" 
+               name="foto_donacion"
+               placeholder="https://ejemplo.com/foto.jpg">
+
+        <label>Selecciona las necesidades:</label>
+        <div class="necesidades">
+            <div *ngFor="let necesidad of necesidades">
+                <input 
+                    type="checkbox" 
+                    [id]="'necesidad_' + necesidad.id"
+                    [value]="necesidad.id" 
+                    (change)="toggleNecesidad(necesidad.id)"
+                    [checked]="donacion.necesidades.includes(necesidad.id)"
+                >
+                <label [for]="'necesidad_' + necesidad.id">{{necesidad.nombre}}</label>
+            </div>
+        </div>
+
+        <button type="submit">Guardar Donación</button>
+    </form>
+</div>

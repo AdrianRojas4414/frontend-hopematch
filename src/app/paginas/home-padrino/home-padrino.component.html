@@ -1,0 +1,29 @@
+<div class="home-padrino-container" *ngIf="padrino">
+    <div class="home-padrino-header">
+      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+      <nav class="perfil-nav">
+        <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
+        <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
+      </nav>
+    </div>
+  
+    <div class="saludo">
+      <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
+    </div>
+  
+    <div class="encargados-lista">
+      <div class="encargado-card" *ngFor="let encargado of encargados">
+        <div class="encargado-info">
+          <div class="encargado-foto">
+            <img [src]="encargado.foto" alt="Foto del Encargado" />
+          </div>
+          <div class="encargado-detalles">
+            <h3>{{ encargado.nombre }}</h3>
+            <p>{{ encargado.direccion_hogar }}</p>
+            <button class="btn-ver-hogar" (click)="verHogar(encargado.id)">Ver Hogar</button>
+            <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

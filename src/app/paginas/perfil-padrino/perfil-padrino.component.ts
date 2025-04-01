@@ -34,4 +34,10 @@ export class PerfilPadrinoComponent implements OnInit{
       this.router.navigate([`/editar-perfil-padrino/${this.padrino.id}`]);
     }
   }
+
+  VolverAHome():void{
+    if (this.padrino) {
+      this.router.navigate([`/home-padrino/${this.padrino.id}`]);
+    }
+  }
 }

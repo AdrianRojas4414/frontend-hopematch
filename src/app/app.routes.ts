@@ -10,6 +10,8 @@ import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component
 import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
 import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component';
 import { EditarPadrinoComponent } from './paginas/editar-padrino/editar-padrino.component';
+import { HomePadrinoComponent } from './paginas/home-padrino/home-padrino.component';
+import { RegistroDonacionComponent } from './paginas/registro-donacion/registro-donacion.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -21,7 +23,9 @@ export const routes: Routes = [
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
+    {path:'home-padrino/:id', component: HomePadrinoComponent, title:'Pagina Padrino'},
     {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
     {path:'login', component: LoginComponent, title: "Log in"},
+    { path: 'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
