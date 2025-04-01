@@ -21,7 +21,7 @@
             <h3>{{ encargado.nombre }}</h3>
             <p>{{ encargado.direccion_hogar }}</p>
             <button class="btn-ver-hogar" (click)="verHogar(encargado.id)">Ver Hogar</button>
-            <button class="btn-donar">Donar</button>
+            <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
           </div>
         </div>
       </div>
