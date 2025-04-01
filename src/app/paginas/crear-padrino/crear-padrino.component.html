@@ -1,23 +1,23 @@
 <div class="registro-container">
   <div class="form-card">
     <div class="header">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <h2>Nuevo Perfil de Padrino</h2>
+      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+      <h2> {{ texts.principalMessageEncargado }} </h2>
     </div>
     <form (ngSubmit)="registrarPadrino()">
       <div class="input-group">
-        <input type="text" id="nombre" placeholder="Nombre" [(ngModel)]="padrino.nombre" name="nombre" required>
+        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="padrino.nombre" name="nombre" required>
       </div>
 
-      <input type="email" id="email" placeholder="Email" [(ngModel)]="padrino.email" name="email" required>
+      <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="padrino.email" name="email" required>
 
-      <input type="text" id="celular" placeholder="Numero de Celular" [(ngModel)]="padrino.celular" name="celular" required>
+      <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="padrino.celular" name="celular" required>
 
-      <input type="text" id="foto" placeholder="Url Foto" [(ngModel)]="padrino.foto" name="foto">
+      <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="padrino.foto" name="foto">
 
-      <input type="password" id="password" placeholder="Password" [(ngModel)]="padrino.contrasenia" name="contrasenia" required>
+      <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="padrino.contrasenia" name="contrasenia" required>
 
-      <button type="submit" class="submit-btn">Sign Up</button>
+      <button type="submit" class="submit-btn"> {{ texts.buttonSignUp }} </button>
     </form>
   </div>
 </div>

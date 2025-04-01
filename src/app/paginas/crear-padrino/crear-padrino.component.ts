@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-crear-padrino',
@@ -11,6 +12,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
   styleUrl: './crear-padrino.component.scss'
 })
 export class CrearPadrinoComponent {
+  public texts = TEXTOS;
   padrino = {
     nombre: '',
     celular: '',
