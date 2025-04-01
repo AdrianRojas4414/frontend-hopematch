@@ -24,6 +24,8 @@ export const TEXTOS = {
     inputCellPhone: 'Número de Celular',
     inputPhoto: 'Url Foto',
     inputPassword: 'Password',
+    inputHogarName: 'Nombre del Hogar',
+    inputDireccion: 'Dirección del Hogar',
     // SOCIAL MEDIA
     facebook: 'Facebook',
     instragram: 'Instragram',

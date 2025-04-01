@@ -1,27 +1,27 @@
 <div class="registro-container">
   <div class="form-card">
     <div class="header">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <h2>Nuevo Perfil de Encargado del Hogar.</h2>
+      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+      <h2> {{ texts.principalMessageEncargado }} </h2>
     </div>
     <form (ngSubmit)="registrarEncargado()">
       <div class="input-group">
-        <input type="text" id="nombre" placeholder="Nombre" [(ngModel)]="encargado.nombre" name="nombre" required>
+        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="encargado.nombre" name="nombre" required>
       </div>
 
-      <input type="email" id="email" placeholder="Email" [(ngModel)]="encargado.email" name="email" required>
+      <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="encargado.email" name="email" required>
 
-      <input type="text" id="celular" placeholder="Numero de Celular" [(ngModel)]="encargado.celular" name="celular" required>
+      <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="encargado.celular" name="celular" required>
 
-      <input type="text" id="foto" placeholder="Url Foto" [(ngModel)]="encargado.foto" name="foto">
+      <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="encargado.foto" name="foto">
 
-      <input type="text" id="foto" placeholder="Nombre del Hogar" [(ngModel)]="encargado.nombre_hogar" name="foto">
+      <input type="text" id="foto" [placeholder]="texts.inputHogarName" [(ngModel)]="encargado.nombre_hogar" name="foto">
 
-      <input type="text" id="foto" placeholder="Dirección del Hogar" [(ngModel)]="encargado.direccion_hogar" name="foto">
+      <input type="text" id="foto" [placeholder]="texts.inputDireccion" [(ngModel)]="encargado.direccion_hogar" name="foto">
 
-      <input type="password" id="password" placeholder="Password" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
+      <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
 
-      <button type="submit" class="submit-btn">Sign Up</button>
+      <button type="submit" class="submit-btn"> {{ texts.buttonSignUp }} </button>
     </form>
   </div>
 </div>

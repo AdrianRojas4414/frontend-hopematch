@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-crear-encargado',
@@ -10,6 +11,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
   styleUrl: './crear-encargado.component.scss'
 })
 export class CrearEncargadoComponent {
+  public texts = TEXTOS;
   encargado = {
     nombre: '',
     celular: '',
