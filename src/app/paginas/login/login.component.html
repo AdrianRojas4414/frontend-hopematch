@@ -13,12 +13,11 @@
         </div>
   
         <div class="input-group">
-          <select [(ngModel)]="userType" name="userType">
-            <option value="Padrino">Padrino</option>
-            <option value="Encargado">Encargado del hogar</option>
-          </select>             
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="userType" name="userType">
+            <mat-radio-button value="Padrino">Padrino</mat-radio-button>
+            <mat-radio-button value="Encargado">Encargado del Hogar</mat-radio-button>
+          </mat-radio-group>
         </div>
-  
         <button type="submit" class="login-btn">LOGIN</button>
       </form>
     </div>
