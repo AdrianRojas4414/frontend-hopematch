@@ -4,6 +4,9 @@ export const TEXTOS = {
     principalSlogan: 'Un padrino, una esperanza, una vida transformada',
     secondoSolgan: 'Hold my dreams',
     messageLogo: 'HopeMatch Logo',
+    // USER TYPES
+    userPadrino: 'Padrino',
+    userEncargado: 'Encargado del hogar',
     // NAV BUTTONS
     buttonHome: 'Home',
     buttonAboutUs: 'AboutUs',

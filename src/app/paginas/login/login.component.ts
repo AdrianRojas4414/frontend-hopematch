@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  public texts = TEXTOS;
   email: string = '';
   password: string = '';
   userType: string = 'Padrino';
