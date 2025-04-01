@@ -1,48 +1,48 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo">
+        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo">
         </div>
         <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#register-section">Sign Up</a></li>
-        <li><a href="/login" style="color: #e65c4f;">Log In</a></li>
-        <li><a href="#footer-content">Contact</a></li>
+        <li><a href="#">{{ texts.buttonHome }} </a></li>
+        <li><a href="#"> {{ texts.buttonAboutUs }} </a></li>
+        <li><a href="#register-section"> {{ texts.buttonSignUp }} </a></li>
+        <li><a href="/login" style="color: #e65c4f;"> {{ texts.buttonLogIn }} </a></li>
+        <li><a href="#footer-content"> {{ texts.buttonContact }} </a></li>
         </ul>
     </nav>
     </header>
     
     <section class="hero">
     <div class="hero-content">
-        <h1 class="main-title">{{tittle}}</h1>
-        <p class="subtitle">{{principalSlogan}}</p>
-        <p class="dreams">Hold my dreams</p>
+        <h1 class="main-title">{{ texts.principalTittle }}</h1>
+        <p class="subtitle">{{ texts.principalSlogan }}</p>
+        <p class="dreams">{{ texts.secondoSolgan }}</p>
     </div>
     </section>
     
     <section id="register-section" class="register-section">
         <div class="register-card padrino">
-            <h2>QUIERO SER PADRINO</h2>
-            <img src="imgs/Padrino.png" alt="Quiero Ser Padrino">
-            <button class="register-btn" [routerLink]="['/crearpadrino']">Registrarse</button>
+            <h2>{{ texts.padrinoOption }}</h2>
+            <img src="imgs/Padrino.png" [alt]="texts.padrinoOption">
+            <button class="register-btn" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
         </div>
         
         <div class="register-card hogar">
-            <h2>QUIERO REGISTRAR A MI HOGAR</h2>
-            <img src="imgs/Hogar.png" alt="Quiero Registrar a Mi Hogar">
-            <button class="register-btn" [routerLink]="['/crearencargado']">Registrarse</button>
+            <h2>{{ texts.encargadoOption }}</h2>
+            <img src="imgs/Hogar.png" [alt]="texts.encargadoOption">
+            <button class="register-btn" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
         </div>
     </section>
 
 
 <footer>
     <div id="footer-content" class="footer-content">
-        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="footer-logo">
+        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="footer-logo">
         <ul class="social-links">
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Twitter</a></li>
+        <li><a href="#"> {{ texts.facebook }} </a></li>
+        <li><a href="#"> {{ texts.instragram }} </a></li>
+        <li><a href="#"> {{ texts.twitter }} </a></li>
         </ul>
     </div>
 </footer>

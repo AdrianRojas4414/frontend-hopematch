@@ -2,7 +2,8 @@ export const TEXTOS = {
     // PRINCIPAL PAGE
     principalTittle: 'HopeMatch',
     principalSlogan: 'Un padrino, una esperanza, una vida transformada',
-    footerSolgan: 'Hold my dreams',
+    secondoSolgan: 'Hold my dreams',
+    messageLogo: 'HopeMatch Logo',
     // NAV BUTTONS
     buttonHome: 'Home',
     buttonAboutUs: 'AboutUs',
@@ -21,7 +22,7 @@ export const TEXTOS = {
     inputPhoto: 'Url Foto',
     inputPassword: 'Password',
     // SOCIAL MEDIA
-    facebooK: 'Facebook',
+    facebook: 'Facebook',
     instragram: 'Instragram',
     twitter: 'Tiwitter',
 

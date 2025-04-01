@@ -8,7 +8,8 @@ import { TEXTOS } from '../../config/constants';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
+
 export class InicioComponent {
-  public tittle = TEXTOS.principalTittle;
-  public principalSlogan = TEXTOS.principalSlogan;
+  public texts = TEXTOS
+  
 }
