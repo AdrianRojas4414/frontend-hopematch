@@ -38,13 +38,15 @@ export class EditarPadrinoComponent implements OnInit {
 
   eliminarPadrino(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
-      this.padrino.nombre = "Rodrigo Fiesta";
       this.padrino.estado = "En suspencion";
       this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(()=> {
         alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
         console.log(this.padrino)
         this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 500);
       })
     }
   }

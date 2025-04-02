@@ -32,7 +32,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);
-        alert('Usuario o contraseña incorrectos');
+        alert(err.error);
       }
     });
   }
