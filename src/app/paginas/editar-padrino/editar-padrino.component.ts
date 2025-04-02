@@ -24,6 +24,7 @@ export class EditarPadrinoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.padrinoService.getPadrinoById(id).subscribe(data => {
       this.padrino = data;
+      console.log(this.padrino)
     });
   }
 
@@ -33,5 +34,18 @@ export class EditarPadrinoComponent implements OnInit {
         alert('Padrino actualizado correctamente');
         this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
       });
+  }
+
+  eliminarPadrino(): void{
+    if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
+      this.padrino.nombre = "Rodrigo Fiesta";
+      this.padrino.estado = "En suspencion";
+      this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
+      .subscribe(()=> {
+        alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        console.log(this.padrino)
+        this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+      })
+    }
   }
 }
