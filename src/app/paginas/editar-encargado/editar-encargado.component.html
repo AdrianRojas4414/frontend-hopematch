@@ -22,7 +22,9 @@
       <label>Dirección del Hogar:</label>
       <input type="text" [(ngModel)]="encargado.direccion_hogar" name="direccion_hogar" required>
   
-      <button type="submit">Guardar Cambios</button>
+      <button type="submit" class="primary-button">Guardar Cambios</button>
+
+      <button type="button" class="secondary-button" (click)="eliminarEncargado()">Eliminar Cuenta</button>
     </form>
   </div>
   
