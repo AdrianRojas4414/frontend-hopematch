@@ -14,6 +14,7 @@ import { HomePadrinoComponent } from './paginas/home-padrino/home-padrino.compon
 import { RegistroDonacionComponent } from './paginas/registro-donacion/registro-donacion.component';
 import { DetalleDonacionComponent } from './paginas/detalle-donacion/detalle-donacion.component';
 import { DetalleHogarComponent } from './paginas/detalle-hogar/detalle-hogar.component';
+import { HomeEncargadoComponent } from './paginas/home-encargado/home-encargado.component';
 import { HogarEncargadoComponent } from './paginas/hogar-encargado/hogar-encargado.component';
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
     {path:'home-padrino/:id', component: HomePadrinoComponent, title:'Pagina Padrino'},
+    {path:'home-encargado/:id', component: HomeEncargadoComponent, title:'Pagina Encargado'},
     {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
     {path:'detalle-hogar/:id', component:DetalleHogarComponent, title:'Detales del Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
