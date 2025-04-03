@@ -15,6 +15,7 @@ import { RegistroDonacionComponent } from './paginas/registro-donacion/registro-
 import { DetalleDonacionComponent } from './paginas/detalle-donacion/detalle-donacion.component';
 import { DetalleHogarComponent } from './paginas/detalle-hogar/detalle-hogar.component';
 import { HomeEncargadoComponent } from './paginas/home-encargado/home-encargado.component';
+import { HogarEncargadoComponent } from './paginas/hogar-encargado/hogar-encargado.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -33,5 +34,6 @@ export const routes: Routes = [
     {path:'login', component: LoginComponent, title: "Log in"},
     { path: 'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
     { path: 'detalle-donacion/:id', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
+    { path: 'hogar-encargado/:id', component: HogarEncargadoComponent, title: 'Mi Hogar' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
