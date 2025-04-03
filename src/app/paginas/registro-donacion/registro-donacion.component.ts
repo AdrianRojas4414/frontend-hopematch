@@ -45,9 +45,12 @@ export class RegistroDonacionComponent implements OnInit {
   }
 
   cargarNecesidades(): void {
+    if (!this.donacion.encargado_id) return;
+    
     this.isLoading = true;
-    this.ninoService.getAllNecesidades().subscribe({
-        next: (necesidades: any[]) => {
+    this.ninoService.getNecesidadesByEncargado(this.donacion.encargado_id).subscribe({
+        next: (necesidades: string[]) => {
+            console.log("Necesidades ordenadas del hogar:", necesidades);
             this.necesidades = necesidades.map((necesidad, index) => ({
                 id: index + 1,
                 nombre: necesidad
@@ -56,6 +59,7 @@ export class RegistroDonacionComponent implements OnInit {
         },
         error: () => this.isLoading = false
     });
+
   }
 
   toggleNecesidad(necesidadId: number) {
