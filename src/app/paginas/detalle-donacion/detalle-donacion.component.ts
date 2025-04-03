@@ -28,6 +28,13 @@ export class DetalleDonacionComponent implements OnInit {
         next: (data) => {
           this.donacion = data;
           this.isLoading = false;
+          if (typeof this.donacion.comentarioEncargado === 'string') {
+            try {
+              this.donacion.comentarioEncargado = JSON.parse(this.donacion.comentarioEncargado);
+            } catch (error) {
+              console.error("Error al parsear JSON:", error);
+            }
+          }
         },
         error: (err) => {
           console.error('Error al cargar donación:', err);

@@ -36,8 +36,7 @@
             <img [src]="encargado.foto" alt="Foto del Encargado" />
           </div>
           <div class="encargado-detalles">
-            <h3>{{ encargado.nombre }}</h3>
-            <p>{{ encargado.direccion_hogar }}</p>
+            <h3>{{ encargado.nombre_hogar }}</h3>
             <button class="btn-ver-hogar" (click)="verHogar(encargado.id)">Ver Hogar</button>
             <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
           </div>
