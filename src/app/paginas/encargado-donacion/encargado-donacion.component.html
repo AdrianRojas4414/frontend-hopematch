@@ -24,10 +24,16 @@
             <button (click)="mostrarFormularioComentario(donacion.id)" class="btn-comentar">
               Agregar Comentario
             </button>
+
+            <button (click)="mostrarFormularioFoto(donacion.id)" class="btn-foto">
+              Agregar Foto
+            </button>
           </div>
         </div>
       </div>
     </div>
+
+            
   
     <div *ngIf="mostrarFormulario" class="modal">
       <div class="modal-content">
@@ -37,6 +43,17 @@
           <button (click)="cancelarComentario()" class="btn-cancelar">Cancelar</button>
           <button (click)="enviarComentario()" class="btn-enviar">Enviar</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarFormFoto" class="modal">
+    <div class="modal-content">
+      <h3>Agregar Foto</h3>
+      <input type="text" [(ngModel)]="nuevaFotoUrl" placeholder="Ingresa la URL de la foto...">
+      <div class="modal-actions">
+        <button (click)="cancelarFoto()" class="btn-cancelar">Cancelar</button>
+        <button (click)="enviarFoto()" class="btn-enviar">Enviar</button>
       </div>
     </div>
   </div>
