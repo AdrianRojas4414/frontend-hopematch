@@ -1,0 +1,118 @@
+.perfil-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f6f6f6;
+  }
+  
+  .logo {
+    max-width: 80px;
+  }
+  
+  .perfil-nav {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .perfil-nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .titulo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .titulo-ninos {
+    text-align: center;
+    font-size: 2rem;
+    color: #e65c4f;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ninos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .nino-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: white;
+    width: 45%;
+    max-width: 600px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nino-foto img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 15px;
+    background-color: #f0f0f0;
+  }
+  
+  .nino-detalles {
+    flex: 1;
+  }
+  
+  .nino-detalles h4 {
+    margin: 0 0 5px;
+  }
+  
+  .nino-detalles ul {
+    margin: 5px 0;
+    padding-left: 20px;
+  }
+  
+  .btn-editar-nino {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #e65c4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn-crear-nino{
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #e65c4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: auto; /* Ajusta el ancho al contenido */
+    display: inline-block; /* Hace que el botón solo ocupe su contenido */
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  .ninos-del-hogar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .boton-container {
+    display: flex;
+    justify-content: center; /* O center si lo quieres centrado */
+}
