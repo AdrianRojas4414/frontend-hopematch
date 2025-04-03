@@ -30,4 +30,9 @@ export class DonacionService {
   agregarComentarioEncargado(donacionId: number, comentario: string): Observable<any> {
     return this.http.post(`${this.backendUrl}/${donacionId}/comentario`, { comentario });
   }
+
+  actualizarFotoDonacion(donacionId: number, fotoUrl: string): Observable<any> {
+    const body = { fotoUrl: fotoUrl }; 
+    return this.http.put(`${this.backendUrl}/${donacionId}/foto`, body);
+  }
 }

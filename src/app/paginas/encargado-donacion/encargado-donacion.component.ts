@@ -17,6 +17,10 @@ export class EncargadoDonacionComponent implements OnInit {
   nuevoComentario = '';
   donacionSeleccionadaId: number | null = null;
 
+  mostrarFormFoto = false;
+  nuevaFotoUrl = '';
+  donacionIdParaFoto: number | null = null;
+
   constructor(
     private donacionService: DonacionService,
     private route: ActivatedRoute,
@@ -72,6 +76,34 @@ export class EncargadoDonacionComponent implements OnInit {
         error: (err) => {
           console.error('Error al enviar comentario:', err);
           alert('Error al enviar el comentario');
+        }
+      });
+    }
+  }
+  mostrarFormularioFoto(donacionId: number): void {
+    this.donacionIdParaFoto = donacionId;
+    this.mostrarFormFoto = true;
+  }
+
+  cancelarFoto(): void {
+    this.mostrarFormFoto = false;
+    this.nuevaFotoUrl = '';
+    this.donacionIdParaFoto = null;
+  }
+
+  enviarFoto(): void {
+    if (this.donacionIdParaFoto && this.nuevaFotoUrl) {
+      this.donacionService.actualizarFotoDonacion(
+        this.donacionIdParaFoto, 
+        this.nuevaFotoUrl
+      ).subscribe({
+        next: () => {
+          this.cancelarFoto();
+          const encargadoId = this.route.snapshot.paramMap.get('id');
+          if (encargadoId) this.cargarDonaciones(+encargadoId);
+        },
+        error: (err) => {
+          console.error('Error al actualizar foto:', err);
         }
       });
     }
