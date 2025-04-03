@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { DonacionService } from '../../servicios/donacion.service';
 
 @Component({
   selector: 'app-home-padrino',
@@ -15,11 +16,14 @@ export class HomePadrinoComponent implements OnInit{
 
   padrino: any = null;
   encargados: any[] = [];
+  donaciones: any[] = [];
 
   constructor(private route:ActivatedRoute, 
                 private padrinoService: PadrinoService, 
                 private router: Router,
-                private encargadoService: EncargadoService){}
+                private encargadoService: EncargadoService,
+                private donacionService: DonacionService
+              ){}
   
                 
   ngOnInit(): void {
@@ -29,6 +33,7 @@ export class HomePadrinoComponent implements OnInit{
       this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
           this.padrino = data;
+          this.obtenerDonaciones(this.padrino.id);
         },
         error: (err) => {
           console.error('Error al obtener encargado:', err);
@@ -47,6 +52,24 @@ export class HomePadrinoComponent implements OnInit{
       console.log("this.encargados")
   }
 
+  obtenerDonaciones(padrinoId: number): void {
+    console.log('Obteniendo donaciones para padrino:', padrinoId);
+    this.donacionService.getDonacionesByPadrino(padrinoId).subscribe({
+        next: (data) => {
+            console.log('Donaciones recibidas:', data);
+            this.donaciones = data;
+        },
+        error: (err) => {
+            console.error('Error al obtener donaciones:', err);
+        }
+    });
+}
+
+  getEncargadoName(encargadoId: number): string {
+    const encargado = this.encargados.find(e => e.id === encargadoId);
+    return encargado ? encargado.nombre : 'Encargado desconocido';
+  }
+
   irPerfil(): void{
     if (this.padrino) {
       this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
@@ -55,6 +78,10 @@ export class HomePadrinoComponent implements OnInit{
 
   verHogar(idHogar: number): void {
     this.router.navigate([`/perfil-encargado/${idHogar}`]);
+  }
+
+  verDetallesDonacion(donacionId: number): void {
+    this.router.navigate([`/detalle-donacion/${donacionId}`]);
   }
 
   irARegistroDonacion(padrinoId: number, encargadoId: number): void {
