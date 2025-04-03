@@ -1,3 +1,4 @@
+<!-- perfil-encargado.component.html -->
 <div class="perfil-container" *ngIf="encargado">
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
@@ -19,28 +20,7 @@
         <p><strong>Nombre del Hogar:</strong> {{ encargado.nombre_hogar }}</p>
         <p><strong>Direccion del Hogar:</strong> {{ encargado.direccion_hogar }}</p>
         <p><strong>Estado del Hogar:</strong> Activo</p>
-        <p><strong>Numero de Niños:</strong> {{ encargado.ninos.length }}</p>
         <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
-      </div>
-    </div>
-
-    <div class="ninos-del-hogar">
-      <h3 style="color: #e65c4f;">Niños del Hogar</h3>
-      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
-      <div class="ninos-container">
-        <div class="nino-card" *ngFor="let nino of encargado.ninos">
-          <div class="nino-detalles">
-            <h4>{{ nino.nombre }}</h4>
-            <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
-            <div>
-              <strong>Necesidades:</strong>
-              <ul>
-                <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
-              </ul>
-            </div>
-            <button class="btn-editar-nino" (click)="editarNino(nino.id, encargado.id)">Editar Datos</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>

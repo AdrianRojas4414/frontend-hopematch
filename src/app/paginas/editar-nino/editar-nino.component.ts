@@ -48,7 +48,7 @@ export class EditarNinoComponent {
   updateNino(): void {
     this.ninoService.updateNino(this.nino.id, this.nino).subscribe(() => {
       alert('Niño actualizado correctamente');
-      this.router.navigate([`/perfil-encargado/${this.idEncargado}`]);
+      this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
     });
   }
 }
