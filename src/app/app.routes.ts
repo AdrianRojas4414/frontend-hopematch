@@ -12,6 +12,7 @@ import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component
 import { EditarPadrinoComponent } from './paginas/editar-padrino/editar-padrino.component';
 import { HomePadrinoComponent } from './paginas/home-padrino/home-padrino.component';
 import { RegistroDonacionComponent } from './paginas/registro-donacion/registro-donacion.component';
+import { DetalleDonacionComponent } from './paginas/detalle-donacion/detalle-donacion.component';
 import { DetalleHogarComponent } from './paginas/detalle-hogar/detalle-hogar.component';
 
 export const routes: Routes = [
@@ -29,5 +30,6 @@ export const routes: Routes = [
     {path:'detalle-hogar/:id', component:DetalleHogarComponent, title:'Detales del Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
     { path: 'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
+    { path: 'detalle-donacion/:id', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

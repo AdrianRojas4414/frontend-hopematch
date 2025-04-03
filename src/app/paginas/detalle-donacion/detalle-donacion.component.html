@@ -1,0 +1,45 @@
+<div class="detalle-container" *ngIf="!isLoading">
+    <div *ngIf="donacion; else noEncontrado">
+      <h2>Detalle de Donación #{{ donacion.id }}</h2>
+      
+      <div class="detalle-card">
+        <div class="detalle-row">
+          <span class="label">Fecha:</span>
+          <span class="value">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+        </div>
+        
+        <div class="detalle-row">
+          <span class="label">Monto:</span>
+          <span class="value">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
+        </div>
+        
+        <div class="detalle-row">
+          <span class="label">Beneficiario:</span>
+          <span class="value">{{ donacion.encargado?.nombre || 'No especificado' }}</span>
+        </div>
+        
+        <div *ngIf="donacion.necesidadesSeleccionadas" class="detalle-row">
+          <span class="label">Necesidades:</span>
+          <span class="value">{{ donacion.necesidadesSeleccionadas }}</span>
+        </div>
+        
+        <div *ngIf="donacion.fotoDonacion" class="detalle-row">
+          <span class="label">Comprobante:</span>
+          <img [src]="donacion.fotoDonacion" alt="Comprobante" class="comprobante-img">
+        </div>
+      </div>
+      
+      <button (click)="volverAHome()" class="btn-volver">Volver</button>
+    </div>
+    
+    <ng-template #noEncontrado>
+      <div class="not-found">
+        <p>No se encontró la donación solicitada</p>
+        <button (click)="volverAHome()" class="btn-volver">Volver al inicio</button>
+      </div>
+    </ng-template>
+  </div>
+  
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando detalles...</p>
+  </div>
