@@ -105,33 +105,89 @@
     font-size: 1.2rem;
   }
   
-  input[type="text"],
-  textarea {
-    width: 100%;
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
+  .btn-detalles {
+    padding: 0.5rem 1rem;
+    border: none;
     border-radius: 4px;
     font-size: 0.9rem;
   }
   
-  textarea {
-    min-height: 120px;  
+  .btn-detalles {
+    background: #3498db;
+    color: white;
   }
-}
+  
+  .btn-comentar {
+    background: #2ecc71;
+  color: white;
+  transition: all 0.3s ease;
 
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;  
-}
+  &:hover:not(:disabled) {
+    background: darken(#2ecc71, 10%);
+  }
+  }
+  
+  .btn-comentado {
+    background: #95a5a6;
+    color: white;
+    cursor: not-allowed;
+  }
+  
 
-.btn-cancelar {
-  @extend .btn-accion;
-  background: #e74c3c;
-}
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    
+    h3 {
+        color: #e65c4f;
+        margin-bottom: 1rem;
+      }
 
-.btn-enviar {
-  @extend .btn-accion;
-  background: #2ecc71;
-}
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border: 1px solid #e65c4f;
+      border-radius: 4px;
+      &:focus {
+        outline: 2px solid #e65c4f;
+      }
+    }
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .btn-cancelar {
+    background: #e74c3c;
+    color: white;
+  }
+  
+  .btn-enviar {
+    background: #2ecc71;
+    color: white;
+    transition: all 0.3s ease;
+    &:hover {
+        background: darken(#e65c4f, 10%);
+      }
+  }
