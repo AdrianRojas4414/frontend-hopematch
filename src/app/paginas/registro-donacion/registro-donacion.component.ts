@@ -66,6 +66,9 @@ export class RegistroDonacionComponent implements OnInit {
       this.donacion.necesidades.splice(index, 1);
     }
   }
+  seleccionarNecesidad(necesidadId: number) {
+    this.donacion.necesidades = [necesidadId]; 
+  }
 
   registrarDonacion() {
     const necesidadesSeleccionadas = this.necesidades

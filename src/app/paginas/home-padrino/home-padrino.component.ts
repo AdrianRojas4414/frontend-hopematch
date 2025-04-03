@@ -77,7 +77,7 @@ export class HomePadrinoComponent implements OnInit{
   }
 
   verHogar(idHogar: number): void {
-    this.router.navigate([`/perfil-encargado/${idHogar}`]);
+    this.router.navigate([`/detalle-hogar/${idHogar}`]);
   }
 
   verDetallesDonacion(donacionId: number): void {
