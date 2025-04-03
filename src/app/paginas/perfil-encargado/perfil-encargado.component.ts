@@ -50,5 +50,11 @@ export class PerfilEncargadoComponent implements OnInit{
   editarNino(idNino: number, idEncargado: number): void {
     this.router.navigate([`/editar-nino/${idNino}`], { queryParams: { encargado: idEncargado } });
   }
+
+  VolverAHome():void{
+    if (this.encargado) {
+      this.router.navigate([`/home-encargado/${this.encargado.id}`]);
+    }
+  }
   
 }

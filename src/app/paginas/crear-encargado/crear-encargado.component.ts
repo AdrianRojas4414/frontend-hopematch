@@ -35,7 +35,7 @@ export class CrearEncargadoComponent {
         else{
           console.log('Encargado registrado con éxito!', response);
           alert('Encargado registrado con éxito!');
-          this.router.navigate([`/perfil-encargado/${response.id}`]);
+          this.router.navigate([`/home-encargado/${response.id}`]);
         }
       },
       error: (err) => {

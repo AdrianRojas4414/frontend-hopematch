@@ -3,7 +3,7 @@
     flex-direction: column;
     padding: 2rem;
     background-color: #f6f6f6;
-    height: 92vh;
+    height: 93.5vh;
     padding: 15px;
   }
   
@@ -12,9 +12,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 0;
+      height: 80px;
   
       .logo {
         max-width: 80px;
+        width: 80px;
+        height: 80px;
       }
   
       .perfil-nav {
@@ -42,11 +45,12 @@
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-height: 450px;
+      max-height: 400px;
       overflow-y: auto;
       height: 100vh;
       width: 70%; 
-      align-self: stretch
+      align-self:flex-start;
+      max-width: 60%;
   }
   
   .encargado-card {
@@ -141,7 +145,7 @@
     border-radius: 10px;
     height: fit-content;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-height: 450px;
+    max-height: 400px;
     overflow-y: auto;
     align-self: flex-start;
     width: 30%;

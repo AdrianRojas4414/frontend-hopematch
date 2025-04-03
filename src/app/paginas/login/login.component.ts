@@ -24,7 +24,7 @@ export class LoginComponent {
         const parsedResponse = JSON.parse(response);
         console.log('Response completo:', parsedResponse);
         if(parsedResponse.userType == "Encargado"){
-          this.router.navigate([`/perfil-encargado/${parsedResponse.id}`]);
+          this.router.navigate([`/home-encargado/${parsedResponse.id}`]);
         }
         if(parsedResponse.userType == "Padrino"){
           this.router.navigate([`/home-padrino/${parsedResponse.id}`]);
