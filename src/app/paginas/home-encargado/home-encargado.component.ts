@@ -40,4 +40,10 @@ export class HomeEncargadoComponent implements OnInit{
     }
   }
 
+  irHogar(): void{
+    if (this.encargado) {
+      this.router.navigate([`/hogar-encargado/${this.encargado.id}`]);
+    }
+  }
+
 }
