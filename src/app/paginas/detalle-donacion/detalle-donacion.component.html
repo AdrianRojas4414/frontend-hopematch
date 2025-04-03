@@ -26,7 +26,7 @@
   
         <div class="seccion" *ngIf="donacion.comentarioEncargado">
           <h3>Comentario del encargado:</h3>
-          <p class="comentario">{{ donacion.comentarioEncargado }}</p>
+        <p class="comentario">{{ donacion.comentarioEncargado | json }}</p>
         </div>
   
       </div>

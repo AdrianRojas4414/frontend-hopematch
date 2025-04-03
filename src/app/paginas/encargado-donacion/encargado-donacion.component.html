@@ -17,12 +17,12 @@
           </div>
   
           <div class="acciones">
-            <!--<button (click)="verDetalles(donacion.id)" class="btn-detalles">
-              Ver Detalles
-            </button>-->
-            
-            <button (click)="mostrarFormularioComentario(donacion.id)" class="btn-comentar">
-              Agregar Comentario
+            <button 
+              (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
+              [class.btn-comentar]="!donacion.comentarioEncargado"
+              [class.btn-comentado]="donacion.comentarioEncargado"
+              [disabled]="donacion.comentarioEncargado">
+              {{ donacion.comentarioEncargado ? 'Comentario enviado' : 'Agregar Comentario' }}
             </button>
           </div>
         </div>

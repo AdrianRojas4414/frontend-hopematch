@@ -63,13 +63,15 @@ export class EncargadoDonacionComponent implements OnInit {
         this.nuevoComentario
       ).subscribe({
         next: () => {
+          alert('¡Comentario enviado con éxito!');
+          
           this.cancelarComentario();
-          // Recargar las donaciones para ver los cambios
           const encargadoId = this.route.snapshot.paramMap.get('id');
           if (encargadoId) this.cargarDonaciones(+encargadoId);
         },
         error: (err) => {
           console.error('Error al enviar comentario:', err);
+          alert('Error al enviar el comentario');
         }
       });
     }
