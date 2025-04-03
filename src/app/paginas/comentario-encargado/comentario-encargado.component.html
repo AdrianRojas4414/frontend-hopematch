@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Agregar Comentario</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Mensaje de agradecimiento</mat-label>
+    <textarea matInput [(ngModel)]="comentario" rows="4"></textarea>
+  </mat-form-field>
+
+  <div class="file-upload">
+    <input type="file" accept="image/*" (change)="onFileSelected($event)" #fileInput style="display: none;">
+    <button mat-stroked-button (click)="fileInput.click()">
+      <mat-icon>add_photo_alternate</mat-icon>
+      Subir Foto
+    </button>
+    
+    <div *ngIf="fotoPrevia" class="foto-preview">
+      <img [src]="fotoPrevia" alt="Vista previa">
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardarComentario()">Guardar</button>
+</mat-dialog-actions>
