@@ -22,4 +22,12 @@ export class DonacionService {
   getDonacionById(id: number): Observable<any> {
     return this.http.get(`${this.backendUrl}/${id}`);
   }
+
+  getDonacionesByEncargado(encargadoId: number): Observable<any> {
+    return this.http.get(`${this.backendUrl}/by-encargado/${encargadoId}`);
+  }
+
+  agregarComentarioEncargado(donacionId: number, comentario: string): Observable<any> {
+    return this.http.post(`${this.backendUrl}/${donacionId}/comentario`, { comentario });
+  }
 }

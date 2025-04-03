@@ -1,45 +1,34 @@
-<div class="detalle-container" *ngIf="!isLoading">
-    <div *ngIf="donacion; else noEncontrado">
-      <h2>Detalle de Donación #{{ donacion.id }}</h2>
-      
-      <div class="detalle-card">
-        <div class="detalle-row">
-          <span class="label">Fecha:</span>
-          <span class="value">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-        </div>
-        
-        <div class="detalle-row">
-          <span class="label">Monto:</span>
-          <span class="value">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
-        </div>
-        
-        <div class="detalle-row">
-          <span class="label">Beneficiario:</span>
-          <span class="value">{{ donacion.encargado?.nombre || 'No especificado' }}</span>
-        </div>
-        
-        <div *ngIf="donacion.necesidadesSeleccionadas" class="detalle-row">
-          <span class="label">Necesidades:</span>
-          <span class="value">{{ donacion.necesidadesSeleccionadas }}</span>
-        </div>
-        
-        <div *ngIf="donacion.fotoDonacion" class="detalle-row">
-          <span class="label">Comprobante:</span>
-          <img [src]="donacion.fotoDonacion" alt="Comprobante" class="comprobante-img">
-        </div>
-      </div>
-      
-      <button (click)="volverAHome()" class="btn-volver">Volver</button>
+<div class="detalle-container">
+    <div class="header">
+      <h1>Detalle de Donación</h1>
+      <button (click)="volverAHome()" class="btn-volver">
+        <i class="fas fa-arrow-left"></i> Volver
+      </button>
     </div>
-    
-    <ng-template #noEncontrado>
-      <div class="not-found">
-        <p>No se encontró la donación solicitada</p>
-        <button (click)="volverAHome()" class="btn-volver">Volver al inicio</button>
-      </div>
-    </ng-template>
-  </div>
   
-  <div *ngIf="isLoading" class="loading">
-    <p>Cargando detalles...</p>
+    <div *ngIf="donacion" class="donacion-card">
+      <div class="donacion-header">
+        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+        <br>
+        <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
+      </div>
+  
+      <div class="donacion-body">
+        <div class="seccion">
+          <h3>Para el hogar:</h3>
+          <p>{{ donacion.encargado?.nombre_hogar }}</p>
+        </div>
+  
+        <div class="seccion" *ngIf="donacion.necesidadesSeleccionadas">
+          <h3>Necesidades cubiertas:</h3>
+          <p>{{ donacion.necesidadesSeleccionadas }}</p>
+        </div>
+  
+        <div class="seccion" *ngIf="donacion.comentarioEncargado">
+          <h3>Comentario del encargado:</h3>
+          <p class="comentario">{{ donacion.comentarioEncargado }}</p>
+        </div>
+  
+      </div>
+    </div>
   </div>
