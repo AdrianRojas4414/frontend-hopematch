@@ -1,20 +1,22 @@
 <!-- ninos-del-hogar.component.html -->
 <div class="perfil-container">
-    <div class="perfil-header">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <nav class="perfil-nav">
-        <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
-      </nav>
+  <div class="perfil-header">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <nav class="perfil-nav">
+      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
+    </nav>
+  </div>
+
+  <div class="perfil-content">
+    <h1 style="color: #e65c4f;">Niños del Hogar</h1>
+    <div class="boton-container">
+      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
     </div>
-  
-    <div class="perfil-content">
-      <div class="ninos-del-hogar" *ngIf="encargado?.ninos?.length > 0">
-          <h1 style="color: #e65c4f;">Niños del Hogar</h1>
-          <div class="boton-container">
-            <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
-          </div>
-          <div class="ninos-container">
-           <div class="nino-card" *ngFor="let nino of encargado.ninos">
+
+    <div class="ninos-del-hogar">
+      <div *ngIf="encargado?.ninos?.length > 0; else noNinos">
+        <div class="ninos-container">
+          <div class="nino-card" *ngFor="let nino of encargado.ninos">
             <div class="nino-detalles">
               <h4>{{ nino.nombre }}</h4>
               <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
@@ -29,9 +31,10 @@
           </div>
         </div>
       </div>
-  
-      <div *ngIf="!encargado?.ninos?.length">
+
+      <ng-template #noNinos>
         <p>No hay niños registrados.</p>
-      </div>
+      </ng-template>
     </div>
   </div>
+</div>
