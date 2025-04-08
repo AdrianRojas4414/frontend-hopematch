@@ -23,4 +23,8 @@ export class NinoService {
   updateNino(id: number, nino: any): Observable<any> {
     return this.http.put(`${this.backendUrl}/update/${id}`, nino);
   }
+
+  getNecesidadesByEncargado(idEncargado: number): Observable<string[]> {
+    return this.http.get<string[]>(`${this.backendUrl}/necesidades/${idEncargado}`);
+  }
 }

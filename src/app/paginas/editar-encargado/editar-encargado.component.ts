@@ -34,4 +34,19 @@ export class EditarEncargadoComponent {
         this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
       });
   }
+
+  eliminarEncargado(): void{
+    if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
+      this.encargado.estado = "En suspencion";
+      this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
+      .subscribe(()=> {
+        alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        console.log(this.encargado)
+        this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 500);
+      })
+    }
+  }
 }

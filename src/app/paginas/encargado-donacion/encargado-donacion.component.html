@@ -1,0 +1,59 @@
+<div class="encargado-container">
+    <div class="header">
+      <h1>Donaciones Recibidas</h1>
+    </div>
+  
+    <div class="donaciones-list">
+      <div *ngFor="let donacion of donaciones" class="donacion-card">
+        <div class="donacion-header">
+          <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+          <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
+        </div>
+  
+        <div class="donacion-body">
+          <div class="info">
+            <p><strong>Padrino:</strong> {{ donacion.padrino?.nombre }}</p>
+            <p><strong>Necesidades:</strong> {{ donacion.necesidadesSeleccionadas || 'N/A' }}</p>
+          </div>
+  
+          <div class="acciones">
+            <button 
+              (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
+              [class.btn-comentar]="!donacion.comentarioEncargado"
+              [class.btn-comentado]="donacion.comentarioEncargado"
+              [disabled]="donacion.comentarioEncargado">
+              {{ donacion.comentarioEncargado ? 'Comentario enviado' : 'Agregar Comentario' }}
+            </button>
+
+            <button (click)="mostrarFormularioFoto(donacion.id)" class="btn-foto">
+              Agregar Foto
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+            
+  
+    <div *ngIf="mostrarFormulario" class="modal">
+      <div class="modal-content">
+        <h3>Agregar Comentario</h3>
+        <textarea [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+        <div class="modal-actions">
+          <button (click)="cancelarComentario()" class="btn-cancelar">Cancelar</button>
+          <button (click)="enviarComentario()" class="btn-enviar">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarFormFoto" class="modal">
+    <div class="modal-content">
+      <h3>Agregar Foto</h3>
+      <input type="text" [(ngModel)]="nuevaFotoUrl" placeholder="Ingresa la URL de la foto...">
+      <div class="modal-actions">
+        <button (click)="cancelarFoto()" class="btn-cancelar">Cancelar</button>
+        <button (click)="enviarFoto()" class="btn-enviar">Enviar</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,67 @@
+<div class="home-encargado-container" *ngIf="encargado">
+    <div class="home-encargado-header">
+        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+        <nav class="perfil-nav">
+            <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
+            <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
+        </nav>
+    </div>
+
+    <div class="saludo">
+        <h2>Hola {{ encargado.nombre }}! ¿Qué deseas hacer hoy?</h2>
+    </div>
+
+    <div class="opciones-grid">
+        <div (click)="irHogar()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/house-icon.png" alt="Mi Hogar">
+            </div>
+            <div class="contenido">
+                <h3>Mi Hogar</h3>
+                <p>Administra y edita tu hogar</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/hogar-m.jpg" alt="Hogar">
+            </div>
+        </div>
+
+        <div (click)="irNinos()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/sun-icon.png" alt="Mis Niños">
+            </div>
+            <div class="contenido">
+                <h3>Mis Niños</h3>
+                <p>Gestiona y visualiza los niños a tu cargo</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/kids.webp" alt="Kids">
+            </div>
+        </div>
+
+        <div class="opcion-card">
+            <div class="icono">
+                <img src="imgs/agenda-icon.png" alt="Agenda y Contacto">
+            </div>
+            <div class="contenido">
+                <h3>Agenda y Contacto</h3>
+                <p>Habla con los padrinos de tu hogar y gestiona actividades programadas</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/contact.jpg" alt="Contacto">
+            </div>
+        </div>
+
+        <div (click)="irDonaciones()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/heart-icon.png" alt="Donaciones">
+            </div>
+            <div class="contenido">
+                <h3>Donaciones</h3>
+                <p>Administra y publica contenido relacionado a las donaciones recibidas</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/donacionees.jpg" alt="Donation">
+            </div>
+        </div>
+    </div>
+</div>

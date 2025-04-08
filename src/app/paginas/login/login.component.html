@@ -1,21 +1,21 @@
 <div class="login-container">
     <div class="login-box">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
       <form (ngSubmit)="onLogin()">
         <div class="input-group">
           <i class="fa fa-user"></i>
-          <input type="email" placeholder="Email" name="email" [(ngModel)]="email" required>
+          <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" required>
         </div>
         
         <div class="input-group">
           <i class="fa fa-lock"></i>
-          <input type="password" placeholder="*********" name="password" [(ngModel)]="password" required>
+          <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" required>
         </div>
   
         <div class="input-group">
           <mat-radio-group aria-label="Select an option" [(ngModel)]="userType" name="userType">
-            <mat-radio-button value="Padrino">Padrino</mat-radio-button>
-            <mat-radio-button value="Encargado">Encargado del Hogar</mat-radio-button>
+            <mat-radio-button value="Padrino">{{ texts.userPadrino }}</mat-radio-button>
+            <mat-radio-button value="Encargado">{{ texts.userEncargado }}</mat-radio-button>
           </mat-radio-group>
         </div>
         <button type="submit" class="login-btn">LOGIN</button>

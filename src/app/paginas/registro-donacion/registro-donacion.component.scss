@@ -1,0 +1,143 @@
+.container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+  height: 60px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+      transform: scale(1.05);
+  }
+}
+
+h2 {
+  color: #e65c4f;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.error {
+  background: #ffebee;
+  color: #d32f2f;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 4px solid #d32f2f;
+  font-size: 0.9rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+
+  &:focus {
+      border-color: #e65c4f;
+      box-shadow: 0 0 0 3px rgba(230, 92, 79, 0.2);
+      outline: none;
+  }
+
+  &[type="date"] {
+      cursor: pointer;
+  }
+
+  &::placeholder {
+      color: #aaa;
+  }
+}
+
+.necesidades {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0.5rem 0 1rem;
+
+  div {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+  }
+
+  input[type="radio"] {
+      width: auto;
+      accent-color: #e65c4f;
+      transform: scale(1.2);
+  }
+
+  label {
+      font-weight: normal;
+      cursor: pointer;
+      margin: 0;
+      user-select: none;
+      transition: color 0.2s;
+      
+      &:hover {
+          color: #e65c4f;
+      }
+  }
+}
+
+button {
+  background: #e65c4f;
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  box-shadow: 0 2px 5px rgba(230, 92, 79, 0.2);
+
+  &:hover {
+      background: #d14b42;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(230, 92, 79, 0.3);
+  }
+
+  &:active {
+      transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+div:empty:before {
+  content: "Cargando...";
+  color: #666;
+  animation: pulse 1.5s infinite;
+}

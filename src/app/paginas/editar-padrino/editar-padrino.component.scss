@@ -24,7 +24,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 70%;
+    height: 75%;
 }
 
 label {
@@ -42,7 +42,7 @@ input {
     font-size: 1rem;
 }
 
-button {
+button, .primary-button {
     padding: 0.75rem;
     background-color: #e65c4f;
     color: #fff;
@@ -54,6 +54,18 @@ button {
     align-items: center;
 }
 
+button, .secondary-button{
+    background-color: #fff;
+    color: #e65c4f;
+    border-radius: 4px;
+    border: 2px solid #e65c4f;
+}
+
 button:hover {
     background-color: #d14b42;
+}
+
+button:hover, .secondary-button:hover {
+    background-color: #e65c4f;
+    color: #fff;
 }

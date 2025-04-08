@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-crear-encargado',
@@ -10,6 +11,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
   styleUrl: './crear-encargado.component.scss'
 })
 export class CrearEncargadoComponent {
+  public texts = TEXTOS;
   encargado = {
     nombre: '',
     celular: '',
@@ -33,7 +35,7 @@ export class CrearEncargadoComponent {
         else{
           console.log('Encargado registrado con éxito!', response);
           alert('Encargado registrado con éxito!');
-          this.router.navigate([`/perfil-encargado/${response.id}`]);
+          this.router.navigate([`/home-encargado/${response.id}`]);
         }
       },
       error: (err) => {

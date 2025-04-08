@@ -10,6 +10,14 @@ import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component
 import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
 import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component';
 import { EditarPadrinoComponent } from './paginas/editar-padrino/editar-padrino.component';
+import { HomePadrinoComponent } from './paginas/home-padrino/home-padrino.component';
+import { RegistroDonacionComponent } from './paginas/registro-donacion/registro-donacion.component';
+import { DetalleDonacionComponent } from './paginas/detalle-donacion/detalle-donacion.component';
+import { DetalleHogarComponent } from './paginas/detalle-hogar/detalle-hogar.component';
+import { HomeEncargadoComponent } from './paginas/home-encargado/home-encargado.component';
+import { HogarEncargadoComponent } from './paginas/hogar-encargado/hogar-encargado.component';
+import { EncargadoDonacionComponent } from './paginas/encargado-donacion/encargado-donacion.component';
+import { NinosHogarComponent } from './paginas/ninos-hogar/ninos-hogar.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -21,7 +29,15 @@ export const routes: Routes = [
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
+    {path:'home-padrino/:id', component: HomePadrinoComponent, title:'Pagina Padrino'},
+    {path:'home-encargado/:id', component: HomeEncargadoComponent, title:'Pagina Encargado'},
     {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
+    {path:'detalle-hogar/:id', component:DetalleHogarComponent, title:'Detales del Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
+    {path:'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
+    {path:'detalle-donacion/:id', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
+    {path:'hogar-encargado/:id', component: HogarEncargadoComponent, title: 'Mi Hogar' },
+    {path:'ninos-hogar/:id', component: NinosHogarComponent, title: 'Ninos'},
+    {path:'encargado-donacion/:id', component: EncargadoDonacionComponent},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

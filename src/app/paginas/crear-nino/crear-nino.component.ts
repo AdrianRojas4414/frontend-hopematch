@@ -52,7 +52,7 @@ export class CrearNinoComponent implements OnInit{
     if (this.ninoForm.valid) {
       this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe(() => {
         alert('Niño registrado con éxito');
-        this.router.navigate(['/perfil-encargado', this.idEncargado]);
+        this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
       }, error => {
         console.error('Error al registrar niño:', error);
         alert('Hubo un error al registrar el niño');

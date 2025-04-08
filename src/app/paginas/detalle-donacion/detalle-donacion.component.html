@@ -1,0 +1,34 @@
+<div class="detalle-container">
+    <div class="header">
+      <h1>Detalle de Donación</h1>
+      <button (click)="volverAHome()" class="btn-volver">
+        <i class="fas fa-arrow-left"></i> Volver
+      </button>
+    </div>
+  
+    <div *ngIf="donacion" class="donacion-card">
+      <div class="donacion-header">
+        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+        <br>
+        <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
+      </div>
+  
+      <div class="donacion-body">
+        <div class="seccion">
+          <h3>Para el hogar:</h3>
+          <p>{{ donacion.encargado?.nombre_hogar }}</p>
+        </div>
+  
+        <div class="seccion" *ngIf="donacion.necesidadesSeleccionadas">
+          <h3>Necesidades cubiertas:</h3>
+          <p>{{ donacion.necesidadesSeleccionadas }}</p>
+        </div>
+  
+        <div class="seccion" *ngIf="donacion.comentarioEncargado">
+          <h3>Comentario del encargado:</h3>
+        <p class="comentario">{{ donacion.comentarioEncargado?.comentario }}</p>
+        </div>
+  
+      </div>
+    </div>
+  </div>
