@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { Router, RouterLink } from '@angular/router';
+import {MatRadioModule} from '@angular/material/radio';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, MatRadioModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
