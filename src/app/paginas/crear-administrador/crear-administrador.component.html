@@ -1,0 +1,19 @@
+<div class="registro-container">
+    <div class="form-card">
+      <div class="header">
+        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+        <h2> {{ texts.principalMessageAdmin }} </h2>
+      </div>
+      <form (ngSubmit)="registrarAdministrador()">
+        <div class="input-group">
+          <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="administrador.nombre" name="nombre" required>
+        </div>
+  
+        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="administrador.email" name="email" required>
+  
+        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="administrador.contrasenia" name="contrasenia" required>
+  
+        <button type="submit" class="submit-btn"> {{ texts.buttonSignUp }} </button>
+      </form>
+    </div>
+  </div>
