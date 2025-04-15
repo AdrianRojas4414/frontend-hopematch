@@ -7,6 +7,7 @@ export const TEXTOS = {
     // USER TYPES
     userPadrino: 'Padrino',
     userEncargado: 'Encargado del hogar',
+    userAdmin: 'Administrador',
     // NAV BUTTONS
     buttonHome: 'Home',
     buttonAboutUs: 'AboutUs',
@@ -16,9 +17,11 @@ export const TEXTOS = {
     // SIGN UP OPTIONS
     padrinoOption: 'QUIERO SER PADRINO',
     encargadoOption: 'QUIERO REGISTRAR A MI HOGAR',
+    adminOption: 'REGISTRO ADMINISTRADOR',
     //SIGN UP FORM
     principalMessagePadrino: 'Estas a unos pasos para cambiar vidas. Registra tus datos personales.',
     principalMessageEncargado: 'Registra tus datos personales y los de tu hogar.',
+    principalMessageAdmin: 'Registro de administrador del sistema',
     inputName: 'Nombre',
     inputEmail: 'Email',
     inputCellPhone: 'Número de Celular',

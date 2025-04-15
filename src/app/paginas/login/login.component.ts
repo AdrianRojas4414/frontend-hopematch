@@ -30,6 +30,9 @@ export class LoginComponent {
         if(parsedResponse.userType == "Padrino"){
           this.router.navigate([`/home-padrino/${parsedResponse.id}`]);
         }
+        if (parsedResponse.userType === "Admin") {
+          this.router.navigate([`/home-administrador/${parsedResponse.id}`]);
+        }
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);

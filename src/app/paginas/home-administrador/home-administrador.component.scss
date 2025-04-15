@@ -1,0 +1,99 @@
+.home-admin-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f6f6f6;
+    min-height: 92vh;
+}
+
+.home-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+
+    .logo {
+        max-width: 80px;
+    }
+
+    .admin-nav {
+        display: flex;
+        gap: 2rem;
+
+        a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #333;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.saludo {
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #3f51b5;
+}
+
+.opciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.opcion-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 180px;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        border-left: 4px solid #3f51b5;
+    }
+
+    .icono img {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+
+    .contenido {
+        flex-grow: 1;
+        h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #3f51b5;
+        }
+
+        p {
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    }
+
+    .imagen {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-left: 15px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

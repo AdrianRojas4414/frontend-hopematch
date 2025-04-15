@@ -95,8 +95,10 @@
   .register-section {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     padding: 3rem;
     background-color: #fff;
+    gap: 1rem;
   }
   
   .register-card {
@@ -104,6 +106,8 @@
     background-color: #fce9e8;
     padding: 2rem;
     border-radius: 15px;
+    width: 30%; 
+    min-width: 300px;
     width: 40%;
   }
   

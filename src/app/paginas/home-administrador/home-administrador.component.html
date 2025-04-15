@@ -1,0 +1,54 @@
+<div class="home-admin-container" *ngIf="administrador">
+    <div class="home-admin-header">
+        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+        <nav class="admin-nav">
+            <a (click)="irPerfil()" style="color: #3f51b5; cursor: pointer;">Ver Perfil</a>
+            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
+        </nav>
+    </div>
+
+    <div class="saludo">
+        <h2>Bienvenido {{ administrador.nombre }}! Panel de Administración</h2>
+    </div>
+
+    <div class="opciones-grid">
+        <div (click)="irEncargados()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/encargado-icon.png" alt="Encargados">
+            </div>
+            <div class="contenido">
+                <h3>Encargados</h3>
+                <p>Gestiona todos los encargados de hogar</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/encargados.jpg" alt="Encargados">
+            </div>
+        </div>
+
+        <div (click)="irPadrinos()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/padrino-icon.png" alt="Padrinos">
+            </div>
+            <div class="contenido">
+                <h3>Padrinos</h3>
+                <p>Administra los padrinos registrados</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/padrinos.jpg" alt="Padrinos">
+            </div>
+        </div>
+
+        <div (click)="irNinos()" class="opcion-card">
+            <div class="icono">
+                <img src="imgs/sun-icon.png" alt="Niños">
+            </div>
+            <div class="contenido">
+                <h3>Niños</h3>
+                <p>Administra los niños registrados</p>
+            </div>
+            <div class="imagen">
+                <img src="imgs/kids.webp" alt="Niños">
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,9 @@ export class UserAuthenticationService {
     if (userType == "Encargado"){
       this.backendURL += 'encargado/login'
     }
+    if (userType == "Administrador"){
+      this.backendURL += 'admin/login'
+    }
     return this.http.post(this.backendURL, body, { responseType: 'text' });
   }
 }
