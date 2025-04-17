@@ -20,7 +20,8 @@ export class CrearEncargadoComponent {
     contrasenia: '',
     estado: 'En revision',
     nombre_hogar: '',
-    direccion_hogar: ''
+    direccion_hogar: '',
+    foto_hogar: ''
   }
 
   constructor(private encargadoService: EncargadoService, private router: Router){}
