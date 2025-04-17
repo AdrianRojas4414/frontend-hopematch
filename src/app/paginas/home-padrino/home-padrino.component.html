@@ -1,47 +1,56 @@
 <div class="home-padrino-container" *ngIf="padrino">
-    <div class="home-padrino-header">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <nav class="perfil-nav">
-        <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
-        <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
-      </nav>
-    </div>
-  
-    <div class="saludo">
-      <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
-    </div>
-  <div class="main-content">
-    <div class="historial-donaciones">
-      <h3>Tus donaciones</h3>
-      <div *ngIf="donaciones.length === 0" class="no-donaciones">
-        <p>Aun no has realizado donaciones</p>
-      </div>
-      <div class="donacion-card" *ngFor="let donacion of donaciones">
-        <div class="donacion-header">
-          <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-          <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
-        </div>
-        <div class="donacion-body">
-          <p>Para: {{ getEncargadoName(donacion.encargado.id) }} </p>
-          <p *ngIf="donacion.necesidadesSeleccionadas">Necesidades: {{ donacion.necesidadesSeleccionadas }} </p>
-        </div>
-        <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
-      </div> 
-    </div>
+  <div class="home-padrino-header">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <nav class="perfil-nav">
+      <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
+      <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
+    </nav>
+  </div>
 
-    <div class="encargados-lista">
-      <div class="encargado-card" *ngFor="let encargado of encargados">
-        <div class="encargado-info">
-          <div class="encargado-foto">
-            <img [src]="encargado.foto" alt="Foto del Encargado" />
-          </div>
-          <div class="encargado-detalles">
-            <h3>{{ encargado.nombre_hogar }}</h3>
-            <button class="btn-ver-hogar" (click)="verHogar(encargado.id)">Ver Hogar</button>
-            <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
-          </div>
+  <div class="saludo">
+    <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
+  </div>
+<div class="main-content">
+  <div class="historial-donaciones">
+    <h3>Tus donaciones</h3>
+    <div *ngIf="donaciones.length === 0" class="no-donaciones">
+      <p>Aun no has realizado donaciones</p>
+    </div>
+    <div class="donacion-card" *ngFor="let donacion of donaciones">
+      <div class="donacion-header">
+        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+        <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
+      </div>
+      <div class="donacion-body">
+        <p>Para: {{ getEncargadoName(donacion.encargado.id) }} </p>
+        <p *ngIf="donacion.necesidadesSeleccionadas">Necesidades: {{ donacion.necesidadesSeleccionadas }} </p>
+      </div>
+      <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+    </div> 
+  </div>
+
+  <div class="encargados-lista">
+    <div class="encargado-card" *ngFor="let encargado of encargados">
+      <div class="encargado-info">
+        <div class="encargado-foto">
+          <img [src]="encargado.foto_hogar" alt="Foto del Hogar" />
+        </div>
+        <div class="encargado-detalles">
+          <h3>{{ encargado.nombre_hogar }}</h3>
+          <p class="admin-info">
+            <span>Administrado por </span>
+            <img [src]="encargado.foto" 
+                 alt="Foto del Encargado" 
+                 class="admin-foto" />
+            <span>{{ encargado.nombre }}</span>
+          </p>
+          <button class="btn-ver-hogar" 
+                  [disabled]="!haDonadoA(encargado.id)"
+                  (click)="verHogar(encargado.id)">Ver Hogar</button>
+          <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>
+</div>
