@@ -1,33 +1,73 @@
 <div class="detalle-hogar-container" *ngIf="encargado">
-    <!-- Header -->
-    <div class="detalle-hogar-header">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <nav class="perfil-nav">
-        <a (click)="volverAtras()" style="color: #e65c4f; cursor: pointer;">Volver</a>
-      </nav>
+  <div class="detalle-hogar-header">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <nav class="perfil-nav">
+      <a (click)="volverAtras()" style="color: #e65c4f; cursor: pointer;">Volver</a>
+    </nav>
+  </div>
+
+  <div class="hogar-imagen-container">
+    <img [src]="encargado.foto_hogar || 'assets/default-home.jpg'" alt="Foto del Hogar" class="hogar-imagen">
+    <h1 class="hogar-nombre-imagen">{{ encargado.nombre_hogar }}</h1>
+  </div>
+
+  <div class="encargado-info">
+    <div class="encargado-foto-container">
+      <img [src]="encargado.foto" alt="Foto del Encargado" class="encargado-foto">
     </div>
-  
-    <!-- Contenido Principal -->
-    <h2 class="hogar-nombre">{{ encargado.nombre_hogar }}</h2>
-  
-    <div class="detalle-hogar-content">
-      <!-- Imagen del Encargado -->
-      <div class="foto-container">
-        <img [src]="encargado.foto" alt="Foto del Encargado" class="encargado-foto">
-      </div>
-  
-      <!-- Información -->
-      <div class="info-container">
-        <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
-        <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
-        <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
-  
-        <div *ngIf="encargado.ninos?.length">
-          <h3>Necesidades:</h3>
-          <ul class="necesidades-lista">
-            <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
-          </ul>
-        </div>
-      </div>
+    <div class="encargado-datos">
+      <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
+      <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
+      <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
     </div>
   </div>
+
+  <div *ngIf="encargado.ninos?.length" class="necesidades-container">
+    <h3>Necesidades del hogar:</h3>
+    <ul class="necesidades-lista">
+      <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="donaciones.length > 0" class="donaciones-container">
+    <h2>Mis Donaciones</h2>
+    
+    <div class="carrusel">
+      <button class="flecha flecha-izquierda" (click)="anteriorDonacion()">❮</button>
+      
+      <div class="donacion-actual">
+        <div *ngIf="donacionActual.fotoDonacion; else sinComprobante">
+          <img [src]="donacionActual.fotoDonacion" 
+               alt="Comprobante de donación" 
+               class="comprobante-imagen">
+        </div>
+        <ng-template #sinComprobante>
+          <div class="sin-comprobante">
+            <p>Lo sentimos, parece que aún no hay una foto de la donación</p>
+          </div>
+        </ng-template>
+        <p class="fecha-donacion">{{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }}</p>
+      </div>
+      
+      <button class="flecha flecha-derecha" (click)="siguienteDonacion()">❯</button>
+    </div>
+
+    <div class="progreso-container">
+      <h2>Progreso de la donación</h2>
+      
+      <div *ngIf="donacionActual.fotosProgreso?.length > 0; else sinProgreso" class="fotos-progreso-grid">
+        <div *ngFor="let foto of donacionActual.fotosProgreso" class="foto-progreso-item">
+          <img [src]="foto" alt="Foto de progreso" class="foto-progreso">
+        </div>
+      </div>
+      
+      <ng-template #sinProgreso>
+        <p class="sin-progreso">Aún no se han subido fotos de tu progreso</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <div *ngIf="donaciones.length === 0" class="sin-donaciones">
+    <p>No hay donaciones registradas para este hogar</p>
+  </div>
+</div>
