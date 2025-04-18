@@ -35,4 +35,8 @@ export class DonacionService {
     const body = { fotoUrl: fotoUrl }; 
     return this.http.put(`${this.backendUrl}/${donacionId}/foto`, body);
   }
+
+  agregarFotosProgreso(donacionId: number, fotos: string[]): Observable<any> {
+    return this.http.put(`${this.backendUrl}/${donacionId}/fotos-progreso`, fotos);
+  }
 }

@@ -21,6 +21,11 @@ export class EncargadoDonacionComponent implements OnInit {
   nuevaFotoUrl = '';
   donacionIdParaFoto: number | null = null;
 
+  mostrarFormFotosProgreso = false;
+  nuevaFotoProgresoUrl = '';
+  fotosProgresoTemp: string[] = [];
+  donacionIdParaFotosProgreso: number | null = null;
+
   constructor(
     private donacionService: DonacionService,
     private route: ActivatedRoute,
@@ -106,6 +111,50 @@ export class EncargadoDonacionComponent implements OnInit {
           console.error('Error al actualizar foto:', err);
         }
       });
+    }
+  }
+
+  mostrarFormularioFotosProgreso(donacionId: number): void {
+    this.donacionIdParaFotosProgreso = donacionId;
+    this.fotosProgresoTemp = [];
+    this.mostrarFormFotosProgreso = true;
+  }
+
+  cancelarFotosProgreso(): void {
+    this.mostrarFormFotosProgreso = false;
+    this.nuevaFotoProgresoUrl = '';
+    this.fotosProgresoTemp = [];
+    this.donacionIdParaFotosProgreso = null;
+  }
+
+  agregarFotoTemp(): void {
+    if (this.nuevaFotoProgresoUrl && this.fotosProgresoTemp.length < 8) {
+      this.fotosProgresoTemp.push(this.nuevaFotoProgresoUrl);
+      this.nuevaFotoProgresoUrl = '';
+    }
+  }
+
+  eliminarFotoTemp(index: number): void {
+    this.fotosProgresoTemp.splice(index, 1);
+  }
+
+  enviarFotosProgreso(): void {
+    if (this.donacionIdParaFotosProgreso && this.fotosProgresoTemp.length > 0) {
+        this.donacionService.agregarFotosProgreso(
+            this.donacionIdParaFotosProgreso,
+            this.fotosProgresoTemp 
+        ).subscribe({
+            next: () => {
+                this.cancelarFotosProgreso();
+                const encargadoId = this.route.snapshot.paramMap.get('id');
+                if (encargadoId) this.cargarDonaciones(+encargadoId);
+                alert('Fotos de progreso agregadas correctamente');
+            },
+            error: (err) => {
+                console.error('Error al agregar fotos de progreso:', err);
+                alert('Error al agregar las fotos de progreso: ' + err.error?.message || err.message);
+            }
+        });
     }
   }
 
