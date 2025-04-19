@@ -27,4 +27,7 @@ export class NinoService {
   getNecesidadesByEncargado(idEncargado: number): Observable<string[]> {
     return this.http.get<string[]>(`${this.backendUrl}/necesidades/${idEncargado}`);
   }
+  deleteNino(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.backendUrl}/delete/${id}`);
+  }
 }
