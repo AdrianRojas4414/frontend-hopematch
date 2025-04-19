@@ -1,6 +1,10 @@
 # Hopematch Frontend
 
-Hopematch is a platform that connects sponsors (Padrinos) with children in need (Niños). The frontend, built with Angular, provides an intuitive user interface for managing sponsorships, donations, and user interactions.
+For compassionate individuals who want to improve the lives of vulnerable children and provide support in the form of food, shelter, education, or essential goods.
+
+The HopeMatch project is a web platform that allows sponsors to choose how they want to help, track their donations, and have direct contact with children in need through photos and video calls.
+
+Unlike other initiatives aimed at helping underprivileged children, HopeMatch humanizes the interaction between sponsors and children's homes, while offering a transparent system where caregivers log and verify the use of donations, ensuring that every contribution reaches those who truly need it.
 
 ## How It Works
 
@@ -8,6 +12,9 @@ Hopematch is a platform that connects sponsors (Padrinos) with children in need 
 2. **Padrinos** sign up, browse children’s profiles, and choose whom to sponsor.
 3. Users can track donations and communicate through the platform.
 4. The UI interacts with the Hopematch backend via RESTful APIs.
+#### Technologies
+1. Angular CLI
+2. Node.js
 
 ## Installation
 
@@ -26,11 +33,12 @@ Ensure you have the following installed:
    ```sh
    npm install
    ```
-3. Start the development server:
+3. Be sure that the backend is runing at port: 8080.
+4. Start the development server:
    ```sh
    ng serve
    ```
-4. Open your browser and navigate to `http://localhost:4200/`.
+5. Open your browser and navigate to `http://localhost:4200/`.
 
 ## Contributing
 
