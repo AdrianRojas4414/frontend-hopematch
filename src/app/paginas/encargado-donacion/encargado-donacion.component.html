@@ -4,51 +4,62 @@
   </div>
 
   <div class="donaciones-list">
-    <div *ngFor="let donacion of donaciones" class="donacion-card">
-      <div class="donacion-header">
-        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-        <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
-      </div>
-
-      <div class="donacion-body">
-        <div class="info">
-          <p><strong>Padrino:</strong> {{ donacion.padrino?.nombre }}</p>
-          <p><strong>Necesidades:</strong> {{ donacion.necesidadesSeleccionadas || 'N/A' }}</p>
-          
-          <div *ngIf="donacion.fotoDonacion" class="foto-comprobante">
-            <strong>Foto comprobante:</strong>
-            <img [src]="donacion.fotoDonacion" alt="Foto comprobante" class="foto-preview">
-          </div>
-          
-          <div *ngIf="donacion.fotosProgreso?.length > 0" class="fotos-progreso-container">
-            <strong>Fotos de progreso:</strong>
-            <div class="fotos-grid">
-              <div *ngFor="let foto of donacion.fotosProgreso" class="foto-item">
-                <img [src]="foto" alt="Foto de progreso" class="foto-preview">
+    <ng-container *ngIf="donaciones.length > 0; else noDonaciones">
+      <div *ngFor="let donacion of donaciones" class="donacion-card">
+        <div class="donacion-header">
+          <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+          <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
+        </div>
+  
+        <div class="donacion-body">
+          <div class="info">
+            <p><strong>Padrino:</strong> {{ donacion.padrino?.nombre }}</p>
+            <p><strong>Necesidades:</strong> {{ donacion.necesidadesSeleccionadas || 'N/A' }}</p>
+            
+            <div *ngIf="donacion.fotoDonacion" class="foto-comprobante">
+              <strong>Foto comprobante:</strong>
+              <img [src]="donacion.fotoDonacion" alt="Foto comprobante" class="foto-preview">
+            </div>
+            
+            <div *ngIf="donacion.fotosProgreso?.length > 0" class="fotos-progreso-container">
+              <strong>Fotos de progreso:</strong>
+              <div class="fotos-grid">
+                <div *ngFor="let foto of donacion.fotosProgreso" class="foto-item">
+                  <img [src]="foto" alt="Foto de progreso" class="foto-preview">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="acciones">
-          <button 
-            (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
-            [class.btn-comentar]="!donacion.comentarioEncargado"
-            [class.btn-comentado]="donacion.comentarioEncargado"
-            [disabled]="donacion.comentarioEncargado">
-            {{ donacion.comentarioEncargado ? 'Comentario enviado' : 'Agregar Comentario' }}
-          </button>
-
-          <button (click)="mostrarFormularioFoto(donacion.id)" class="btn-foto">
-            Agregar Foto Comprobante
-          </button>
-          
-          <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
-            Agregar Fotos Progreso
-          </button>
+  
+          <div class="acciones">
+            <button 
+              (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
+              [class.btn-comentar]="!donacion.comentarioEncargado"
+              [class.btn-comentado]="donacion.comentarioEncargado"
+              [disabled]="donacion.comentarioEncargado">
+              {{ donacion.comentarioEncargado ? 'Comentario enviado' : 'Agregar Comentario' }}
+            </button>
+  
+            <button (click)="mostrarFormularioFoto(donacion.id)" 
+              [class.btn-foto]="!donacion.fotoDonacion"
+              [class.btn-agregado]="donacion.fotoDonacion"
+              [disabled]="donacion.fotoDonacion">
+              {{ donacion.fotoDonacion ? 'Foto Comprobante enviada' : 'Agregar Foto Comprobante' }}
+            </button>
+            
+            <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
+              Agregar Fotos Progreso
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    
+
+    <ng-template #noDonaciones>
+      <p>No hay donaciones registradas.</p>
+    </ng-template>
+
   </div>
 
   <div *ngIf="mostrarFormulario" class="modal">
