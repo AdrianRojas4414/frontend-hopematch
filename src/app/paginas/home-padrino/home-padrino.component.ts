@@ -12,20 +12,20 @@ import { DonacionService } from '../../servicios/donacion.service';
   templateUrl: './home-padrino.component.html',
   styleUrl: './home-padrino.component.scss'
 })
-export class HomePadrinoComponent implements OnInit{
+export class HomePadrinoComponent implements OnInit {
 
   padrino: any = null;
   encargados: any[] = [];
   donaciones: any[] = [];
 
-  constructor(private route:ActivatedRoute, 
-                private padrinoService: PadrinoService, 
-                private router: Router,
-                private encargadoService: EncargadoService,
-                private donacionService: DonacionService
-              ){}
-  
-                
+  constructor(
+    private route: ActivatedRoute,
+    private padrinoService: PadrinoService,
+    private router: Router,
+    private encargadoService: EncargadoService,
+    private donacionService: DonacionService
+  ) {}
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
@@ -48,29 +48,31 @@ export class HomePadrinoComponent implements OnInit{
     this.encargadoService.getEncargados().subscribe(
       data => this.encargados = data,
       error => console.log(error),
-      () => console.log('Encargados Obtenidos Exitosamente!'),);
-      console.log("this.encargados")
+      () => console.log('Encargados Obtenidos Exitosamente!')
+    );
   }
 
   obtenerDonaciones(padrinoId: number): void {
-    console.log('Obteniendo donaciones para padrino:', padrinoId);
     this.donacionService.getDonacionesByPadrino(padrinoId).subscribe({
-        next: (data) => {
-            console.log('Donaciones recibidas:', data);
-            this.donaciones = data;
-        },
-        error: (err) => {
-            console.error('Error al obtener donaciones:', err);
-        }
+      next: (data) => {
+        this.donaciones = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener donaciones:', err);
+      }
     });
-}
+  }
 
   getEncargadoName(encargadoId: number): string {
     const encargado = this.encargados.find(e => e.id === encargadoId);
     return encargado ? encargado.nombre : 'Encargado desconocido';
   }
 
-  irPerfil(): void{
+  haDonadoA(encargadoId: number): boolean {
+    return this.donaciones.some(donacion => donacion.encargado.id === encargadoId);
+  }
+
+  irPerfil(): void {
     if (this.padrino) {
       this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
     }

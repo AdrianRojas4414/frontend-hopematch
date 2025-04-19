@@ -29,6 +29,7 @@ export const TEXTOS = {
     inputPassword: 'Password',
     inputHogarName: 'Nombre del Hogar',
     inputDireccion: 'Dirección del Hogar',
+    inputHogarFoto: 'URL de la foto del hogar',
     // SOCIAL MEDIA
     facebook: 'Facebook',
     instragram: 'Instragram',

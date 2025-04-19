@@ -1,101 +1,269 @@
 .detalle-hogar-container {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    background-color: #f6f6f6;
-    height: 92vh;
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #f6f6f6;
+  min-height: 100vh;
+}
+
+/* Header */
+.detalle-hogar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+
+  .logo {
+    max-width: 80px;
   }
-  
-  /* Header */
-  .detalle-hogar-header {
+
+  .perfil-nav {
     display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0;
-  
-      .logo {
-        max-width: 80px;
+    gap: 1rem;
+
+    a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #333;
+      cursor: pointer;
+
+      &:hover {
+        color: #e65c4f;
       }
-  
-      .perfil-nav {
-        display: flex;
-        gap: 2rem;
-  
-        a {
-          text-decoration: none;
-          font-size: 1rem;
-          color: #333;
-        }
-      }
+    }
   }
-  
-  /* Contenido Principal */
-  .hogar-nombre {
-    text-align: center;
-    font-size: 2rem;
-    color: #e65c4f;
-    margin-bottom: 1rem;
-  }
-  
-  /* Layout General */
-  .detalle-hogar-content {
-    display: flex;
-    width: 80%;
-    max-width: 1100px;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: 60vh;
-    align-self: center;
-  }
-  
-  /* Imagen a la izquierda */
-  .foto-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .encargado-foto {
+}
+
+/* Imagen del hogar */
+.hogar-imagen-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .hogar-imagen {
     width: 100%;
     height: 100%;
-    max-height: 100%;
     object-fit: cover;
-    border-radius: 10px;
   }
-  
-  /* Información a la derecha */
-  .info-container {
+
+  .hogar-nombre-imagen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 2.5rem;
+    text-align: center;
+    width: 80%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Información del encargado */
+.encargado-info {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  .encargado-foto-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1.5rem;
+    border: 3px solid #e65c4f;
+
+    .encargado-foto {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .encargado-datos {
     flex: 1;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+    p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      color: #555;
+
+      strong {
+        color: #333;
+      }
+    }
   }
-  
-  .info-container p {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-    color: #555;
+}
+
+/* Necesidades */
+.necesidades-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    margin-top: 0;
+    color: #e65c4f;
   }
-  
+
   .necesidades-lista {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    li {
+      background: #e65c4f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* Donaciones */
+.donaciones-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #e65c4f;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Carrusel */
+.carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: relative;
+
+  .flecha {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #e65c4f;
+    cursor: pointer;
+    padding: 0 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  .donacion-actual {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 60%;
+
+    .comprobante-imagen {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+    }
+
+    .fecha-donacion {
+      font-size: 1.1rem;
+      color: #555;
+      font-style: italic;
+    }
+  }
+}
+
+/* Fotos de progreso */
+.progreso-container {
+  h2 {
+    text-align: center;
+    color: #e65c4f;
+    margin-bottom: 1.5rem;
+  }
+
+  .fotos-progreso-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     margin-top: 1rem;
+
+    .foto-progreso-item {
+      height: 150px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .foto-progreso {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
-  
-  .necesidades-lista li {
-    background: #e65c4f;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 2px;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-    margin-left: 8px;
-    margin-right: 8px;
+
+  .sin-progreso {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 1rem;
   }
+}
+
+.sin-donaciones {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sin-comprobante {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 0 auto;
+  border: 2px dashed #ccc;
+
+  p {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+  }
+}
