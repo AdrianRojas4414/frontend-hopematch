@@ -33,7 +33,7 @@ export class CrearAdministradorComponent {
         next: (response) => {
           console.log('Administrador registrado con éxito!', response);
           alert('Administrador registrado con éxito!');
-          this.router.navigate(['/login']);
+          this.router.navigate([`/home-administrador/${response.id}`]);
         },
         error: (err) => {
           console.error('Error al registrar administrador:', err);
