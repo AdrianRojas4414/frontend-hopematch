@@ -2,6 +2,7 @@
     max-width: 900px;
     margin: auto;
     padding: 20px;
+    height: auto;
   
     h1, h2 {
       font-weight: bold;
@@ -72,7 +73,7 @@
     flex-direction: column;
     padding: 2rem;
     background-color: #f6f6f6;
-    height: 92vh;
+    height: auto;
     padding: 15px;
   
     .perfil-header {

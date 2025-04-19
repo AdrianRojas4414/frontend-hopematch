@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
+import { NinoService } from '../../servicios/nino.service';
 
 @Component({
   selector: 'app-home-padrino',
@@ -17,13 +18,15 @@ export class HomePadrinoComponent implements OnInit {
   padrino: any = null;
   encargados: any[] = [];
   donaciones: any[] = [];
+  necesidades: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private padrinoService: PadrinoService,
     private router: Router,
     private encargadoService: EncargadoService,
-    private donacionService: DonacionService
+    private donacionService: DonacionService,
+    private ninoService: NinoService
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +49,11 @@ export class HomePadrinoComponent implements OnInit {
 
   obtenerEncargados(): void {
     this.encargadoService.getEncargados().subscribe(
-      data => this.encargados = data,
+      data => {
+        this.encargados = data,
+        this.encargados.forEach(encargado => this.getEncargadoNecesidades(encargado));
+      },
+        
       error => console.log(error),
       () => console.log('Encargados Obtenidos Exitosamente!')
     );
@@ -66,6 +73,28 @@ export class HomePadrinoComponent implements OnInit {
   getEncargadoName(encargadoId: number): string {
     const encargado = this.encargados.find(e => e.id === encargadoId);
     return encargado ? encargado.nombre : 'Encargado desconocido';
+  }
+
+  getEncargadoNecesidades(encargado: any){
+    this.ninoService.getNecesidadesByEncargado(encargado.id).subscribe({
+        next: (necesidades: string[]) => {
+            console.log("Necesidades ordenadas del hogar:", necesidades);
+            encargado.necesidades = necesidades.map((necesidad, index) => ({
+                id: index + 1,
+                nombre: necesidad
+            }));
+        },
+        error: (err) => {
+          console.error('Error al obtener necesidades:', err);
+        }
+    });
+  }
+
+  getNecesidadesAsString(encargado: any): string {
+    if (encargado.necesidades && encargado.necesidades.length) {
+      return encargado.necesidades.map((necesidad:any) => necesidad.nombre).join(', ');
+    }
+    return 'No hay necesidades registradas.';
   }
 
   haDonadoA(encargadoId: number): boolean {

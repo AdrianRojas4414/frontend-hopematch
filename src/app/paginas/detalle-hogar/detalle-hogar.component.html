@@ -18,16 +18,19 @@
     <div class="encargado-datos">
       <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
       <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
+      <p><strong>Descripcion:</strong> {{ encargado.descripcion }}</p>
       <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
     </div>
+    <div *ngIf="encargado.ninos?.length" class="necesidades-container">
+      <h3>Necesidades del hogar:</h3>
+      <ul class="necesidades-lista">
+        <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
+      </ul>
+    </div>
+
   </div>
 
-  <div *ngIf="encargado.ninos?.length" class="necesidades-container">
-    <h3>Necesidades del hogar:</h3>
-    <ul class="necesidades-lista">
-      <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
-    </ul>
-  </div>
+  
 
   <div *ngIf="donaciones.length > 0" class="donaciones-container">
     <h2>Mis Donaciones</h2>
@@ -47,6 +50,7 @@
           </div>
         </ng-template>
         <p class="fecha-donacion">{{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }}</p>
+        <p class="monto-donacion">{{ donacionActual.cantidadDonacion }} $</p>
       </div>
       
       <button class="flecha flecha-derecha" (click)="siguienteDonacion()">❯</button>

@@ -5,28 +5,29 @@
         <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
       </nav>
     </div>
-<div class="container">
-    <h1>Mi hogar</h1>
-  
-    <div class="hogar-container">
-      <img [src]="encargado.foto_hogar" [alt]="encargado.nombre_hogar" class="hogar-img">
-      <div class="hogar-info">
-        <h2>{{encargado.nombre_hogar}}</h2>
-        <p><strong>Descripción:</strong>  {{encargado.descripcion}}  </p>
-        <p><strong>Número de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
-        <button class="btn edit-btn" (click)="irEditarPerfil()">Editar</button>
-        <button class="btn mis-ninos-btn" (click)="irMisNinos()">Mis niños</button>
+  <div class="container">
+      <h1>Mi hogar</h1>
+    
+      <div class="hogar-container">
+        <img [src]="encargado.foto_hogar" [alt]="encargado.nombre_hogar" class="hogar-img">
+        <div class="hogar-info">
+          <h2>{{encargado.nombre_hogar}}</h2>
+          <p><strong>Descripción:</strong>  {{encargado.descripcion}}  </p>
+          <p><strong>Número de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
+          <button class="btn edit-btn" (click)="irEditarPerfil()">Editar</button>
+          <button class="btn mis-ninos-btn" (click)="irMisNinos()">Mis niños</button>
+        </div>
+      </div>
+    
+      <h2>Necesidades de mi hogar</h2>
+    
+      <div class="necesidades-container">
+          <div class="necesidades">
+              <div *ngFor="let necesidad of necesidades">
+                  <div class="necesidad">{{necesidad.nombre}}</div>
+              </div>
+          </div>
       </div>
     </div>
-  
-    <h2>Necesidades de mi hogar</h2>
-  
-    <div class="necesidades-container">
-        <div class="necesidades">
-            <div *ngFor="let necesidad of necesidades">
-                <div class="necesidad">{{necesidad.nombre}}</div>
-            </div>
-        </div>
-    </div>
-  </div>
+</div>
   
