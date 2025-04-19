@@ -21,29 +21,33 @@ export class CrearEncargadoComponent {
     estado: 'En revision',
     nombre_hogar: '',
     direccion_hogar: '',
-    foto_hogar: ''
+    foto_hogar: '',
+    descripcion:''
   }
 
   constructor(private encargadoService: EncargadoService, private router: Router){}
 
   registrarEncargado(): void {
 
-    this.encargadoService.createEncargado(this.encargado).subscribe({
-      next: (response) => {
-        if(this.encargado.nombre == '' || this.encargado.celular == '' || this.encargado.email == '' || this.encargado.contrasenia == '' || this.encargado.nombre_hogar == '' || this.encargado.direccion_hogar == ''){
-          alert("Todos los campos deben ser llenados");
-        }
-        else{
-          console.log('Encargado registrado con éxito!', response);
-          alert('Encargado registrado con éxito!');
-          this.router.navigate([`/home-encargado/${response.id}`]);
-        }
-      },
-      error: (err) => {
-        console.error('Error al registrar encargado. Todos los campos deben ser llenados:', err);
-        alert('Error al registrar encargado. Todos los campos deben ser llenados.');
+    if(this.encargado.nombre == '' || this.encargado.celular == '' || this.encargado.email == '' || 
+      this.encargado.contrasenia == '' || this.encargado.nombre_hogar == '' || this.encargado.direccion_hogar == '' ||
+      this.encargado.descripcion == ''){
+        alert("Todos los campos obligatorios (*) deben ser llenados");
       }
-    });
+    
+    else{
+      this.encargadoService.createEncargado(this.encargado).subscribe({
+        next: (response) => {
+            console.log('Encargado registrado con éxito!', response);
+            alert('Encargado registrado con éxito!');
+            this.router.navigate([`/home-encargado/${response.id}`]);
+        },
+        error: (err) => {
+          console.error('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados:', err);
+          alert('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados.');
+        }
+      });
+    }
   }
 
 }

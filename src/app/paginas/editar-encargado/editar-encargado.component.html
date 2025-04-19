@@ -25,6 +25,17 @@
       <label>Foto del Hogar URL:</label>
       <input type="text" [(ngModel)]="encargado.foto_hogar" name="foto_hogar">
 
+      <label for="descripcion_hogar">Descripción del Hogar:</label>
+      <textarea 
+        id="descripcion_hogar"
+        [(ngModel)]="encargado.descripcion" 
+        name="descripcion_hogar" 
+        maxlength="500"
+        class="textarea-descripcion"
+        placeholder="Escribe una descripción detallada del hogar (máx. 500 caracteres)">
+      </textarea>
+      <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
+
       <button type="submit" class="primary-button">Guardar Cambios</button>
 
       <button type="button" class="secondary-button" (click)="eliminarEncargado()">Eliminar Cuenta</button>
