@@ -72,7 +72,7 @@ export class HomePadrinoComponent implements OnInit {
 
   getEncargadoName(encargadoId: number): string {
     const encargado = this.encargados.find(e => e.id === encargadoId);
-    return encargado ? encargado.nombre : 'Encargado desconocido';
+    return encargado ? encargado.nombre_hogar : 'Encargado desconocido';
   }
 
   getEncargadoNecesidades(encargado: any){
