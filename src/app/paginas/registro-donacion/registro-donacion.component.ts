@@ -92,7 +92,7 @@ export class RegistroDonacionComponent implements OnInit {
       next: (response) => {
         console.log('Donación registrada:', response);
         alert('Donación registrada con éxito');
-        this.router.navigate(['/home-padrino', this.donacion.padrino_id]);
+        this.router.navigate(['/home-padrino']);
       },
       error: (error) => {
         console.error('Error al registrar donación:', error);

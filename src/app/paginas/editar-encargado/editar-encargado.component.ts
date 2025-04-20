@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-editar-encargado',
@@ -17,7 +18,8 @@ export class EditarEncargadoComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private encargadoService: EncargadoService
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class EditarEncargadoComponent {
       this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(()=> {
         alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        this.authService.logout();
         console.log(this.encargado)
         this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
         setTimeout(() => {

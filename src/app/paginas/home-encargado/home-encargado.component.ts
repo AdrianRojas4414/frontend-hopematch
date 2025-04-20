@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { jwtDecode } from 'jwt-decode';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-home-encargado',
@@ -11,18 +13,19 @@ import { EncargadoService } from '../../servicios/encargado.service';
   styleUrl: './home-encargado.component.scss'
 })
 export class HomeEncargadoComponent implements OnInit{
-
   encargado: any = null;
 
   constructor(private route:ActivatedRoute, 
                   private router: Router,
                   private encargadoService: EncargadoService,
+                  private authService: UserAuthenticationService
                 ){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (id) {
+    if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;

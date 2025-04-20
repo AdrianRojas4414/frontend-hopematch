@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-editar-padrino',
@@ -17,7 +18,8 @@ export class EditarPadrinoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private padrinoService: PadrinoService 
+    private padrinoService: PadrinoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class EditarPadrinoComponent implements OnInit {
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(() => {
         alert('Padrino actualizado correctamente');
-        this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+        this.router.navigate([`/perfil-padrino`]);
       });
   }
 
@@ -42,8 +44,9 @@ export class EditarPadrinoComponent implements OnInit {
       this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(()=> {
         alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        this.authService.logout();
         console.log(this.padrino)
-        this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+        this.router.navigate([`/perfil-padrino`]);
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 500);

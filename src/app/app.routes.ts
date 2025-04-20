@@ -27,12 +27,12 @@ export const routes: Routes = [
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Forulario para la creacion de un Encargado"},
     {path:'crear-nino/:idEncargado', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
     {path:'perfil-encargado/:id', component: PerfilEncargadoComponent, title: "Encargado"},
-    {path:'perfil-padrino/:id', component: PerfilPadrinoComponent, title: 'Padrino'},
+    {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Padrino'},
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
-    {path:'home-padrino/:id', component: HomePadrinoComponent, title:'Pagina Padrino'},
-    {path:'home-encargado/:id', component: HomeEncargadoComponent, title:'Pagina Encargado'},
+    {path:'home-padrino', component: HomePadrinoComponent, title:'Pagina Padrino'},
+    {path:'home-encargado', component: HomeEncargadoComponent, title:'Pagina Encargado'},
     {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
     {path:'detalle-hogar/:id', component:DetalleHogarComponent, title:'Detales del Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
@@ -43,6 +43,6 @@ export const routes: Routes = [
     {path:'encargado-donacion/:id', component: EncargadoDonacionComponent},
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
     {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
-    {path: 'home-administrador/:id', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
+    {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

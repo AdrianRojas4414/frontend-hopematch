@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { NinoService } from '../../servicios/nino.service';
 
 @Component({
@@ -27,13 +28,15 @@ export class HomePadrinoComponent implements OnInit {
     private router: Router,
     private encargadoService: EncargadoService,
     private donacionService: DonacionService,
+    private authService: UserAuthenticationService
     private ninoService: NinoService
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+      const id = this.authService.getUserId();
+      const isPadrino = this.authService.isUserType('padrino');
 
-    if (id) {
+      if (isPadrino) {
       this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
           this.padrino = data;
@@ -43,9 +46,8 @@ export class HomePadrinoComponent implements OnInit {
           console.error('Error al obtener encargado:', err);
         }
       });
+      this.obtenerEncargados();
     }
-
-    this.obtenerEncargados();
   }
 
   obtenerEncargados(): void {
@@ -104,7 +106,7 @@ export class HomePadrinoComponent implements OnInit {
 
   irPerfil(): void {
     if (this.padrino) {
-      this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+      this.router.navigate(['/perfil-padrino']);
     }
   }
 
