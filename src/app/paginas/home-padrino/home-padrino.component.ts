@@ -44,7 +44,7 @@ export class HomePadrinoComponent implements OnInit {
           this.userType = decoded.UserType;
         }
 
-        if (this.id != 0 && this.userType == 'Padrino') {
+        if (this.id != 0 && this.userType == 'padrino') {
       this.padrinoService.getPadrinoById(+this.id).subscribe({
         next: (data) => {
           this.padrino = data;

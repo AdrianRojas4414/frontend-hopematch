@@ -37,7 +37,7 @@ export class HomeEncargadoComponent implements OnInit{
           this.userType = decoded.UserType;
         }
 
-    if (this.id != 0 && this.userType == 'Encargado') {
+    if (this.id != 0 && this.userType == 'encargado') {
       this.encargadoService.getEncargadoById(+this.id).subscribe({
         next: (data) => {
           this.encargado = data;

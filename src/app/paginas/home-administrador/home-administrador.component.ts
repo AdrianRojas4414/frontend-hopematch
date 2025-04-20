@@ -37,7 +37,7 @@ export class HomeAdministradorComponent implements OnInit {
       this.id = decoded.id;
       this.userType = decoded.UserType;
     }
-    if (this.id != 0 && this.userType == 'Admin') {
+    if (this.id != 0 && this.userType == 'administrador') {
       this.adminService.getAdministradorById(+this.id).subscribe({
         next: (data) => {
           this.administrador = data;

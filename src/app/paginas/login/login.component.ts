@@ -35,15 +35,7 @@ export class LoginComponent {
         const  token = localStorage.getItem('token');
         if (token) {
           const decoded = jwtDecode<TokenData>(token)
-          if(decoded.UserType == "Admin"){
-            this.router.navigate(['/home-administrador'])
-          }
-          if(decoded.UserType == "Encargado"){
-            this.router.navigate(['/home-encargado'])
-          }
-          if(decoded.UserType == "Padrino"){
-            this.router.navigate(['/home-padrino'])
-          }
+          this.router.navigate([`/home-${decoded.UserType}`])
         }
       },
       error: (err) => {
