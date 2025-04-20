@@ -45,6 +45,9 @@ export class LoginComponent {
           if(decoded.UserType == "Admin"){
             this.router.navigate(['/home-administrador'])
           }
+          if(decoded.UserType == "Encargado"){
+            this.router.navigate(['/home-encargado'])
+          }
         }
       },
       error: (err) => {
