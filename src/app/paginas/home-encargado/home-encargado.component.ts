@@ -4,13 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { jwtDecode } from 'jwt-decode';
-
-interface TokenData {
-  sub: string;
-  id: number;
-  UserType: string;
-  exp: number;
-}
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-home-encargado',
@@ -19,26 +13,20 @@ interface TokenData {
   styleUrl: './home-encargado.component.scss'
 })
 export class HomeEncargadoComponent implements OnInit{
-
-  private id = 0;
-  private userType = 'None';
   encargado: any = null;
 
   constructor(private route:ActivatedRoute, 
                   private router: Router,
                   private encargadoService: EncargadoService,
+                  private authService: UserAuthenticationService
                 ){}
 
   ngOnInit(): void {
-    const  token = localStorage.getItem('token');
-    if(token){
-          const decoded = jwtDecode<TokenData>(token);
-          this.id = decoded.id;
-          this.userType = decoded.UserType;
-        }
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (this.id != 0 && this.userType == 'encargado') {
-      this.encargadoService.getEncargadoById(+this.id).subscribe({
+    if (isEncargado) {
+      this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
         },

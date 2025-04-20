@@ -18,7 +18,6 @@ export class HomePadrinoComponent implements OnInit {
   padrino: any = null;
   encargados: any[] = [];
   donaciones: any[] = [];
-  private userType = 'None';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +30,6 @@ export class HomePadrinoComponent implements OnInit {
 
   ngOnInit(): void {
       const id = this.authService.getUserId();
-      this.userType = this.authService.getUserType();
       const isPadrino = this.authService.isUserType('padrino');
 
       if (isPadrino) {
