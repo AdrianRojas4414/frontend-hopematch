@@ -22,6 +22,7 @@ interface TokenData {
 export class HomeAdministradorComponent implements OnInit {
   administrador: any = null;
   private id = 0;
+  private userType = 'None';
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +35,9 @@ export class HomeAdministradorComponent implements OnInit {
     if(token){
       const decoded = jwtDecode<TokenData>(token);
       this.id = decoded.id;
+      this.userType = decoded.UserType;
     }
-    if (this.id != 0) {
+    if (this.id != 0 && this.userType == 'Admin') {
       this.adminService.getAdministradorById(+this.id).subscribe({
         next: (data) => {
           this.administrador = data;
