@@ -28,7 +28,7 @@ export class HomePadrinoComponent implements OnInit {
     private router: Router,
     private encargadoService: EncargadoService,
     private donacionService: DonacionService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
     private ninoService: NinoService
   ) {}
 
