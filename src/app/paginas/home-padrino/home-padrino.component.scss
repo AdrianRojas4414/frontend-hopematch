@@ -33,36 +33,57 @@
   }
   
   .saludo {
-    margin-top: 1.5rem;
+    margin-top: 15px;
     text-align: center;
     font-size: 1.8rem;
     color: #e65c4f;
   }
+
+  h2{
+    margin: 0px 0px 30px 0px;
+  }
   
+  .encargados-field{
+    height: 427px;
+    width: 1100px; 
+    align-self: flex-start;
+  }
+
+  .busqueda-encargado {
+    margin: 20px 0;
+    text-align: center;
+  
+    input {
+      width: 90%;
+      padding: 5px;
+      font-size: 16px;
+      border: 2px solid #e65c4f;
+      border-radius: 10px;
+      outline: none;
+    }
+  }
+
   .encargados-lista {
       flex: 0 0 70%;
       background-color: #fff;
-      padding: 2rem;
+      padding: 10px 10px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-height: 400px;
       overflow-y: auto;
-      height: 100vh;
-      width: 70%; 
+      height: 100%;
+      width: 100%;
       align-self:flex-start;
-      max-width: 60%;
   }
   
   .encargado-card {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding: 20px;
+    padding: 20px 0px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 650px;
-    margin: 0 auto;
+    margin: 5px auto;
 
     .admin-info {
       display: flex;
@@ -92,10 +113,11 @@
   }
   
   .encargado-foto {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
+    margin: 0px 20px;
   
     img {
       width: 100%;
@@ -106,6 +128,7 @@
   
   .encargado-detalles {
     flex: 1;
+    padding: 0px 20px 0px 0px;
   }
   
   .encargado-detalles h3 {
@@ -161,24 +184,35 @@
     gap: 30px;
     align-items: flex-start;
     width: 100%;
+    height: 300px;
   }
   
+  .donaciones-field{
+    flex: 0 0 30%;
+    max-height: 300px;
+    width: 30%;
+    align-self: flex-start;
+  }
   
-  
+
   .historial-donaciones {
     flex: 0 0 30%;
     background: #f9f9f9;
-    padding: 2rem;
+    padding: 20px;
     border-radius: 10px;
-    height: fit-content;
+    height: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-height: 400px;
+    max-height: 408px;
     overflow-y: auto;
     align-self: flex-start;
-    width: 30%;
     position: sticky;
     top: 20px;
-    
+  }
+
+  .tus-donaciones{
+    text-align: center;
+    align-self: center;
+    padding-top: 12px;
   }
   
   
@@ -199,7 +233,7 @@
   }
   
   .btn-detalles {
-    background: #2196F3;
+    background: #e65c4f;
     color: white;
   }
   
