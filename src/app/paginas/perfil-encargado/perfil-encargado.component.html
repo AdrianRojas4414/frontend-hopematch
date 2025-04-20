@@ -10,6 +10,9 @@
 
   <div class="perfil-content">
     <div class="perfil-info">
+      <div class="hogar-foto">
+        <img [src]="encargado.foto_hogar" alt="Foto del Hogar" />
+      </div>
       <div class="perfil-foto">
         <img [src]="encargado.foto" alt="Foto del Encargado" />
       </div>
@@ -17,9 +20,12 @@
         <h2 style="color: #e65c4f;">Mi Perfil</h2>
         <h3>{{ encargado.nombre }}</h3>
         <p><strong>E-mail:</strong> {{ encargado.email }}</p>
+        <p><strong>Celular:</strong> {{ encargado.celular }}</p>
         <p><strong>Nombre del Hogar:</strong> {{ encargado.nombre_hogar }}</p>
         <p><strong>Direccion del Hogar:</strong> {{ encargado.direccion_hogar }}</p>
-        <p><strong>Estado del Hogar:</strong> Activo</p>
+        <p><strong>Estado del Hogar:</strong> {{encargado.estado}}</p>
+        <p><strong>Descripción del Hogar:</strong> {{encargado.descripcion}}</p>
+        <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
         <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
       </div>
     </div>

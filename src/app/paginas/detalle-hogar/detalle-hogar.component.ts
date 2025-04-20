@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
+import { NinoService } from '../../servicios/nino.service';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -23,7 +24,8 @@ export class DetalleHogarComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
-    private donacionService: DonacionService
+    private donacionService: DonacionService,
+    private ninoService: NinoService
   ) {}
 
   ngOnInit(): void {
@@ -72,13 +74,21 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   obtenerNecesidadesUnicas(): string[] {
-    const necesidades = new Set<string>();
+    const frecuenciaMap = new Map<string, number>();
 
-    this.encargado?.ninos?.forEach((nino:any) => {
-      nino.necesidades.forEach((necesidad:any) => necesidades.add(necesidad));
+    this.encargado?.ninos?.forEach((nino: any) => {
+      nino.necesidades.forEach((necesidad: string) => {
+        const conteoActual = frecuenciaMap.get(necesidad) || 0;
+        frecuenciaMap.set(necesidad, conteoActual + 1);
+      });
     });
 
-    return Array.from(necesidades);
+    // Convertimos a array y ordenamos por frecuencia descendente
+    const necesidadesOrdenadas = Array.from(frecuenciaMap.entries())
+      .sort((a, b) => b[1] - a[1]) // orden descendente por frecuencia
+      .map(([necesidad]) => necesidad); // solo extraemos el nombre
+
+    return necesidadesOrdenadas;
   }
 
   volverAtras() {

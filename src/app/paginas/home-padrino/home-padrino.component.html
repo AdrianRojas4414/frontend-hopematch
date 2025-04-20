@@ -11,46 +11,73 @@
     <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
   </div>
 <div class="main-content">
-  <div class="historial-donaciones">
-    <h3>Tus donaciones</h3>
-    <div *ngIf="donaciones.length === 0" class="no-donaciones">
-      <p>Aun no has realizado donaciones</p>
+  <div class="donaciones-field">
+    <div class="tus-donaciones">
+      <h3 style="color: #e65c4f;">Tus donaciones</h3>
     </div>
-    <div class="donacion-card" *ngFor="let donacion of donaciones">
-      <div class="donacion-header">
-        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-        <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
+
+    <div class="historial-donaciones">
+      <div *ngIf="donaciones.length === 0" class="no-donaciones">
+        <p>Aun no has realizado donaciones</p>
       </div>
-      <div class="donacion-body">
-        <p>Para: {{ getEncargadoName(donacion.encargado.id) }} </p>
-        <p *ngIf="donacion.necesidadesSeleccionadas">Necesidades: {{ donacion.necesidadesSeleccionadas }} </p>
-      </div>
-      <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
-    </div> 
+      <div class="donacion-card" *ngFor="let donacion of donaciones">
+        <div class="donacion-header">
+          <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
+          <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
+        </div>
+        <div class="donacion-body">
+          <p><strong>Para: </strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
+          <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
+        </div>
+        <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+      </div> 
+    </div>
+
+
   </div>
 
-  <div class="encargados-lista">
-    <div class="encargado-card" *ngFor="let encargado of encargados">
-      <div class="encargado-info">
-        <div class="encargado-foto">
-          <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
-        </div>
-        <div class="encargado-detalles">
-          <h3>{{ encargado.nombre_hogar }}</h3>
-          <p class="admin-info">
-            <span>Administrado por </span>
-            <img [src]="encargado.foto" 
-                 alt="Foto del Encargado" 
-                 class="admin-foto" />
-            <span>{{ encargado.nombre }}</span>
-          </p>
-          <button class="btn-ver-hogar" 
-                  [disabled]="!haDonadoA(encargado.id)"
-                  (click)="verHogar(encargado.id)">Ver Hogar</button>
-          <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
+  <div class="encargados-field">
+    <div class="busqueda-encargado">
+      <input type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
+    </div>
+
+    <div class="encargados-lista">
+      <div class="encargado-card" *ngFor="let encargado of encargadosFiltrados()">
+        <div class="encargado-info">
+          <div class="encargado-foto">
+            <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
+          </div>
+          <div class="encargado-detalles">
+            <h3>{{ encargado.nombre_hogar }}</h3>
+            <div class="admin-info">
+              <span>Administrado por </span>
+              <img [src]="encargado.foto" 
+                   alt="Foto del Encargado" 
+                   class="admin-foto" />
+              <p>{{ encargado.nombre }}</p>
+            </div>
+            <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
+  
+            <p *ngIf="encargado.necesidades && encargado.necesidades.length">
+              <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+            </p>
+            <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
+              <strong>No hay necesidades registradas.</strong>
+            </p>
+  
+            <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
+  
+            <button class="btn-ver-hogar" 
+                    [disabled]="!haDonadoA(encargado.id)"
+                    (click)="verHogar(encargado.id)">Ver Hogar</button>
+            <button class="btn-donar" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
+
+  
 </div>
 </div>

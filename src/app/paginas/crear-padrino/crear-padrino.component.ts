@@ -27,30 +27,31 @@ export class CrearPadrinoComponent {
   constructor(private padrinoService: PadrinoService, private router: Router, private authService: UserAuthenticationService) {}
 
   registrarPadrino(): void {
-    this.padrinoService.createPadrino(this.padrino).subscribe({
-      next: (response) => {
-        if(this.padrino.nombre == '' || this.padrino.celular == '' || this.padrino.email == '' || this.padrino.contrasenia == ''){
-          alert("Todos los campos deben ser llenados");
-        }
-        else{
-          console.log('Padrino registrado con éxito!', response);
-          alert('Padrino registrado con éxito!');
-          this.authService.login(this.padrino.email, this.padrino.contrasenia, 'padrino').subscribe({
-            next: () => {
+
+    if(this.padrino.nombre == '' || this.padrino.celular == '' || this.padrino.email == '' || this.padrino.contrasenia == ''){
+      alert("Todos los campos obligatorios (*) deben ser llenados");
+    }
+    
+    else{
+      this.padrinoService.createPadrino(this.padrino).subscribe({
+        next: (response) => {
+            console.log('Padrino registrado con éxito!', response);
+            alert('Padrino registrado con éxito!');
+            this.authService.login(this.padrino.email, this.padrino.contrasenia, 'padrino').subscribe({
+              next: () => {
               this.router.navigate(['/home-padrino']);
-            },
-            error: (err) => {
-              console.error('Error al iniciar sesión después del registro:', err);
-              alert('Registro exitoso, pero error al iniciar sesión.');
-            }
-          });
+              },
+              error: (err) => {
+                console.error('Error al iniciar sesión después del registro:', err);
+                alert('Registro exitoso, pero error al iniciar sesión.');
+              }
+            });
+        },
+        error: (err) => {
+          console.error('Error al registrar padrino. Todos los campos obligatorios (*) deben ser llenados:', err);
+          alert('Error al registrar padrino. Todos los campos obligatorios (*) deben ser llenados.');
         }
-      },
-      error: (err) => {
-        console.error('Error al registrar padrino. Todos los campos deben ser llenados:', err);
-        alert('Error al registrar padrino. Todos los campos deben ser llenados.');
-        this.padrinoCreado = false;
-      }
-    });
+      });
+    }
   }
 }

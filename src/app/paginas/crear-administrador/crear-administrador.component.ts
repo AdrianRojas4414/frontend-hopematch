@@ -23,21 +23,23 @@ export class CrearAdministradorComponent {
   constructor(private administradorService: AdministradorService, private router: Router) {}
 
   registrarAdministrador(): void {
+
     if(this.administrador.nombre === '' || this.administrador.email === '' || this.administrador.contrasenia === '') {
       alert("Todos los campos deben ser llenados");
-      return;
     }
 
-    this.administradorService.createAdministrador(this.administrador).subscribe({
-      next: (response) => {
-        console.log('Administrador registrado con éxito!', response);
-        alert('Administrador registrado con éxito!');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Error al registrar administrador:', err);
-        alert('Error al registrar administrador. Verifique los datos.');
-      }
-    });
+    else{
+      this.administradorService.createAdministrador(this.administrador).subscribe({
+        next: (response) => {
+          console.log('Administrador registrado con éxito!', response);
+          alert('Administrador registrado con éxito!');
+          this.router.navigate([`/home-administrador/${response.id}`]);
+        },
+        error: (err) => {
+          console.error('Error al registrar administrador:', err);
+          alert('Error al registrar administrador. Verifique los datos.');
+        }
+      });
+    }
   }
 }
