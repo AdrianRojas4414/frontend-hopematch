@@ -116,3 +116,37 @@
     display: flex;
     justify-content: center; /* O center si lo quieres centrado */
 }
+
+.nino-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-eliminar-nino {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #d9534f; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+.btn-editar-nino:hover{
+  background-color: #c9302c; 
+}
+.btn-eliminar-nino:hover {
+  background-color: #c9302c; 
+}
+.nino-buttons {
+  display: flex;
+  gap: 10px;       
+  margin-top: 15px; 
+}
+/* Asegúrate de tener Font Awesome en tu proyecto */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
