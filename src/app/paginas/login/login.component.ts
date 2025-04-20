@@ -29,14 +29,9 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login(this.email, this.password, this.userType).subscribe({
-      next: (response: string) => {
-        const parsedResponse = JSON.parse(response);
-        localStorage.setItem('token', parsedResponse.token);
-        const  token = localStorage.getItem('token');
-        if (token) {
-          const decoded = jwtDecode<TokenData>(token)
-          this.router.navigate([`/home-${decoded.UserType}`])
-        }
+      next: () => {
+        const userType = this.authService.getUserType();
+        this.router.navigate([`/home-${userType}`])
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);
