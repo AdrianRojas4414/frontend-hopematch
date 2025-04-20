@@ -5,6 +5,14 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
+import { jwtDecode } from 'jwt-decode';
+
+interface TokenData {
+  sub: string;
+  id: number;
+  UserType: string;
+  exp: number;
+}
 
 @Component({
   selector: 'app-home-padrino',
@@ -17,6 +25,8 @@ export class HomePadrinoComponent implements OnInit {
   padrino: any = null;
   encargados: any[] = [];
   donaciones: any[] = [];
+  private id = 0;
+  private userType = 'None';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,10 +37,15 @@ export class HomePadrinoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const  token = localStorage.getItem('token');
+    if(token){
+          const decoded = jwtDecode<TokenData>(token);
+          this.id = decoded.id;
+          this.userType = decoded.UserType;
+        }
 
-    if (id) {
-      this.padrinoService.getPadrinoById(+id).subscribe({
+        if (this.id != 0 && this.userType == 'Padrino') {
+      this.padrinoService.getPadrinoById(+this.id).subscribe({
         next: (data) => {
           this.padrino = data;
           this.obtenerDonaciones(this.padrino.id);

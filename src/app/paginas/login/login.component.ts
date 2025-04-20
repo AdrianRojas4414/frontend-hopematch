@@ -31,15 +31,8 @@ export class LoginComponent {
     this.authService.login(this.email, this.password, this.userType).subscribe({
       next: (response: string) => {
         const parsedResponse = JSON.parse(response);
-        console.log('Response completo:', parsedResponse);
         localStorage.setItem('token', parsedResponse.token);
         const  token = localStorage.getItem('token');
-        if(parsedResponse.userType == "Encargado"){
-          this.router.navigate([`/home-encargado/${parsedResponse.id}`]);
-        }
-        if(parsedResponse.userType == "Padrino"){
-          this.router.navigate([`/home-padrino/${parsedResponse.id}`]);
-        }
         if (token) {
           const decoded = jwtDecode<TokenData>(token)
           if(decoded.UserType == "Admin"){
@@ -47,6 +40,9 @@ export class LoginComponent {
           }
           if(decoded.UserType == "Encargado"){
             this.router.navigate(['/home-encargado'])
+          }
+          if(decoded.UserType == "Padrino"){
+            this.router.navigate(['/home-padrino'])
           }
         }
       },
