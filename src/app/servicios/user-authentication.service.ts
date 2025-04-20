@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 export interface TokenData {
   sub: string;
@@ -17,14 +18,17 @@ export class UserAuthenticationService {
 
   private baseURL = 'http://localhost:8080/';
   private tokenKey = 'token';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string, userType: string): Observable<any> {
     const body = { email: email, contrasenia: password };
     const loginURL = `${this.baseURL}${userType}/login`
     return this.http.post(loginURL, body, { responseType: 'text' });
   }
-
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
+    this.router.navigate(['/']);
+  }
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
