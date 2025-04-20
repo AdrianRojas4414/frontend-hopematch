@@ -19,6 +19,7 @@ export class HomePadrinoComponent implements OnInit {
   encargados: any[] = [];
   donaciones: any[] = [];
   necesidades: any[] = [];
+  busqueda: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -117,5 +118,16 @@ export class HomePadrinoComponent implements OnInit {
 
   irARegistroDonacion(padrinoId: number, encargadoId: number): void {
     this.router.navigate(['/registro-donacion', padrinoId, encargadoId]);
+  }
+
+  encargadosFiltrados(): any[] {
+    if (!this.busqueda.trim()) {
+      return this.encargados;
+    }
+
+    const texto = this.busqueda.toLowerCase();
+    return this.encargados.filter(encargado =>
+      encargado.nombre_hogar.toLowerCase().startsWith(texto)
+    );
   }
 }
