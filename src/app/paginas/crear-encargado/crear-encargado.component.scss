@@ -2,13 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 97vh;
+    height: auto;
+    width: auto;
     background-color: #f6f6f6;
   }
   
   .form-card {
     background-color: #fff;
-    padding: 2rem;
+    padding: 15px 32px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -16,10 +17,10 @@
     width: 100%;
   
     .header {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
   
       .logo {
-        max-width: 100px;
+        max-width: 60px;
         margin-bottom: 0rem;
       }
   
@@ -48,7 +49,7 @@
       }
   
       input {
-        padding: 0.75rem;
+        padding: 11px 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 1rem;
@@ -63,6 +64,21 @@
         cursor: pointer;
         font-size: 1rem;
       }
+    }
+    .textarea-descripcion {
+      width: 100%;
+      min-height: 120px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+      box-sizing: border-box;
+      background-color: #fff;
+      color: #333;
+    }
+    p{
+      margin: 1px 5px;
     }
   }
   

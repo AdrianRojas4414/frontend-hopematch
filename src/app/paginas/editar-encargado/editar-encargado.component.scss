@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 97vh;
+    height: auto;
     background-color: #f6f6f6;
 }
 
@@ -68,3 +68,20 @@ button:hover, .secondary-button:hover {
     background-color: #e65c4f;
     color: #fff;
 }
+
+.textarea-descripcion {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+  }
+
+  p{
+    margin: 5px 5px;
+  }

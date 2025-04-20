@@ -25,21 +25,22 @@ export class CrearPadrinoComponent {
   constructor(private padrinoService: PadrinoService, private router: Router) {}
 
   registrarPadrino(): void {
-    this.padrinoService.createPadrino(this.padrino).subscribe({
-      next: (response) => {
-        if(this.padrino.nombre == '' || this.padrino.celular == '' || this.padrino.email == '' || this.padrino.contrasenia == ''){
-          alert("Todos los campos deben ser llenados");
+
+    if(this.padrino.nombre == '' || this.padrino.celular == '' || this.padrino.email == '' || this.padrino.contrasenia == ''){
+      alert("Todos los campos obligatorios (*) deben ser llenados");
+    }
+    else{
+      this.padrinoService.createPadrino(this.padrino).subscribe({
+        next: (response) => {
+            console.log('Padrino registrado con éxito!', response);
+            alert('Padrino registrado con éxito!');
+            this.router.navigate([`/home-padrino/${response.id}`]);
+        },
+        error: (err) => {
+          console.error('Error al registrar padrino. Todos los campos obligatorios (*) deben ser llenados:', err);
+          alert('Error al registrar padrino. Todos los campos obligatorios (*) deben ser llenados.');
         }
-        else{
-          console.log('Padrino registrado con éxito!', response);
-          alert('Padrino registrado con éxito!');
-          this.router.navigate([`/home-padrino/${response.id}`]);
-        }
-      },
-      error: (err) => {
-        console.error('Error al registrar padrino. Todos los campos deben ser llenados:', err);
-        alert('Error al registrar padrino. Todos los campos deben ser llenados.');
-      }
-    });
+      });
+    }
   }
 }

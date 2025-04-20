@@ -22,8 +22,8 @@
         <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
       </div>
       <div class="donacion-body">
-        <p>Para: {{ getEncargadoName(donacion.encargado.id) }} </p>
-        <p *ngIf="donacion.necesidadesSeleccionadas">Necesidades: {{ donacion.necesidadesSeleccionadas }} </p>
+        <p><strong>Para: </strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
+        <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
       </div>
       <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
     </div> 
@@ -37,13 +37,24 @@
         </div>
         <div class="encargado-detalles">
           <h3>{{ encargado.nombre_hogar }}</h3>
-          <p class="admin-info">
+          <div class="admin-info">
             <span>Administrado por </span>
             <img [src]="encargado.foto" 
                  alt="Foto del Encargado" 
                  class="admin-foto" />
-            <span>{{ encargado.nombre }}</span>
+            <p>{{ encargado.nombre }}</p>
+          </div>
+          <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
+
+          <p *ngIf="encargado.necesidades && encargado.necesidades.length">
+            <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
           </p>
+          <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
+            <strong>No hay necesidades registradas.</strong>
+          </p>
+
+          <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
+
           <button class="btn-ver-hogar" 
                   [disabled]="!haDonadoA(encargado.id)"
                   (click)="verHogar(encargado.id)">Ver Hogar</button>
