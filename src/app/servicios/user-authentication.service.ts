@@ -7,22 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class UserAuthenticationService {
 
-  private backendURL = 'http://localhost:8080/';
-
+  private baseURL = 'http://localhost:8080/';
+  private secretKey = 'unaClaveSecretaMuySecretaDeAlMenos256BitsEsUnaClaveLargaJAJA';
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string, userType: string): Observable<any> {
     const body = { email: email, contrasenia: password };
-    this.backendURL = 'http://localhost:8080/';
-    if (userType == "Padrino"){
-      this.backendURL += 'padrino/login'
-    }
-    if (userType == "Encargado"){
-      this.backendURL += 'encargado/login'
-    }
-    if (userType == "Administrador"){
-      this.backendURL += 'admin/login'
-    }
-    return this.http.post(this.backendURL, body, { responseType: 'text' });
+    const loginURL = `${this.baseURL}${userType}/login`
+    return this.http.post(loginURL, body, { responseType: 'text' });
   }
 }

@@ -23,7 +23,7 @@ export class LoginComponent {
   public texts = TEXTOS;
   email: string = '';
   password: string = '';
-  userType: string = 'Padrino';
+  userType: string = 'padrino';
 
   constructor(private authService: UserAuthenticationService, private router: Router) {}
 
