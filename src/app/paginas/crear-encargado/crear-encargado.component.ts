@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { TEXTOS } from '../../config/constants';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-crear-encargado',
@@ -24,7 +25,7 @@ export class CrearEncargadoComponent {
     foto_hogar: ''
   }
 
-  constructor(private encargadoService: EncargadoService, private router: Router){}
+  constructor(private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
   registrarEncargado(): void {
 
@@ -36,7 +37,15 @@ export class CrearEncargadoComponent {
         else{
           console.log('Encargado registrado con éxito!', response);
           alert('Encargado registrado con éxito!');
-          this.router.navigate([`/home-encargado/${response.id}`]);
+          this.authService.login(this.encargado.email, this.encargado.contrasenia, 'encargado').subscribe({
+            next: () => {
+              this.router.navigate(['/home-encargado']);
+            },
+            error: (err) => {
+              console.error('Error al iniciar sesión después del registro:', err);
+              alert('Registro exitoso, pero error al iniciar sesión.');
+            }
+          });
         }
       },
       error: (err) => {

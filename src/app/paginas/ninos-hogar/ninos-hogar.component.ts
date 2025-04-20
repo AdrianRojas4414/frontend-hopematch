@@ -43,7 +43,7 @@ export class NinosHogarComponent implements OnInit{
 
   VolverAHome():void{
     if (this.encargado) {
-      this.router.navigate([`/home-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/home-encargado`]);
     }
   }
 }
