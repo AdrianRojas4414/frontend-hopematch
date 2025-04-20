@@ -3,6 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { RouterLink } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+
+interface TokenData {
+  sub: string;
+  id: number;
+  UserType: string;
+  exp: number;
+}
 
 @Component({
   selector: 'app-home-administrador',
@@ -13,6 +21,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeAdministradorComponent implements OnInit {
   administrador: any = null;
+  private id = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +30,13 @@ export class HomeAdministradorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.adminService.getAdministradorById(+id).subscribe({
+    const  token = localStorage.getItem('token');
+    if(token){
+      const decoded = jwtDecode<TokenData>(token);
+      this.id = decoded.id;
+    }
+    if (this.id != 0) {
+      this.adminService.getAdministradorById(+this.id).subscribe({
         next: (data) => {
           this.administrador = data;
         },

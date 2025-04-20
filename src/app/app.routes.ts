@@ -43,6 +43,6 @@ export const routes: Routes = [
     {path:'encargado-donacion/:id', component: EncargadoDonacionComponent},
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
     {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
-    {path: 'home-administrador/:id', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
+    {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
