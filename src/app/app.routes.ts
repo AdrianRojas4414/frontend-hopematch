@@ -27,7 +27,7 @@ export const routes: Routes = [
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Forulario para la creacion de un Encargado"},
     {path:'crear-nino/:idEncargado', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
     {path:'perfil-encargado/:id', component: PerfilEncargadoComponent, title: "Encargado"},
-    {path:'perfil-padrino/:id', component: PerfilPadrinoComponent, title: 'Padrino'},
+    {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Padrino'},
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},

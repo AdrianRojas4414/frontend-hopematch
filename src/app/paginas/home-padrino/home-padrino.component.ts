@@ -44,9 +44,8 @@ export class HomePadrinoComponent implements OnInit {
           console.error('Error al obtener encargado:', err);
         }
       });
+      this.obtenerEncargados();
     }
-
-    this.obtenerEncargados();
   }
 
   obtenerEncargados(): void {
@@ -79,7 +78,7 @@ export class HomePadrinoComponent implements OnInit {
 
   irPerfil(): void {
     if (this.padrino) {
-      this.router.navigate([`/perfil-padrino/${this.padrino.id}`]);
+      this.router.navigate(['/perfil-padrino']);
     }
   }
 
