@@ -21,6 +21,7 @@ interface TokenData {
 export class HomeEncargadoComponent implements OnInit{
 
   private id = 0;
+  private userType = 'None';
   encargado: any = null;
 
   constructor(private route:ActivatedRoute, 
@@ -33,9 +34,10 @@ export class HomeEncargadoComponent implements OnInit{
     if(token){
           const decoded = jwtDecode<TokenData>(token);
           this.id = decoded.id;
+          this.userType = decoded.UserType;
         }
 
-    if (this.id != 0) {
+    if (this.id != 0 && this.userType == 'Encargado') {
       this.encargadoService.getEncargadoById(+this.id).subscribe({
         next: (data) => {
           this.encargado = data;
