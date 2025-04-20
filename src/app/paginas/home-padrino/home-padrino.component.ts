@@ -5,14 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
-import { jwtDecode } from 'jwt-decode';
-
-interface TokenData {
-  sub: string;
-  id: number;
-  UserType: string;
-  exp: number;
-}
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-home-padrino',
@@ -25,7 +18,6 @@ export class HomePadrinoComponent implements OnInit {
   padrino: any = null;
   encargados: any[] = [];
   donaciones: any[] = [];
-  private id = 0;
   private userType = 'None';
 
   constructor(
@@ -33,19 +25,17 @@ export class HomePadrinoComponent implements OnInit {
     private padrinoService: PadrinoService,
     private router: Router,
     private encargadoService: EncargadoService,
-    private donacionService: DonacionService
+    private donacionService: DonacionService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const  token = localStorage.getItem('token');
-    if(token){
-          const decoded = jwtDecode<TokenData>(token);
-          this.id = decoded.id;
-          this.userType = decoded.UserType;
-        }
+      const id = this.authService.getUserId();
+      this.userType = this.authService.getUserType();
+      const isPadrino = this.authService.isUserType('padrino');
 
-        if (this.id != 0 && this.userType == 'padrino') {
-      this.padrinoService.getPadrinoById(+this.id).subscribe({
+      if (isPadrino) {
+      this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
           this.padrino = data;
           this.obtenerDonaciones(this.padrino.id);
