@@ -15,7 +15,6 @@
     <div class="tus-donaciones">
       <h3 style="color: #e65c4f;">Tus donaciones</h3>
     </div>
-    
 
     <div class="historial-donaciones">
       <div *ngIf="donaciones.length === 0" class="no-donaciones">
@@ -36,15 +35,11 @@
 
 
   </div>
-  
-
-  
 
   <div class="encargados-field">
     <div class="busqueda-encargado">
       <input type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
     </div>
-
 
     <div class="encargados-lista">
       <div class="encargado-card" *ngFor="let encargado of encargadosFiltrados()">

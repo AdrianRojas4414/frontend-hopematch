@@ -26,7 +26,12 @@
                   <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
                 </ul>
               </div>
-              <button class="btn-editar-nino" (click)="editarNino(nino.id, encargado.id)">Editar Datos</button>
+              <div class="nino-buttons">
+                <button class="btn-editar-nino" (click)="editarNino(nino.id, encargado.id)">Editar Datos</button>
+                <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </div>
             </div>
           </div>
         </div>
