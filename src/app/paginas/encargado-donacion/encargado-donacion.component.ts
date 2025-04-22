@@ -115,8 +115,10 @@ export class EncargadoDonacionComponent implements OnInit {
   }
 
   mostrarFormularioFotosProgreso(donacionId: number): void {
-    this.donacionIdParaFotosProgreso = donacionId;
-    this.fotosProgresoTemp = [];
+    this.donacionIdParaFotosProgreso = donacionId;  
+    const donacion = this.donaciones.find(d => d.id === donacionId);
+    this.fotosProgresoTemp = donacion?.fotosProgreso ? [...donacion.fotosProgreso] : [];
+  
     this.mostrarFormFotosProgreso = true;
   }
 
