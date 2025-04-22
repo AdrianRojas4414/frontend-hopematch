@@ -20,6 +20,7 @@ import { EncargadoDonacionComponent } from './paginas/encargado-donacion/encarga
 import { NinosHogarComponent } from './paginas/ninos-hogar/ninos-hogar.component';
 import { CrearAdministradorComponent } from './paginas/crear-administrador/crear-administrador.component';
 import { HomeAdministradorComponent } from './paginas/home-administrador/home-administrador.component';
+import { PerfilAdministradorComponent } from './paginas/perfil-administrador/perfil-administrador.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -44,5 +45,6 @@ export const routes: Routes = [
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
     {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
     {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
+    {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

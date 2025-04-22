@@ -46,9 +46,8 @@ export class HomeAdministradorComponent implements OnInit {
   }
 
   irPerfil(): void {
-    if (this.administrador) {
-      this.router.navigate([`/perfil-administrador/${this.administrador.id}`]);
-    }
+    const id = this.authService.getUserId();
+    this.router.navigate([`/perfil-administrador/${id}`]);
   }
 
   cerrarSesion(): void {

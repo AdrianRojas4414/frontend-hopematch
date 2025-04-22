@@ -1,0 +1,28 @@
+<div class="perfil-container" *ngIf="administrador">
+    <div class="perfil-header">
+      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+      <nav class="perfil-nav">
+        <a (click)="volverAHome()" style="color: #3f51b5; cursor: pointer;">Volver a Home</a>
+        <a (click)="cerrarSesion()" style="color: #3f51b5;">Cerrar Sesión</a>
+      </nav>
+    </div>
+  
+    <div class="perfil-content">
+      <div class="perfil-info">
+        <div class="perfil-foto">
+          <img [src]="administrador.foto || 'imgs/default-admin.png'" alt="Foto del Administrador" />
+        </div>
+        <div class="perfil-detalles">
+          <h2>Mi Perfil</h2>
+          <h3>{{ administrador.nombre }}</h3>
+          <p><strong>E-mail:</strong> {{ administrador.email }}</p>
+          <p><strong>Celular:</strong> {{ administrador.celular }}</p>
+          <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!administrador">
+    <p>Cargando datos...</p>
+  </div>
