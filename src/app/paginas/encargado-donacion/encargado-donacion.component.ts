@@ -3,6 +3,7 @@ import { DonacionService } from '../../servicios/donacion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-encargado-donacion',
@@ -16,6 +17,7 @@ export class EncargadoDonacionComponent implements OnInit {
   mostrarFormulario = false;
   nuevoComentario = '';
   donacionSeleccionadaId: number | null = null;
+  public texts = TEXTOS;
 
   mostrarFormFoto = false;
   nuevaFotoUrl = '';
@@ -115,8 +117,10 @@ export class EncargadoDonacionComponent implements OnInit {
   }
 
   mostrarFormularioFotosProgreso(donacionId: number): void {
-    this.donacionIdParaFotosProgreso = donacionId;
-    this.fotosProgresoTemp = [];
+    this.donacionIdParaFotosProgreso = donacionId;  
+    const donacion = this.donaciones.find(d => d.id === donacionId);
+    this.fotosProgresoTemp = donacion?.fotosProgreso ? [...donacion.fotosProgreso] : [];
+  
     this.mostrarFormFotosProgreso = true;
   }
 
@@ -139,22 +143,22 @@ export class EncargadoDonacionComponent implements OnInit {
   }
 
   enviarFotosProgreso(): void {
-    if (this.donacionIdParaFotosProgreso && this.fotosProgresoTemp.length > 0) {
-        this.donacionService.agregarFotosProgreso(
-            this.donacionIdParaFotosProgreso,
-            this.fotosProgresoTemp 
-        ).subscribe({
-            next: () => {
-                this.cancelarFotosProgreso();
-                const encargadoId = this.route.snapshot.paramMap.get('id');
-                if (encargadoId) this.cargarDonaciones(+encargadoId);
-                alert('Fotos de progreso agregadas correctamente');
-            },
-            error: (err) => {
-                console.error('Error al agregar fotos de progreso:', err);
-                alert('Error al agregar las fotos de progreso: ' + err.error?.message || err.message);
-            }
-        });
+    if (this.donacionIdParaFotosProgreso) {
+      this.donacionService.agregarFotosProgreso(
+        this.donacionIdParaFotosProgreso,
+        this.fotosProgresoTemp
+      ).subscribe({
+        next: () => {
+          this.cancelarFotosProgreso();
+          const encargadoId = this.route.snapshot.paramMap.get('id');
+          if (encargadoId) this.cargarDonaciones(+encargadoId);
+          alert(this.texts.fotosProgresoExito);
+        },
+        error: (err) => {
+          console.error('Error al agregar fotos de progreso:', err);
+          alert(this.texts.fotosProgresoError + (err.error?.message || err.message));
+        }
+      });
     }
   }
 
