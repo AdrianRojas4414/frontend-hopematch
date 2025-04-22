@@ -1,0 +1,15 @@
+<div class="container">
+    <h2 style="color: #3f51b5;">Editar Perfil de Administrador</h2>
+    <form (ngSubmit)="updateAdministrador()">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="administrador.nombre" name="nombre" required>
+
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="administrador.email" name="email" disabled>
+
+        <label>Contraseña:</label>
+        <input type="password" [(ngModel)]="administrador.contrasenia" name="contrasenia" required>
+
+        <button type="submit" class="primary-button">Guardar Cambios</button>
+    </form>
+</div>
