@@ -37,6 +37,10 @@ export class DonacionService {
   }
 
   agregarFotosProgreso(donacionId: number, fotos: string[]): Observable<any> {
-    return this.http.put(`${this.backendUrl}/${donacionId}/fotos-progreso`, fotos);
+    return this.http.put(`${this.backendUrl}/${donacionId}/fotos-progreso`, { fotos });
+  }
+  
+  actualizarFotosProgreso(donacionId: number, fotos: string[]): Observable<any> {
+    return this.http.put(`${this.backendUrl}/${donacionId}/fotos-progreso`, { fotos });
   }
 }

@@ -38,6 +38,43 @@ export const TEXTOS = {
 
     // ERROR MESSAGES
     defaultError: 'Ha ocurrido un error, por favor intente de nuevo.',
-    logInError: ''
+    logInError: '',
+
+    // DONATIONS
+    donacionesRecibidas: 'Donaciones Recibidas',
+    noDonaciones: 'No hay donaciones registradas.',
+    agregarComentario: 'Agregar Comentario',
+    comentarioEnviado: 'Comentario enviado',
+    fotoComprobanteEnviada: 'Foto Comprobante enviada',
+    agregarFotoComprobante: 'Agregar Foto Comprobante',
+    agregarFotosProgreso: 'Agregar Fotos Progreso',
+    fotoComprobante: 'Foto comprobante:',
+    fotosProgreso: 'Fotos de progreso:',
+    padrino: 'Padrino: ',
+    necesidades: 'Necesidades: ',
+    
+    // MODALS
+    modalAgregarComentario: 'Agregar Comentario',
+    placeholderComentario: 'Escribe tu comentario...',
+    modalAgregarFoto: 'Agregar Foto Comprobante',
+    placeholderFotoUrl: 'Ingresa la URL de la foto...',
+    modalAgregarFotosProgreso: 'Agregar Fotos de Progreso',
+    fotosAEnviar: 'Fotos a enviar',
+    maxFotosAlerta: 'Has alcanzado el límite máximo de 8 fotos',
+    
+    // DONATION BUTTONS
+    cancelar: 'Cancelar',
+    enviar: 'Enviar',
+    agregar: 'Agregar',
+    
+    // MESSAGES
+    comentarioExito: '¡Comentario enviado con éxito!',
+    comentarioError: 'Error al enviar el comentario',
+    fotosProgresoExito: 'Fotos de progreso agregadas correctamente',
+    fotosProgresoError: 'Error al agregar las fotos de progreso: ',
+    
+    // VALIDATIONS
+    urlInvalida: 'Por favor ingresa una URL válida',
+    maxFotos: 'Máximo 8 fotos permitidas'
 };
   
