@@ -45,22 +45,7 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   agendarVisita(): void {
-    if (!this.encargado?.id) {
-      console.error('No se puede agendar visita: encargado no disponible');
-      return;
-    }
-
-    // Redirige a la ruta de agendar visita con parámetros
-    this.router.navigate(['/agendar-visita', this.encargado.id], {
-      state: {
-        hogar: {
-          nombre: this.encargado.nombre_hogar,
-          direccion: this.encargado.direccion_hogar,
-          encargado: this.encargado.nombre
-        },
-        necesidades: this.obtenerNecesidadesUnicas()
-      }
-    });
+    this.router.navigate(['/registro-visita', this.encargado.id]);
   }
 
   cargarDonaciones(encargadoId: number): void {
