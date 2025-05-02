@@ -44,6 +44,25 @@ export class DetalleHogarComponent implements OnInit{
     }
   }
 
+  agendarVisita(): void {
+    if (!this.encargado?.id) {
+      console.error('No se puede agendar visita: encargado no disponible');
+      return;
+    }
+
+    // Redirige a la ruta de agendar visita con parámetros
+    this.router.navigate(['/agendar-visita', this.encargado.id], {
+      state: {
+        hogar: {
+          nombre: this.encargado.nombre_hogar,
+          direccion: this.encargado.direccion_hogar,
+          encargado: this.encargado.nombre
+        },
+        necesidades: this.obtenerNecesidadesUnicas()
+      }
+    });
+  }
+
   cargarDonaciones(encargadoId: number): void {
     this.donacionService.getDonacionesByEncargado(encargadoId).subscribe({
       next: (data) => {
@@ -82,7 +101,7 @@ export class DetalleHogarComponent implements OnInit{
         frecuenciaMap.set(necesidad, conteoActual + 1);
       });
     });
-
+  
     // Convertimos a array y ordenamos por frecuencia descendente
     const necesidadesOrdenadas = Array.from(frecuenciaMap.entries())
       .sort((a, b) => b[1] - a[1]) // orden descendente por frecuencia
