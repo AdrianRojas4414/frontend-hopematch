@@ -4,6 +4,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-inicio',
+  standalone: true,
   imports: [RouterLink],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
