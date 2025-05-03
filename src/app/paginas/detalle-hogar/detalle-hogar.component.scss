@@ -76,6 +76,8 @@
   border-radius: 8px;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  gap: 1.5rem;
+  position: relative;
 
   .encargado-foto-container {
     width: 200px;
@@ -106,6 +108,33 @@
         color: #333;
       }
     }
+  }
+}
+
+.agendar-visita-btn {
+  background-color: #e65c4f;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-self: center;
+  
+  &:hover {
+    background-color: #d04a3e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 }
 

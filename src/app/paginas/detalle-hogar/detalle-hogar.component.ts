@@ -44,6 +44,10 @@ export class DetalleHogarComponent implements OnInit{
     }
   }
 
+  agendarVisita(): void {
+    this.router.navigate(['/registro-visita', this.encargado.id]);
+  }
+
   cargarDonaciones(encargadoId: number): void {
     this.donacionService.getDonacionesByEncargado(encargadoId).subscribe({
       next: (data) => {
@@ -82,7 +86,7 @@ export class DetalleHogarComponent implements OnInit{
         frecuenciaMap.set(necesidad, conteoActual + 1);
       });
     });
-
+  
     // Convertimos a array y ordenamos por frecuencia descendente
     const necesidadesOrdenadas = Array.from(frecuenciaMap.entries())
       .sort((a, b) => b[1] - a[1]) // orden descendente por frecuencia
