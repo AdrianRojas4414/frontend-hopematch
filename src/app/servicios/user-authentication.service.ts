@@ -16,7 +16,7 @@ export interface TokenData {
 })
 export class UserAuthenticationService {
 
-  private baseURL = 'http://localhost:8080/';
+  private baseURL = 'https://hopematch-backend.onrender.com/';
   private tokenKey = 'token';
   constructor(private http: HttpClient, private router: Router) { }
 

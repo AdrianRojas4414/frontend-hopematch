@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdministradorService {
-  private backendUrl = "http://localhost:8080/administrador";
+  private backendUrl = "https://hopematch-backend.onrender.com/administrador";
 
   constructor(private http: HttpClient) { }
   

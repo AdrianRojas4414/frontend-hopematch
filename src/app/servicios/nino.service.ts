@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class NinoService {
 
-  private backendUrl = "http://localhost:8080/nino";
+  private backendUrl = "https://hopematch-backend.onrender.com/nino";
 
   constructor(private http: HttpClient) { }
 

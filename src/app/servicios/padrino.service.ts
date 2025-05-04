@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PadrinoService {
-  private backendUrl = "http://localhost:8080/padrino";
+  private backendUrl = "https://hopematch-backend.onrender.com/padrino";
 
   constructor(private http: HttpClient) { }
   

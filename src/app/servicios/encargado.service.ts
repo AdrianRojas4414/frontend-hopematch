@@ -7,7 +7,7 @@
   })
   export class EncargadoService {
 
-    private backendUrl = "http://localhost:8080/encargado";
+    private backendUrl = "https://hopematch-backend.onrender.com/encargado";
     
     constructor(private http: HttpClient) { }
 

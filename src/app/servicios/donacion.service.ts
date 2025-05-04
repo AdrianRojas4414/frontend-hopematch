@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DonacionService {
-  private backendUrl = 'http://localhost:8080/donaciones';
+  private backendUrl = 'https://hopematch-backend.onrender.com/donaciones';
 
   constructor(private http: HttpClient) { }
 
