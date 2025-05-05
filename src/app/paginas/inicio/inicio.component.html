@@ -5,7 +5,7 @@
         </div>
         <ul class="nav-links">
         <li><a href="#">{{ texts.buttonHome }} </a></li>
-        <li><a href="#"> {{ texts.buttonAboutUs }} </a></li>
+        <li><a href="#about-us"> {{ texts.buttonAboutUs }} </a></li>
         <li><a href="#register-section"> {{ texts.buttonSignUp }} </a></li>
         <li><a [routerLink]="['/login']" style="color: #e65c4f;"> {{ texts.buttonLogIn }} </a></li>
         <li><a href="#footer-content"> {{ texts.buttonContact }} </a></li>
@@ -20,6 +20,28 @@
         <p class="dreams">{{ texts.secondoSolgan }}</p>
     </div>
     </section>
+
+    <section id="about-us" class="about-us">
+        <div class="about-content">
+            <h2>{{ texts.aboutTitle }}</h2>
+            <div class="about-text">
+                <p>{{ texts.aboutDescription }}</p>
+                <p>{{ texts.aboutDescription2 }}</p>
+                <p>{{ texts.aboutDescription3 }}</p>
+                <p>{{ texts.aboutDescription4 }}</p>
+            </div>
+          <div class="about-columns">
+            <div class="about-column">
+              <h3>{{ texts.aboutMissionTitle }}</h3>
+              <p>{{ texts.aboutMissionText }}</p>
+            </div>
+            <div class="about-column">
+              <h3>{{ texts.aboutVisionTitle }}</h3>
+              <p>{{ texts.aboutVisionText }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
     
     <section id="register-section" class="register-section">
         <div class="register-card padrino">
