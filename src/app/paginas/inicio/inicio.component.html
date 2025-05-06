@@ -1,14 +1,16 @@
 <header>
     <nav class="navbar">
-        <div class="logo">
-        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+            </div>
+            <ul class="navbar__links">
+            <li><button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button></li>
+            <button class="btn btn--third-button" (click)="scrollToSection('footer-content')">{{ texts.buttonContact }}</button>
+            <li><button class="btn btn--third-button" [routerLink]="['/login']"> {{ texts.buttonLogIn }} </button></li>
+            <li><button class="btn btn--primary-button" (click)="scrollToSection('register-section')"> {{ texts.buttonSignUp }} </button></li>
+            </ul>
         </div>
-        <ul class="nav-links">
-        <li><button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button></li>
-        <button class="btn btn--third-button" (click)="scrollToSection('footer-content')">{{ texts.buttonContact }}</button>
-        <li><button class="btn btn--third-button" [routerLink]="['/login']"> {{ texts.buttonLogIn }} </button></li>
-        <li><button class="btn btn--primary-button" (click)="scrollToSection('register-section')"> {{ texts.buttonSignUp }} </button></li>
-        </ul>
     </nav>
     </header>
     
