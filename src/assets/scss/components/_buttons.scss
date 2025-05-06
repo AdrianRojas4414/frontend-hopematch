@@ -27,11 +27,11 @@
     &--primary-button {
       color: var(--color-base-black);
       background-color: var(--color-primary-base);
-      //border-color: var(--color-primary-blue);
+      border-color: var(--color-primary-base);
   
       &:hover:not(:disabled):not(.disabled) {
         background-color: var(--color-third-base);
-        //border-color: var(--color-primary-blue-hover);
+        border-color: var(--color-third-base);
         box-shadow: var(--box-shadow-md);
       }
   
@@ -44,7 +44,7 @@
     }
   
     // Secundary Button
-    &--secondary {
+    &--secondary-button {
       color: var(--color-neutral-base-black);
       background-color: var(--color-neutral-base-white);
       border-color: var(--color-neutral-base-black-light-84);
@@ -58,7 +58,7 @@
     }
   
      // Third
-    &--third {
+    &--third-button {
       color: var(--color-primary-base-dark-60); // Texto azul
       background-color: transparent;
       //border-color: transparent;
