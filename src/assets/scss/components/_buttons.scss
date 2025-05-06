@@ -1,0 +1,72 @@
+.btn {
+    display: inline-block;
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-base);
+    color: var(--color-neutral-base-black);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: var(--border-width) solid transparent;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-base);
+    box-shadow: var(--box-shadow-sm);
+  
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      box-shadow: none;
+    }
+  
+    // Primary Button
+    &--primary-button {
+      color: var(--color-base-black);
+      background-color: var(--color-primary-base);
+      //border-color: var(--color-primary-blue);
+  
+      &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--color-third-base);
+        //border-color: var(--color-primary-blue-hover);
+        box-shadow: var(--box-shadow-md);
+      }
+  
+      &:disabled,
+      &.disabled {
+        color: var(--color-neutral-base-black-dark-24);
+        background-color: var(--color-primary-base-light-91);
+        //border-color: var(--color-primary-blue-disabled);
+      }
+    }
+  
+    // Secundary Button
+    &--secondary {
+      color: var(--color-neutral-base-black);
+      background-color: var(--color-neutral-base-white);
+      border-color: var(--color-neutral-base-black-light-84);
+  
+      &:hover:not(:disabled):not(.disabled) {
+        //background-color: var(--color-neutral-base-white);
+        border-color: var(--color-primary-base-dark-60);
+        color: var(--color-primary-base-dark-60);
+        box-shadow: var(--box-shadow-md);
+      }
+    }
+  
+     // Third
+    &--third {
+      color: var(--color-primary-base-dark-60); // Texto azul
+      background-color: transparent;
+      //border-color: transparent;
+      box-shadow: none;
+  
+      &:hover:not(:disabled):not(.disabled) {
+         color: var(--color-third-base);
+         text-decoration: underline;
+      }
+    }
+  }
