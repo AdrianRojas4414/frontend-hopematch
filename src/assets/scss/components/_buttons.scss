@@ -1,16 +1,17 @@
 .btn {
-    display: inline-block;
+    display: block;
+    width: 100%;
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-base);
     color: var(--color-neutral-base-black);
     text-align: center;
     text-decoration: none;
-    vertical-align: middle;
+    //vertical-align: middle;
     cursor: pointer;
     user-select: none;
     background-color: transparent;
     border: var(--border-width) solid transparent;
-    padding: var(--space-sm) var(--space-md);
+    padding: 10px var(--space-md);
     font-size: var(--font-size-base);
     border-radius: var(--border-radius-md);
     transition: var(--transition-base);
