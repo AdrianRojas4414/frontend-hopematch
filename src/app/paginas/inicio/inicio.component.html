@@ -2,7 +2,7 @@
     <nav class="navbar">
         <div class="navbar__container">
             <div class="navbar__brand">
-                <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+                <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
             </div>
             <ul class="navbar__links">
             <li><button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button></li>
@@ -12,7 +12,7 @@
             </ul>
         </div>
     </nav>
-    </header>
+</header>
     
     <section class="hero">
     <div class="hero-content">
@@ -41,15 +41,31 @@
             <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
         </div>
     </section>
-
-
-<footer>
-    <div id="footer-content" class="footer-content">
-        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="footer-logo">
-        <ul class="social-links">
-        <li><a href="#"> {{ texts.facebook }} </a></li>
-        <li><a href="#"> {{ texts.instragram }} </a></li>
-        <li><a href="#"> {{ texts.twitter }} </a></li>
-        </ul>
+    
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo">
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <ul class="social-links">
+                <li><button class="btn btn--third-button"> {{ texts.facebook }} </button></li>
+                <li><button class="btn btn--third-button"> {{ texts.instragram }} </button></li>
+                <li><button class="btn btn--third-button"> {{ texts.twitter }} </button></li>
+            </ul>
+        </div>
     </div>
 </footer>

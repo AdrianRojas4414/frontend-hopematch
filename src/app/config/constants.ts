@@ -34,7 +34,7 @@ export const TEXTOS = {
     // SOCIAL MEDIA
     facebook: 'Facebook',
     instragram: 'Instragram',
-    twitter: 'Tiwitter',
+    twitter: 'Twitter',
 
     // ERROR MESSAGES
     defaultError: 'Ha ocurrido un error, por favor intente de nuevo.',

@@ -1,0 +1,11 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Asegúrate de que ocupen todo el ancho */
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto del elemento */
+    margin: 0;
+    padding: 0;
+  }
