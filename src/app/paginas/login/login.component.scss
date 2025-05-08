@@ -11,17 +11,12 @@
     border-radius: 10px;
     padding: 40px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     width: 300px;
   }
   
-  .logo {
-    width: 100px;
-    margin-bottom: 20px;
-  }
-  
   .input-group {
-    position: relative;
     margin-bottom: 20px;
   }
   
@@ -41,18 +36,6 @@
     box-sizing: border-box;
   }
   
-  .login-btn {
-    background-color: #e65c4f;
-    color: white;
-    padding: 12px;
-    border-radius: 5px;
+  .prueba{
     width: 100%;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
   }
-  
-  .login-btn:hover {
-    background-color: #d9534f;
-  }
-  

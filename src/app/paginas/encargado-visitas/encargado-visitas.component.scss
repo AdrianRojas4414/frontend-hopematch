@@ -1,0 +1,141 @@
+/* encargado-visitas.component.scss */
+.visitas-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    h1 {
+      color: #e65c4f;
+      margin: 0;
+    }
+  
+    .btn-volver {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+  
+  .no-visitas-message {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    color: #555;
+  }
+  
+  .visitas-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .visita-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .visita-header {
+    background: #f8f8f8;
+    color: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+  
+    .estado {
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: white;
+    }
+  
+    .estado-PENDIENTE {
+      background-color: #f39c12;
+    }
+    .estado-ACEPTADA {
+      background-color: #2ecc71;
+    }
+    .estado-RECHAZADA {
+      background-color: #e74c3c;
+    }
+    .estado-CANCELADA {
+      background-color: #95a5a6;
+    }
+  }
+  
+  .visita-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+  
+    .info {
+      margin-bottom: 1rem;
+  
+      p {
+        margin: 0.5rem 0;
+        color: #555;
+      }
+    }
+  
+    .visita-acciones {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+  }
+  
+  .btn-aceptar,
+  .btn-denegar {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1;
+    text-align: center;
+  
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  .btn-aceptar {
+    background-color: #2ecc71;
+    color: white;
+  
+    &:hover {
+      background-color: darken(#2ecc71, 10%);
+    }
+  }
+  
+  .btn-denegar {
+    background-color: #e74c3c;
+    color: white;
+  
+    &:hover {
+      background-color: darken(#e74c3c, 10%);
+    }
+  }
+  

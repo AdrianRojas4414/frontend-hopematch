@@ -55,15 +55,15 @@ export class HomeAdministradorComponent implements OnInit {
   }
 
   irEncargados(): void {
-    this.router.navigate(['/admin/encargados']);
+    this.router.navigate(['/gestion-hogares']);
   }
 
   irPadrinos(): void {
-    this.router.navigate(['/admin/padrinos']);
+    this.router.navigate(['/gestion-padrinos']);
   }
 
   irNinos(): void {
-    this.router.navigate(['/admin/ninos']);
+    this.router.navigate(['/gestion-ninos']);
   }
 
   irAgenda(): void {

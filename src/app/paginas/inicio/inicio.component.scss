@@ -1,69 +1,14 @@
 * {
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
   
-  body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-  }
   
   header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    background-color: white;
-    box-shadow: 0 4px 2px -2px gray;
     z-index: 1000;
-  }
-
-  .navbar {
-    .nav-links {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 15px;
-      width: 30%;
-      li {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        
-        .btn {
-          display: block;
-        }
-      }
-    }
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .logo img {
-    width: 50px;
-    height: auto;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links li a {
-    text-decoration: none;
-    color: #333;
-    //font-weight: bold;
   }
   
   .hero {
@@ -71,7 +16,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #e65c4f;
+    background-image: url('../../../../public/imgs/Seccion\ Portada.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -214,53 +159,12 @@
     margin-bottom: 1rem;
   }
   
-  .register-btn {
-    background-color: #e65c4f;
-    color: white;
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .register-btn:hover {
-    background-color: #e65c4f;
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-  }
-  
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footer-logo {
-    width: 50px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
-  
   .social-links {
     list-style: none;
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-top: 1rem;
-  }
-  
-  .social-links li a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .social-links li a:hover {
-    color: #e65c4f;
   }
   
   html {
