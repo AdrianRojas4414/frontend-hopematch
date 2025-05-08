@@ -59,7 +59,7 @@ export class HomeAdministradorComponent implements OnInit {
   }
 
   irPadrinos(): void {
-    this.router.navigate(['/admin/padrinos']);
+    this.router.navigate(['/gestion-padrinos']);
   }
 
   irNinos(): void {
