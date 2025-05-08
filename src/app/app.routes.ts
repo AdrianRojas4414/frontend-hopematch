@@ -24,6 +24,11 @@ import { PerfilAdministradorComponent } from './paginas/perfil-administrador/per
 import { EditarAdministradorComponent } from './paginas/editar-administrador/editar-administrador.component';
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
 import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
+import { GestionPadrinosComponent } from './paginas/gestion-padrinos/gestion-padrinos.component';
+import { DetallePadrinoComponent } from './paginas/detalle-padrino/detalle-padrino.component';
+import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/padrinos-suspendidos.component';
+import { GestionHogaresComponent } from './paginas/gestion-hogares/gestion-hogares.component';
+import { HogaresSuspendidosComponent } from './paginas/hogares-suspendidos/hogares-suspendidos.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -50,6 +55,12 @@ export const routes: Routes = [
     {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
     {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
     {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
+    {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestión de Padrinos'},
+    {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle de Padrinos'},
+    {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestión de Cuentas Suspendidas'},
+    { path: 'registro-visita/:idHogar', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion de Hogares'},
+    {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Hogares Suspendidos'},
     { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion de los Niños'},
     {path:'**', redirectTo:'', pathMatch: 'full'}

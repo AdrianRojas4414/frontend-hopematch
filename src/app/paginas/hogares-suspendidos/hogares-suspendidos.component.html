@@ -1,0 +1,41 @@
+<div class="engargados-suspendidos-container">
+    <div class="home-admin-header">
+        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+        <nav class="admin-nav">
+            <a routerLink="#" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
+        </nav>
+    </div>
+
+    <div class="saludo">
+        <h2>Hogares Suspendidos de Hopematch</h2>
+    </div>
+
+    <div class="encargados-lista">
+        <div class="encargado-card" *ngFor="let encargado of encargadosSuspendidos">
+            <div class="encargado-info">
+                <div class="encargado-foto">
+                <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
+                </div>
+                <div class="encargado-detalles">
+                <h3>{{ encargado.nombre_hogar }}</h3>
+                <div class="admin-info">
+                    <span>Administrado por </span>
+                    <img [src]="encargado.foto" 
+                        alt="Foto del Encargado" 
+                        class="admin-foto" />
+                    <p>{{ encargado.nombre }}</p>
+                </div>
+                <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
+                <p *ngIf="encargado.necesidades && encargado.necesidades.length">
+                    <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+                </p>
+                <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
+                    <strong>No hay necesidades registradas.</strong>
+                </p>
+                <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
+                <button class="btn-ver-perfil" (click)="revisarHogar(encargado)">Enviar a Revision</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
