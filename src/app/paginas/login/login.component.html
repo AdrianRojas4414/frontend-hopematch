@@ -1,15 +1,17 @@
 <div class="login-container">
     <div class="login-box">
-      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+      <div class="footer__brand">
+        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+      </div>
       <form (ngSubmit)="onLogin()">
         <div class="input-group">
           <i class="fa fa-user"></i>
-          <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" required>
+          <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" class="input-field" required>
         </div>
         
         <div class="input-group">
           <i class="fa fa-lock"></i>
-          <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" required>
+          <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" class="input-field" required>
         </div>
   
         <div class="input-group">
@@ -19,7 +21,7 @@
             <mat-radio-button value="administrador">{{ texts.userAdmin }}</mat-radio-button>
           </mat-radio-group>
         </div>
-        <button type="submit" class="login-btn">LOGIN</button>
+        <button class="btn btn--primary-button">{{ texts.buttonLogIn }}</button>      
       </form>
     </div>
 </div>
