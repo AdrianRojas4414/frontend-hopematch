@@ -1,4 +1,17 @@
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import 'assets/scss/variables';
+
+@import 'assets/scss/base';
+
+@import 'assets/scss/utilities';
+
+@import 'assets/scss/components/buttons';
+@import 'assets/scss/components/cards';
+@import 'assets/scss/components/forms';
+@import 'assets/scss/components/navigation';
+// Importamos los componentes globales en esta sección

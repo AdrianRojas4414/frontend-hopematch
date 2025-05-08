@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TEXTOS } from '../../config/constants';
 
@@ -10,7 +10,17 @@ import { TEXTOS } from '../../config/constants';
   styleUrl: './inicio.component.scss'
 })
 
-export class InicioComponent {
+
+export class InicioComponent implements OnInit{
   public texts = TEXTOS
   
+  ngOnInit(): void {
+  }
+
+  scrollToSection(id: string): void {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

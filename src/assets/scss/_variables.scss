@@ -1,0 +1,66 @@
+:root {
+    // ----- Colores -----
+    --color-primary-base: #A7C7E7; // Azul serenidad
+    --color-primary-base-light-86: #C6DBF0;
+    --color-primary-base-light-91: #DCE9F5;
+    //...agregar más variantes si es necesario
+    --color-primary-base-dark-72: #8FB8E0;
+    --color-primary-base-dark-60: #5F99D3;
+  
+    --color-secondary-base: #DCEAF5; // Azul Nube
+    --color-secondary-base-light-92: #DFECF6;
+    --color-secondary-base-light-94: #E7F1F8;
+    --color-secondary-base-light-88: #CFE2F1;
+
+    --color-third-base: #F5BD5F; // Naranja Dorado Suave
+    --color-third-base-light-75: #F7CE87;
+    --color-third-base-light-70: #F6C46F;
+    --color-third-base-dark-60: #F3B03F;
+    --color-third-base-dark-35: #A86D0A;
+    
+  
+    --color-neutral-base-white: #FFFFFF;
+    --color-neutral-base-black: #000000;
+    --color-neutral-base-black-dark-24: #3D3D3D;
+    --color-neutral-base-black-dark-44: #707070;
+    --color-neutral-base-black-light-84: #D6D6D6;
+  
+    //--color-text-link: var(--color-primary-blue-hover);
+  
+    // ----- Tipografía -----
+    --font-family-base: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    --font-size-base: 1rem; // 16px default
+    --font-size-sm: 0.875rem; // 14px
+    --font-size-lg: 1.25rem; // 20px
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --line-height-base: 1.5;
+  
+    // ----- Espaciado -----
+    --space-xs: 0.25rem; // 4px
+    --space-sm: 0.5rem;  // 8px
+    --space-md: 1rem;    // 16px
+    --space-lg: 1.5rem;  // 24px
+    --space-xl: 2rem;    // 32px
+  
+    // ----- Bordes -----
+    --border-radius-sm: 0.25rem; // 4px
+    --border-radius-md: 0.5rem;  // 8px
+    --border-radius-lg: 1rem;   // 16px
+    --border-width: 1px;
+  
+    // ----- Sombras -----
+    --box-shadow-sm: 0 1px 3px var(--color-shadow);
+    --box-shadow-md: 0 4px 10px var(--color-shadow);
+  
+    // ----- Transiciones -----
+    --transition-base: all 0.2s ease-in-out;
+  }
+  
+  // Mixin para Hover
+  @mixin hover-effect {
+    transition: var(--transition-base);
+    &:hover {
+      cursor: pointer;
+    }
+  }

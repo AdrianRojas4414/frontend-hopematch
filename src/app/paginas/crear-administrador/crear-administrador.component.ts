@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { TEXTOS } from '../../config/constants';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-crear-administrador',
@@ -20,12 +21,12 @@ export class CrearAdministradorComponent {
     contrasenia: ''
   };
 
-  constructor(private administradorService: AdministradorService, private router: Router) {}
+  constructor(private administradorService: AdministradorService, private router: Router, private authService: UserAuthenticationService) {}
 
   registrarAdministrador(): void {
 
     if(this.administrador.nombre === '' || this.administrador.email === '' || this.administrador.contrasenia === '') {
-      alert("Todos los campos deben ser llenados");
+      alert("Todos los campos obligatorios (*) deben ser llenados");
     }
 
     else{
@@ -33,11 +34,21 @@ export class CrearAdministradorComponent {
         next: (response) => {
           console.log('Administrador registrado con éxito!', response);
           alert('Administrador registrado con éxito!');
-          this.router.navigate([`/home-administrador/${response.id}`]);
+          this.authService.login(this.administrador.email, this.administrador.contrasenia, 'administrador').subscribe({
+            next: () => {
+              this.router.navigate(['/home-administrador']);
+            },
+            error: (err) => {
+              console.error('Error al iniciar sesión después del registro:', err);
+              alert('Registro exitoso, pero hubo un error al iniciar sesión.');
+            }
+           });
+
+          //this.router.navigate([`/home-administrador/${response.id}`]);
         },
         error: (err) => {
-          console.error('Error al registrar administrador:', err);
-          alert('Error al registrar administrador. Verifique los datos.');
+          console.error('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados:', err);
+          alert('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados.');
         }
       });
     }
