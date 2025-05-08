@@ -3,7 +3,7 @@
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
-      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
+      <a *ngIf="mostrarBotonEditar" (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
       <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
     </nav>
   </div>
@@ -17,7 +17,7 @@
         <img [src]="encargado.foto" alt="Foto del Encargado" />
       </div>
       <div class="perfil-detalles">
-        <h2 style="color: #e65c4f;">Mi Perfil</h2>
+        <h2 style="color: #e65c4f;">Perfil</h2>
         <h3>{{ encargado.nombre }}</h3>
         <p><strong>E-mail:</strong> {{ encargado.email }}</p>
         <p><strong>Celular:</strong> {{ encargado.celular }}</p>
@@ -26,7 +26,7 @@
         <p><strong>Estado del Hogar:</strong> {{encargado.estado}}</p>
         <p><strong>Descripción del Hogar:</strong> {{encargado.descripcion}}</p>
         <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
-        <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
       </div>
     </div>
   </div>
