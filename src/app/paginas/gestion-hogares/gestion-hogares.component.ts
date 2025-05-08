@@ -49,6 +49,15 @@ export class GestionHogaresComponent implements OnInit{
     encargado.estado = "Aprobado";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar ha sido aprobado y puede recibir donaciones');
+      this.ngOnInit();
+    })
+  }
+
+  suspenderHogar(encargado: any):void{
+    encargado.estado = "En suspencion";
+    this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
+      alert('El Hogar ha sido suspendido.');
+      this.ngOnInit();
     })
   }
 }

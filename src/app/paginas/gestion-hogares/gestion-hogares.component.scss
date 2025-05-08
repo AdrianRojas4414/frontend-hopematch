@@ -139,7 +139,7 @@
     color: #555;
   }
 
-  .btn-ver-perfil, .btn-aprobar {
+  .btn-ver-perfil, .btn-aprobar, .btn-suspender {
     padding: 0.75rem 1.5rem;
     margin-top: 1rem;
     border: none;
@@ -156,5 +156,10 @@
 
   .btn-aprobar{
     background-color: #18c015;
+    color: white;
+  }
+
+  .btn-suspender {
+    background-color: #ff0000;
     color: white;
   }
