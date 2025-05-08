@@ -23,6 +23,7 @@ import { HomeAdministradorComponent } from './paginas/home-administrador/home-ad
 import { PerfilAdministradorComponent } from './paginas/perfil-administrador/perfil-administrador.component';
 import { EditarAdministradorComponent } from './paginas/editar-administrador/editar-administrador.component';
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
+
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
     {path:'crearpadrino', component: CrearPadrinoComponent, title:"Forulario para la creacion de un Padrino"},
@@ -48,6 +49,6 @@ export const routes: Routes = [
     {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
     {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
     {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
-    { path: 'registro-visita/:idHogar', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
