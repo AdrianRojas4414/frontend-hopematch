@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-perfil-encargado',
@@ -13,16 +14,19 @@ import { CommonModule } from '@angular/common';
 export class PerfilEncargadoComponent implements OnInit{
 
   encargado: any = null;
+  mostrarBotonEditar: boolean = false;
 
-  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router){}
+  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    const idEncargadoLogueado = this.authService.getUserId();
 
     if (id) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
+          this.mostrarBotonEditar = +id === idEncargadoLogueado && this.authService.isUserType('encargado');
         },
         error: (err) => {
           console.error('Error al obtener encargado:', err);
