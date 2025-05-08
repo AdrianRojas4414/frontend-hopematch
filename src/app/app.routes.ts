@@ -23,6 +23,7 @@ import { HomeAdministradorComponent } from './paginas/home-administrador/home-ad
 import { PerfilAdministradorComponent } from './paginas/perfil-administrador/perfil-administrador.component';
 import { EditarAdministradorComponent } from './paginas/editar-administrador/editar-administrador.component';
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
+import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
 import { GestionPadrinosComponent } from './paginas/gestion-padrinos/gestion-padrinos.component';
 import { DetallePadrinoComponent } from './paginas/detalle-padrino/detalle-padrino.component';
 import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/padrinos-suspendidos.component';
@@ -61,5 +62,6 @@ export const routes: Routes = [
     {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion de Hogares'},
     {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Hogares Suspendidos'},
     { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion de los Niños'},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
