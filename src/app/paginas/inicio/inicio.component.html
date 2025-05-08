@@ -16,9 +16,9 @@
     
     <section class="hero">
     <div class="hero-content">
-        <h1 class="main-title">{{ texts.principalTittle }}</h1>
-        <p class="subtitle">{{ texts.principalSlogan }}</p>
-        <p class="dreams">{{ texts.secondoSolgan }}</p>
+        <h1 class="main-title"></h1>
+        <p class="subtitle"></p>
+        <p class="dreams"></p>
     </div>
     </section>
 
@@ -45,23 +45,33 @@
       </section>
     
     <section id="register-section" class="register-section">
-        <div class="register-card padrino">
-            <h2>{{ texts.padrinoOption }}</h2>
-            <img src="imgs/Padrino.png" [alt]="texts.padrinoOption">
-            <button class="btn btn--primary-button" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
-        </div>
-        
-        <div class="register-card hogar">
-            <h2>{{ texts.encargadoOption }}</h2>
-            <img src="imgs/Hogar.png" [alt]="texts.encargadoOption">
-            <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
+        <div class="card card--signup-image-bg bg-padrino">
+            <div class="card__content">
+                <h3 class="card__title">{{ texts.padrinoOption }}</h3>
+            </div>
+            <div class="card__actions">
+                <button class="btn btn--primary-button" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
+            </div>
         </div>
 
-        <div class="register-card admin">
-            <h2>{{ texts.adminOption }}</h2>
-            <img src="imgs/adminis.png" [alt]="texts.adminOption">
-            <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
+        <div class="card card--signup-image-bg bg-encargado">
+            <div class="card__content">
+                <h3 class="card__title" style="color: black;">{{ texts.encargadoOption }}</h3>
+            </div>
+            <div class="card__actions">
+                <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
+            </div>
         </div>
+
+        <div class="card card--signup-image-bg bg-administrador">
+            <div class="card__content">
+                <h3 class="card__title" style="color: black;">{{ texts.adminOption }}</h3>
+            </div>
+            <div class="card__actions">
+                <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
+            </div>
+        </div>
+        
     </section>
     
 <footer class="footer">
