@@ -25,4 +25,12 @@ export class PadrinoService {
   updatePadrino(id: number, encargado: any): Observable<any> {
     return this.http.put(`${this.backendUrl}/update/${id}`, encargado);
   }
+  
+  getAllPadrinos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.backendUrl}/list`);
+  }
+
+  deletePadrino(id: number): Observable<any> {
+    return this.http.delete(`${this.backendUrl}/delete/${id}`);
+  }
 }
