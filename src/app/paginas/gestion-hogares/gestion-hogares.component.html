@@ -2,7 +2,7 @@
     <div class="home-admin-header">
         <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
         <nav class="admin-nav">
-            <a routerLink="#" style="color: #3f51b5; cursor: pointer;">Hogares Suspendidos</a>
+            <a (click)="irHogaresSuspendidos()" style="color: #3f51b5; cursor: pointer;">Hogares Suspendidos</a>
             <a routerLink="#" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
         </nav>
     </div>
@@ -39,6 +39,7 @@
                     <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
                     <button class="btn-ver-perfil" (click)="irPerfil(encargado.id)">Revisar Perfil</button>
                     <button class="btn-aprobar" (click)="aprobarHogar(encargado)">Aprobar</button>
+                    <button class="btn-rechazar" (click)="rechazarHogar(encargado)">Rechazar</button>
                     </div>
                 </div>
             </div>

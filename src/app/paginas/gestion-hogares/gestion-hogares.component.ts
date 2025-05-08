@@ -53,11 +53,23 @@ export class GestionHogaresComponent implements OnInit{
     })
   }
 
+  rechazarHogar(encargado: any):void{
+    encargado.estado = "Rechazado";
+    this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
+      alert('El Hogar ha sido rechazado.');
+      this.ngOnInit();
+    })
+  }
+
   suspenderHogar(encargado: any):void{
     encargado.estado = "En suspencion";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar ha sido suspendido.');
       this.ngOnInit();
     })
+  }
+
+  irHogaresSuspendidos(): void {
+    this.router.navigate(['/hogares-suspendidos']);
   }
 }

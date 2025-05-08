@@ -25,7 +25,7 @@ export class HogaresSuspendidosComponent implements OnInit {
       this.encargadoService.getEncargados().subscribe(
         data => {
           this.encargados = data;
-          this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'En suspencion');
+          this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'En suspencion' || e.estado === 'Rechazado');
         },
         error => console.log(error),
         () => console.log('Encargados Obtenidos Exitosamente!')
@@ -46,18 +46,4 @@ export class HogaresSuspendidosComponent implements OnInit {
         this.ngOnInit();
       })
     }
-
-    eliminarHogar(encargado: any):void{
-      if (confirm('¿Estás seguro que deseas eliminar este Hogar? Esta acción es irreversible.')){
-        //this.encargadoService.
-      } 
-
-
-      encargado.estado = 'En revision';
-      this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-        alert('El Hogar ha sido agregado a la lista de revisiones');
-        this.ngOnInit();
-      })
-    }
-
 }
