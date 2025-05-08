@@ -4,11 +4,10 @@
         <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo">
         </div>
         <ul class="nav-links">
-        <li><a href="#">{{ texts.buttonHome }} </a></li>
-        <li><a href="#about-us"> {{ texts.buttonAboutUs }} </a></li>
-        <li><a href="#register-section"> {{ texts.buttonSignUp }} </a></li>
-        <li><a [routerLink]="['/login']" style="color: #e65c4f;"> {{ texts.buttonLogIn }} </a></li>
-        <li><a href="#footer-content"> {{ texts.buttonContact }} </a></li>
+        <li><button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button></li>
+        <button class="btn btn--third-button" (click)="scrollToSection('footer-content')">{{ texts.buttonContact }}</button>
+        <li><button class="btn btn--third-button" [routerLink]="['/login']"> {{ texts.buttonLogIn }} </button></li>
+        <li><button class="btn btn--primary-button" (click)="scrollToSection('register-section')"> {{ texts.buttonSignUp }} </button></li>
         </ul>
     </nav>
     </header>
@@ -47,19 +46,19 @@
         <div class="register-card padrino">
             <h2>{{ texts.padrinoOption }}</h2>
             <img src="imgs/Padrino.png" [alt]="texts.padrinoOption">
-            <button class="register-btn" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
+            <button class="btn btn--primary-button" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
         </div>
         
         <div class="register-card hogar">
             <h2>{{ texts.encargadoOption }}</h2>
             <img src="imgs/Hogar.png" [alt]="texts.encargadoOption">
-            <button class="register-btn" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
+            <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
         </div>
 
         <div class="register-card admin">
             <h2>{{ texts.adminOption }}</h2>
             <img src="imgs/adminis.png" [alt]="texts.adminOption">
-            <button class="register-btn" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
+            <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
         </div>
     </section>
 
