@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-perfil-administrador',
@@ -12,6 +13,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./perfil-administrador.component.scss']
 })
 export class PerfilAdministradorComponent implements OnInit {
+  public texts = TEXTOS;
   administrador: any = null;
 
   constructor(

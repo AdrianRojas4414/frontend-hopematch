@@ -1,7 +1,9 @@
 <div class="registro-container">
   <div class="form-card">
+    <div class="footer__brand">
+      <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+    </div>
     <div class="header">
-      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
       <h2> {{ texts.principalMessageEncargado }} </h2>
     </div>
     <form (ngSubmit)="registrarEncargado()">
@@ -9,17 +11,29 @@
         <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="encargado.nombre" name="nombre" required>
       </div>
 
-      <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="encargado.email" name="email" required>
+      <div class="input-group">
+        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="encargado.email" name="email" required>
+      </div>
 
-      <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="encargado.celular" name="celular" required>
+      <div class="input-group">
+        <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="encargado.celular" name="celular" required>
+      </div>
 
-      <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="encargado.foto" name="foto">
+      <div class="input-group">
+        <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="encargado.foto" name="foto">
+      </div>
 
-      <input type="text" id="hombre_hogar" [placeholder]="texts.inputHogarName" [(ngModel)]="encargado.nombre_hogar" name="foto">
+      <div class="input-group">
+        <input type="text" id="hombre_hogar" [placeholder]="texts.inputHogarName" [(ngModel)]="encargado.nombre_hogar" name="foto">
+      </div>
 
-      <input type="text" id="direccion_hogar" [placeholder]="texts.inputDireccion" [(ngModel)]="encargado.direccion_hogar" name="foto">
+      <div class="input-group">
+        <input type="text" id="direccion_hogar" [placeholder]="texts.inputDireccion" [(ngModel)]="encargado.direccion_hogar" name="foto">
+      </div>
 
-      <input type="text" id="foto_hogar" [placeholder]="texts.inputHogarFoto" [(ngModel)]="encargado.foto_hogar" name="foto_hogar">
+      <div class="input-group">
+        <input type="text" id="foto_hogar" [placeholder]="texts.inputHogarFoto" [(ngModel)]="encargado.foto_hogar" name="foto_hogar">
+      </div>
 
       <textarea 
         type="text"
@@ -32,9 +46,11 @@
       </textarea>
       <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
 
-      <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
+      <div class="input-group">
+        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
+      </div>
 
-      <button type="submit" class="submit-btn"> {{ texts.buttonSignUp }} </button>
+      <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
     </form>
   </div>
 </div>

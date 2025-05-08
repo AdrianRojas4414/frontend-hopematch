@@ -53,5 +53,6 @@ export const routes: Routes = [
     { path: 'registro-visita/:idHogar', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion de Hogares'},
     {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Hogares Suspendidos'},
+    { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

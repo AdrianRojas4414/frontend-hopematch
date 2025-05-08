@@ -24,6 +24,8 @@ export const TEXTOS = {
     buttonSignUp: 'Sign Up',
     buttonLogIn: 'Log In',
     buttonContact: 'Contact',
+    buttonVolver: 'Volver a Home',
+    buttonCerrarSesion: 'Cerrar Sesion',
     // SIGN UP OPTIONS
     padrinoOption: 'QUIERO SER PADRINO',
     encargadoOption: 'QUIERO REGISTRAR A MI HOGAR',
@@ -44,7 +46,7 @@ export const TEXTOS = {
     // SOCIAL MEDIA
     facebook: 'Facebook',
     instragram: 'Instragram',
-    twitter: 'Tiwitter',
+    twitter: 'Twitter',
 
     // ERROR MESSAGES
     defaultError: 'Ha ocurrido un error, por favor intente de nuevo.',
