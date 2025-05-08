@@ -23,6 +23,7 @@ import { HomeAdministradorComponent } from './paginas/home-administrador/home-ad
 import { PerfilAdministradorComponent } from './paginas/perfil-administrador/perfil-administrador.component';
 import { EditarAdministradorComponent } from './paginas/editar-administrador/editar-administrador.component';
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
+import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
@@ -50,5 +51,6 @@ export const routes: Routes = [
     {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
     {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
     { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion de los Niños'},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 
