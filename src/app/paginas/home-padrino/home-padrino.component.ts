@@ -18,6 +18,7 @@ export class HomePadrinoComponent implements OnInit {
 
   padrino: any = null;
   encargados: any[] = [];
+  encargadosAprobados: any[] = [];
   donaciones: any[] = [];
   necesidades: any[] = [];
   busqueda: string = '';
@@ -54,7 +55,8 @@ export class HomePadrinoComponent implements OnInit {
     this.encargadoService.getEncargados().subscribe(
       data => {
         this.encargados = data,
-        this.encargados.forEach(encargado => this.getEncargadoNecesidades(encargado));
+        this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
+        this.encargadosAprobados.forEach(encargado => this.getEncargadoNecesidades(encargado));
       },
         
       error => console.log(error),
@@ -124,11 +126,11 @@ export class HomePadrinoComponent implements OnInit {
 
   encargadosFiltrados(): any[] {
     if (!this.busqueda.trim()) {
-      return this.encargados;
+      return this.encargadosAprobados;
     }
 
     const texto = this.busqueda.toLowerCase();
-    return this.encargados.filter(encargado =>
+    return this.encargadosAprobados.filter(encargado =>
       encargado.nombre_hogar.toLowerCase().startsWith(texto)
     );
   }

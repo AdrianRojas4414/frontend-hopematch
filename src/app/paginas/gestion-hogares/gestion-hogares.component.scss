@@ -1,0 +1,171 @@
+.gestion-engargados-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f6f6f6;
+    min-height: 92vh;
+}
+
+
+.home-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+
+    .logo {
+        max-width: 80px;
+    }
+
+    .admin-nav {
+        display: flex;
+        gap: 2rem;
+
+        a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #333;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.saludo {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #e65c4f;
+  }
+
+  h2{
+    margin: 0px 0px 30px 0px;
+  }
+
+.encargados-field-doble {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 500px;
+  }
+  
+  .estado-columna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .estado-columna h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #e65c4f;
+  }
+  
+  .encargados-lista {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .encargado-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px 0px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 5px auto;
+
+    .admin-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+      font-size: 14px;
+      color: #666;
+      
+      .admin-foto {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    .descripcion-hogar{
+      font-size: 14px;
+      color: #666;
+    }
+  }
+  
+  .encargado-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .encargado-foto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0px 20px;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .encargado-detalles {
+    flex: 1;
+    padding: 0px 20px 0px 0px;
+  }
+  
+  .encargado-detalles h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #333;
+  }
+  
+  .encargado-detalles p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #555;
+  }
+
+  .btn-ver-perfil, .btn-aprobar, .btn-suspender,  .btn-rechazar{
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn-ver-perfil {
+    margin-right: 10px;
+    background-color: #e65c4f;
+    color: white;
+  }
+
+  .btn-aprobar{
+    background-color: #18c015;
+    color: white;
+  }
+
+  .btn-suspender {
+    background-color: #ff0000;
+    color: white;
+  }
+
+  .btn-rechazar{
+    margin-left: 10px;
+    background-color: #ff0000;
+    color: white;
+  }

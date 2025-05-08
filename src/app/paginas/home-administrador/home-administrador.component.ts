@@ -55,7 +55,7 @@ export class HomeAdministradorComponent implements OnInit {
   }
 
   irEncargados(): void {
-    this.router.navigate(['/admin/encargados']);
+    this.router.navigate(['/gestion-hogares']);
   }
 
   irPadrinos(): void {
