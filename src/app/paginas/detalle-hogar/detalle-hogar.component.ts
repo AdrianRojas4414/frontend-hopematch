@@ -87,10 +87,9 @@ export class DetalleHogarComponent implements OnInit{
       });
     });
   
-    // Convertimos a array y ordenamos por frecuencia descendente
     const necesidadesOrdenadas = Array.from(frecuenciaMap.entries())
-      .sort((a, b) => b[1] - a[1]) // orden descendente por frecuencia
-      .map(([necesidad]) => necesidad); // solo extraemos el nombre
+      .sort((a, b) => b[1] - a[1]) 
+      .map(([necesidad]) => necesidad); 
 
     return necesidadesOrdenadas;
   }

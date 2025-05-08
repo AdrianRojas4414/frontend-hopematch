@@ -10,6 +10,52 @@
     left: 0;
     z-index: 1000;
   }
+
+  .navbar {
+    .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 15px;
+      width: 30%;
+      li {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+        .btn {
+          display: block;
+        }
+      }
+    }
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #333;
+    //font-weight: bold;
+  }
   
   .hero {
     display: flex;
@@ -53,6 +99,81 @@
     }
   }
   
+  .about-us {
+    background-image: url("../../../assets/imgs/aboutUs_backgound.jpg");  /* Asegúrate de que esta imagen exista */
+    background-size:cover;
+    background-position: center;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    color: #fff;
+  }
+  
+  .about-us::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semitransparente */
+    z-index: 0;
+  }
+  
+  .about-us > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .about-us h2 {
+    font-size: 2.5rem;
+    color: #e65c4f;
+    margin-bottom: 20px;
+  }
+  
+  .about-us p {
+    font-size: 1.1rem;
+    color: #333;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+  }
+  
+  .about-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .about-column {
+    background-color: rgba(255, 255, 255, 0.6); /* Blanco con transparencia */
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    flex: 1 1 300px;
+    backdrop-filter: blur(4px); /* efecto cristalino */
+  }
+  
+  .about-column h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .about-text p{
+    font-size: 1rem;
+    color: #444;
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  .about-column p {
+    font-size: 1rem;
+    color: #444;
+    text-align: left;
+  }
+
   .register-section {
     display: flex;
     justify-content: space-evenly;
