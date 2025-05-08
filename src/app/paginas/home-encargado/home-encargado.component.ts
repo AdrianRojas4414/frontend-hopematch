@@ -60,4 +60,8 @@ export class HomeEncargadoComponent implements OnInit{
         this.router.navigate([`/ninos-hogar/${this.encargado.id}`]);
     }
   }
+
+  irVisitas(): void {
+    this.router.navigate(['/encargado-visitas']);
+  }
 }
