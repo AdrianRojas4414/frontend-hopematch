@@ -5,7 +5,6 @@
     justify-content: center;
     width: 100%;
     height: 300px;
-    color: var(--color-neutral-base-white);
 
     &__vertical_container {
         width: calc(100% - 240px);
@@ -23,6 +22,11 @@
         width: 100%;
         display: flex;
         justify-content: flex-end;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
     }
 
     &__contact-info {
@@ -33,6 +37,9 @@
         div{
             padding-left: auto;
             padding-left: 2rem;
+            p{
+                color: var(--color-neutral-base-white);
+            }
         }
     }
 

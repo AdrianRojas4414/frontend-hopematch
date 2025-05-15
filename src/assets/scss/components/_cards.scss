@@ -3,12 +3,8 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
       min-height: 420px;
       width: 325px;
-      padding: var(--space-lg);
       border-radius: var(--border-radius-lg);
       box-shadow: var(--box-shadow-md);
       overflow: hidden;
@@ -72,4 +68,22 @@
         font-size: var(--font-size-lg);
       }
     }
+    &--simple-text{
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      max-width: 350px;
+      flex: 1 1 300px;
+      backdrop-filter: blur(4px);
+      padding: 20px;
+      h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 1rem;
+        color: #444;
+        text-align: left;
+      }
   }
+}

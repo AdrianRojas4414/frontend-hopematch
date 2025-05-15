@@ -1,11 +1,70 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%; /* Asegúrate de que ocupen todo el ancho */
-  }
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Asegúrate de que ocupen todo el ancho */
+  font-family: var(--font-family-base);
+  color: var(--color-neutral-base-black);
+  scroll-behavior: smooth;
+}
   
-  *, *::before, *::after {
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto del elemento */
-    margin: 0;
-    padding: 0;
-  }
+*, *::before, *::after {
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto del elemento */
+  margin: 0;
+  padding: 0;
+}
+
+.full-layout-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+  position: relative;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+h1{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h2{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  
+}
+
+h3{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  
+}
+
+h4{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  
+}
+
+h5{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h6{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1rem;
+  max-width: 1000px;
+  margin: 0 auto 30px auto;
+}
