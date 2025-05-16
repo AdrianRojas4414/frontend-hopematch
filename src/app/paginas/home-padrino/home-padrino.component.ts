@@ -121,7 +121,8 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   verHogar(idHogar: number): void {
-    this.router.navigate([`/detalle-hogar/${idHogar}`]);
+    localStorage.setItem("idHogar", idHogar.toString());
+    this.router.navigate([`/detalle-hogar`]);
   }
 
   verDetallesDonacion(donacionId: number): void {

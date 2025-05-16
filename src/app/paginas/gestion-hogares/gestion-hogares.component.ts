@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-gestion-hogares',
@@ -19,7 +20,8 @@ export class GestionHogaresComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private encargadoService: EncargadoService
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class GestionHogaresComponent implements OnInit{
       error => console.log(error),
       () => console.log('Encargados Obtenidos Exitosamente!')
     );
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   getNecesidadesAsString(encargado: any): string {

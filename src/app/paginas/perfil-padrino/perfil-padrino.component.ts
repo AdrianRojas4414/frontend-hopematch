@@ -33,6 +33,10 @@ export class PerfilPadrinoComponent implements OnInit{
       });
     }
   }
+  
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
 
   irEditarPerfil(): void{
     if (this.padrino) {

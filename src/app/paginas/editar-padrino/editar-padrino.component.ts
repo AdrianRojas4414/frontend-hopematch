@@ -27,7 +27,6 @@ export class EditarPadrinoComponent implements OnInit {
     const isPadrino = this.authService.isUserType('padrino');
 
     if(isPadrino){
-        //const id = Number(this.route.snapshot.paramMap.get('id'));
       this.padrinoService.getPadrinoById(id).subscribe(data => {
       this.padrino = data;
     });
