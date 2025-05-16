@@ -33,11 +33,12 @@ export class UserAuthenticationService {
       })
     );
   }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/']);
-    //console.log("Se cerro la sesion");
+    this.router.navigate(['#'], { replaceUrl: true });
   }
+
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
