@@ -33,6 +33,11 @@ export class HomeAdministradorComponent implements OnInit {
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isAdministrador = this.authService.isUserType("administrador");
+
+    if(id === 0 || !isAdministrador){
+        this.router.navigate(['#']);
+    }
+
     if (isAdministrador) {
       this.adminService.getAdministradorById(+id).subscribe({
         next: (data) => {
@@ -51,7 +56,7 @@ export class HomeAdministradorComponent implements OnInit {
   }
 
   cerrarSesion(): void {
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   irEncargados(): void {
