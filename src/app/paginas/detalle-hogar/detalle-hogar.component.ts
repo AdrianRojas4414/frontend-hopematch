@@ -29,7 +29,7 @@ export class DetalleHogarComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = localStorage.getItem('idHogar');
 
     if (id) {
       this.encargadoService.getEncargadoById(+id).subscribe({
@@ -95,6 +95,7 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   volverAtras() {
+    localStorage.removeItem("idHogar");
     window.history.back();
   }
 }

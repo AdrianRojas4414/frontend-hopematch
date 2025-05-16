@@ -25,6 +25,11 @@ export class HomeEncargadoComponent implements OnInit{
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
 
+    if(id === 0 || !isEncargado){
+        this.router.navigate(['#']);
+    }
+
+
     if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
@@ -35,6 +40,10 @@ export class HomeEncargadoComponent implements OnInit{
         }
       });
     }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   irPerfil(): void{

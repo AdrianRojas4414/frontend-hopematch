@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { NinoService } from '../../servicios/nino.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-hogar-encargado',
@@ -19,7 +20,8 @@ export class HogarEncargadoComponent implements OnInit{
     private route: ActivatedRoute, 
     private encargadoService: EncargadoService, 
     private router: Router, 
-    private ninoService: NinoService){}
+    private ninoService: NinoService, 
+    private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -37,6 +39,10 @@ export class HogarEncargadoComponent implements OnInit{
         }
       });
     }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   cargarNecesidades(): void {

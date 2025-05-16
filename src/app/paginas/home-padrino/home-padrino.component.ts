@@ -37,6 +37,10 @@ export class HomePadrinoComponent implements OnInit {
       const id = this.authService.getUserId();
       const isPadrino = this.authService.isUserType('padrino');
 
+      if(id === 0 || !isPadrino){
+        this.router.navigate(['#']);
+      }
+
       if (isPadrino) {
       this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
@@ -49,6 +53,10 @@ export class HomePadrinoComponent implements OnInit {
       });
       this.obtenerEncargados();
     }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   obtenerEncargados(): void {
@@ -113,7 +121,8 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   verHogar(idHogar: number): void {
-    this.router.navigate([`/detalle-hogar/${idHogar}`]);
+    localStorage.setItem("idHogar", idHogar.toString());
+    this.router.navigate([`/detalle-hogar`]);
   }
 
   verDetallesDonacion(donacionId: number): void {

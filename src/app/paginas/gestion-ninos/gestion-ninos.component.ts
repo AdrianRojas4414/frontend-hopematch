@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { NinoService } from '../../servicios/nino.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-gestion-ninos',
@@ -16,7 +17,8 @@ export class GestionNinosComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
-    private ninoService: NinoService
+    private ninoService: NinoService,
+    private authService: UserAuthenticationService
   ) {}
   
   encargados: any[] = [];
@@ -32,6 +34,10 @@ export class GestionNinosComponent implements OnInit{
         console.error('Error al obtener encargados:', err);
       }
     });
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
 
