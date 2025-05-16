@@ -36,7 +36,7 @@ export class PerfilPadrinoComponent implements OnInit{
 
   irEditarPerfil(): void{
     if (this.padrino) {
-      this.router.navigate([`/editar-perfil-padrino/${this.padrino.id}`]);
+      this.router.navigate([`/editar-perfil-padrino`]);
     }
   }
 

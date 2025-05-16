@@ -38,7 +38,7 @@ export class HomePadrinoComponent implements OnInit {
       const isPadrino = this.authService.isUserType('padrino');
 
       if(id === 0 || !isPadrino){
-        this.router.navigate(['']);
+        this.router.navigate(['#']);
       }
 
       if (isPadrino) {
