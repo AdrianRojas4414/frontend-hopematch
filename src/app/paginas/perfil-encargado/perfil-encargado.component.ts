@@ -50,6 +50,7 @@ export class PerfilEncargadoComponent implements OnInit{
   }
 
   cerrarSesion(): void {
+    localStorage.removeItem("idEncargado_gestion");
     this.authService.logout();
   }
 

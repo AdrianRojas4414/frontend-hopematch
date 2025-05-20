@@ -52,6 +52,7 @@ export class PerfilPadrinoComponent implements OnInit{
   }
   
   cerrarSesion(): void {
+    localStorage.removeItem("id_padrino");
     this.authService.logout();
   }
 
