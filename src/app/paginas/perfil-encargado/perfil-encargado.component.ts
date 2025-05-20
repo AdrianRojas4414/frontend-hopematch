@@ -53,9 +53,9 @@ export class PerfilEncargadoComponent implements OnInit{
     this.authService.logout();
   }
 
-  irCrearNino(): void {
+  irNinos(): void {
     if (this.encargado) {
-      this.router.navigate([`/crear-nino/${this.encargado.id}`]);
+      this.router.navigate([`/ninos-hogar`]);
     }
   }
 

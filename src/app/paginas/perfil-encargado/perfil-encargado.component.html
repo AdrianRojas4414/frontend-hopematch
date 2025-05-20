@@ -29,6 +29,7 @@
         <p><strong>Descripción del Hogar:</strong> {{encargado.descripcion}}</p>
         <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
         <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irNinos()">Ver Niños</button>
       </div>
     </div>
   </div>

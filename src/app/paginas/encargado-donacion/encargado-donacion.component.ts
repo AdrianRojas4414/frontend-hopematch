@@ -38,7 +38,7 @@ export class EncargadoDonacionComponent implements OnInit {
 
   ngOnInit(): void {
     const encargadoId = this.authService.getUserId();
-    
+
     if (encargadoId) {
       this.cargarDonaciones(+encargadoId);
     }
@@ -53,10 +53,6 @@ export class EncargadoDonacionComponent implements OnInit {
         console.error('Error al cargar donaciones:', err);
       }
     });
-  }
-
-  verDetalles(donacionId: number): void {
-    this.router.navigate([`/detalle-donacion/${donacionId}`]);
   }
 
   mostrarFormularioComentario(donacionId: number): void {

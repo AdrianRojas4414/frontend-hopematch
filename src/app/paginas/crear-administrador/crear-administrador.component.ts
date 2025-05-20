@@ -43,8 +43,6 @@ export class CrearAdministradorComponent {
               alert('Registro exitoso, pero hubo un error al iniciar sesión.');
             }
            });
-
-          //this.router.navigate([`/home-administrador/${response.id}`]);
         },
         error: (err) => {
           console.error('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados:', err);
