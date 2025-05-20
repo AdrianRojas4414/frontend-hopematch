@@ -14,24 +14,38 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 export class PerfilEncargadoComponent implements OnInit{
 
   encargado: any = null;
-  mostrarBotonEditar: boolean = false;
+  mostrarBotonEditar: boolean = true;
 
   constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
+    const idEncargado_gestion = localStorage.getItem('idEncargado_gestion');
 
-    if (isEncargado) {
-      this.encargadoService.getEncargadoById(+id).subscribe({
-        next: (data) => {
-          this.encargado = data;
-          this.mostrarBotonEditar = +id === id && isEncargado;
-        },
-        error: (err) => {
-          console.error('Error al obtener encargado:', err);
-        }
-      });
+    if (id || idEncargado_gestion) {
+
+      if(!isEncargado && idEncargado_gestion){
+        this.mostrarBotonEditar = false;
+        this.encargadoService.getEncargadoById(+idEncargado_gestion).subscribe({
+          next: (data) => {
+            this.encargado = data;
+          },
+          error:(err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        })
+      }
+      else{
+        this.encargadoService.getEncargadoById(+id).subscribe({
+          next: (data) => {
+            this.encargado = data;
+          },
+          error: (err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        });
+      }
     }
   }
 
@@ -53,6 +67,11 @@ export class PerfilEncargadoComponent implements OnInit{
 
   VolverAHome():void{
     this.router.navigate([`/home-encargado`]);
+  }
+
+  VolverAHomeAdmin(){
+    localStorage.removeItem("idEncargado_gestion");
+    this.router.navigate([`/gestion-hogares`]);
   }
   
 }

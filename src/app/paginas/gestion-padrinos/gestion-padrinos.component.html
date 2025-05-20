@@ -44,7 +44,7 @@
             <p><strong>Email:</strong> {{ padrino.email }}</p>
           </div>
           <div class="actions">
-            <button (click)="verDetalles(padrino)" class="btn details">Ver Detalles</button>
+            <button (click)="verDetalles(padrino.id)" class="btn details">Ver Detalles</button>
             <button (click)="suspenderPadrino(padrino)" class="btn suspend">Suspender</button>
           </div>
         </div>
