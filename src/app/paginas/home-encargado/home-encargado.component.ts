@@ -48,7 +48,7 @@ export class HomeEncargadoComponent implements OnInit{
 
   irPerfil(): void{
     if (this.encargado) {
-      this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/perfil-encargado`]);
     }
   }
 

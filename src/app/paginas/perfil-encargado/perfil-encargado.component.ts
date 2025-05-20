@@ -19,14 +19,14 @@ export class PerfilEncargadoComponent implements OnInit{
   constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    const idEncargadoLogueado = this.authService.getUserId();
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (id) {
+    if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
-          this.mostrarBotonEditar = +id === idEncargadoLogueado && this.authService.isUserType('encargado');
+          this.mostrarBotonEditar = +id === id && isEncargado;
         },
         error: (err) => {
           console.error('Error al obtener encargado:', err);
@@ -60,9 +60,7 @@ export class PerfilEncargadoComponent implements OnInit{
   }
 
   VolverAHome():void{
-    if (this.encargado) {
-      this.router.navigate([`/home-encargado`]);
-    }
+    window.history.back();
   }
   
 }
