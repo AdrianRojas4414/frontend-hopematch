@@ -42,8 +42,9 @@ export class NinosHogarComponent implements OnInit{
     }
   }
 
-  editarNino(idNino: number, idEncargado: number): void {
-    this.router.navigate([`/editar-nino/${idNino}`], { queryParams: { encargado: idEncargado } });
+  editarNino(idNino: number): void {
+    localStorage.setItem("idNino", idNino.toString());
+    this.router.navigate([`/editar-nino`]);
   }
 
   irCrearNino(): void {
