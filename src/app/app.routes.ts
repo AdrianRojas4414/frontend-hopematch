@@ -45,7 +45,7 @@ export const routes: Routes = [
     {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
     {path:'detalle-hogar', component:DetalleHogarComponent, title:'Detales del Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
-    {path:'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
+    {path:'registro-donacion', component: RegistroDonacionComponent, title:'Registro de Donacion' },
     {path:'detalle-donacion/:id', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
     {path:'hogar-encargado/:id', component: HogarEncargadoComponent, title: 'Mi Hogar' },
     {path:'ninos-hogar/:id', component: NinosHogarComponent, title: 'Ninos'},
