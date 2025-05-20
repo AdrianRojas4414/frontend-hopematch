@@ -126,11 +126,14 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   verDetallesDonacion(donacionId: number): void {
-    this.router.navigate([`/detalle-donacion/${donacionId}`]);
+    localStorage.setItem("donacionId", donacionId.toString());
+    this.router.navigate([`/detalle-donacion`]);
   }
 
   irARegistroDonacion(padrinoId: number, encargadoId: number): void {
-    this.router.navigate(['/registro-donacion', padrinoId, encargadoId]);
+    localStorage.setItem("padrinoId", padrinoId.toString());
+    localStorage.setItem("encargadoId", encargadoId.toString());
+    this.router.navigate(['/registro-donacion']);
   }
 
   encargadosFiltrados(): any[] {

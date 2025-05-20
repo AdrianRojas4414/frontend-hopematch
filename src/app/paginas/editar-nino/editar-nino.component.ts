@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NinoService } from '../../servicios/nino.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-editar-nino',
@@ -19,19 +20,22 @@ export class EditarNinoComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ninoService: NinoService
+    private ninoService: NinoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.idEncargado = Number(this.route.snapshot.queryParamMap.get('encargado'));
+    const id = localStorage.getItem('idNino');
+    this.idEncargado = this.authService.getUserId();
 
-    this.ninoService.getNinoById(id).subscribe((data: any) => {
-      this.nino = data;
-      if (!this.nino.necesidades) {
-        this.nino.necesidades = []; 
-      }
-    });
+    if(id){
+      this.ninoService.getNinoById(+id).subscribe((data: any) => {
+        this.nino = data;
+        if (!this.nino.necesidades) {
+          this.nino.necesidades = []; 
+        }
+      });
+    }
   }
 
   agregarNecesidad(): void {
@@ -48,7 +52,8 @@ export class EditarNinoComponent {
   updateNino(): void {
     this.ninoService.updateNino(this.nino.id, this.nino).subscribe(() => {
       alert('Niño actualizado correctamente');
-      this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+      localStorage.removeItem("idNino");
+      this.router.navigate([`/ninos-hogar`]);
     });
   }
 }

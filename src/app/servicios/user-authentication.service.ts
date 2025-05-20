@@ -36,7 +36,7 @@ export class UserAuthenticationService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['#'], { replaceUrl: true });
+    this.router.navigate(['/inicio'], { replaceUrl: true });
   }
 
   getToken(): string | null {

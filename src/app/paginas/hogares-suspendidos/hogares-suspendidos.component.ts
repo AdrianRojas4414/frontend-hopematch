@@ -46,4 +46,9 @@ export class HogaresSuspendidosComponent implements OnInit {
         this.ngOnInit();
       })
     }
+
+    verDetalles(idEncargado: number): void{
+      localStorage.setItem("idEncargado_gestion", idEncargado.toString());
+      this.router.navigate([`/perfil-encargado`]);
+    }
 }

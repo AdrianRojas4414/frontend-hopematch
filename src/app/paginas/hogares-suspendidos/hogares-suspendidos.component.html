@@ -33,7 +33,8 @@
                     <strong>No hay necesidades registradas.</strong>
                 </p>
                 <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                <button class="btn-ver-perfil" (click)="revisarHogar(encargado)">Enviar a Revision</button>
+                <button class="btn-enviar" (click)="revisarHogar(encargado)">Enviar a Revision</button>
+                <button class="btn-ver-perfil " (click)="verDetalles(encargado.id)">Ver Detalles</button>
                 </div>
             </div>
         </div>

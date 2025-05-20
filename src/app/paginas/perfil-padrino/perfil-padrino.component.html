@@ -2,8 +2,9 @@
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
-      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
-      <a (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
+      <a *ngIf="mostrarBotonEditar"  (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
+      <a *ngIf="mostrarBotonEditar"  (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
+      <a *ngIf="!mostrarBotonEditar"  (click)="VolverAHomeAdmin()" style="color: #3f51b5; cursor: pointer;">Volver a Gestion</a>
     </nav>
   </div>
 
@@ -13,11 +14,13 @@
         <img [src]="padrino.foto" alt="Foto del Encargado" />
       </div>
       <div class="perfil-detalles">
-        <h2>Mi Perfil</h2>
+        <h2 *ngIf="mostrarBotonEditar">Mi Perfil</h2>
+        <h2 *ngIf="!mostrarBotonEditar"  style="color: #3f51b5;">Perfil del Padrino</h2>
         <h3>{{ padrino.nombre }}</h3>
         <p><strong>E-mail:</strong> {{ padrino.email }}</p>
         <p><strong>Celular:</strong> {{ padrino.celular }}</p>
-        <button class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        <p><strong>Estado:</strong> {{ padrino.estado }}</p>
+        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
       </div>
     </div>
 

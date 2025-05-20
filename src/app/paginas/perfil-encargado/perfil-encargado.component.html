@@ -4,7 +4,8 @@
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
       <a *ngIf="mostrarBotonEditar" (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
-      <a (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
+      <a *ngIf="mostrarBotonEditar" (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
+      <a *ngIf="!mostrarBotonEditar"  (click)="VolverAHomeAdmin()" style="color: #3f51b5; cursor: pointer;">Volver a Gestion</a>
     </nav>
   </div>
 
@@ -17,7 +18,8 @@
         <img [src]="encargado.foto" alt="Foto del Encargado" />
       </div>
       <div class="perfil-detalles">
-        <h2 style="color: #e65c4f;">Perfil</h2>
+        <h2 *ngIf="mostrarBotonEditar"  style="color: #e65c4f;">Perfil</h2>
+        <h2 *ngIf="!mostrarBotonEditar"  style="color: #3f51b5;">Perfil del Encargado</h2>
         <h3>{{ encargado.nombre }}</h3>
         <p><strong>E-mail:</strong> {{ encargado.email }}</p>
         <p><strong>Celular:</strong> {{ encargado.celular }}</p>
@@ -27,10 +29,41 @@
         <p><strong>Descripción del Hogar:</strong> {{encargado.descripcion}}</p>
         <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
         <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irNinos()">Ver Niños</button>
       </div>
     </div>
   </div>
+
+  
+  <div *ngIf="!mostrarBotonEditar" class="ninos-del-hogar">
+    <h2 *ngIf="!mostrarBotonEditar"  style="color: #3f51b5; align-self: center;">Niños del Hogar</h2>
+      <div *ngIf="encargado?.ninos?.length > 0; else noNinos">
+        <div class="ninos-container">
+          <div class="nino-card" *ngFor="let nino of encargado.ninos">
+            <div class="nino-detalles">
+              <h4>{{ nino.nombre }}</h4>
+              <div><strong>CI:</strong> {{ nino.ci }}</div>
+              <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
+              <div>
+                <strong>Necesidades:</strong>
+                <ul>
+                  <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noNinos>
+        <p>No hay niños registrados.</p>
+      </ng-template>
+ </div>
+
 </div>
+
+
+
 
 <div *ngIf="!encargado">
   <p>Cargando datos...</p>
