@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TEXTOS } from '../../config/constants';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-encargado-donacion',
@@ -31,11 +32,13 @@ export class EncargadoDonacionComponent implements OnInit {
   constructor(
     private donacionService: DonacionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const encargadoId = this.route.snapshot.paramMap.get('id');
+    const encargadoId = this.authService.getUserId();
+    
     if (encargadoId) {
       this.cargarDonaciones(+encargadoId);
     }

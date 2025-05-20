@@ -60,7 +60,7 @@ export class HomeEncargadoComponent implements OnInit{
 
   irDonaciones(): void {
     if (this.encargado) {
-        this.router.navigate([`/encargado-donacion/${this.encargado.id}`]);
+        this.router.navigate([`/encargado-donacion`]);
     }
   }
 
