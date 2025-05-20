@@ -22,6 +22,15 @@ html, body {
   position: relative;
 }
 
+.expanded-layout-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150vh;
+  background-color: white;
+  position: relative;
+}
+
 header {
   position: fixed;
   width: 100%;
