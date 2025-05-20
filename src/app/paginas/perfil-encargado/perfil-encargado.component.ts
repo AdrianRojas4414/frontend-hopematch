@@ -72,7 +72,7 @@ export class PerfilEncargadoComponent implements OnInit{
 
   VolverAHomeAdmin(){
     localStorage.removeItem("idEncargado_gestion");
-    this.router.navigate([`/gestion-hogares`]);
+    window.history.back();
   }
   
 }
