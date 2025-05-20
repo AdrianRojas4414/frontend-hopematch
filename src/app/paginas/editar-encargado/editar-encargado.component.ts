@@ -23,17 +23,21 @@ export class EditarEncargadoComponent {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.encargadoService.getEncargadoById(id).subscribe(data => {
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
+
+    if(isEncargado){
+      this.encargadoService.getEncargadoById(id).subscribe(data => {
       this.encargado = data;
     });
+    }
   }
 
   updateEncargado(): void {
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(() => {
         alert('Encargado actualizado correctamente');
-        this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+        this.router.navigate([`/perfil-encargado`]);
       });
   }
 
@@ -45,7 +49,7 @@ export class EditarEncargadoComponent {
         alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
         this.authService.logout();
         console.log(this.encargado)
-        this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+        this.router.navigate([`/perfil-encargado`]);
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 500);

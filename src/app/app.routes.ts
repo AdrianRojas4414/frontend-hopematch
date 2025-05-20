@@ -38,7 +38,7 @@ export const routes: Routes = [
     {path:'perfil-encargado', component: PerfilEncargadoComponent, title: "Perfil Encargado"},
     {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Perfil Padrino'},
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
-    {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
+    {path:'editar-perfil-encargado', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino', component: EditarPadrinoComponent, title: 'Padrino'},
     {path:'home-padrino', component: HomePadrinoComponent, title:'Pagina Padrino'},
     {path:'home-encargado', component: HomeEncargadoComponent, title:'Pagina Encargado'},
