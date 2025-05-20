@@ -47,7 +47,7 @@ export const routes: Routes = [
     {path:'login', component: LoginComponent, title: "Log in"},
     {path:'registro-donacion', component: RegistroDonacionComponent, title:'Registro de Donacion' },
     {path:'detalle-donacion', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
-    {path:'hogar-encargado/:id', component: HogarEncargadoComponent, title: 'Mi Hogar' },
+    {path:'hogar-encargado', component: HogarEncargadoComponent, title: 'Mi Hogar' },
     {path:'ninos-hogar/:id', component: NinosHogarComponent, title: 'Ninos'},
     {path:'encargado-donacion/:id', component: EncargadoDonacionComponent},
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
