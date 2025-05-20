@@ -58,10 +58,9 @@ export const routes: Routes = [
     {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestión de Padrinos'},
     {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle de Padrinos'},
     {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestión de Cuentas Suspendidas'},
-    { path: 'registro-visita/:idHogar', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion de Hogares'},
     {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Hogares Suspendidos'},
-    { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    { path: 'registro-visita', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion de los Niños'},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

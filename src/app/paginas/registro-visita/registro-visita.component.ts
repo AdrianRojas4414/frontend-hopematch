@@ -3,6 +3,7 @@ import { VisitaService } from '../../servicios/visita.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EncargadoService } from '../../servicios/encargado.service';
 
 @Component({
   selector: 'app-registro-visita',
@@ -12,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
+  encargado: any = null;
   fechaSeleccionada: string = '';
   horarioSeleccionado: string = '';
   horariosDisponibles: string[] = [];
@@ -21,10 +23,24 @@ export class RegistroVisitaComponent implements OnInit {
 
   constructor(
     private visitaService: VisitaService,
-    private router: Router
+    private router: Router,
+    private encargadoService: EncargadoService
   ) {}
 
   ngOnInit(): void {
+    const id_hogar = localStorage.getItem('idHogarVisita');
+
+    if (id_hogar) {
+      this.encargadoService.getEncargadoById(+id_hogar).subscribe({
+        next: (data) => {
+          this.encargado = data;
+        },
+        error: (err) => {
+          console.error('Error al obtener hogar:', err);
+        }
+      });
+    }
+
     this.cargarHorariosDisponibles();
   }
 
@@ -75,5 +91,10 @@ export class RegistroVisitaComponent implements OnInit {
   limpiarMensajes(): void {
     this.mensajeError = null;
     this.mensajeExito = null;
+  }
+
+  volverAtras() {
+    localStorage.removeItem("idHogarVisita");
+    window.history.back();
   }
 }
