@@ -49,7 +49,7 @@ export class NinosHogarComponent implements OnInit{
 
   irCrearNino(): void {
     if (this.encargado) {
-      this.router.navigate([`/crear-nino/${this.encargado.id}`]);
+      this.router.navigate([`/crear-nino`]);
     }
   }
 

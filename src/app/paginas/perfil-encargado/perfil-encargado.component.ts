@@ -52,7 +52,7 @@ export class PerfilEncargadoComponent implements OnInit{
   }
 
   VolverAHome():void{
-    window.history.back();
+    this.router.navigate([`/home-encargado`]);
   }
   
 }

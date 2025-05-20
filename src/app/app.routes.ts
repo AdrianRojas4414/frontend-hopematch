@@ -34,7 +34,7 @@ export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Pagina de Inicio"},
     {path:'crearpadrino', component: CrearPadrinoComponent, title:"Forulario para la creacion de un Padrino"},
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Forulario para la creacion de un Encargado"},
-    {path:'crear-nino/:idEncargado', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
+    {path:'crear-nino', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
     {path:'perfil-encargado', component: PerfilEncargadoComponent, title: "Perfil Encargado"},
     {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Perfil Padrino'},
     {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},

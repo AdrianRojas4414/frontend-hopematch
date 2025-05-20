@@ -37,7 +37,7 @@ export class EditarEncargadoComponent {
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(() => {
         alert('Encargado actualizado correctamente');
-        this.router.navigate([`/perfil-encargado`]);
+        window.history.back();
       });
   }
 
@@ -49,7 +49,7 @@ export class EditarEncargadoComponent {
         alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
         this.authService.logout();
         console.log(this.encargado)
-        this.router.navigate([`/perfil-encargado`]);
+        window.history.back();
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 500);
