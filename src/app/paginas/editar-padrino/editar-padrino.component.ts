@@ -58,4 +58,8 @@ export class EditarPadrinoComponent implements OnInit {
       })
     }
   }
+
+  cancelarEdicion(): void {
+    this.router.navigate(['/perfil-padrino']);
+  }
 }

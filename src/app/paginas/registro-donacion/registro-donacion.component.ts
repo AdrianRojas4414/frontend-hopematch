@@ -100,4 +100,7 @@ export class RegistroDonacionComponent implements OnInit {
       }
     });
   }
+  cancelar(): void {
+    this.router.navigate(['/home-padrino']);
+  }
 }

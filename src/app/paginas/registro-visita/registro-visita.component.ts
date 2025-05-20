@@ -76,4 +76,8 @@ export class RegistroVisitaComponent implements OnInit {
     this.mensajeError = null;
     this.mensajeExito = null;
   }
+
+  cancelar(): void {
+    this.router.navigate(['/detalle-hogar']);
+  }
 }
