@@ -51,7 +51,7 @@ export const routes: Routes = [
     {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
     {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
     {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
-    {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
+    {path: 'perfil-administrador', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
     {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
     {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestión de Padrinos'},
     {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle de Padrinos'},
