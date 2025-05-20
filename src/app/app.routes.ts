@@ -6,7 +6,6 @@ import { LoginComponent } from './paginas/login/login.component';
 import { PerfilEncargadoComponent } from './paginas/perfil-encargado/perfil-encargado.component';
 import { PerfilPadrinoComponent } from './paginas/perfil-padrino/perfil-padrino.component';
 import { CrearNinoComponent } from './paginas/crear-nino/crear-nino.component';
-import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component';
 import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
 import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component';
 import { EditarPadrinoComponent } from './paginas/editar-padrino/editar-padrino.component';
@@ -37,7 +36,6 @@ export const routes: Routes = [
     {path:'crear-nino', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
     {path:'perfil-encargado', component: PerfilEncargadoComponent, title: "Perfil Encargado"},
     {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Perfil Padrino'},
-    {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
     {path:'editar-perfil-encargado', component: EditarEncargadoComponent, title: "Editar Encargado"},
     {path:'editar-perfil-padrino', component: EditarPadrinoComponent, title: 'Padrino'},
     {path:'home-padrino', component: HomePadrinoComponent, title:'Pagina Padrino'},
