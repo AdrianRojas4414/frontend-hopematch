@@ -52,7 +52,7 @@ export const routes: Routes = [
     {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
     {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
     {path: 'perfil-administrador', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
-    {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
+    {path: 'editar-perfil-administrador', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
     {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestión de Padrinos'},
     {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle de Padrinos'},
     {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestión de Cuentas Suspendidas'},

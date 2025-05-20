@@ -41,7 +41,7 @@ export class PerfilAdministradorComponent implements OnInit {
 
   irEditarPerfil(): void {
     if (this.administrador) {
-      this.router.navigate([`/editar-perfil-administrador/${this.administrador.id}`]);
+      this.router.navigate([`/editar-perfil-administrador`]);
     }
   }
 
