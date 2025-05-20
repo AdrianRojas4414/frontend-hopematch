@@ -20,6 +20,7 @@ html, body {
   height: 100vh;
   background-color: white;
   position: relative;
+  overflow: hidden;
 }
 
 .expanded-layout-section {
@@ -29,6 +30,7 @@ html, body {
   height: 150vh;
   background-color: white;
   position: relative;
+  overflow: hidden;
 }
 
 header {
