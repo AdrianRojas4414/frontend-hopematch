@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { NinoService } from '../../servicios/nino.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-ninos-hogar',
@@ -15,12 +16,21 @@ export class NinosHogarComponent implements OnInit{
 
   encargado: any = null;
   
-  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router,private ninoService: NinoService){}
+  constructor(private route: ActivatedRoute, 
+              private encargadoService: EncargadoService, 
+              private router: Router,
+              private ninoService: NinoService,
+              private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (id) {
+    if(id === 0 || !isEncargado){
+        this.router.navigate(['#']);
+    }
+
+    if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
@@ -32,13 +42,14 @@ export class NinosHogarComponent implements OnInit{
     }
   }
 
-  editarNino(idNino: number, idEncargado: number): void {
-    this.router.navigate([`/editar-nino/${idNino}`], { queryParams: { encargado: idEncargado } });
+  editarNino(idNino: number): void {
+    localStorage.setItem("idNino", idNino.toString());
+    this.router.navigate([`/editar-nino`]);
   }
 
   irCrearNino(): void {
     if (this.encargado) {
-      this.router.navigate([`/crear-nino/${this.encargado.id}`]);
+      this.router.navigate([`/crear-nino`]);
     }
   }
 

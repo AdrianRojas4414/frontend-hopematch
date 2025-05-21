@@ -18,6 +18,7 @@ export class HomePadrinoComponent implements OnInit {
 
   padrino: any = null;
   encargados: any[] = [];
+  encargadosAprobados: any[] = [];
   donaciones: any[] = [];
   necesidades: any[] = [];
   busqueda: string = '';
@@ -36,6 +37,10 @@ export class HomePadrinoComponent implements OnInit {
       const id = this.authService.getUserId();
       const isPadrino = this.authService.isUserType('padrino');
 
+      if(id === 0 || !isPadrino){
+        this.router.navigate(['#']);
+      }
+
       if (isPadrino) {
       this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
@@ -50,11 +55,16 @@ export class HomePadrinoComponent implements OnInit {
     }
   }
 
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
+
   obtenerEncargados(): void {
     this.encargadoService.getEncargados().subscribe(
       data => {
         this.encargados = data,
-        this.encargados.forEach(encargado => this.getEncargadoNecesidades(encargado));
+        this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
+        this.encargadosAprobados.forEach(encargado => this.getEncargadoNecesidades(encargado));
       },
         
       error => console.log(error),
@@ -111,24 +121,28 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   verHogar(idHogar: number): void {
-    this.router.navigate([`/detalle-hogar/${idHogar}`]);
+    localStorage.setItem("idHogar", idHogar.toString());
+    this.router.navigate([`/detalle-hogar`]);
   }
 
   verDetallesDonacion(donacionId: number): void {
-    this.router.navigate([`/detalle-donacion/${donacionId}`]);
+    localStorage.setItem("donacionId", donacionId.toString());
+    this.router.navigate([`/detalle-donacion`]);
   }
 
   irARegistroDonacion(padrinoId: number, encargadoId: number): void {
-    this.router.navigate(['/registro-donacion', padrinoId, encargadoId]);
+    localStorage.setItem("padrinoId", padrinoId.toString());
+    localStorage.setItem("encargadoId", encargadoId.toString());
+    this.router.navigate(['/registro-donacion']);
   }
 
   encargadosFiltrados(): any[] {
     if (!this.busqueda.trim()) {
-      return this.encargados;
+      return this.encargadosAprobados;
     }
 
     const texto = this.busqueda.toLowerCase();
-    return this.encargados.filter(encargado =>
+    return this.encargadosAprobados.filter(encargado =>
       encargado.nombre_hogar.toLowerCase().startsWith(texto)
     );
   }

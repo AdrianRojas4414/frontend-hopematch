@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Va
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-crear-nino',
@@ -20,11 +21,12 @@ export class CrearNinoComponent implements OnInit{
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private encargadoService: EncargadoService
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.idEncargado = Number(this.route.snapshot.paramMap.get('idEncargado'));
+    this.idEncargado = this.authService.getUserId();
 
     this.ninoForm = this.fb.group({
       ci: ['', Validators.required],
@@ -52,7 +54,7 @@ export class CrearNinoComponent implements OnInit{
     if (this.ninoForm.valid) {
       this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe(() => {
         alert('Niño registrado con éxito');
-        this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+        this.router.navigate([`/ninos-hogar`]);
       }, error => {
         console.error('Error al registrar niño:', error);
         alert('Hubo un error al registrar el niño');

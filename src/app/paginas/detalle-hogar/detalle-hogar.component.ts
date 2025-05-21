@@ -29,7 +29,7 @@ export class DetalleHogarComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = localStorage.getItem('idHogar');
 
     if (id) {
       this.encargadoService.getEncargadoById(+id).subscribe({
@@ -45,7 +45,8 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   agendarVisita(): void {
-    this.router.navigate(['/registro-visita', this.encargado.id]);
+    localStorage.setItem("idHogarVisita", this.encargado.id.toString());
+    this.router.navigate(['/registro-visita']);
   }
 
   cargarDonaciones(encargadoId: number): void {
@@ -95,6 +96,7 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   volverAtras() {
+    localStorage.removeItem("idHogar");
     window.history.back();
   }
 }

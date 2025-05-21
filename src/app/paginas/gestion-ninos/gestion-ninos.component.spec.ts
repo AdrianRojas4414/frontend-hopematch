@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerfilNinoComponent } from './perfil-nino.component';
+import { GestionNinosComponent } from './gestion-ninos.component';
 
-describe('PerfilNinoComponent', () => {
-  let component: PerfilNinoComponent;
-  let fixture: ComponentFixture<PerfilNinoComponent>;
+describe('GestionNinosComponent', () => {
+  let component: GestionNinosComponent;
+  let fixture: ComponentFixture<GestionNinosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PerfilNinoComponent]
+      imports: [GestionNinosComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PerfilNinoComponent);
+    fixture = TestBed.createComponent(GestionNinosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

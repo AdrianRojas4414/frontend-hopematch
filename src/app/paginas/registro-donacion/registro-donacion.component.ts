@@ -33,12 +33,18 @@ export class RegistroDonacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const padrinoId = this.route.snapshot.paramMap.get('padrinoId');
-    const encargadoId = this.route.snapshot.paramMap.get('encargadoId');
-
+    const padrinoId = localStorage.getItem('padrinoId');
+    const encargadoId = localStorage.getItem('encargadoId');
+    
     if (padrinoId && encargadoId) {
       this.donacion.padrino_id = +padrinoId;
       this.donacion.encargado_id = +encargadoId;
+      console.log("padrino id", this.donacion.padrino_id);
+      console.log("encargado id", this.donacion.encargado_id);
+    }
+
+    else{
+      console.log("No se encontro el padrino id o encargado id");
     }
 
     this.cargarNecesidades();
@@ -92,6 +98,8 @@ export class RegistroDonacionComponent implements OnInit {
       next: (response) => {
         console.log('Donación registrada:', response);
         alert('Donación registrada con éxito');
+        localStorage.removeItem("padrinoId");
+        localStorage.removeItem("encargadoId");
         this.router.navigate(['/home-padrino']);
       },
       error: (error) => {

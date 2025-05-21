@@ -21,7 +21,7 @@ export class DetalleDonacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = localStorage.getItem('donacionId');
     
     if (id) {
       this.donacionService.getDonacionById(+id).subscribe({
@@ -45,6 +45,7 @@ export class DetalleDonacionComponent implements OnInit {
   }
 
   volverAHome(): void {
-    this.router.navigate(['/home-padrino']);
+    localStorage.removeItem("donacionId");
+    window.history.back();
   }
 }

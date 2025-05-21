@@ -23,11 +23,16 @@ export class EditarPadrinoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.padrinoService.getPadrinoById(id).subscribe(data => {
+    const id = this.authService.getUserId();
+    const isPadrino = this.authService.isUserType('padrino');
+
+    if(isPadrino){
+      this.padrinoService.getPadrinoById(id).subscribe(data => {
       this.padrino = data;
-      console.log(this.padrino)
     });
+    }
+
+    
   }
 
   updatePadrino(): void {

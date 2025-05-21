@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-perfil-encargado',
@@ -13,48 +14,65 @@ import { CommonModule } from '@angular/common';
 export class PerfilEncargadoComponent implements OnInit{
 
   encargado: any = null;
+  mostrarBotonEditar: boolean = true;
 
-  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router){}
+  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
+    const idEncargado_gestion = localStorage.getItem('idEncargado_gestion');
 
-    if (id) {
-      this.encargadoService.getEncargadoById(+id).subscribe({
-        next: (data) => {
-          this.encargado = data;
-        },
-        error: (err) => {
-          console.error('Error al obtener encargado:', err);
-        }
-      });
+    if (id || idEncargado_gestion) {
+
+      if(!isEncargado && idEncargado_gestion){
+        this.mostrarBotonEditar = false;
+        this.encargadoService.getEncargadoById(+idEncargado_gestion).subscribe({
+          next: (data) => {
+            this.encargado = data;
+          },
+          error:(err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        })
+      }
+      else{
+        this.encargadoService.getEncargadoById(+id).subscribe({
+          next: (data) => {
+            this.encargado = data;
+          },
+          error: (err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        });
+      }
     }
   }
 
-  irCrearNino(): void {
+  cerrarSesion(): void {
+    localStorage.removeItem("idEncargado_gestion");
+    this.authService.logout();
+  }
+
+  irNinos(): void {
     if (this.encargado) {
-      this.router.navigate([`/crear-nino/${this.encargado.id}`]);
+      this.router.navigate([`/ninos-hogar`]);
     }
   }
 
   irEditarPerfil(): void{
     if (this.encargado) {
-      this.router.navigate([`/editar-perfil-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/editar-perfil-encargado`]);
     }
-  }
-
-  /*editarNino(id: number): void {
-    this.router.navigate([`/editar-nino/${id}`]);
-  }*/
-
-  editarNino(idNino: number, idEncargado: number): void {
-    this.router.navigate([`/editar-nino/${idNino}`], { queryParams: { encargado: idEncargado } });
   }
 
   VolverAHome():void{
-    if (this.encargado) {
-      this.router.navigate([`/home-encargado`]);
-    }
+    this.router.navigate([`/home-encargado`]);
+  }
+
+  VolverAHomeAdmin(){
+    localStorage.removeItem("idEncargado_gestion");
+    window.history.back();
   }
   
 }

@@ -25,6 +25,11 @@ export class HomeEncargadoComponent implements OnInit{
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
 
+    if(id === 0 || !isEncargado){
+        this.router.navigate(['#']);
+    }
+
+
     if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
@@ -37,27 +42,31 @@ export class HomeEncargadoComponent implements OnInit{
     }
   }
 
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
+
   irPerfil(): void{
     if (this.encargado) {
-      this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/perfil-encargado`]);
     }
   }
 
   irHogar(): void{
     if (this.encargado) {
-      this.router.navigate([`/hogar-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/hogar-encargado`]);
     }
   }
 
   irDonaciones(): void {
     if (this.encargado) {
-        this.router.navigate([`/encargado-donacion/${this.encargado.id}`]);
+        this.router.navigate([`/encargado-donacion`]);
     }
   }
 
   irNinos(): void {
     if (this.encargado) {
-        this.router.navigate([`/ninos-hogar/${this.encargado.id}`]);
+        this.router.navigate([`/ninos-hogar`]);
     }
   }
 }
