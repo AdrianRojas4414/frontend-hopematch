@@ -1,26 +1,33 @@
-<div class="home-padrino-container" *ngIf="padrino">
-  <div class="home-padrino-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
-      <a (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
-    </nav>
-  </div>
 
+  <header *ngIf="padrino">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+                <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+                <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="full-layout-section home-padrino" *ngIf="padrino">
   <div class="saludo">
     <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
   </div>
-<div class="main-content">
-  <div class="donaciones-field">
+<div class="field--row-elements">
+  <div class="field--column-elements">
     <div class="tus-donaciones">
       <h3 style="color: #e65c4f;">Tus donaciones</h3>
     </div>
 
-    <div class="historial-donaciones">
+    <div class="card--scrollable-list">
       <div *ngIf="donaciones.length === 0" class="no-donaciones">
         <p>Aun no has realizado donaciones</p>
       </div>
-      <div class="donacion-card" *ngFor="let donacion of donaciones">
+      <div class="card--general" *ngFor="let donacion of donaciones">
         <div class="donacion-header">
           <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
           <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
@@ -36,13 +43,13 @@
 
   </div>
 
-  <div class="encargados-field">
+  <div class="field--column-elements">
     <div class="busqueda-encargado">
       <input type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
     </div>
 
-    <div class="encargados-lista">
-      <div class="encargado-card" *ngFor="let encargado of encargadosFiltrados()">
+    <div class="card--scrollable-list">
+      <div class="card--general" *ngFor="let encargado of encargadosFiltrados()">
         <div class="encargado-info">
           <div class="encargado-foto">
             <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
@@ -80,4 +87,32 @@
 
   
 </div>
-</div>
+</section>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>

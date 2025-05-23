@@ -1,0 +1,25 @@
+.field{
+    &--column-elements{
+        height: 100%;
+        width: 100%;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    &--row-elements{
+        height: 100%;
+        width: 100%;
+        gap: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+    &--column-card-elements{
+
+    }
+    &--row-card-elements{
+        
+    }
+}

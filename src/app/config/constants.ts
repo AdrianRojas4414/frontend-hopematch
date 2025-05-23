@@ -26,6 +26,8 @@ export const TEXTOS = {
     buttonContact: 'Contact',
     buttonVolver: 'Volver a Home',
     buttonCerrarSesion: 'Cerrar Sesion',
+    buttonPerfil: 'Perfil',
+    buttonSignOut: 'Sign Out',
     // SIGN UP OPTIONS
     padrinoOption: 'QUIERO SER PADRINO',
     encargadoOption: 'QUIERO REGISTRAR A MI HOGAR',

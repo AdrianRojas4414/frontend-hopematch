@@ -7,6 +7,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { NinoService } from '../../servicios/nino.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-padrino',
@@ -15,6 +16,7 @@ import { NinoService } from '../../servicios/nino.service';
   styleUrl: './home-padrino.component.scss'
 })
 export class HomePadrinoComponent implements OnInit {
+  public texts = TEXTOS;
 
   padrino: any = null;
   encargados: any[] = [];
