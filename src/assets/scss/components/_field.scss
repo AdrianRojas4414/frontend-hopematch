@@ -17,9 +17,20 @@
         padding-right: 120px;
     }
     &--column-card-elements{
-
+        height: 100%;
+        width: 100%;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: left;        
     }
     &--row-card-elements{
-        
+        height: 100%;
+        width: 100%;
+        gap: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

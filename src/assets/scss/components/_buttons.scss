@@ -54,8 +54,8 @@
   
       &:hover:not(:disabled):not(.disabled) {
         //background-color: var(--color-neutral-base-white);
-        border-color: var(--color-primary-base-dark-60);
-        color: var(--color-primary-base-dark-60);
+        border-color: var(--color-third-base);
+        color: var(--color-third-base);
         box-shadow: var(--box-shadow-md);
       }
     }

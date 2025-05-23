@@ -14,29 +14,39 @@
 </header>
 
 <section class="full-layout-section home-padrino" *ngIf="padrino">
-  <div class="saludo">
+  <div class="grettings-text">
     <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
+    <h5>Tu ayuda es su esperanza. Dona ahora.</h5>
   </div>
 <div class="field--row-elements">
   <div class="field--column-elements">
-    <div class="tus-donaciones">
-      <h3 style="color: #e65c4f;">Tus donaciones</h3>
-    </div>
+    <h3 style="color: var(--color-primary-base-dark-60);">Tus donaciones</h3>
 
     <div class="card--scrollable-list">
-      <div *ngIf="donaciones.length === 0" class="no-donaciones">
+      <div *ngIf="donaciones.length === 0" class="card--general">
         <p>Aun no has realizado donaciones</p>
+        <p>En el panel de la derecha busca un hogar y regala una esperanza.</p>
       </div>
       <div class="card--general" *ngFor="let donacion of donaciones">
-        <div class="donacion-header">
-          <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-          <span class="monto">${{ donacion.cantidadDonacion |  number:'1.2-2' }}</span>
+        <div class="field--row-card-elements">
+          <div class="field--column-card-elements">
+            <div class="field--column-card-elements">
+              <p><strong>Fecha: </strong>{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</p>
+              <p><strong>Para: </strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
+              <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
+            </div>
+            <div class="field--row-card-elements">
+              <button class="btn btn--secondary-button" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+              <button class="btn btn--secondary-button" [disabled]="!haDonadoA(donacion.encargado.id)" (click)="verHogar(donacion.encargado.id)">Ver Hogar</button>
+            </div>
+          </div>
+          <hr>
+          <div class="field--column-card-elements amount-block">
+            <p>${{ donacion.cantidadDonacion |  number:'1.2-2' }}</p>
+            <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, donacion.encargado.id)">Volver a Donar</button>
+          </div>
         </div>
-        <div class="donacion-body">
-          <p><strong>Para: </strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
-          <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
-        </div>
-        <button class="btn-detalles" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+        
       </div> 
     </div>
 
