@@ -1,24 +1,24 @@
-<div class="registro-container">
-    <div class="form-card">
-      <div class="footer__brand">
-        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
-      </div>
-      <div class="header">
-        <h2> {{ texts.principalMessageAdmin }} </h2>
-      </div>
-      <form (ngSubmit)="registrarAdministrador()">
-        <div class="input-group">
-          <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="administrador.nombre" name="nombre" required>
-        </div>
-        <div class="input-group">
-          <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="administrador.email" name="email" required>
-        </div>
-
-        <div class="input-group">
-          <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="administrador.contrasenia" name="contrasenia" required>
-        </div>
-  
-        <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
-      </form>
+<section class="full-layout-section register-section">
+  <form (ngSubmit)="registrarAdministrador()" class="card--form">
+    <div class="footer__brand">
+      <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
     </div>
-  </div>
+    <div class="register-text">
+      <h4> {{ texts.principalMessageAdmin }} </h4>
+    </div>
+    <div class="input-group">
+      <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="administrador.nombre" name="nombre" class="input-field" required>
+    </div>
+    <div class="input-group">
+      <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="administrador.email" name="email" class="input-field" required>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="administrador.contrasenia" name="contrasenia" class="input-field" required>
+    </div>
+
+    <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
+  </form>
+
+  <img class="register-image" src="imgs/RegisterAdmin.png" alt="Hola">
+</section>

@@ -20,12 +20,14 @@ export const TEXTOS = {
     aboutVisionText: "Construir un mundo donde cada niño tenga acceso a oportunidades, recursos y una red de apoyo afectiva.",
     // NAV BUTTONS
     buttonHome: 'Home',
-    buttonAboutUs: 'AboutUs',
+    buttonAboutUs: 'About Us',
     buttonSignUp: 'Sign Up',
     buttonLogIn: 'Log In',
     buttonContact: 'Contact',
     buttonVolver: 'Volver a Home',
     buttonCerrarSesion: 'Cerrar Sesion',
+    buttonPerfil: 'Perfil',
+    buttonSignOut: 'Sign Out',
     // SIGN UP OPTIONS
     padrinoOption: 'QUIERO SER PADRINO',
     encargadoOption: 'QUIERO REGISTRAR A MI HOGAR',

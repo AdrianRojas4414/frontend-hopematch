@@ -1,56 +1,59 @@
-<div class="registro-container">
-  <div class="form-card">
-    <div class="footer__brand">
-      <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
-    </div>
-    <div class="header">
-      <h2> {{ texts.principalMessageEncargado }} </h2>
-    </div>
-    <form (ngSubmit)="registrarEncargado()">
+<section class="expanded-layout-section register-section">
+    <form (ngSubmit)="registrarEncargado()" class="card--form">
+      <div class="footer__brand">
+        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+      </div>
+      <div class="register-text">
+        <h4> {{ texts.principalMessageEncargado }} </h4>
+        <p>Tu información será resguardada.</p>
+      </div>
       <div class="input-group">
-        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="encargado.nombre" name="nombre" required>
+        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="encargado.nombre" name="nombre" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="encargado.email" name="email" required>
+        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="encargado.email" name="email" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="encargado.celular" name="celular" required>
+        <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="encargado.celular" name="celular" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="encargado.foto" name="foto">
+        <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="encargado.foto" name="foto" class="input-field">
       </div>
 
       <div class="input-group">
-        <input type="text" id="hombre_hogar" [placeholder]="texts.inputHogarName" [(ngModel)]="encargado.nombre_hogar" name="foto">
+        <input type="text" id="hombre_hogar" [placeholder]="texts.inputHogarName" [(ngModel)]="encargado.nombre_hogar" name="foto" class="input-field">
       </div>
 
       <div class="input-group">
-        <input type="text" id="direccion_hogar" [placeholder]="texts.inputDireccion" [(ngModel)]="encargado.direccion_hogar" name="foto">
+        <input type="text" id="direccion_hogar" [placeholder]="texts.inputDireccion" [(ngModel)]="encargado.direccion_hogar" name="foto" class="input-field">
       </div>
 
       <div class="input-group">
-        <input type="text" id="foto_hogar" [placeholder]="texts.inputHogarFoto" [(ngModel)]="encargado.foto_hogar" name="foto_hogar">
+        <input type="text" id="foto_hogar" [placeholder]="texts.inputHogarFoto" [(ngModel)]="encargado.foto_hogar" name="foto_hogar" class="input-field">
       </div>
 
-      <textarea 
-        type="text"
-        id="descripcion_hogar"
-        [(ngModel)]="encargado.descripcion" 
-        name="descripcion_hogar" 
-        maxlength="500"
-        class="textarea-descripcion"
-        [placeholder]="texts.inputDescripcion">
-      </textarea>
+      <div class="input-group">
+        <textarea 
+          type="text"
+          id="descripcion_hogar"
+          [(ngModel)]="encargado.descripcion" 
+          name="descripcion_hogar" 
+          maxlength="500"
+          class="textarea-descripcion"
+          [placeholder]="texts.inputDescripcion" class="input-field">
+        </textarea>
+      </div>
       <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
 
       <div class="input-group">
-        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" required>
+        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" class="input-field" required>
       </div>
 
       <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
     </form>
-  </div>
-</div>
+
+    <img class="register-image" src="imgs/RegisterPicture.png" alt="Hola">
+</section>

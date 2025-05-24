@@ -1,264 +1,45 @@
-.home-padrino-container {
-    display: flex;
+.home-padrino {
     flex-direction: column;
-    padding: 2rem;
-    background-color: #f6f6f6;
-    height: 93.5vh;
-    padding: 15px;
-  }
-  
-  .home-padrino-header {
-    display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0;
-      height: 80px;
-  
-      .logo {
-        max-width: 80px;
-        width: 80px;
-        height: 80px;
-      }
-  
-      .perfil-nav {
-        display: flex;
-        gap: 2rem;
-  
-        a {
-          text-decoration: none;
-          font-size: 1rem;
-          color: #333;
-        }
-      }
-  }
-  
-  .saludo {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 1.8rem;
-    color: #e65c4f;
+    justify-content: start;
+    padding-top: 80px;
   }
 
-  h2{
-    margin: 0px 0px 30px 0px;
-  }
-  
-  .encargados-field{
-    height: 427px;
-    width: 1100px; 
-    align-self: flex-start;
+  .amount-block{
+    align-items: center;
+    width: 60%;
   }
 
-  .busqueda-encargado {
-    margin: 20px 0;
+  .grettings-text {
     text-align: center;
-  
-    input {
-      width: 90%;
-      padding: 5px;
-      font-size: 16px;
-      border: 2px solid #e65c4f;
-      border-radius: 10px;
-      outline: none;
+    color: var(--color-primary-base-dark-60);
+    margin-bottom: 10px;
+    h2{
+      margin-bottom: 4px;
+    }
+    h5{
+      margin-top: 0;
+      color: var(--color-primary-base-dark-72);
     }
   }
-
-  .encargados-lista {
-      flex: 0 0 70%;
-      background-color: #fff;
-      padding: 10px 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow-y: auto;
-      height: 100%;
-      width: 100%;
-      align-self:flex-start;
-  }
-  
-  .encargado-card {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 20px 0px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin: 5px auto;
-
-    .admin-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 8px 0;
-      font-size: 14px;
-      color: #666;
-      
-      .admin-foto {
+  .admin-foto {
         width: 24px;
         height: 24px;
         border-radius: 50%;
         object-fit: cover;
       }
-    }
-    .descripcion-hogar{
-      font-size: 14px;
-      color: #666;
-    }
-  }
-  
-  .encargado-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
+
   .encargado-foto {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
     overflow: hidden;
-    margin: 0px 20px;
-  
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-  
-  .encargado-detalles {
-    flex: 1;
-    padding: 0px 20px 0px 0px;
-  }
-  
-  .encargado-detalles h3 {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #333;
-  }
-  
-  .encargado-detalles p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    color: #555;
-  }
-  
-  .btn-ver-hogar, .btn-donar {
-    padding: 0.75rem 1.5rem;
-    background-color: #e65c4f;
-    color: white;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    
-  }
-  
-  .btn-ver-hogar {
-    margin-right: 10px;
 
-    &:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-  }
- 
-
-  
-  .logo {
-    height: 50px;
-  }
-  
-  .perfil-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
- 
-  
-  .main-content {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    width: 100%;
-    height: 300px;
-  }
-  
-  .donaciones-field{
-    flex: 0 0 30%;
-    max-height: 300px;
-    width: 30%;
-    align-self: flex-start;
-  }
-  
-
-  .historial-donaciones {
-    flex: 0 0 30%;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    height: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-height: 408px;
-    overflow-y: auto;
-    align-self: flex-start;
-    position: sticky;
-    top: 20px;
-  }
-
-  .tus-donaciones{
-    text-align: center;
-    align-self: center;
-    padding-top: 12px;
-  }
-  
-  
-  .btn-ver-hogar, .btn-donar, .btn-detalles {
-    padding: 8px 15px;
-    margin-right: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  
-  .btn-donar {
-    background: #4CAF50;
-    color: white;
-  }
-  
-  .btn-detalles {
-    background: #e65c4f;
-    color: white;
-  }
-  
-  .donacion-card {
-    background: white;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .donacion-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .donacion-body p {
-    margin: 5px 0;
-    color: #555;
-  }
-  
-  .no-donaciones {
-    text-align: center;
-    color: #777;
-    padding: 20px;
+  .encargado-info{
+    width: 80%;
   }

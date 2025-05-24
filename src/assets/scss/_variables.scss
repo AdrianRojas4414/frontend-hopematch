@@ -55,6 +55,10 @@
   
     // ----- Transiciones -----
     --transition-base: all 0.2s ease-in-out;
+
+    // ----- Tamaño de contenedores WEB -----
+    --container-horizontal-padding: 240px;
+    --container-width: calc(100% - var(--container-horizontal-padding));
   }
   
   // Mixin para Hover

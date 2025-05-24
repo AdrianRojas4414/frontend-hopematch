@@ -1,33 +1,37 @@
-<div class="registro-container">
-  <div class="form-card">
-    <div class="footer__brand">
-      <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
-    </div>
-    <div class="header">
-      <h2> {{ texts.principalMessageEncargado }} </h2>
-    </div>
-    <form (ngSubmit)="registrarPadrino()">
-      <div class="input-group">
-        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="padrino.nombre" name="nombre" required>
+<section class="full-layout-section register-container">
+    <form (ngSubmit)="registrarPadrino()" class="card--form">
+      <div class="footer__brand">
+        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+      </div>
+      
+      <div class="register-text">
+        <h4>Estás a unos pasos de cambiar vidas.</h4>
+        <p>Registra tus datos personales.</p>
       </div>
 
       <div class="input-group">
-        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="padrino.email" name="email" required>
+        <input type="text" id="nombre" [placeholder]="texts.inputName" [(ngModel)]="padrino.nombre" name="nombre" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="padrino.celular" name="celular" required>
+        <input type="email" id="email" [placeholder]="texts.inputEmail" [(ngModel)]="padrino.email" name="email" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="padrino.foto" name="foto">
+        <input type="text" id="celular" [placeholder]="texts.inputCellPhone" [(ngModel)]="padrino.celular" name="celular" class="input-field" required>
       </div>
 
       <div class="input-group">
-        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="padrino.contrasenia" name="contrasenia" required>
+        <input type="text" id="foto" [placeholder]="texts.inputPhoto" [(ngModel)]="padrino.foto" class="input-field" name="foto">
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="padrino.contrasenia" name="contrasenia" class="input-field" required>
       </div>
 
       <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
     </form>
-  </div>
-</div>
+
+    <img class="register-image" src="imgs/RegisterPicture.png" alt="Hola">
+
+</section>
