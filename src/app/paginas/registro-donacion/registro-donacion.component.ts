@@ -4,15 +4,18 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
+import { TEXTOS } from '../../config/constants';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-registro-donacion',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatRadioModule],
   templateUrl: './registro-donacion.component.html',
   styleUrls: ['./registro-donacion.component.scss']
 })
 export class RegistroDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donacion = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,
