@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-registro-visita',
@@ -20,20 +21,24 @@ export class RegistroVisitaComponent implements OnInit {
   isLoading: boolean = false;
   mensajeError: string | null = null;
   mensajeExito: string | null = null;
+  idPadrino: any = null;
 
   constructor(
     private visitaService: VisitaService,
     private router: Router,
-    private encargadoService: EncargadoService
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
     const id_hogar = localStorage.getItem('idHogarVisita');
+    const id = this.authService.getUserId();
 
     if (id_hogar) {
       this.encargadoService.getEncargadoById(+id_hogar).subscribe({
         next: (data) => {
           this.encargado = data;
+          this.idPadrino = id;
         },
         error: (err) => {
           console.error('Error al obtener hogar:', err);
