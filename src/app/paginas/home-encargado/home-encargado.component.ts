@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { jwtDecode } from 'jwt-decode';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-encargado',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './home-encargado.component.scss'
 })
 export class HomeEncargadoComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
 
   constructor(private route:ActivatedRoute, 
