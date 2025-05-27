@@ -50,6 +50,8 @@
             <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
               {{ texts.agregarFotosProgreso }}
             </button>
+
+            <button class="btn-chat" (click)="irChat(donacion.padrino?.id)">Chat</button>
           </div>
         </div>
       </div>

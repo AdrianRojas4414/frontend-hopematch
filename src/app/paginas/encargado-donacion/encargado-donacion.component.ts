@@ -164,4 +164,10 @@ export class EncargadoDonacionComponent implements OnInit {
   volverAHome(): void {
     this.router.navigate(['/home-encargado']);
   }
+
+  irChat(idPadrino: any): void{
+    localStorage.setItem("idConversacion", idPadrino.toString());
+    localStorage.setItem("tipoConversacion",'padrino');
+    this.router.navigate(['/chat']);
+  }
 }
