@@ -97,6 +97,6 @@ export class DetalleHogarComponent implements OnInit{
 
   volverAtras() {
     localStorage.removeItem("idHogar");
-    window.history.back();
+    this.router.navigate(['/home-padrino']);
   }
 }

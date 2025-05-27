@@ -51,4 +51,8 @@ export class HogaresSuspendidosComponent implements OnInit {
       localStorage.setItem("idEncargado_gestion", idEncargado.toString());
       this.router.navigate([`/perfil-encargado`]);
     }
+
+    volverAGestion(){
+      this.router.navigate(['/gestion-hogares']);
+    }
 }
