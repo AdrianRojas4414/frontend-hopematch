@@ -41,6 +41,10 @@ export class HogarEncargadoComponent implements OnInit{
     }
   }
 
+  volverHome(): void {
+    this.router.navigate(['/home-encargado']);
+  }
+
   cerrarSesion(): void {
     this.authService.logout();
   }

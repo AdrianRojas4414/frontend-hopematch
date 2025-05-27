@@ -75,4 +75,8 @@ export class GestionNinosComponent implements OnInit{
       });
     }
   }
+
+  volverAHome(): void {
+      this.router.navigate(['/home-administrador']);
+    }
 }

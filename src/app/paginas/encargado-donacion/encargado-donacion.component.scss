@@ -4,6 +4,29 @@
   padding: 1rem;
 }
 
+.perfil-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  max-width: 80px;
+}
+
+.perfil-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.perfil-nav a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+}
+
 .header {
   margin-bottom: 2rem;
   text-align: center;

@@ -106,4 +106,5 @@ export class GestionPadrinosComponent implements OnInit {
     localStorage.setItem("tipoConversacion",'padrino');
     this.router.navigate(['/chat']);
   }
+
 }
