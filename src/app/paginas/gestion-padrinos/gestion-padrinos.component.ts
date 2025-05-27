@@ -100,4 +100,8 @@ export class GestionPadrinosComponent implements OnInit {
   verSuspendidos(): void{
     this.router.navigate(['/padrinos-suspendidos'])
   }
+
+  volverAHome(): void {
+      this.router.navigate(['/home-administrador']);
+    }
 }

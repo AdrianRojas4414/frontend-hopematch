@@ -78,4 +78,8 @@ export class GestionHogaresComponent implements OnInit{
   irHogaresSuspendidos(): void {
     this.router.navigate(['/hogares-suspendidos']);
   }
+
+   volverAHome(): void {
+      this.router.navigate(['/home-administrador']);
+    }
 }

@@ -51,5 +51,11 @@ export class EditarNinoComponent {
       this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
     });
   }
+
+  cancelarEdicion(): void {
+    if (this.idEncargado) {
+      this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+    }
+  }
 }
 

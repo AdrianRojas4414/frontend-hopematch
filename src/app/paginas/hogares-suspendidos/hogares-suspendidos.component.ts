@@ -46,4 +46,8 @@ export class HogaresSuspendidosComponent implements OnInit {
         this.ngOnInit();
       })
     }
+
+    volverAGestion(): void {
+      this.router.navigate(['/gestion-hogares']);
+    }
 }

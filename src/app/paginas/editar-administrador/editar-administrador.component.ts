@@ -42,4 +42,8 @@ export class EditarAdministradorComponent implements OnInit {
         }
       });
   }
+
+  cancelarEdicion(): void {
+    this.router.navigate([`/perfil-administrador/${this.administrador.id}`]);
+  }
 }
