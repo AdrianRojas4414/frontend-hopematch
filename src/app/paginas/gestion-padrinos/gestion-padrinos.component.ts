@@ -107,4 +107,7 @@ export class GestionPadrinosComponent implements OnInit {
     this.router.navigate(['/chat']);
   }
 
+  volverAHome():void{
+    window.history.back();
+  }
 }

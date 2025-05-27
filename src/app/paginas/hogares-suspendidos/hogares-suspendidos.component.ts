@@ -57,4 +57,9 @@ export class HogaresSuspendidosComponent implements OnInit {
       localStorage.setItem("tipoConversacion",'encargado');
       this.router.navigate(['/chat']);
     }
+
+    volverAGestion():void{
+      window.history.back();
+    }
+
 }
