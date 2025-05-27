@@ -149,21 +149,25 @@ export class ChatComponent implements OnInit{
     const remitenteId = this.idUsuario;
     const destinatarioId = Number(this.idConversacion);
 
+    console.log("Remitente (idUsuario):", remitenteId);
+    console.log("Destinatario (idConversacion):", destinatarioId);
+
     if (!remitenteId || !destinatarioId) return;
 
-    // Obtener mensajes enviados por el usuario actual
     this.mensajeService.obtenerMensajesPorRemitente(remitenteId).subscribe(mensajesEnviados => {
       const enviadosFiltrados = mensajesEnviados.filter(m => m.idDestinatario === destinatarioId);
-
-      // Obtener mensajes recibidos por el usuario actual
       this.mensajeService.obtenerMensajesPorDestinatario(remitenteId).subscribe(mensajesRecibidos => {
-        const recibidosFiltrados = mensajesRecibidos.filter(m => m.idRemitente === destinatarioId);
+          const recibidosFiltrados = mensajesRecibidos.filter(m => m.idRemitente === destinatarioId);
 
-        // Juntar, ordenar y asignar
-        this.mensajes = [...enviadosFiltrados, ...recibidosFiltrados]
-          .sort((a, b) => new Date(a.fecha!).getTime() - new Date(b.fecha!).getTime());
+          // Quitar duplicados por ID de mensaje
+          const todos = [...enviadosFiltrados, ...recibidosFiltrados];
+          const unicos = todos.filter((m, index, self) =>
+            index === self.findIndex((t) => t.id === m.id)
+          );
+
+          this.mensajes = unicos.sort((a, b) => new Date(a.fecha!).getTime() - new Date(b.fecha!).getTime());
+        });
       });
-    });
   }
 
   enviar(): void {
