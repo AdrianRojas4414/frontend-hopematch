@@ -139,6 +139,12 @@
   color: white;
 }
 
+.btn-chat{
+  @extend .btn-accion;
+  background: #3498db;  
+  color: white;
+}
+
 .btn-foto-progreso {
   @extend .btn-accion;
   background: #9b59b6;

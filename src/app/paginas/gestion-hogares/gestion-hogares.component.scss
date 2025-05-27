@@ -139,7 +139,7 @@
     color: #555;
   }
 
-  .btn-ver-perfil, .btn-aprobar, .btn-suspender,  .btn-rechazar{
+  .btn-ver-perfil, .btn-aprobar, .btn-suspender,  .btn-rechazar, .btn-chat{
     padding: 0.75rem 1.5rem;
     margin-top: 1rem;
     border: none;
@@ -157,6 +157,12 @@
   .btn-aprobar{
     background-color: #18c015;
     color: white;
+  }
+
+  .btn-chat{
+    background-color: #3f51b5;
+    color: white;
+    margin-left: 10px;
   }
 
   .btn-suspender {

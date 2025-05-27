@@ -101,7 +101,10 @@ export class GestionPadrinosComponent implements OnInit {
     this.router.navigate(['/padrinos-suspendidos'])
   }
 
-  volverAHome(): void {
-      this.router.navigate(['/home-administrador']);
-    }
+  irChat(idPadrino: any): void{
+    localStorage.setItem("idConversacion", idPadrino.toString());
+    localStorage.setItem("tipoConversacion",'padrino');
+    this.router.navigate(['/chat']);
+  }
+
 }
