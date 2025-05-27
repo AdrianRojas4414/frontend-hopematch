@@ -83,4 +83,10 @@ export class GestionHogaresComponent implements OnInit{
   volverHome(){
     this.router.navigate(['/home-administrador']);
   }
+
+  irChat(idEncargado: any): void{
+    localStorage.setItem("idConversacion", idEncargado.toString());
+    localStorage.setItem("tipoConversacion",'encargado');
+    this.router.navigate(['/chat']);
+  }
 }

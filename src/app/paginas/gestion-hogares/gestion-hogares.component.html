@@ -41,6 +41,7 @@
                     <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
                     <button class="btn-aprobar" (click)="aprobarHogar(encargado)">Aprobar</button>
                     <button class="btn-rechazar" (click)="rechazarHogar(encargado)">Rechazar</button>
+                    <button class="btn-chat" (click)="irChat(encargado.id)">Chat</button>
                     </div>
                 </div>
             </div>
@@ -74,6 +75,7 @@
                     <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
                     <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
                     <button class="btn-suspender" (click)="suspenderHogar(encargado)">Suspender</button>
+                    <button class="btn-chat" (click)="irChat(encargado.id)">Chat</button>
                     </div>
                 </div>
             </div>

@@ -126,6 +126,22 @@
       background-color: #e68a00;
     }
   }
+
+  .btn-chat {
+    padding: 0.6rem 1.2rem;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+  
+    &:hover {
+      background-color: #e68a00;
+    }
+  }
   
   @media (max-width: 768px) {
     .home-admin-header {

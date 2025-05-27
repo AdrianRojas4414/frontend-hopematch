@@ -1,0 +1,28 @@
+.mensajes {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mensaje {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.mensaje-enviado {
+  align-self: flex-end;
+  background-color: #dcf8c6; /* verde claro tipo WhatsApp */
+  text-align: right;
+}
+
+.mensaje-recibido {
+  align-self: flex-start;
+  background-color: #f1f0f0; /* gris claro */
+  text-align: left;
+}
