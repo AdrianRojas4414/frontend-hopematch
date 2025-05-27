@@ -39,4 +39,8 @@ export class AdministradoresComponent implements OnInit {
       this.router.navigate(['/chat']);
     }
 
+    Volver():void{
+      window.history.back();
+    }
+
 }
