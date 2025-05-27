@@ -112,6 +112,8 @@ export class RegistroDonacionComponent implements OnInit {
     });
   }
   cancelar(): void {
+    localStorage.removeItem("padrinoId");
+    localStorage.removeItem("encargadoId");
     this.router.navigate(['/home-padrino']);
   }
 }

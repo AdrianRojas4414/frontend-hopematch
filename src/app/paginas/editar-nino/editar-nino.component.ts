@@ -59,7 +59,8 @@ export class EditarNinoComponent {
 
   cancelarEdicion(): void {
     if (this.idEncargado) {
-      this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+      localStorage.removeItem("idNino");
+      this.router.navigate([`/ninos-hogar`]);
     }
   }
 }

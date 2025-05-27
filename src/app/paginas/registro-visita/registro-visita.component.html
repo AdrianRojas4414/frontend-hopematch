@@ -48,8 +48,13 @@
           <span *ngIf="!isLoading">Enviar Solicitud</span>
           <span *ngIf="isLoading" class="loading-spinner"></span>
         </button>
-
+        
+        <button 
+          type="button"
+          (click)="volverAtras()"
+          class="cancel-btn">
+          Cancelar
+        </button>
       </form>
     </div>
-    <button (click)="volverAtras()">VOLVER</button>
 </div>

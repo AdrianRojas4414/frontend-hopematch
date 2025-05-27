@@ -58,6 +58,6 @@ export class EditarEncargadoComponent {
   }
   
   cancelarEdicion(): void {
-    this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+    this.router.navigate([`/perfil-encargado`]);
   }
 }

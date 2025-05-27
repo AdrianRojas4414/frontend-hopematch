@@ -63,6 +63,6 @@ export class CrearNinoComponent implements OnInit{
   }
 
   cancelarRegistro(): void {
-    this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+    this.router.navigate([`/ninos-hogar`]);
   }
 }
