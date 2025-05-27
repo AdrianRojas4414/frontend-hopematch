@@ -49,13 +49,6 @@
           <span *ngIf="isLoading" class="loading-spinner"></span>
         </button>
 
-        <button 
-          type="button" 
-          (click)="cancelar()" 
-          [disabled]="isLoading"
-          class="cancel-btn">
-          Cancelar
-        </button>
       </form>
     </div>
     <button (click)="volverAtras()">VOLVER</button>
