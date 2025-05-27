@@ -15,6 +15,7 @@
       <div class="nino-card" *ngFor="let nino of todosLosNinos">
         <div class="nino-detalles">
           <h4>{{ nino.nombre }}</h4>
+          <div><strong>CI:</strong> {{ nino.ci }}</div>
           <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
           <div><strong>Encargado:</strong> {{ nino.nombreHogar }}</div>
           <div>

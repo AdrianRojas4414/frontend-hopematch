@@ -23,6 +23,7 @@ export class GestionNinosComponent implements OnInit{
   
   encargados: any[] = [];
   todosLosNinos: any[] = [];
+  encargado_act: any = null;
 
   ngOnInit(): void {
     this.encargadoService.getEncargados().subscribe({
@@ -48,7 +49,7 @@ export class GestionNinosComponent implements OnInit{
         encargado.ninos.forEach((nino: any) => {
           this.todosLosNinos.push({
             ...nino,
-            nombreHogar: encargado.nombreHogar || encargado.nombre || 'Sin nombre de hogar'
+            nombreHogar: encargado.nombreHogar || encargado.nombre_hogar || 'Sin nombre de hogar'
           });
         });
       }
@@ -59,13 +60,17 @@ export class GestionNinosComponent implements OnInit{
     if (confirm('¿Estás seguro que deseas eliminar este niño? Esta acción es irreversible.')) {
       this.ninoService.deleteNino(idNino).subscribe({
         next: () => {
-          // Elimina el niño del array local
           this.todosLosNinos = this.todosLosNinos.filter((nino: any) => nino.id !== idNino);
           alert('Niño eliminado correctamente');
         },
         error: (err) => {
-          console.error('Error al eliminar el niño:', err);
-          alert(`Error al eliminar: ${err.error?.message || err.message || 'Error desconocido'}`);
+          console.error('Error completo:', err);
+          if (err.status === 200) { 
+            this.todosLosNinos = this.todosLosNinos.filter((nino: any) => nino.id !== idNino);
+            alert('Niño eliminado correctamente');
+          } else {
+            alert(`Error al eliminar: ${err.error?.message || err.message || 'Error desconocido'}`);
+          }
         }
       });
     }

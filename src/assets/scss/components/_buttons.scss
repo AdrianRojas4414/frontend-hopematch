@@ -1,6 +1,7 @@
 .btn {
     display: block;
     width: 100%;
+    min-width: 110px;
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-base);
     color: var(--color-neutral-base-black);
@@ -16,6 +17,7 @@
     border-radius: var(--border-radius-md);
     transition: var(--transition-base);
     box-shadow: var(--box-shadow-sm);
+    font-family: var(--font-family-base);
   
     &:disabled,
     &.disabled {
@@ -52,8 +54,8 @@
   
       &:hover:not(:disabled):not(.disabled) {
         //background-color: var(--color-neutral-base-white);
-        border-color: var(--color-primary-base-dark-60);
-        color: var(--color-primary-base-dark-60);
+        border-color: var(--color-third-base);
+        color: var(--color-third-base);
         box-shadow: var(--box-shadow-md);
       }
     }

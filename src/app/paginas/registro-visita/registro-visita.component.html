@@ -1,6 +1,6 @@
 <div class="visita-container">
     <div class="visita-card">
-      <h2 class="visita-title">Agendar Nueva Visita</h2>
+      <h2 class="visita-title">Agendar Nueva Visita al hogar {{encargado.nombre_hogar}} ID padrino: {{idPadrino}}, ID encargado: {{encargado.id}}</h2>
       <p class="visita-subtitle">Selecciona fecha y hora para tu visita</p>
   
       <div *ngIf="mensajeError" class="alert error">
@@ -58,4 +58,5 @@
         </button>
       </form>
     </div>
-  </div>
+    <button (click)="volverAtras()">VOLVER</button>
+</div>

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { jwtDecode } from 'jwt-decode';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-encargado',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './home-encargado.component.scss'
 })
 export class HomeEncargadoComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
 
   constructor(private route:ActivatedRoute, 
@@ -48,25 +50,25 @@ export class HomeEncargadoComponent implements OnInit{
 
   irPerfil(): void{
     if (this.encargado) {
-      this.router.navigate([`/perfil-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/perfil-encargado`]);
     }
   }
 
   irHogar(): void{
     if (this.encargado) {
-      this.router.navigate([`/hogar-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/hogar-encargado`]);
     }
   }
 
   irDonaciones(): void {
     if (this.encargado) {
-        this.router.navigate([`/encargado-donacion/${this.encargado.id}`]);
+        this.router.navigate([`/encargado-donacion`]);
     }
   }
 
   irNinos(): void {
     if (this.encargado) {
-        this.router.navigate([`/ninos-hogar/${this.encargado.id}`]);
+        this.router.navigate([`/ninos-hogar`]);
     }
   }
 }

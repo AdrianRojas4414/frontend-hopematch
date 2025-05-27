@@ -84,13 +84,13 @@ export class GestionPadrinosComponent implements OnInit {
     });
   }
 
-  verDetalles(padrino: any): void {
-    this.router.navigate([`/detalle-padrino/${padrino.id}`]);
+  verDetalles(id_padrino: any): void {
+    localStorage.setItem("id_padrino", id_padrino.toString());
+    this.router.navigate([`/perfil-padrino`]);
   }
 
   irPerfil(): void {
-    const id = this.authService.getUserId();
-    this.router.navigate([`/perfil-administrador/${id}`]);
+    this.router.navigate([`/perfil-administrador`]);
   }
 
   cerrarSesion(): void {

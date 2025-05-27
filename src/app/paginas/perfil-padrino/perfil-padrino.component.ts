@@ -12,6 +12,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 })
 export class PerfilPadrinoComponent implements OnInit{
   padrino: any = null;
+  mostrarBotonEditar: boolean = true;
 
   constructor(private route:ActivatedRoute, 
     private padrinoService: PadrinoService, 
@@ -21,20 +22,37 @@ export class PerfilPadrinoComponent implements OnInit{
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isPadrino = this.authService.isUserType('padrino');
+    const idPadrino_gestion = localStorage.getItem('id_padrino');
+    console.log(idPadrino_gestion);
 
-    if (isPadrino) {
-      this.padrinoService.getPadrinoById(+id).subscribe({
-        next: (data) => {
-          this.padrino = data;
-        },
-        error: (err) => {
-          console.error('Error al obtener encargado:', err);
-        }
-      });
+    if (id || idPadrino_gestion) {
+      if(!isPadrino && idPadrino_gestion){
+        this.mostrarBotonEditar = false;
+
+        this.padrinoService.getPadrinoById(+idPadrino_gestion).subscribe({
+          next: (data) => {
+            this.padrino = data;
+          },
+          error: (err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        });
+      }
+      else{
+        this.padrinoService.getPadrinoById(+id).subscribe({
+          next: (data) => {
+            this.padrino = data;
+          },
+          error: (err) => {
+            console.error('Error al obtener encargado:', err);
+          }
+        });
+      }
     }
   }
   
   cerrarSesion(): void {
+    localStorage.removeItem("id_padrino");
     this.authService.logout();
   }
 
@@ -48,5 +66,10 @@ export class PerfilPadrinoComponent implements OnInit{
     if (this.padrino) {
       this.router.navigate([`/home-padrino`]);
     }
+  }
+
+  VolverAHomeAdmin(){
+    localStorage.removeItem("id_padrino");
+    this.router.navigate([`/gestion-padrinos`]);
   }
 }

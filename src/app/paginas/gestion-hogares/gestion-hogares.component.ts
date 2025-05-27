@@ -47,8 +47,9 @@ export class GestionHogaresComponent implements OnInit{
     return 'No hay necesidades registradas.';
   }
 
-  irPerfil(idEncargado: number): void{
-    this.router.navigate([`/perfil-encargado/${idEncargado}`]);
+  verDetalles(idEncargado: number): void{
+    localStorage.setItem("idEncargado_gestion", idEncargado.toString());
+    this.router.navigate([`/perfil-encargado`]);
   }
 
   aprobarHogar(encargado: any):void{
@@ -79,7 +80,7 @@ export class GestionHogaresComponent implements OnInit{
     this.router.navigate(['/hogares-suspendidos']);
   }
 
-   volverAHome(): void {
-      this.router.navigate(['/home-administrador']);
-    }
+  volverHome(){
+    this.router.navigate(['/home-administrador']);
+  }
 }

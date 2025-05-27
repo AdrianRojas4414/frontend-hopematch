@@ -4,15 +4,18 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
+import { TEXTOS } from '../../config/constants';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-registro-donacion',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatRadioModule],
   templateUrl: './registro-donacion.component.html',
   styleUrls: ['./registro-donacion.component.scss']
 })
 export class RegistroDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donacion = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,
@@ -33,12 +36,18 @@ export class RegistroDonacionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const padrinoId = this.route.snapshot.paramMap.get('padrinoId');
-    const encargadoId = this.route.snapshot.paramMap.get('encargadoId');
-
+    const padrinoId = localStorage.getItem('padrinoId');
+    const encargadoId = localStorage.getItem('encargadoId');
+    
     if (padrinoId && encargadoId) {
       this.donacion.padrino_id = +padrinoId;
       this.donacion.encargado_id = +encargadoId;
+      console.log("padrino id", this.donacion.padrino_id);
+      console.log("encargado id", this.donacion.encargado_id);
+    }
+
+    else{
+      console.log("No se encontro el padrino id o encargado id");
     }
 
     this.cargarNecesidades();
@@ -92,6 +101,8 @@ export class RegistroDonacionComponent implements OnInit {
       next: (response) => {
         console.log('Donación registrada:', response);
         alert('Donación registrada con éxito');
+        localStorage.removeItem("padrinoId");
+        localStorage.removeItem("encargadoId");
         this.router.navigate(['/home-padrino']);
       },
       error: (error) => {

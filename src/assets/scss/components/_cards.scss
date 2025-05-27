@@ -3,12 +3,8 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
       min-height: 420px;
       width: 325px;
-      padding: var(--space-lg);
       border-radius: var(--border-radius-lg);
       box-shadow: var(--box-shadow-md);
       overflow: hidden;
@@ -72,4 +68,114 @@
         font-size: var(--font-size-lg);
       }
     }
+    &--simple-text{
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      max-width: 350px;
+      flex: 1 1 300px;
+      backdrop-filter: blur(4px);
+      padding: 20px;
+      h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 1rem;
+        color: #444;
+        text-align: left;
+      }
   }
+  &--form{
+    background-color: var(--color-neutral-base-white);
+    border-radius: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+    justify-content: center;
+    gap: 10px;
+    p{
+      text-align: left;
+    }
+  }
+
+  &--scrollable-list {
+    flex: 0 0 70%;
+    background-color: var(--color-neutral-base-black-light-84);
+    padding: 10px 10px;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    // border-width: 1px;
+    // border-color: #333;
+    // border-style: solid;
+  }
+
+  &--general{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-neutral-base-white);
+  }
+
+  &--selectable{
+      
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.05);
+      }
+      .icono img {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+      }
+
+      .contenido {
+        flex-grow: 1;
+        h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        p {
+            margin: 0.5rem 0 0;
+            font-size: 1rem;
+            color: #555;
+        }
+    }
+
+    .imagen {
+        width: 300px;
+        height: 150px;
+        background-color: #ddd;
+        border-radius: 8px;
+
+        img{
+            width: 300px;
+            height: 150px;
+            object-fit:cover;
+        }
+    }
+    }
+}

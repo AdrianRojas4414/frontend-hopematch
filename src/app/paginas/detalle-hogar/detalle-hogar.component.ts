@@ -45,7 +45,8 @@ export class DetalleHogarComponent implements OnInit{
   }
 
   agendarVisita(): void {
-    this.router.navigate(['/registro-visita', this.encargado.id]);
+    localStorage.setItem("idHogarVisita", this.encargado.id.toString());
+    this.router.navigate(['/registro-visita']);
   }
 
   cargarDonaciones(encargadoId: number): void {

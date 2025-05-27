@@ -41,7 +41,7 @@ export class PerfilAdministradorComponent implements OnInit {
 
   irEditarPerfil(): void {
     if (this.administrador) {
-      this.router.navigate([`/editar-perfil-administrador/${this.administrador.id}`]);
+      this.router.navigate([`/editar-perfil-administrador`]);
     }
   }
 
@@ -51,6 +51,5 @@ export class PerfilAdministradorComponent implements OnInit {
 
   cerrarSesion(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

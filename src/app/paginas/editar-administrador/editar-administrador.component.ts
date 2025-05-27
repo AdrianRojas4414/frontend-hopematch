@@ -23,8 +23,9 @@ export class EditarAdministradorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.adminService.getAdministradorById(id).subscribe(data => {
+    const id = this.authService.getUserId();
+
+    this.adminService.getAdministradorById(+id).subscribe(data => {
       this.administrador = data;
     });
   }
@@ -34,7 +35,7 @@ export class EditarAdministradorComponent implements OnInit {
       .subscribe({
         next: () => {
           alert('Administrador actualizado correctamente');
-          this.router.navigate([`/perfil-administrador/${this.administrador.id}`]);
+          this.router.navigate([`/perfil-administrador`]);
         },
         error: (err) => {
           console.error('Error al actualizar administrador:', err);
