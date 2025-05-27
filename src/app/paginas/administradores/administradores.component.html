@@ -1,0 +1,11 @@
+<div class="encargado-card" *ngFor="let administrador of administradores">
+    <div class="encargado-info">
+        <div class="encargado-foto">
+        </div>
+        <div class="encargado-detalles">
+        <h3>{{ administrador.nombre}}</h3>
+        <button (click)="irChat(administrador.id)">Chat</button>
+        
+        </div>
+    </div>
+</div>

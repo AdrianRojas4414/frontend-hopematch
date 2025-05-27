@@ -71,4 +71,8 @@ export class HomeEncargadoComponent implements OnInit{
         this.router.navigate([`/ninos-hogar`]);
     }
   }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
 }

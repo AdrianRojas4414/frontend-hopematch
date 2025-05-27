@@ -1,19 +1,30 @@
 <div class="chat-container">
   <button *ngIf="tipoUsuario == 'padrino'" (click)="agendarVisita()">Agendar Visita</button>
   <button (click)="volverAtras()">VOLVER</button>
-  <h3 *ngIf="tipoConversacion == 'encargado'"> Chat con {{encargado.nombre}}, encargado del hogar: {{encargado.nombre_hogar}}</h3>
-  <h3 *ngIf="tipoConversacion == 'padrino'"> Chat con el padrino {{padrino.nombre}}</h3>
-  <h3 *ngIf="tipoConversacion == 'administrador'"> Chat con el administrador de Hopematch: {{administrador.nombre}}</h3>
+
+  <h3 *ngIf="tipoConversacion == 'encargado'">
+    Chat con {{ encargado?.nombre }}, encargado del hogar: {{ encargado?.nombre_hogar }}
+  </h3>
+  <h3 *ngIf="tipoConversacion == 'padrino'">
+    Chat con el padrino {{ padrino?.nombre }}
+  </h3>
+  <h3 *ngIf="tipoConversacion == 'administrador'">
+    Chat con el administrador de Hopematch: {{ administrador?.nombre }}
+  </h3>
+
   <div class="mensajes">
-    <div *ngIf="mensajes.length === 0" class="sin-mensajes">
-        No hay mensajes en esta conversación.
+    <div *ngIf="mensajesOrdenados.length === 0" class="sin-mensajes">
+      No hay mensajes en esta conversación.
     </div>
-    <div *ngFor="let msg of mensajes" 
-         class="mensaje" 
-         [ngClass]="{'mensaje-enviado': msg.idRemitente === idUsuario && msg.remitente === tipoUsuario, 
-                     'mensaje-recibido': msg.remitente != tipoUsuario && msg.destinatario === tipoUsuario}">
-      <span>{{ msg.mensaje }}</span>
-      <small>{{ msg.fecha | date:'short' }}</small>
+
+    <div *ngFor="let msg of mensajesOrdenados"
+        class="mensaje"
+        [ngClass]="{
+          'mensaje-enviado': msg.idRemitente === idUsuario && msg.remitente === tipoUsuario,
+          'mensaje-recibido': msg.destinatario === tipoUsuario
+        }">
+      <span>{{ msg.mensaje }}  </span>
+      <small>{{ msg.fecha | date: 'short' }}</small>
     </div>
   </div>
 

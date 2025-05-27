@@ -29,6 +29,8 @@ import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/pad
 import { GestionHogaresComponent } from './paginas/gestion-hogares/gestion-hogares.component';
 import { HogaresSuspendidosComponent } from './paginas/hogares-suspendidos/hogares-suspendidos.component';
 import { ChatComponent } from './paginas/chat/chat.component';
+import { AdministradorService } from './servicios/administrador.service';
+import { AdministradoresComponent } from './paginas/administradores/administradores.component';
 
 export const routes: Routes = [
     {path:'', component: InicioComponent, title:"Hopematch"},
@@ -62,5 +64,6 @@ export const routes: Routes = [
     { path: 'registro-visita', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion Ninos'},
     {path: 'chat', component: ChatComponent, title: 'Chat Hopematch'},
+    {path: 'administradores', component: AdministradoresComponent, title: 'Administradores'},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

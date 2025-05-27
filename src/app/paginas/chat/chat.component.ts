@@ -27,15 +27,15 @@ export class ChatComponent implements OnInit{
   {}
 
   idUsuario: number = 0;
-  tipoUsuario: string | null = null;
+  tipoUsuario: any = null;
   idConversacion: any = null;
-  tipoConversacion: string | null = null;
+  tipoConversacion: any = null;
   padrino: any = null;
   encargado: any = null;
   administrador: any = null;
-  nombreUsuario: any = null;
-  nombreDestinatario: any = null;
-  mensajes: Mensaje[] = [];
+  mensajesOrdenados: Mensaje[] = [];
+  enviadosFiltrados: Mensaje[] = [];
+  recibidosFiltrados: Mensaje[] = [];
   nuevoMensaje: string = '';
 
   ngOnInit(): void {
@@ -47,61 +47,35 @@ export class ChatComponent implements OnInit{
 
     if(this.idUsuario === 0){
         this.router.navigate(['#']);
-      }
+    }
 
-      if (this.idUsuario != 0) {
-          if (this.tipoUsuario == 'padrino'){
-            this.getPadrino(this.idUsuario, 'usuario');
+    if (this.idUsuario != 0) {
+        if (this.tipoUsuario == 'padrino'){
+          this.getPadrino(this.idUsuario);
+          if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
+          if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
+        }
 
-            if(this.tipoConversacion == 'encargado'){
-              this.getEncargado(this.idConversacion, 'conversacion');
-            }
+        if (this.tipoUsuario == 'encargado'){
+          this.getEncargado(this.idUsuario);
+          if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
+          if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
+        }
 
-            if(this.tipoConversacion == 'administrador'){
-              this.getAdministrador(this.idConversacion, 'conversacion');
-            }
-          }
-
-          if (this.tipoUsuario == 'encargado'){
-            this.getEncargado(this.idUsuario, 'usuario');
-
-            if(this.tipoConversacion == 'padrino'){
-              this.getPadrino(this.idConversacion, 'conversacion');
-            }
-
-            if(this.tipoConversacion == 'administrador'){
-              this.getAdministrador(this.idConversacion, 'conversacion');
-            }
-          }
-
-          if (this.tipoUsuario == 'administrador'){
-            this.getAdministrador(this.idUsuario, 'usuario');
-
-            if(this.tipoConversacion == 'padrino'){
-              this.getPadrino(this.idConversacion, 'conversacion');
-            }
-
-            if(this.tipoConversacion == 'encargado'){
-              this.getEncargado(this.idConversacion, 'conversacion');
-            }
-          }
-        
-        this.cargarMensajes();
+        if (this.tipoUsuario == 'administrador'){
+          this.getAdministrador(this.idUsuario);
+          if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
+          if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
+        }
       
-      }
+      this.cargarMensajes();
+    }
   }
 
-  getPadrino(id:any, tipo:string): void{
+  getPadrino(id:any): void{
     this.padrinoService.getPadrinoById(+id).subscribe({
       next: (data) => {
         this.padrino = data;
-
-        if(tipo == 'usuario'){
-          this.nombreUsuario = this.padrino.nombre;
-        }
-        if(tipo == 'conversacion'){
-          this.nombreDestinatario = this.padrino.nombre;
-        }
       },
       error: (err) => {
         console.error('Error al obtener datos del padrino:', err);
@@ -109,17 +83,10 @@ export class ChatComponent implements OnInit{
     });
   }
 
-  getEncargado(id:any, tipo:string): void{
+  getEncargado(id:any): void{
     this.encargadoService.getEncargadoById(+id).subscribe({
       next: (data) => {
         this.encargado = data;
-
-        if(tipo == 'usuario'){
-          this.nombreUsuario = this.encargado.nombre;
-        }
-        if(tipo == 'conversacion'){
-          this.nombreDestinatario = this.encargado.nombre;
-        }
       },
       error: (err) => {
         console.error('Error al obtener datos del encargado:', err);
@@ -127,17 +94,10 @@ export class ChatComponent implements OnInit{
     });
   }
 
-  getAdministrador(id:any, tipo:string):void{
+  getAdministrador(id:any):void{
     this.administradorService.getAdministradorById(+id).subscribe({
       next: (data) => {
         this.administrador = data;
-
-        if(tipo == 'usuario'){
-          this.nombreUsuario = this.administrador.nombre;
-        }
-        if(tipo == 'conversacion'){
-          this.nombreDestinatario = this.administrador.nombre;
-        }
       },
       error: (err) => {
         console.error('Error al obtener datos del administrador:', err);
@@ -146,26 +106,31 @@ export class ChatComponent implements OnInit{
   }
 
   cargarMensajes(): void {
-    const remitenteId = this.idUsuario;
-    const destinatarioId = Number(this.idConversacion);
+    const remitenteId = +this.idUsuario;
+    const destinatarioId = +this.idConversacion;
 
-    console.log("Remitente (idUsuario):", remitenteId);
-    console.log("Destinatario (idConversacion):", destinatarioId);
+    console.log("tipo usuario", this.tipoUsuario);
+    console.log("tipo conversacion", this.tipoConversacion);
 
     if (!remitenteId || !destinatarioId) return;
 
     this.mensajeService.obtenerMensajesPorRemitente(remitenteId).subscribe(mensajesEnviados => {
-      const enviadosFiltrados = mensajesEnviados.filter(m => m.idDestinatario === destinatarioId);
+      this.enviadosFiltrados = mensajesEnviados.filter(m => m.idDestinatario === destinatarioId && m.destinatario != m.remitente && m.remitente === this.tipoUsuario && m.destinatario === this.tipoConversacion);
       this.mensajeService.obtenerMensajesPorDestinatario(remitenteId).subscribe(mensajesRecibidos => {
-          const recibidosFiltrados = mensajesRecibidos.filter(m => m.idRemitente === destinatarioId);
+          this.recibidosFiltrados = mensajesRecibidos.filter(m => m.idRemitente === destinatarioId && m.destinatario != m.remitente && m.remitente === this.tipoConversacion && m.destinatario === this.tipoUsuario);
+
+          if(this.enviadosFiltrados.length == 0 && this.recibidosFiltrados.length == 0) return;
 
           // Quitar duplicados por ID de mensaje
-          const todos = [...enviadosFiltrados, ...recibidosFiltrados];
+          const todos = [...this.enviadosFiltrados, ...this.recibidosFiltrados];
           const unicos = todos.filter((m, index, self) =>
             index === self.findIndex((t) => t.id === m.id)
           );
 
-          this.mensajes = unicos.sort((a, b) => new Date(a.fecha!).getTime() - new Date(b.fecha!).getTime());
+          // Ordenar cronológicamente
+          this.mensajesOrdenados = unicos.sort(
+            (a, b) => new Date(a.fecha!).getTime() - new Date(b.fecha!).getTime()
+          );
         });
       });
   }
@@ -174,10 +139,10 @@ export class ChatComponent implements OnInit{
     if (!this.nuevoMensaje.trim()) return;
 
     const mensaje: Mensaje = {
-      idRemitente: this.idUsuario,
+      idRemitente: +this.idUsuario,
       idDestinatario: +this.idConversacion,
-      remitente: this.nombreUsuario,
-      destinatario: this.nombreDestinatario,
+      remitente: this.tipoUsuario,
+      destinatario: this.tipoConversacion,
       mensaje: this.nuevoMensaje
     };
 
