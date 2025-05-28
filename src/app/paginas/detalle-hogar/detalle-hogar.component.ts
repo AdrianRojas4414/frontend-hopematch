@@ -49,6 +49,12 @@ export class DetalleHogarComponent implements OnInit{
     this.router.navigate(['/registro-visita']);
   }
 
+  irChat(): void{
+    localStorage.setItem("idConversacion", this.encargado.id.toString());
+    localStorage.setItem("tipoConversacion",'encargado');
+    this.router.navigate(['/chat']);
+  }
+
   cargarDonaciones(encargadoId: number): void {
     this.donacionService.getDonacionesByEncargado(encargadoId).subscribe({
       next: (data) => {
@@ -97,6 +103,6 @@ export class DetalleHogarComponent implements OnInit{
 
   volverAtras() {
     localStorage.removeItem("idHogar");
-    window.history.back();
+    this.router.navigate(['/home-padrino']);
   }
 }

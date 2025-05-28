@@ -1,0 +1,78 @@
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #f6f6f6;
+  min-height: 92vh;
+
+  .perfil-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .logo {
+      max-width: 80px;
+    }
+
+    .perfil-nav {
+      display: flex;
+      gap: 2rem;
+
+      a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #333;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .administradores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .admin-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #3f51b5;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3244a7;
+    }
+  }
+}
+
+.saludo {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #3f51b5;
+  }
+
+  h2{
+    margin: 0px 0px 30px 0px;
+  }

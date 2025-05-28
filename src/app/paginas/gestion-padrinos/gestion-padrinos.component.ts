@@ -100,4 +100,14 @@ export class GestionPadrinosComponent implements OnInit {
   verSuspendidos(): void{
     this.router.navigate(['/padrinos-suspendidos'])
   }
+
+  irChat(idPadrino: any): void{
+    localStorage.setItem("idConversacion", idPadrino.toString());
+    localStorage.setItem("tipoConversacion",'padrino');
+    this.router.navigate(['/chat']);
+  }
+
+  volverAHome():void{
+    window.history.back();
+  }
 }

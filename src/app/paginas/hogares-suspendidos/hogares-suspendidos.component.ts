@@ -51,4 +51,15 @@ export class HogaresSuspendidosComponent implements OnInit {
       localStorage.setItem("idEncargado_gestion", idEncargado.toString());
       this.router.navigate([`/perfil-encargado`]);
     }
+
+    irChat(idEncargado: any): void{
+      localStorage.setItem("idConversacion", idEncargado.toString());
+      localStorage.setItem("tipoConversacion",'encargado');
+      this.router.navigate(['/chat']);
+    }
+
+    volverAGestion():void{
+      window.history.back();
+    }
+
 }
