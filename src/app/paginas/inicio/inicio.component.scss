@@ -11,6 +11,11 @@
     background-size:cover;
     background-position: center;
     color: var(--color-neutral-base-white);
+    display: flex;
+    flex-direction: column;
+    h2{
+      margin-bottom: 20px;
+    }
     .about-columns {
       display: flex;
       flex-wrap: wrap;
@@ -19,6 +24,7 @@
     }
     .about-text p{
       font-size: 1rem;
+      margin-bottom: 20px;
     }
   }
   
