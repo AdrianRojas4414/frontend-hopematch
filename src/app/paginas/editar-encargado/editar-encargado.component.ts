@@ -36,37 +36,51 @@ export class EditarEncargadoComponent implements OnInit {
     }
   }
 
-  
-  validarCampos(): boolean {
-    if (!this.encargado.nombre || this.encargado.nombre.trim().length < 3) {
+  private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor?.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
       return false;
     }
-
-    if (!this.encargado.celular || !/^\d{8}$/.test(this.encargado.celular)) {
-      return false;
-    }
-
-    if (!this.encargado.direccion_hogar || !this.encargado.direccion_hogar.trim()) {
-      return false;
-    }
-
-    if (!this.encargado.descripcion || this.encargado.descripcion.trim().length < 20) {
-      return false;
-    }
-
-    if (this.encargado.contrasenia && this.encargado.contrasenia.length < 8) {
-      return false;
-    }
-
     return true;
   }
 
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor?.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarCelular(celular: string): boolean {
+    if (!/^\d{8}$/.test(celular)) {
+      alert('El celular debe tener exactamente 8 dígitos');
+      return false;
+    }
+    return true;
+  }
+
+  private validarContrasenia(contrasenia: string): boolean {
+    if (contrasenia && contrasenia.length < 8) {
+      alert('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    }
+    return true;
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.encargado.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.encargado.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.encargado.celular, 'celular') &&
+           this.validarCelular(this.encargado.celular) &&
+           this.validarCampoRequerido(this.encargado.direccion_hogar, 'dirección del hogar') &&
+           this.validarCampoRequerido(this.encargado.descripcion, 'descripción') &&
+           this.validarLongitudMinima(this.encargado.descripcion, 'descripción', 20) &&
+           this.validarContrasenia(this.encargado.contrasenia);
+  }
 
   updateEncargado(): void {
-    if (!this.validarCampos()) {
-      alert('Por favor complete todos los campos correctamente');
-      return;
-    }
+    if (!this.validarFormulario()) return;
 
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe({

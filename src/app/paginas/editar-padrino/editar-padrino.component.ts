@@ -36,27 +36,48 @@ export class EditarPadrinoComponent implements OnInit {
     }
   }
 
-  validarCampos(): boolean {
-    if (!this.padrino.nombre || this.padrino.nombre.trim().length < 3) {
+   private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor?.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
       return false;
     }
-
-    if (!this.padrino.celular || !/^\d{8}$/.test(this.padrino.celular)) {
-      return false;
-    }
-
-    if (this.padrino.contrasenia && this.padrino.contrasenia.length < 8) {
-      return false;
-    }
-
     return true;
   }
 
-  updatePadrino(): void {
-    if (!this.validarCampos()) {
-      alert('Por favor complete todos los campos correctamente');
-      return;
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor?.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
     }
+    return true;
+  }
+
+  private validarCelular(celular: string): boolean {
+    if (!/^\d{8}$/.test(celular)) {
+      alert('El celular debe tener exactamente 8 dígitos');
+      return false;
+    }
+    return true;
+  }
+
+  private validarContrasenia(contrasenia: string): boolean {
+    if (contrasenia && contrasenia.length < 8) {
+      alert('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    }
+    return true;
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.padrino.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.padrino.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.padrino.celular, 'celular') &&
+           this.validarCelular(this.padrino.celular) &&
+           this.validarContrasenia(this.padrino.contrasenia);
+  }
+
+  updatePadrino(): void {
+    if (!this.validarFormulario()) return;
     
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe({

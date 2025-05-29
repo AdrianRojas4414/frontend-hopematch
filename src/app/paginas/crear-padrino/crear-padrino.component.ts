@@ -22,91 +22,103 @@ export class CrearPadrinoComponent {
     contrasenia: '',
     estado: 'En revision'
   };
-
+  
   constructor(
     private padrinoService: PadrinoService, 
     private router: Router, 
     private authService: UserAuthenticationService
   ) {}
+      
+  private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
+      return false;
+    }
+    return true;
+  }
 
-  private validarFormatoEmail(email: string): boolean {
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarEmail(email: string): boolean {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
+    if (!emailRegex.test(email)) {
+      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
+      return false;
+    }
+    return true;
   }
 
   private validarContrasenia(contrasenia: string): boolean {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(contrasenia);
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(contrasenia)) {
+      alert('La contraseña debe contener al menos:\n- Una letra mayúscula\n- Una letra minúscula\n- Un número\n- Un carácter especial (@$!%*?&)');
+      return false;
+    }
+    return true;
   }
 
-  private async validarEmailUnico(email: string): Promise<boolean> {
+  private validarCelular(celular: string): boolean {
+    if (!/^\d{8}$/.test(celular)) {
+      alert('El celular debe tener exactamente 8 dígitos');
+      return false;
+    }
+    return true;
+  }   
+      
+  private async verificarEmailUnico(email: string): Promise<boolean> {
     try {
       const padrinos = await this.padrinoService.getPadrinos().toPromise();
-      return !padrinos.some((p: any) => p.email === email);
-    } catch (error) {
-      console.error('Error al verificar email:', error);
+      const existe = padrinos.some((padrino: any) => padrino.email === email);
+      if (existe) {
+        alert('Este email ya está registrado. Por favor use otro.');
+      }
+      return !existe;
+    } catch {
       return true;
     }
   }
 
-  private validarCampos(): boolean {
-    if (!this.padrino.nombre || !this.padrino.celular || 
-        !this.padrino.email || !this.padrino.contrasenia) {
-      return false;
-    }
-
-    if (this.padrino.nombre.trim().length < 3) {
-      return false;
-    }
-
-    if (!this.validarFormatoEmail(this.padrino.email)) {
-      return false;
-    }
-
-    if (!/^\d{8}$/.test(this.padrino.celular)) {
-      return false;
-    }
-
-    if (!this.validarContrasenia(this.padrino.contrasenia)) {
-      return false;
-    }
-
-    return true;
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.padrino.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.padrino.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.padrino.celular, 'celular') &&
+           this.validarCelular(this.padrino.celular) &&
+           this.validarCampoRequerido(this.padrino.email, 'email') &&
+           this.validarEmail(this.padrino.email) &&
+           this.validarCampoRequerido(this.padrino.contrasenia, 'contraseña') &&
+           this.validarLongitudMinima(this.padrino.contrasenia, 'contraseña', 8) &&
+           this.validarContrasenia(this.padrino.contrasenia);
   }
 
   async registrarPadrino(): Promise<void> {
-    if (!this.validarCampos()) {
-      alert("Por favor complete todos los campos correctamente");
-      return;
-    }
-
-    const emailUnico = await this.validarEmailUnico(this.padrino.email);
-    if (!emailUnico) {
-      alert("No se puede completar el registro");
-      return;
-    }
+    if (!this.validarFormulario()) return;
+    if (!await this.verificarEmailUnico(this.padrino.email)) return;
 
     this.padrinoService.createPadrino(this.padrino).subscribe({
       next: (response) => {
-        console.log('Padrino registrado con éxito!', response);
         alert('Padrino registrado con éxito!');
         this.authService.login(this.padrino.email, this.padrino.contrasenia, 'padrino').subscribe({
-          next: () => {
-            this.router.navigate(['/home-padrino']);
-          },
+          next: () => this.router.navigate(['/home-padrino']),
           error: (err) => {
-            console.error('Error al iniciar sesión después del registro:', err);
+            console.error('Error al iniciar sesión:', err);
             alert('Registro exitoso, pero error al iniciar sesión.');
           }
         });
       },
       error: (err) => {
-        console.error('Error al registrar padrino:', err);
-        alert('Error al registrar padrino. Por favor intente nuevamente.');
+        console.error('Error al registrar:', err);
+        alert('Error al registrar padrino. Intente nuevamente.');
       }
     });
   }
+
   cancelarRegistro(): void {
-    this.router.navigate(['/inicio']);
-  }
+      this.router.navigate(['/inicio']);
+    }
+
 }

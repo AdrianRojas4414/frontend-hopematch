@@ -48,11 +48,38 @@ export class EditarAdministradorComponent implements OnInit {
     return true;
   }
 
-  updateAdministrador(): void {
-    if (!this.validarCampos()) {
-      alert('Por favor complete todos los campos correctamente');
-      return;
+   private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor?.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
+      return false;
     }
+    return true;
+  }
+
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor?.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarContrasenia(contrasenia: string): boolean {
+    if (contrasenia && contrasenia.length < 8) {
+      alert('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    }
+    return true;
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.administrador.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.administrador.nombre, 'nombre', 3) &&
+           this.validarContrasenia(this.administrador.contrasenia);
+  }
+
+  updateAdministrador(): void {
+    if (!this.validarFormulario()) return;
 
     this.adminService.updateAdministrador(this.administrador.id, this.administrador)
       .subscribe({
