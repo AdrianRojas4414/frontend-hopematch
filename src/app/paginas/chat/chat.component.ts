@@ -29,13 +29,14 @@ export class ChatComponent implements OnInit{
   recibidosFiltrados: Mensaje[] = [];
   nuevoMensaje: string = '';
 
-  constructor(private authService: UserAuthenticationService, 
-              private router: Router,
-              private padrinoService: PadrinoService,
-              private encargadoService: EncargadoService,
-              private administradorService: AdministradorService,
-              private mensajeService: MensajeService)
-  {}
+  constructor(
+    private authService: UserAuthenticationService, 
+    private router: Router,
+    private padrinoService: PadrinoService,
+    private encargadoService: EncargadoService,
+    private administradorService: AdministradorService,
+    private mensajeService: MensajeService
+  ){}
 
   ngOnInit(): void {
     this.idUsuario = this.authService.getUserId();

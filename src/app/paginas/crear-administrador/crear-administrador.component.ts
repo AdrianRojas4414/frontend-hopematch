@@ -21,7 +21,11 @@ export class CrearAdministradorComponent {
     contrasenia: ''
   };
 
-  constructor(private administradorService: AdministradorService, private router: Router, private authService: UserAuthenticationService) {}
+  constructor(
+    private administradorService: AdministradorService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ) {}
 
   registrarAdministrador(): void {
 

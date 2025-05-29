@@ -26,7 +26,11 @@ export class CrearEncargadoComponent {
     descripcion:''
   }
 
-  constructor(private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
+  constructor(
+    private encargadoService: EncargadoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ){}
 
   registrarEncargado(): void {
     if(this.encargado.nombre == '' || this.encargado.celular == '' || this.encargado.email == '' || 
