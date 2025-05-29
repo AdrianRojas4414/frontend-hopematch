@@ -18,7 +18,6 @@ export class EditarNinoComponent {
   nuevaNecesidad: string = ''; 
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private ninoService: NinoService,
     private authService: UserAuthenticationService
@@ -27,8 +26,13 @@ export class EditarNinoComponent {
   ngOnInit(): void {
     const id = localStorage.getItem('idNino');
     this.idEncargado = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if(id){
+    if(this.idEncargado === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
+
+    if(id && isEncargado){
       this.ninoService.getNinoById(+id).subscribe((data: any) => {
         this.nino = data;
         if (!this.nino.necesidades) {

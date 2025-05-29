@@ -3,33 +3,42 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-hogares-suspendidos',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './hogares-suspendidos.component.html',
   styleUrl: './hogares-suspendidos.component.scss'
 })
 export class HogaresSuspendidosComponent implements OnInit {
-
   encargados: any[] = [];
   encargadosSuspendidos: any[] = [];
 
   constructor(
-      private route: ActivatedRoute,
       private router: Router,
-      private encargadoService: EncargadoService
+      private encargadoService: EncargadoService,
+      private authService: UserAuthenticationService
     ) {}
 
     ngOnInit(): void {
-      this.encargadoService.getEncargados().subscribe(
-        data => {
-          this.encargados = data;
-          this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'En suspencion' || e.estado === 'Rechazado');
-        },
-        error => console.log(error),
-        () => console.log('Encargados Obtenidos Exitosamente!')
-      );
+      const id = this.authService.getUserId();
+      const isAdmin= this.authService.isUserType('administrador');
+
+      if(id === 0  || !isAdmin){
+        this.router.navigate(['#']);
+      }
+
+      if(isAdmin){
+        this.encargadoService.getEncargados().subscribe(
+          data => {
+            this.encargados = data;
+            this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'Suspendido');
+          },
+          error => console.log(error),
+          () => console.log('Encargados Obtenidos Exitosamente!')
+        );
+      }
     }
 
     getNecesidadesAsString(encargado: any): string {
@@ -61,5 +70,4 @@ export class HogaresSuspendidosComponent implements OnInit {
     volverAGestion():void{
       window.history.back();
     }
-
 }

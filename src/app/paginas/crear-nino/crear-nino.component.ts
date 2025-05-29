@@ -19,7 +19,6 @@ export class CrearNinoComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService
@@ -27,15 +26,21 @@ export class CrearNinoComponent implements OnInit{
 
   ngOnInit(): void {
     this.idEncargado = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    this.ninoForm = this.fb.group({
-      ci: ['', Validators.required],
-      nombre: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      necesidades: this.fb.array([])
-    });
+    if(this.idEncargado === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
 
-    this.necesidadesArray = this.ninoForm.get('necesidades') as FormArray;
+    if(isEncargado){
+      this.ninoForm = this.fb.group({
+        ci: ['', Validators.required],
+        nombre: ['', Validators.required],
+        fechaNacimiento: ['', Validators.required],
+        necesidades: this.fb.array([])
+      });
+      this.necesidadesArray = this.ninoForm.get('necesidades') as FormArray;
+    }
   }
 
   addNecesidad(necesidadInput: HTMLInputElement): void {

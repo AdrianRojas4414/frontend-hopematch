@@ -17,15 +17,6 @@ import { MatRadioModule } from '@angular/material/radio';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent implements OnInit{
-
-  constructor(private authService: UserAuthenticationService, 
-              private router: Router,
-              private padrinoService: PadrinoService,
-              private encargadoService: EncargadoService,
-              private administradorService: AdministradorService,
-              private mensajeService: MensajeService)
-  {}
-
   idUsuario: number = 0;
   tipoUsuario: any = null;
   idConversacion: any = null;
@@ -38,8 +29,16 @@ export class ChatComponent implements OnInit{
   recibidosFiltrados: Mensaje[] = [];
   nuevoMensaje: string = '';
 
-  ngOnInit(): void {
+  constructor(
+    private authService: UserAuthenticationService, 
+    private router: Router,
+    private padrinoService: PadrinoService,
+    private encargadoService: EncargadoService,
+    private administradorService: AdministradorService,
+    private mensajeService: MensajeService
+  ){}
 
+  ngOnInit(): void {
     this.idUsuario = this.authService.getUserId();
     this.tipoUsuario = this.authService.getUserType();
     this.idConversacion = localStorage.getItem('idConversacion');
@@ -50,24 +49,23 @@ export class ChatComponent implements OnInit{
     }
 
     if (this.idUsuario != 0) {
-        if (this.tipoUsuario == 'padrino'){
-          this.getPadrino(this.idUsuario);
-          if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
-          if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
-        }
+      if (this.tipoUsuario == 'padrino'){
+        this.getPadrino(this.idUsuario);
+        if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
+        if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
+      }
 
-        if (this.tipoUsuario == 'encargado'){
-          this.getEncargado(this.idUsuario);
-          if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
-          if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
-        }
+      if (this.tipoUsuario == 'encargado'){
+        this.getEncargado(this.idUsuario);
+        if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
+        if(this.tipoConversacion == 'administrador') this.getAdministrador(this.idConversacion);
+      }
 
-        if (this.tipoUsuario == 'administrador'){
-          this.getAdministrador(this.idUsuario);
-          if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
-          if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
-        }
-      
+      if (this.tipoUsuario == 'administrador'){
+        this.getAdministrador(this.idUsuario);
+        if(this.tipoConversacion == 'padrino') this.getPadrino(this.idConversacion);
+        if(this.tipoConversacion == 'encargado') this.getEncargado(this.idConversacion);
+      }
       this.cargarMensajes();
     }
   }
@@ -109,9 +107,6 @@ export class ChatComponent implements OnInit{
     const remitenteId = +this.idUsuario;
     const destinatarioId = +this.idConversacion;
 
-    console.log("tipo usuario", this.tipoUsuario);
-    console.log("tipo conversacion", this.tipoConversacion);
-
     if (!remitenteId || !destinatarioId) return;
 
     this.mensajeService.obtenerMensajesPorRemitente(remitenteId).subscribe(mensajesEnviados => {
@@ -121,13 +116,11 @@ export class ChatComponent implements OnInit{
 
           if(this.enviadosFiltrados.length == 0 && this.recibidosFiltrados.length == 0) return;
 
-          // Quitar duplicados por ID de mensaje
           const todos = [...this.enviadosFiltrados, ...this.recibidosFiltrados];
           const unicos = todos.filter((m, index, self) =>
             index === self.findIndex((t) => t.id === m.id)
           );
 
-          // Ordenar cronológicamente
           this.mensajesOrdenados = unicos.sort(
             (a, b) => new Date(a.fecha!).getTime() - new Date(b.fecha!).getTime()
           );

@@ -6,6 +6,7 @@ import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
 import { TEXTOS } from '../../config/constants';
 import {MatRadioModule} from '@angular/material/radio';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-registro-donacion',
@@ -29,28 +30,33 @@ export class RegistroDonacionComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private route: ActivatedRoute,
     private donacionService: DonacionService,
     private ninoService: NinoService,
-    private router: Router
+    private router: Router,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
     const padrinoId = localStorage.getItem('padrinoId');
     const encargadoId = localStorage.getItem('encargadoId');
-    
-    if (padrinoId && encargadoId) {
-      this.donacion.padrino_id = +padrinoId;
-      this.donacion.encargado_id = +encargadoId;
-      console.log("padrino id", this.donacion.padrino_id);
-      console.log("encargado id", this.donacion.encargado_id);
+
+    const id = this.authService.getUserId();
+    const isPadrino= this.authService.isUserType('padrino');
+
+    if(id === 0  || !isPadrino){
+      this.router.navigate(['#']);
     }
 
-    else{
-      console.log("No se encontro el padrino id o encargado id");
+    if(isPadrino){
+      if (padrinoId && encargadoId) {
+        this.donacion.padrino_id = +padrinoId;
+        this.donacion.encargado_id = +encargadoId;
+      }
+      else{
+        console.log("No se encontro el padrino id o encargado id");
+      }
+      this.cargarNecesidades();
     }
-
-    this.cargarNecesidades();
   }
 
   cargarNecesidades(): void {

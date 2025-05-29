@@ -8,13 +8,12 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-gestion-ninos',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gestion-ninos.component.html',
   styleUrl: './gestion-ninos.component.scss'
 })
 export class GestionNinosComponent implements OnInit{
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private ninoService: NinoService,
@@ -26,21 +25,29 @@ export class GestionNinosComponent implements OnInit{
   encargado_act: any = null;
 
   ngOnInit(): void {
-    this.encargadoService.getEncargados().subscribe({
-      next: (data) => {
-        this.encargados = data;
-        this.recolectarTodosLosNinos();
-      },
-      error: (err) => {
-        console.error('Error al obtener encargados:', err);
-      }
-    });
+    const id = this.authService.getUserId();
+    const isAdmin= this.authService.isUserType('administrador');
+
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+
+    if(isAdmin){
+      this.encargadoService.getEncargados().subscribe({
+        next: (data) => {
+          this.encargados = data;
+          this.recolectarTodosLosNinos();
+        },
+        error: (err) => {
+          console.error('Error al obtener encargados:', err);
+        }
+      });
+    }
   }
 
   cerrarSesion(): void {
     this.authService.logout();
   }
-
 
   recolectarTodosLosNinos(): void {
     this.todosLosNinos = [];
@@ -49,7 +56,8 @@ export class GestionNinosComponent implements OnInit{
         encargado.ninos.forEach((nino: any) => {
           this.todosLosNinos.push({
             ...nino,
-            nombreHogar: encargado.nombreHogar || encargado.nombre_hogar || 'Sin nombre de hogar'
+            nombreHogar: encargado.nombreHogar || encargado.nombre_hogar || 'Sin nombre de hogar',
+            nombreEncargado: encargado.nombre || encargado.nombre || 'Sin nombre de encargado'
           });
         });
       }

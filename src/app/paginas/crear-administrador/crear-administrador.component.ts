@@ -9,7 +9,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 @Component({
   selector: 'app-crear-administrador',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-administrador.component.html',
   styleUrls: ['./crear-administrador.component.scss']
 })
@@ -21,7 +21,11 @@ export class CrearAdministradorComponent {
     contrasenia: ''
   };
 
-  constructor(private administradorService: AdministradorService, private router: Router, private authService: UserAuthenticationService) {}
+  constructor(
+    private administradorService: AdministradorService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ) {}
 
   registrarAdministrador(): void {
 

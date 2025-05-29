@@ -16,7 +16,6 @@ export class EditarEncargadoComponent {
   encargado: any = {};
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService
@@ -25,6 +24,10 @@ export class EditarEncargadoComponent {
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
+
+    if(id === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
 
     if(isEncargado){
       this.encargadoService.getEncargadoById(id).subscribe(data => {
@@ -43,10 +46,10 @@ export class EditarEncargadoComponent {
 
   eliminarEncargado(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
-      this.encargado.estado = "En suspencion";
+      this.encargado.estado = "Suspendido";
       this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(()=> {
-        alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
         this.authService.logout();
         console.log(this.encargado)
         window.history.back();

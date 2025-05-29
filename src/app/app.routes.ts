@@ -24,7 +24,6 @@ import { EditarAdministradorComponent } from './paginas/editar-administrador/edi
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
 import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
 import { GestionPadrinosComponent } from './paginas/gestion-padrinos/gestion-padrinos.component';
-import { DetallePadrinoComponent } from './paginas/detalle-padrino/detalle-padrino.component';
 import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/padrinos-suspendidos.component';
 import { GestionHogaresComponent } from './paginas/gestion-hogares/gestion-hogares.component';
 import { HogaresSuspendidosComponent } from './paginas/hogares-suspendidos/hogares-suspendidos.component';
@@ -57,11 +56,10 @@ export const routes: Routes = [
     {path: 'perfil-administrador', component: PerfilAdministradorComponent, title: 'Perfil Administrador' },
     {path: 'editar-perfil-administrador', component: EditarAdministradorComponent, title: 'Edicion Perfil Administrador' },
     {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestion Padrinos'},
-    {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle Padrinos'},
     {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestion Padrinos Suspendidos'},
     {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion Hogares'},
     {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Gestion Hogares Suspendidos'},
-    { path: 'registro-visita', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    {path: 'registro-visita', component: RegistroVisitaComponent, title: 'Registrar Visita' },
     {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion Ninos'},
     {path: 'chat', component: ChatComponent, title: 'Chat Hopematch'},
     {path: 'administradores', component: AdministradoresComponent, title: 'Administradores'},

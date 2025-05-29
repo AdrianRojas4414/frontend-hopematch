@@ -12,28 +12,34 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './gestion-hogares.component.scss'
 })
 export class GestionHogaresComponent implements OnInit{
-
   encargados: any[] = [];
   encargadosEnRevision: any[] = [];
   encargadosAprobados: any[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.encargadoService.getEncargados().subscribe(
-      data => {
-        this.encargados = data;
-        this.encargadosEnRevision = data.filter((e: any) => e.estado === 'En revision');
-        this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
-      },
-      error => console.log(error),
-      () => console.log('Encargados Obtenidos Exitosamente!')
-    );
+    const id = this.authService.getUserId();
+    const isAdmin= this.authService.isUserType('administrador');
+
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+
+    if(isAdmin){
+      this.encargadoService.getEncargados().subscribe(
+        data => {
+          this.encargados = data;
+          this.encargadosEnRevision = data.filter((e: any) => e.estado === 'En revision');
+          this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
+        },
+        error => console.log(error),
+      );
+    }
   }
 
   cerrarSesion(): void {
@@ -61,17 +67,17 @@ export class GestionHogaresComponent implements OnInit{
   }
 
   rechazarHogar(encargado: any):void{
-    encargado.estado = "Rechazado";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido rechazado.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
 
   suspenderHogar(encargado: any):void{
-    encargado.estado = "En suspencion";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido suspendido.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
