@@ -52,7 +52,14 @@ export class HogaresSuspendidosComponent implements OnInit {
       this.router.navigate([`/perfil-encargado`]);
     }
 
-    volverAGestion(){
-      this.router.navigate(['/gestion-hogares']);
+    irChat(idEncargado: any): void{
+      localStorage.setItem("idConversacion", idEncargado.toString());
+      localStorage.setItem("tipoConversacion",'encargado');
+      this.router.navigate(['/chat']);
     }
+
+    volverAGestion():void{
+      window.history.back();
+    }
+
 }

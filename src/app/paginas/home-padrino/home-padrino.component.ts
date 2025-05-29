@@ -148,4 +148,8 @@ export class HomePadrinoComponent implements OnInit {
       encargado.nombre_hogar.toLowerCase().startsWith(texto)
     );
   }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
 }
