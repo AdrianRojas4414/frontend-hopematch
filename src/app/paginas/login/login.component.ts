@@ -39,4 +39,7 @@ export class LoginComponent {
       }
     });
   }
+  cancelLogin() {
+    this.router.navigate(['/inicio']);
+  }
 }

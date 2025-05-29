@@ -54,4 +54,7 @@ export class CrearPadrinoComponent {
       });
     }
   }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
+  }
 }
