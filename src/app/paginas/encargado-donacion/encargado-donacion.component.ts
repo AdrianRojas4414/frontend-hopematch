@@ -55,6 +55,22 @@ export class EncargadoDonacionComponent implements OnInit {
     });
   }
 
+    private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor?.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarFotoUnica(url: string, listaFotos: string[]): boolean {
+    if (listaFotos.includes(url)) {
+      alert('Esta foto ya ha sido agregada');
+      return false;
+    }
+    return true;
+  }
+
   mostrarFormularioComentario(donacionId: number): void {
     this.donacionSeleccionadaId = donacionId;
     this.mostrarFormulario = true;
@@ -98,21 +114,24 @@ export class EncargadoDonacionComponent implements OnInit {
   }
 
   enviarFoto(): void {
-    if (this.donacionIdParaFoto && this.nuevaFotoUrl) {
-      this.donacionService.actualizarFotoDonacion(
-        this.donacionIdParaFoto, 
-        this.nuevaFotoUrl
-      ).subscribe({
-        next: () => {
-          this.cancelarFoto();
-          const encargadoId = this.route.snapshot.paramMap.get('id');
-          if (encargadoId) this.cargarDonaciones(+encargadoId);
-        },
-        error: (err) => {
-          console.error('Error al actualizar foto:', err);
-        }
-      });
-    }
+    if (!this.validarCampoRequerido(this.nuevaFotoUrl, 'URL de foto')) return;
+    if (!this.donacionIdParaFoto) return;
+
+    this.donacionService.actualizarFotoDonacion(
+      this.donacionIdParaFoto, 
+      this.nuevaFotoUrl
+    ).subscribe({
+      next: () => {
+        this.cancelarFoto();
+        const encargadoId = this.route.snapshot.paramMap.get('id');
+        if (encargadoId) this.cargarDonaciones(+encargadoId);
+        alert('Foto de comprobante actualizada con éxito');
+      },
+      error: (err) => {
+        console.error('Error al actualizar foto:', err);
+        alert('Error al actualizar la foto de comprobante');
+      }
+    });
   }
 
   mostrarFormularioFotosProgreso(donacionId: number): void {
@@ -131,10 +150,15 @@ export class EncargadoDonacionComponent implements OnInit {
   }
 
   agregarFotoTemp(): void {
-    if (this.nuevaFotoProgresoUrl && this.fotosProgresoTemp.length < 8) {
-      this.fotosProgresoTemp.push(this.nuevaFotoProgresoUrl);
-      this.nuevaFotoProgresoUrl = '';
+    if (!this.validarCampoRequerido(this.nuevaFotoProgresoUrl, 'URL de foto')) return;
+    if (!this.validarFotoUnica(this.nuevaFotoProgresoUrl, this.fotosProgresoTemp)) return;
+    if (this.fotosProgresoTemp.length >= 8) {
+      alert('Máximo 8 fotos permitidas');
+      return;
     }
+
+    this.fotosProgresoTemp.push(this.nuevaFotoProgresoUrl);
+    this.nuevaFotoProgresoUrl = '';
   }
 
   eliminarFotoTemp(index: number): void {
