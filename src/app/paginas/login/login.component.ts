@@ -94,5 +94,7 @@ export class LoginComponent {
     if(estado === 'Suspendido'){
       alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
     }
+  cancelLogin() {
+    this.router.navigate(['/inicio']);
   }
 }

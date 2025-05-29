@@ -61,4 +61,7 @@ export class CrearEncargadoComponent {
       });
     }
   }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
+  }
 }
