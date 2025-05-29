@@ -24,7 +24,6 @@ export class HomeAdministradorComponent implements OnInit {
   administrador: any = null;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private adminService: AdministradorService,
     private authService: UserAuthenticationService
@@ -32,7 +31,7 @@ export class HomeAdministradorComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
-    const isAdministrador = this.authService.isUserType("administrador");
+    const isAdministrador = this.authService.isUserType('administrador');
 
     if(id === 0 || !isAdministrador){
         this.router.navigate(['#']);
@@ -44,7 +43,7 @@ export class HomeAdministradorComponent implements OnInit {
           this.administrador = data;
         },
         error: (err) => {
-          console.error('Error al obtener administrador:', err);
+          console.error('Error al obtener datos del administrador:', err);
         }
       });
     }
