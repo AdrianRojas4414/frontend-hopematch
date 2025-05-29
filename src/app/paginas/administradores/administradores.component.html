@@ -2,16 +2,16 @@
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
-      <a (click)="Volver()" style="color: #3f51b5;">Volver</a>
+      <a (click)="Volver()" style="color: #3f51b5;">{{texts.buttonVolver}}</a>
     </nav>
   </div>
     <div class="saludo">
-        <h2>Administradores de Hopematch</h2>
+        <h2>{{texts.mensajeChatAdministradores}}</h2>
     </div>
   <div class="administradores-grid">
     <div class="admin-card" *ngFor="let admin of administradores">
       <h3>{{ admin.nombre }}</h3>
-      <button (click)="irChat(admin.id)">Chat</button>
+      <button (click)="irChat(admin.id)">{{texts.chat}}</button>
     </div>
   </div>
 </div>
