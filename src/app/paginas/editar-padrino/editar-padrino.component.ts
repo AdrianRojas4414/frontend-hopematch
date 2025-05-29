@@ -16,7 +16,6 @@ export class EditarPadrinoComponent implements OnInit {
   padrino: any = {}; 
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private padrinoService: PadrinoService,
     private authService: UserAuthenticationService
@@ -26,13 +25,15 @@ export class EditarPadrinoComponent implements OnInit {
     const id = this.authService.getUserId();
     const isPadrino = this.authService.isUserType('padrino');
 
+    if(id === 0  || !isPadrino){
+      this.router.navigate(['#']);
+    }
+
     if(isPadrino){
       this.padrinoService.getPadrinoById(id).subscribe(data => {
       this.padrino = data;
     });
     }
-
-    
   }
 
   updatePadrino(): void {
@@ -45,10 +46,10 @@ export class EditarPadrinoComponent implements OnInit {
 
   eliminarPadrino(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
-      this.padrino.estado = "En suspencion";
+      this.padrino.estado = "Suspendido";
       this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(()=> {
-        alert('La cuenta se encuentra en un estado de suspencion. Sus datos seran eliminados por completo dentro de 6 meses');
+        alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
         this.authService.logout();
         console.log(this.padrino)
         this.router.navigate([`/perfil-padrino`]);

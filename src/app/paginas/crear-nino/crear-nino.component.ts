@@ -19,7 +19,6 @@ export class CrearNinoComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService

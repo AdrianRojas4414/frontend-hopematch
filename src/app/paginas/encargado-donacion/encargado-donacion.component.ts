@@ -38,8 +38,13 @@ export class EncargadoDonacionComponent implements OnInit {
 
   ngOnInit(): void {
     const encargadoId = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (encargadoId) {
+    if(encargadoId === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
+
+    if (isEncargado) {
       this.cargarDonaciones(+encargadoId);
     }
   }

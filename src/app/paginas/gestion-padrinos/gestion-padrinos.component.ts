@@ -22,7 +22,16 @@ export class GestionPadrinosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarPadrinos();
+    const id = this.authService.getUserId();
+    const isAdmin= this.authService.isUserType('administrador');
+
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+    
+    if(isAdmin){
+      this.cargarPadrinos();
+    }
   }
 
   cargarPadrinos(): void {

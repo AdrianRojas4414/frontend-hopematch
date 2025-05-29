@@ -74,6 +74,10 @@ export class LoginComponent {
             }
           });
         }
+
+        if(this.authService.isUserType('administrador')){
+          this.router.navigate([`/home-${this.authUserType}`]);
+        }
       },
       error: (err) => {
         console.error('Error de inicio de sesión: ', err);
