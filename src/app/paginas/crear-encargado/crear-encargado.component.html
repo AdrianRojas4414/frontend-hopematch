@@ -46,7 +46,7 @@
           [placeholder]="texts.inputDescripcion" class="input-field">
         </textarea>
       </div>
-      <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
+      <p>{{ encargado.descripcion.length || 0 }}/500 caracteres</p>
 
       <div class="input-group">
         <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" class="input-field" required>

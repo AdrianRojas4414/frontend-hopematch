@@ -8,7 +8,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-gestion-ninos',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gestion-ninos.component.html',
   styleUrl: './gestion-ninos.component.scss'
 })

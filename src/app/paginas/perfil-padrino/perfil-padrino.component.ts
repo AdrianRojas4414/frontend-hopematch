@@ -6,7 +6,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-perfil-padrino',
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './perfil-padrino.component.html',
   styleUrl: './perfil-padrino.component.scss'
 })

@@ -9,7 +9,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 @Component({
   selector: 'app-crear-administrador',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-administrador.component.html',
   styleUrls: ['./crear-administrador.component.scss']
 })

@@ -16,7 +16,7 @@ interface TokenData {
 @Component({
   selector: 'app-home-administrador',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './home-administrador.component.html',
   styleUrls: ['./home-administrador.component.scss']
 })

@@ -7,7 +7,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-encargado',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-encargado.component.html',
   styleUrl: './crear-encargado.component.scss'
 })

@@ -11,7 +11,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-padrino',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home-padrino.component.html',
   styleUrl: './home-padrino.component.scss'
 })

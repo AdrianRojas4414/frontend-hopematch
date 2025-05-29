@@ -8,7 +8,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-padrino',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-padrino.component.html',
   styleUrl: './crear-padrino.component.scss'
 })

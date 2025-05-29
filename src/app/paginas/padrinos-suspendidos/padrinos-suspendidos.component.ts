@@ -51,7 +51,7 @@ export class PadrinosSuspendidosComponent implements OnInit {
       padrino.estado = 'En revision';
       this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
         next: () => {
-          alert('Padrino aprobado exitosamente');
+          alert('El Padrino ha sido agregado a la lista de revisiones');
           this.cargarPadrinosSuspendidos();
         },
         error: (error) => {

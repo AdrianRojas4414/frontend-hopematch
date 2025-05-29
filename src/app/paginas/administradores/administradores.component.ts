@@ -8,7 +8,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-administradores',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './administradores.component.html',
   styleUrl: './administradores.component.scss'
 })

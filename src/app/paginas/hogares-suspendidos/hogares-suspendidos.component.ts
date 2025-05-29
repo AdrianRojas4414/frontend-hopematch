@@ -7,7 +7,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-hogares-suspendidos',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './hogares-suspendidos.component.html',
   styleUrl: './hogares-suspendidos.component.scss'
 })

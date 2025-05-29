@@ -9,7 +9,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-encargado',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home-encargado.component.html',
   styleUrl: './home-encargado.component.scss'
 })

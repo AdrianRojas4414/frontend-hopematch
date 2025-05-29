@@ -18,7 +18,7 @@ interface TokenData {
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, FormsModule, MatRadioModule],
+  imports: [FormsModule, MatRadioModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
