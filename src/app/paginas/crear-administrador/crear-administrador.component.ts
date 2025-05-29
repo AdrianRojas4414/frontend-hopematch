@@ -51,4 +51,7 @@ export class CrearAdministradorComponent {
       });
     }
   }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
+  }
 }
