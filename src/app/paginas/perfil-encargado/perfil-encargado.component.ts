@@ -12,19 +12,25 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './perfil-encargado.component.scss'
 })
 export class PerfilEncargadoComponent implements OnInit{
-
   encargado: any = null;
   mostrarBotonEditar: boolean = true;
 
-  constructor(private route: ActivatedRoute, private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
+  constructor(
+    private encargadoService: EncargadoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
     const idEncargado_gestion = localStorage.getItem('idEncargado_gestion');
 
-    if (id || idEncargado_gestion) {
+    if(id === 0){
+      this.router.navigate(['#']);
+    }
 
+    if (id || idEncargado_gestion) {
       if(!isEncargado && idEncargado_gestion){
         this.mostrarBotonEditar = false;
         this.encargadoService.getEncargadoById(+idEncargado_gestion).subscribe({

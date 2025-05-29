@@ -19,7 +19,6 @@ export class CrearNinoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService
@@ -27,6 +26,7 @@ export class CrearNinoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idEncargado = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
     this.ninoForm = this.fb.group({
       ci: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
@@ -35,7 +35,19 @@ export class CrearNinoComponent implements OnInit {
       necesidades: this.fb.array([], [Validators.required, Validators.minLength(1)])
     });
 
-    this.necesidadesArray = this.ninoForm.get('necesidades') as FormArray;
+    if(this.idEncargado === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
+
+    if(isEncargado){
+      this.ninoForm = this.fb.group({
+        ci: ['', Validators.required],
+        nombre: ['', Validators.required],
+        fechaNacimiento: ['', Validators.required],
+        necesidades: this.fb.array([])
+      });
+      this.necesidadesArray = this.ninoForm.get('necesidades') as FormArray;
+    }
   }
 
   validateDateRange(control: any): {[key: string]: boolean} | null {
@@ -76,5 +88,9 @@ export class CrearNinoComponent implements OnInit {
       console.error('Error al registrar niño:', error);
       alert('Hubo un error al registrar el niño');
     });
+  }
+  
+  cancelarRegistro(): void {
+    this.router.navigate([`/ninos-hogar`]);
   }
 }

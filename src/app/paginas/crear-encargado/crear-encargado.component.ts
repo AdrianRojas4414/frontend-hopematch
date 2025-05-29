@@ -7,7 +7,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-encargado',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-encargado.component.html',
   styleUrl: './crear-encargado.component.scss'
 })
@@ -26,7 +26,11 @@ export class CrearEncargadoComponent {
     descripcion:''
   }
 
-  constructor(private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
+  constructor(
+    private encargadoService: EncargadoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ){}
 
   validarCampos(): boolean {
     if (!this.encargado.nombre || !this.encargado.celular || !this.encargado.email || 
@@ -107,5 +111,8 @@ export class CrearEncargadoComponent {
         alert('Error al registrar encargado. Por favor intente nuevamente.');
       }
     });
+  }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
   }
 }

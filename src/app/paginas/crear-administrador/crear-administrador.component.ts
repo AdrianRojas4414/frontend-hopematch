@@ -9,7 +9,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 @Component({
   selector: 'app-crear-administrador',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-administrador.component.html',
   styleUrls: ['./crear-administrador.component.scss']
 })
@@ -103,5 +103,8 @@ export class CrearAdministradorComponent {
         alert('Error al registrar administrador. Por favor, intente nuevamente.');
       }
     });
+  }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
   }
 }

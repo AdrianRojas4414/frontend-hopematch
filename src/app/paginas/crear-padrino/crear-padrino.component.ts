@@ -8,12 +8,11 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-padrino',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-padrino.component.html',
   styleUrl: './crear-padrino.component.scss'
 })
 export class CrearPadrinoComponent {
-  private padrinoCreado = false;
   public texts = TEXTOS;
   padrino = {
     nombre: '',
@@ -24,7 +23,11 @@ export class CrearPadrinoComponent {
     estado: 'En revision'
   };
 
-  constructor(private padrinoService: PadrinoService, private router: Router, private authService: UserAuthenticationService) {}
+  constructor(
+    private padrinoService: PadrinoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ) {}
 
   private validarFormatoEmail(email: string): boolean {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -102,5 +105,8 @@ export class CrearPadrinoComponent {
         alert('Error al registrar padrino. Por favor intente nuevamente.');
       }
     });
+  }
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
   }
 }

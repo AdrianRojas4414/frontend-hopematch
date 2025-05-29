@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -13,7 +14,6 @@ import { NinoService } from '../../servicios/nino.service';
   styleUrl: './detalle-hogar.component.scss'
 })
 export class DetalleHogarComponent implements OnInit{
-
   encargado: any = null;
   donaciones: any[] = [];
   donacionActual: any = null;
@@ -21,17 +21,23 @@ export class DetalleHogarComponent implements OnInit{
   nino: any = null;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private encargadoService: EncargadoService,
     private donacionService: DonacionService,
-    private ninoService: NinoService
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
     const id = localStorage.getItem('idHogar');
 
-    if (id) {
+    const idPadrino = this.authService.getUserId();
+    const isPadrino = this.authService.isUserType('padrino');
+
+    if(idPadrino === 0  || !isPadrino){
+      this.router.navigate(['#']);
+    }
+
+    if (id && isPadrino) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
@@ -47,6 +53,12 @@ export class DetalleHogarComponent implements OnInit{
   agendarVisita(): void {
     localStorage.setItem("idHogarVisita", this.encargado.id.toString());
     this.router.navigate(['/registro-visita']);
+  }
+
+  irChat(): void{
+    localStorage.setItem("idConversacion", this.encargado.id.toString());
+    localStorage.setItem("tipoConversacion",'encargado');
+    this.router.navigate(['/chat']);
   }
 
   cargarDonaciones(encargadoId: number): void {
@@ -97,6 +109,6 @@ export class DetalleHogarComponent implements OnInit{
 
   volverAtras() {
     localStorage.removeItem("idHogar");
-    window.history.back();
+    this.router.navigate(['/home-padrino']);
   }
 }

@@ -1,0 +1,45 @@
+<div class="chat-container">
+  <div class="perfil-header">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <nav class="perfil-nav">
+      <a *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">Agendar Visita</a>
+      <a (click)="volverAtras()" style="color: #3f51b5;">Volver</a>
+    </nav>
+  </div>
+
+  
+
+    <div class="saludo">
+        <h2 *ngIf="tipoConversacion == 'encargado'">
+        Chat con {{ encargado?.nombre }}, encargado del hogar: {{ encargado?.nombre_hogar }}
+        </h2>
+        <h2 *ngIf="tipoConversacion == 'padrino'">
+          Chat con el padrino {{ padrino?.nombre }}
+        </h2>
+        <h2 *ngIf="tipoConversacion == 'administrador'">
+          Chat con el administrador de Hopematch: {{ administrador?.nombre }}
+        </h2>
+    </div>
+
+    
+  <div class="mensajes">
+    <div *ngIf="mensajesOrdenados.length === 0" class="sin-mensajes">
+      No hay mensajes en esta conversación.
+    </div>
+
+    <div *ngFor="let msg of mensajesOrdenados"
+         class="mensaje"
+         [ngClass]="{
+           'mensaje-enviado': msg.idRemitente === idUsuario && msg.remitente === tipoUsuario,
+           'mensaje-recibido': msg.destinatario === tipoUsuario
+         }">
+      <span>{{ msg.mensaje }}  </span>
+      <small>{{ msg.fecha | date: 'short' }}</small>
+    </div>
+  </div>
+
+  <form class="formulario-chat" (ngSubmit)="enviar()">
+    <textarea [(ngModel)]="nuevoMensaje" name="mensaje" required placeholder="Escribe tu mensaje..."></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+</div>

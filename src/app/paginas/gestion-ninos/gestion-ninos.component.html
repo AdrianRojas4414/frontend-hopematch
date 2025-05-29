@@ -2,6 +2,7 @@
     <div class="home-admin-header">
       <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo" />
       <nav class="admin-nav">
+        <a (click)="volverAHome()" style="color: #3f51b5; cursor: pointer;">Volver a Home</a>
         <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
       </nav>
     </div>
@@ -16,7 +17,8 @@
           <h4>{{ nino.nombre }}</h4>
           <div><strong>CI:</strong> {{ nino.ci }}</div>
           <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
-          <div><strong>Encargado:</strong> {{ nino.nombreHogar }}</div>
+          <div><strong>Hogar:</strong> {{ nino.nombreHogar }}</div>
+          <div><strong>Encargado:</strong> {{ nino.nombreEncargado }}</div>
           <div>
             <strong>Necesidades:</strong>
             <ul>

@@ -33,8 +33,13 @@ export class RegistroVisitaComponent implements OnInit {
   ngOnInit(): void {
     const id_hogar = localStorage.getItem('idHogarVisita');
     const id = this.authService.getUserId();
+    const isPadrino= this.authService.isUserType('padrino');
 
-    if (id_hogar) {
+    if(id === 0  || !isPadrino){
+      this.router.navigate(['#']);
+    }
+
+    if (id_hogar && isPadrino) {
       this.encargadoService.getEncargadoById(+id_hogar).subscribe({
         next: (data) => {
           this.encargado = data;
@@ -45,7 +50,6 @@ export class RegistroVisitaComponent implements OnInit {
         }
       });
     }
-
     this.cargarHorariosDisponibles();
   }
 
