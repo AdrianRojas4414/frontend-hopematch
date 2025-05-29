@@ -27,33 +27,82 @@ export class CrearAdministradorComponent {
     private authService: UserAuthenticationService
   ) {}
 
-  registrarAdministrador(): void {
-
-    if(this.administrador.nombre === '' || this.administrador.email === '' || this.administrador.contrasenia === '') {
-      alert("Todos los campos obligatorios (*) deben ser llenados");
+  validarFormulario(): boolean {
+    if (!this.administrador.nombre.trim()) {
+      alert('El nombre es obligatorio');
+      return false;
+    } else if (this.administrador.nombre.length < 3) {
+      alert('El nombre debe tener al menos 3 caracteres');
+      return false;
     }
 
-    else{
-      this.administradorService.createAdministrador(this.administrador).subscribe({
-        next: (response) => {
-          console.log('Administrador registrado con éxito!', response);
-          alert('Administrador registrado con éxito!');
-          this.authService.login(this.administrador.email, this.administrador.contrasenia, 'administrador').subscribe({
-            next: () => {
-              this.router.navigate(['/home-administrador']);
-            },
-            error: (err) => {
-              console.error('Error al iniciar sesión después del registro:', err);
-              alert('Registro exitoso, pero hubo un error al iniciar sesión.');
-            }
-           });
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!this.administrador.email.trim()) {
+      alert('El email es obligatorio');
+      return false;
+    } else if (!emailRegex.test(this.administrador.email)) {
+      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
+      return false;
+    }
+
+    if (!this.administrador.contrasenia) {
+      alert('La contraseña es obligatoria');
+      return false;
+    } else if (this.administrador.contrasenia.length < 8) {
+      alert('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(this.administrador.contrasenia)) {
+      alert('La contraseña debe contener al menos:\n- Una letra mayúscula\n- Una letra minúscula\n- Un número\n- Un carácter especial (@$!%*?&)');
+      return false;
+    }
+
+    return true;
+  }
+
+  verificarEmailUnico(email: string): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.administradorService.getAdministradores().subscribe({
+        next: (administradores) => {
+          const existe = administradores.some((admin: any) => admin.email === email);
+          resolve(!existe);
         },
-        error: (err) => {
-          console.error('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados:', err);
-          alert('Error al registrar encargado. Todos los campos obligatorios (*) deben ser llenados.');
+        error: () => {
+          resolve(true);
         }
       });
+    });
+  }
+
+   async registrarAdministrador(): Promise<void> {
+    if (!this.validarFormulario()) {
+      return;
     }
+
+    const emailUnico = await this.verificarEmailUnico(this.administrador.email);
+    if (!emailUnico) {
+      alert('Este email ya está registrado. Por favor use otro.');
+      return;
+    }
+
+    this.administradorService.createAdministrador(this.administrador).subscribe({
+      next: (response) => {
+        console.log('Administrador registrado con éxito!', response);
+        alert('Administrador registrado con éxito!');
+        this.authService.login(this.administrador.email, this.administrador.contrasenia, 'administrador').subscribe({
+          next: () => {
+            this.router.navigate(['/home-administrador']);
+          },
+          error: (err) => {
+            console.error('Error al iniciar sesión después del registro:', err);
+            alert('Registro exitoso, pero hubo un error al iniciar sesión.');
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error al registrar administrador:', err);
+        alert('Error al registrar administrador. Por favor, intente nuevamente.');
+      }
+    });
   }
   cancelarRegistro(): void {
     this.router.navigate(['/inicio']);

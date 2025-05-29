@@ -11,7 +11,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   templateUrl: './crear-nino.component.html',
   styleUrl: './crear-nino.component.scss'
 })
-export class CrearNinoComponent implements OnInit{
+export class CrearNinoComponent implements OnInit {
 
   ninoForm!: FormGroup;
   idEncargado!: number;
@@ -28,6 +28,13 @@ export class CrearNinoComponent implements OnInit{
     this.idEncargado = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
 
+    this.ninoForm = this.fb.group({
+      ci: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      fechaNacimiento: ['', [Validators.required, this.validateDateRange.bind(this)]],
+      necesidades: this.fb.array([], [Validators.required, Validators.minLength(1)])
+    });
+
     if(this.idEncargado === 0  || !isEncargado){
       this.router.navigate(['#']);
     }
@@ -43,30 +50,46 @@ export class CrearNinoComponent implements OnInit{
     }
   }
 
+  validateDateRange(control: any): {[key: string]: boolean} | null {
+    const selectedDate = new Date(control.value);
+    const minDate = new Date('2007-01-01');
+    const maxDate = new Date('2024-12-31');
+    
+    if (selectedDate < minDate || selectedDate > maxDate) {
+      return { 'invalidDateRange': true };
+    }
+    return null;
+  }
+
   addNecesidad(necesidadInput: HTMLInputElement): void {
     const necesidad = necesidadInput.value.trim();
     if (necesidad) {
       this.necesidadesArray.push(this.fb.control(necesidad));
       necesidadInput.value = '';
+      this.ninoForm.get('necesidades')?.updateValueAndValidity();
     }
   }
 
   removeNecesidad(index: number): void {
     this.necesidadesArray.removeAt(index);
+    this.ninoForm.get('necesidades')?.updateValueAndValidity();
   }
 
   onSubmit(): void {
-    if (this.ninoForm.valid) {
-      this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe(() => {
-        alert('Niño registrado con éxito');
-        this.router.navigate([`/ninos-hogar`]);
-      }, error => {
-        console.error('Error al registrar niño:', error);
-        alert('Hubo un error al registrar el niño');
-      });
+    if (this.ninoForm.invalid) {
+      alert('Por favor complete todos los campos correctamente');
+      return;
     }
-  }
 
+    this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe(() => {
+      alert('Niño registrado con éxito');
+      this.router.navigate([`/ninos-hogar`]);
+    }, error => {
+      console.error('Error al registrar niño:', error);
+      alert('Hubo un error al registrar el niño');
+    });
+  }
+  
   cancelarRegistro(): void {
     this.router.navigate([`/ninos-hogar`]);
   }

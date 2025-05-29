@@ -42,6 +42,33 @@ export class EditarNinoComponent {
     }
   }
 
+  validarCampos(): boolean {
+    if (!this.nino.ci || !/^[0-9]+$/.test(this.nino.ci)) {
+      return false;
+    }
+
+    if (!this.nino.nombre || this.nino.nombre.trim().length < 3) {
+      return false;
+    }
+
+    if (!this.nino.fechaNacimiento) {
+      return false;
+    }
+    const fechaNac = new Date(this.nino.fechaNacimiento);
+    const minDate = new Date('2007-01-01');
+    const maxDate = new Date('2024-12-31');
+    if (fechaNac < minDate || fechaNac > maxDate) {
+      return false;
+    }
+
+    if (!this.nino.necesidades || this.nino.necesidades.length === 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+
   agregarNecesidad(): void {
     if (this.nuevaNecesidad.trim()) {
       this.nino.necesidades.push(this.nuevaNecesidad.trim());
@@ -54,10 +81,21 @@ export class EditarNinoComponent {
   }
 
   updateNino(): void {
-    this.ninoService.updateNino(this.nino.id, this.nino).subscribe(() => {
-      alert('Niño actualizado correctamente');
-      localStorage.removeItem("idNino");
-      this.router.navigate([`/ninos-hogar`]);
+    if (!this.validarCampos()) {
+      alert('Por favor complete todos los campos correctamente');
+      return;
+    }
+    
+    this.ninoService.updateNino(this.nino.id, this.nino).subscribe({
+      next: () => {
+        alert('Niño actualizado correctamente');
+        localStorage.removeItem("idNino");
+        this.router.navigate([`/ninos-hogar`]);
+      },
+      error: (err) => {
+        console.error('Error al actualizar niño:', err);
+        alert('Error al actualizar el niño');
+      }
     });
   }
 

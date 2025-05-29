@@ -12,7 +12,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   templateUrl: './editar-encargado.component.html',
   styleUrl: './editar-encargado.component.scss'
 })
-export class EditarEncargadoComponent {
+export class EditarEncargadoComponent implements OnInit {
   encargado: any = {};
 
   constructor(
@@ -36,11 +36,48 @@ export class EditarEncargadoComponent {
     }
   }
 
+  
+  validarCampos(): boolean {
+    if (!this.encargado.nombre || this.encargado.nombre.trim().length < 3) {
+      return false;
+    }
+
+    if (!this.encargado.celular || !/^\d{8}$/.test(this.encargado.celular)) {
+      return false;
+    }
+
+    if (!this.encargado.direccion_hogar || !this.encargado.direccion_hogar.trim()) {
+      return false;
+    }
+
+    if (!this.encargado.descripcion || this.encargado.descripcion.trim().length < 20) {
+      return false;
+    }
+
+    if (this.encargado.contrasenia && this.encargado.contrasenia.length < 8) {
+      return false;
+    }
+
+    return true;
+  }
+
+
   updateEncargado(): void {
+    if (!this.validarCampos()) {
+      alert('Por favor complete todos los campos correctamente');
+      return;
+    }
+
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
-      .subscribe(() => {
-        alert('Encargado actualizado correctamente');
-        window.history.back();
+      .subscribe({
+        next: () => {
+          alert('Encargado actualizado correctamente');
+          window.history.back();
+        },
+        error: (err) => {
+          console.error('Error al actualizar encargado:', err);
+          alert('Error al actualizar el perfil');
+        }
       });
   }
 

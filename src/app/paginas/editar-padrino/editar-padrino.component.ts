@@ -36,11 +36,38 @@ export class EditarPadrinoComponent implements OnInit {
     }
   }
 
+  validarCampos(): boolean {
+    if (!this.padrino.nombre || this.padrino.nombre.trim().length < 3) {
+      return false;
+    }
+
+    if (!this.padrino.celular || !/^\d{8}$/.test(this.padrino.celular)) {
+      return false;
+    }
+
+    if (this.padrino.contrasenia && this.padrino.contrasenia.length < 8) {
+      return false;
+    }
+
+    return true;
+  }
+
   updatePadrino(): void {
+    if (!this.validarCampos()) {
+      alert('Por favor complete todos los campos correctamente');
+      return;
+    }
+    
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
-      .subscribe(() => {
-        alert('Padrino actualizado correctamente');
-        this.router.navigate([`/perfil-padrino`]);
+      .subscribe({
+        next: () => {
+          alert('Padrino actualizado correctamente');
+          this.router.navigate([`/perfil-padrino`]);
+        },
+        error: (err) => {
+          console.error('Error al actualizar padrino:', err);
+          alert('Error al actualizar el perfil');
+        }
       });
   }
 
