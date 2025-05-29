@@ -28,83 +28,94 @@ export class CrearEncargadoComponent {
 
   constructor(private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
 
-  validarCampos(): boolean {
-    if (!this.encargado.nombre || !this.encargado.celular || !this.encargado.email || 
-        !this.encargado.contrasenia || !this.encargado.nombre_hogar || 
-        !this.encargado.direccion_hogar || !this.encargado.descripcion) {
+   private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
       return false;
     }
-
-    if (this.encargado.nombre.length < 3) {
-      return false;
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(this.encargado.email)) {
-      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
-      return false;
-    }
-
-    if (this.encargado.celular.length < 8) {
-      return false;
-    }
-
-    if (this.encargado.contrasenia.length < 8) {
-      return false;
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(this.encargado.contrasenia)) {
-      return false;
-    }
-
-    if (this.encargado.descripcion.length < 20) {
-      return false;
-    }
-
     return true;
   }
 
-  verificarEmailUnico(email: string): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.encargadoService.getEncargados().subscribe({
-        next: (encargados) => {
-          const existe = encargados.some((encargado: any) => encargado.email === email);
-          resolve(!existe);
-        },
-        error: () => {
-          resolve(true);
-        }
-      });
-    });
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
+      return false;
+    }
+    return true;
+  }
+
+  private validarContrasenia(contrasenia: string): boolean {
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(contrasenia)) {
+      alert('La contraseña debe contener al menos:\n- Una letra mayúscula\n- Una letra minúscula\n- Un número\n- Un carácter especial (@$!%*?&)');
+      return false;
+    }
+    return true;
+  }
+
+  private validarCelular(celular: string): boolean {
+    if (!/^\d{8}$/.test(celular)) {
+      alert('El celular debe tener exactamente 8 dígitos');
+      return false;
+    }
+    return true;
+  }
+
+  private async verificarEmailUnico(email: string): Promise<boolean> {
+    try {
+      const encargados = await this.encargadoService.getEncargados().toPromise();
+      const existe = encargados.some((encargado: any) => encargado.email === email);
+      if (existe) {
+        alert('Este email ya está registrado. Por favor use otro.');
+      }
+      return !existe;
+    } catch {
+      return true;
+    }
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.encargado.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.encargado.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.encargado.celular, 'celular') &&
+           this.validarCelular(this.encargado.celular) &&
+           this.validarCampoRequerido(this.encargado.email, 'email') &&
+           this.validarEmail(this.encargado.email) &&
+           this.validarCampoRequerido(this.encargado.contrasenia, 'contraseña') &&
+           this.validarLongitudMinima(this.encargado.contrasenia, 'contraseña', 8) &&
+           this.validarContrasenia(this.encargado.contrasenia) &&
+           this.validarCampoRequerido(this.encargado.nombre_hogar, 'nombre del hogar') &&
+           this.validarCampoRequerido(this.encargado.direccion_hogar, 'dirección del hogar') &&
+           this.validarCampoRequerido(this.encargado.descripcion, 'descripción') &&
+           this.validarLongitudMinima(this.encargado.descripcion, 'descripción', 20);
   }
 
   async registrarEncargado(): Promise<void> {
-    if (!this.validarCampos()) {
-      alert("Por favor complete todos los campos correctamente");
-      return;
-    }
-
-    const emailUnico = await this.verificarEmailUnico(this.encargado.email);
-    if (!emailUnico) {
-      alert('Este email ya está registrado. Por favor use otro.');
-      return;
-    }
+    if (!this.validarFormulario()) return;
+    if (!await this.verificarEmailUnico(this.encargado.email)) return;
 
     this.encargadoService.createEncargado(this.encargado).subscribe({
       next: (response) => {
-          console.log('Encargado registrado con éxito!', response);
-          alert('Encargado registrado con éxito!');
-          this.authService.login(this.encargado.email, this.encargado.contrasenia, 'encargado').subscribe({
-            next: () => {
-              this.router.navigate(['/home-encargado']);
-            },
-            error: (err) => {
-              console.error('Error al iniciar sesión después del registro:', err);
-              alert('Registro exitoso, pero error al iniciar sesión.');
-            }
-           });
+        alert('Encargado registrado con éxito!');
+        this.authService.login(this.encargado.email, this.encargado.contrasenia, 'encargado').subscribe({
+          next: () => this.router.navigate(['/home-encargado']),
+          error: (err) => {
+            console.error('Error al iniciar sesión:', err);
+            alert('Registro exitoso, pero error al iniciar sesión.');
+          }
+        });
       },
       error: (err) => {
-        console.error('Error al registrar encargado:', err);
-        alert('Error al registrar encargado. Por favor intente nuevamente.');
+        console.error('Error al registrar:', err);
+        alert('Error al registrar encargado. Intente nuevamente.');
       }
     });
   }

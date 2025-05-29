@@ -49,6 +49,33 @@ export class CrearNinoComponent implements OnInit {
     return null;
   }
 
+   private mostrarErroresFormulario(): void {
+    const controls = this.ninoForm.controls;
+    
+    if (controls['ci'].errors?.['required']) {
+      alert('El campo CI es obligatorio');
+    } else if (controls['ci'].errors?.['pattern']) {
+      alert('El CI debe contener solo números');
+    }
+
+    if (controls['nombre'].errors?.['required']) {
+      alert('El campo nombre es obligatorio');
+    } else if (controls['nombre'].errors?.['minlength']) {
+      alert('El nombre debe tener al menos 3 caracteres');
+    }
+
+    if (controls['fechaNacimiento'].errors?.['required']) {
+      alert('La fecha de nacimiento es obligatoria');
+    } else if (controls['fechaNacimiento'].errors?.['invalidDateRange']) {
+      alert('La fecha de nacimiento debe estar entre 2007-2024 (1-18 años)');
+    }
+
+    if (controls['necesidades'].errors?.['required'] || 
+        controls['necesidades'].errors?.['minlength']) {
+      alert('Debe agregar al menos una necesidad');
+    }
+  }
+
   addNecesidad(necesidadInput: HTMLInputElement): void {
     const necesidad = necesidadInput.value.trim();
     if (necesidad) {
@@ -64,17 +91,20 @@ export class CrearNinoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.ninoForm.invalid) {
-      alert('Por favor complete todos los campos correctamente');
+     if (this.ninoForm.invalid) {
+      this.mostrarErroresFormulario();
       return;
     }
 
-    this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe(() => {
-      alert('Niño registrado con éxito');
-      this.router.navigate([`/ninos-hogar`]);
-    }, error => {
-      console.error('Error al registrar niño:', error);
-      alert('Hubo un error al registrar el niño');
+    this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe({
+      next: () => {
+        alert('Niño registrado con éxito');
+        this.router.navigate([`/ninos-hogar`]);
+      },
+      error: (error) => {
+        console.error('Error al registrar:', error);
+        alert('Hubo un error al registrar el niño');
+      }
     });
   }
 }
