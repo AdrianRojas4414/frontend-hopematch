@@ -115,8 +115,10 @@ export class CrearPadrinoComponent {
         alert('Error al registrar padrino. Intente nuevamente.');
       }
     });
+  }
 
   cancelarRegistro(): void {
-    this.router.navigate(['/inicio']);
-  }
+      this.router.navigate(['/inicio']);
+    }
+
 }

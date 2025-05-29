@@ -61,17 +61,6 @@ export class CrearNinoComponent implements OnInit {
     return null;
   }
 
-  validateDateRange(control: any): {[key: string]: boolean} | null {
-    const selectedDate = new Date(control.value);
-    const minDate = new Date('2007-01-01');
-    const maxDate = new Date('2024-12-31');
-    
-    if (selectedDate < minDate || selectedDate > maxDate) {
-      return { 'invalidDateRange': true };
-    }
-    return null;
-  }
-
    private mostrarErroresFormulario(): void {
     const controls = this.ninoForm.controls;
     
