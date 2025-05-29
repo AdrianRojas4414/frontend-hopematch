@@ -4,6 +4,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-encargado',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './editar-encargado.component.scss'
 })
 export class EditarEncargadoComponent implements OnInit {
+  public texts = TEXTOS;
   encargado: any = {};
 
   constructor(

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-gestion-padrinos',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class GestionPadrinosComponent implements OnInit {
+  public texts = TEXTOS;
   padrinosPendientes: any[] = [];
   padrinosAprobados: any[] = [];
   isLoading = true;

@@ -3,7 +3,7 @@
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
       <a *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">Agendar Visita</a>
-      <a (click)="volverAtras()" style="color: #3f51b5;">Volver</a>
+      <a (click)="volverAtras()" style="color: #3f51b5;">{{texts.buttonVolver}}</a>
     </nav>
   </div>
 
@@ -40,6 +40,6 @@
 
   <form class="formulario-chat" (ngSubmit)="enviar()">
     <textarea [(ngModel)]="nuevoMensaje" name="mensaje" required placeholder="Escribe tu mensaje..."></textarea>
-    <button type="submit">Enviar</button>
+    <button type="submit">{{texts.enviar}}</button>
   </form>
 </div>

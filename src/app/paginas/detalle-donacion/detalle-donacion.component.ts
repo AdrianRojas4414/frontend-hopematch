@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-detalle-donacion',

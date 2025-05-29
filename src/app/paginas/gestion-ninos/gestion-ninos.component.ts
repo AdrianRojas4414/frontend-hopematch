@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-gestion-ninos',
@@ -20,6 +21,7 @@ export class GestionNinosComponent implements OnInit{
     private authService: UserAuthenticationService
   ) {}
   
+  public texts = TEXTOS;
   encargados: any[] = [];
   todosLosNinos: any[] = [];
   encargado_act: any = null;

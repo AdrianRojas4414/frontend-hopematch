@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-hogares-suspendidos',

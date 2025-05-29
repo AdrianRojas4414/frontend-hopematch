@@ -4,6 +4,7 @@ import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-administrador',
