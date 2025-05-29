@@ -30,7 +30,24 @@ export class EditarAdministradorComponent implements OnInit {
     });
   }
 
+  validarCampos(): boolean {
+    if (!this.administrador.nombre || this.administrador.nombre.trim().length < 3) {
+      return false;
+    }
+
+    if (!this.administrador.contrasenia || this.administrador.contrasenia.length < 8) {
+      return false;
+    }
+
+    return true;
+  }
+
   updateAdministrador(): void {
+    if (!this.validarCampos()) {
+      alert('Por favor complete todos los campos correctamente');
+      return;
+    }
+
     this.adminService.updateAdministrador(this.administrador.id, this.administrador)
       .subscribe({
         next: () => {
