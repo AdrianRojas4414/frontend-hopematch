@@ -31,7 +31,7 @@ export class GestionPadrinosComponent implements OnInit {
       next: (padrinos: any[]) => {
         console.log('Datos recibidos:', padrinos); 
         this.padrinosPendientes = padrinos.filter(p => p.estado === 'En revision');
-        this.padrinosAprobados = padrinos.filter(p => p.estado === 'Activo');
+        this.padrinosAprobados = padrinos.filter(p => p.estado === 'Aprobado');
         console.log('Pendientes:', this.padrinosPendientes); 
         this.isLoading = false;
       },
@@ -43,10 +43,10 @@ export class GestionPadrinosComponent implements OnInit {
   }
 
   aprobarPadrino(padrino: any): void {
-    padrino.estado = 'Activo';
+    padrino.estado = 'Aprobado';
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
-        alert('Padrino aprobado exitosamente');
+        alert('Padrino Aprobado exitosamente');
         this.cargarPadrinos();
       },
       error: (error) => {
@@ -57,10 +57,10 @@ export class GestionPadrinosComponent implements OnInit {
   }
   
   rechazarPadrino(padrino: any): void {
-    padrino.estado = 'Rechazado';
+    padrino.estado = 'Suspendido';
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
-        alert('Padrino rechazado exitosamente');
+        alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');
         this.cargarPadrinos();
       },
       error: (error) => {
@@ -74,7 +74,7 @@ export class GestionPadrinosComponent implements OnInit {
     padrino.estado = 'Suspendido';
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
-        alert('Padrino suspendido exitosamente');
+        alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');
         this.cargarPadrinos();
       },
       error: (error) => {
@@ -108,6 +108,6 @@ export class GestionPadrinosComponent implements OnInit {
   }
 
   volverAHome():void{
-    window.history.back();
+    this.router.navigate(['/home-administrador']);
   }
 }

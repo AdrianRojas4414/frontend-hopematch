@@ -36,7 +36,7 @@ export class PadrinosSuspendidosComponent implements OnInit {
   }
 
   ponerEnRevision(padrino: any): void {
-    if (confirm('¿Estás seguro de poner esta cuenta en revisión?')) {
+    if (confirm('¿Estás seguro de poner esta cuenta En Revisión?')) {
       padrino.estado = 'En revision';
       this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
         next: () => {

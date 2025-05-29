@@ -25,7 +25,7 @@ export class HogaresSuspendidosComponent implements OnInit {
       this.encargadoService.getEncargados().subscribe(
         data => {
           this.encargados = data;
-          this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'En suspencion' || e.estado === 'Rechazado');
+          this.encargadosSuspendidos = data.filter((e: any) => e.estado === 'Suspendido');
         },
         error => console.log(error),
         () => console.log('Encargados Obtenidos Exitosamente!')

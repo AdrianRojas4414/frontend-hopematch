@@ -32,7 +32,7 @@ export class GestionHogaresComponent implements OnInit{
         this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
       },
       error => console.log(error),
-      () => console.log('Encargados Obtenidos Exitosamente!')
+      () => console.log('Error al obtener a los hogares')
     );
   }
 
@@ -61,17 +61,17 @@ export class GestionHogaresComponent implements OnInit{
   }
 
   rechazarHogar(encargado: any):void{
-    encargado.estado = "Rechazado";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido rechazado.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
 
   suspenderHogar(encargado: any):void{
-    encargado.estado = "En suspencion";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido suspendido.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
