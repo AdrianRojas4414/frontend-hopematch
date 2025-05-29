@@ -17,15 +17,19 @@ export class HogarEncargadoComponent implements OnInit{
   isLoading = false;
 
   constructor(
-    private route: ActivatedRoute, 
     private encargadoService: EncargadoService, 
     private router: Router, 
     private ninoService: NinoService, 
-    private authService: UserAuthenticationService){}
+    private authService: UserAuthenticationService
+  ){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isEncargado = this.authService.isUserType('encargado');
+
+    if(id === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
 
     if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
@@ -41,12 +45,15 @@ export class HogarEncargadoComponent implements OnInit{
     }
   }
 
+  volverHome(): void {
+    this.router.navigate(['/home-encargado']);
+  }
+
   cerrarSesion(): void {
     this.authService.logout();
   }
 
   cargarNecesidades(): void {
-    
     this.isLoading = true;
     console.log(this.encargado.id)
     this.ninoService.getNecesidadesByEncargado(this.encargado.id).subscribe({
@@ -60,7 +67,6 @@ export class HogarEncargadoComponent implements OnInit{
         },
         error: () => this.isLoading = false
     });
-
   }
 
   toggleNecesidad(necesidadId: number) {

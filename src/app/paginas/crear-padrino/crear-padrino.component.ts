@@ -8,12 +8,11 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-padrino',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-padrino.component.html',
   styleUrl: './crear-padrino.component.scss'
 })
 export class CrearPadrinoComponent {
-  private padrinoCreado = false;
   public texts = TEXTOS;
   padrino = {
     nombre: '',
@@ -23,9 +22,13 @@ export class CrearPadrinoComponent {
     contrasenia: '',
     estado: 'En revision'
   };
-
-  constructor(private padrinoService: PadrinoService, private router: Router, private authService: UserAuthenticationService) {}
-
+  
+  constructor(
+    private padrinoService: PadrinoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ) {}
+      
   private validarCampoRequerido(valor: string, campo: string): boolean {
     if (!valor.trim()) {
       alert(`El campo ${campo} es obligatorio`);
@@ -65,8 +68,8 @@ export class CrearPadrinoComponent {
       return false;
     }
     return true;
-  }
-
+  }   
+      
   private async verificarEmailUnico(email: string): Promise<boolean> {
     try {
       const padrinos = await this.padrinoService.getPadrinos().toPromise();
@@ -96,12 +99,6 @@ export class CrearPadrinoComponent {
     if (!this.validarFormulario()) return;
     if (!await this.verificarEmailUnico(this.padrino.email)) return;
 
-    const emailUnico = await this.validarEmailUnico(this.padrino.email);
-    if (!emailUnico) {
-      alert("No se puede completar el registro");
-      return;
-    }
-
     this.padrinoService.createPadrino(this.padrino).subscribe({
       next: (response) => {
         alert('Padrino registrado con éxito!');
@@ -118,5 +115,8 @@ export class CrearPadrinoComponent {
         alert('Error al registrar padrino. Intente nuevamente.');
       }
     });
+
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
   }
 }

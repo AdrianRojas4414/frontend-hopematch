@@ -16,7 +16,6 @@ export class EditarAdministradorComponent implements OnInit {
   administrador: any = {};
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private adminService: AdministradorService,
     private authService: UserAuthenticationService
@@ -24,10 +23,29 @@ export class EditarAdministradorComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
+    const isAdmin = this.authService.isUserType('administrador');
 
-    this.adminService.getAdministradorById(+id).subscribe(data => {
-      this.administrador = data;
-    });
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+
+    if(isAdmin){
+      this.adminService.getAdministradorById(+id).subscribe(data => {
+        this.administrador = data;
+      });
+    }
+  }
+
+  validarCampos(): boolean {
+    if (!this.administrador.nombre || this.administrador.nombre.trim().length < 3) {
+      return false;
+    }
+
+    if (!this.administrador.contrasenia || this.administrador.contrasenia.length < 8) {
+      return false;
+    }
+
+    return true;
   }
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
@@ -74,5 +92,9 @@ export class EditarAdministradorComponent implements OnInit {
           alert('Error al actualizar el perfil');
         }
       });
+  }
+
+  cancelarEdicion(): void {
+    this.router.navigate([`/perfil-administrador`]);
   }
 }

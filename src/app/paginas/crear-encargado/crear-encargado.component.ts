@@ -7,7 +7,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-crear-encargado',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './crear-encargado.component.html',
   styleUrl: './crear-encargado.component.scss'
 })
@@ -26,7 +26,11 @@ export class CrearEncargadoComponent {
     descripcion:''
   }
 
-  constructor(private encargadoService: EncargadoService, private router: Router, private authService: UserAuthenticationService){}
+  constructor(
+    private encargadoService: EncargadoService, 
+    private router: Router, 
+    private authService: UserAuthenticationService
+  ){}
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
     if (!valor.trim()) {
@@ -80,6 +84,10 @@ export class CrearEncargadoComponent {
     } catch {
       return true;
     }
+  }
+
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
   }
 
   private validarFormulario(): boolean {

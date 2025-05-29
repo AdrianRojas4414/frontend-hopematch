@@ -6,7 +6,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 
 @Component({
   selector: 'app-perfil-padrino',
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './perfil-padrino.component.html',
   styleUrl: './perfil-padrino.component.scss'
 })
@@ -14,16 +14,20 @@ export class PerfilPadrinoComponent implements OnInit{
   padrino: any = null;
   mostrarBotonEditar: boolean = true;
 
-  constructor(private route:ActivatedRoute, 
+  constructor(
     private padrinoService: PadrinoService, 
     private authService: UserAuthenticationService,
-    private router: Router){}
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
     const isPadrino = this.authService.isUserType('padrino');
     const idPadrino_gestion = localStorage.getItem('id_padrino');
-    console.log(idPadrino_gestion);
+
+    if(id === 0){
+      this.router.navigate(['#']);
+    }
 
     if (id || idPadrino_gestion) {
       if(!isPadrino && idPadrino_gestion){

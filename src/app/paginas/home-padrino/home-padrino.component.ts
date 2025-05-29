@@ -11,7 +11,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-padrino',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home-padrino.component.html',
   styleUrl: './home-padrino.component.scss'
 })
@@ -26,7 +26,6 @@ export class HomePadrinoComponent implements OnInit {
   busqueda: string = '';
 
   constructor(
-    private route: ActivatedRoute,
     private padrinoService: PadrinoService,
     private router: Router,
     private encargadoService: EncargadoService,
@@ -36,21 +35,21 @@ export class HomePadrinoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      const id = this.authService.getUserId();
-      const isPadrino = this.authService.isUserType('padrino');
+    const id = this.authService.getUserId();
+    const isPadrino = this.authService.isUserType('padrino');
 
-      if(id === 0 || !isPadrino){
-        this.router.navigate(['#']);
-      }
+    if(id === 0 || !isPadrino){
+      this.router.navigate(['#']);
+    }
 
-      if (isPadrino) {
+    if (isPadrino) {
       this.padrinoService.getPadrinoById(+id).subscribe({
         next: (data) => {
           this.padrino = data;
           this.obtenerDonaciones(this.padrino.id);
         },
         error: (err) => {
-          console.error('Error al obtener encargado:', err);
+          console.error('Error al obtener datos del padrino:', err);
         }
       });
       this.obtenerEncargados();
@@ -62,16 +61,16 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   obtenerEncargados(): void {
-    this.encargadoService.getEncargados().subscribe(
-      data => {
+    this.encargadoService.getEncargados().subscribe({
+      next: (data) => {
         this.encargados = data,
         this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
         this.encargadosAprobados.forEach(encargado => this.getEncargadoNecesidades(encargado));
       },
-        
-      error => console.log(error),
-      () => console.log('Encargados Obtenidos Exitosamente!')
-    );
+      error:(err) =>{
+        console.log('Error al obtener los encargados', err);
+      } 
+    });
   }
 
   obtenerDonaciones(padrinoId: number): void {
@@ -92,16 +91,15 @@ export class HomePadrinoComponent implements OnInit {
 
   getEncargadoNecesidades(encargado: any){
     this.ninoService.getNecesidadesByEncargado(encargado.id).subscribe({
-        next: (necesidades: string[]) => {
-            console.log("Necesidades ordenadas del hogar:", necesidades);
-            encargado.necesidades = necesidades.map((necesidad, index) => ({
-                id: index + 1,
-                nombre: necesidad
-            }));
-        },
-        error: (err) => {
-          console.error('Error al obtener necesidades:', err);
-        }
+      next: (necesidades: string[]) => {
+          encargado.necesidades = necesidades.map((necesidad, index) => ({
+              id: index + 1,
+              nombre: necesidad
+          }));
+      },
+      error: (err) => {
+        console.error('Error al obtener necesidades:', err);
+      }
     });
   }
 
@@ -109,7 +107,7 @@ export class HomePadrinoComponent implements OnInit {
     if (encargado.necesidades && encargado.necesidades.length) {
       return encargado.necesidades.map((necesidad:any) => necesidad.nombre).join(', ');
     }
-    return 'No hay necesidades registradas.';
+    return 'Las necesidades aún no fueron registradas.';
   }
 
   haDonadoA(encargadoId: number): boolean {
@@ -147,5 +145,9 @@ export class HomePadrinoComponent implements OnInit {
     return this.encargadosAprobados.filter(encargado =>
       encargado.nombre_hogar.toLowerCase().startsWith(texto)
     );
+  }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
   }
 }

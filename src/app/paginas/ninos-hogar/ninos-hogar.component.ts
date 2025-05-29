@@ -13,14 +13,14 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './ninos-hogar.component.scss'
 })
 export class NinosHogarComponent implements OnInit{
-
   encargado: any = null;
   
-  constructor(private route: ActivatedRoute, 
-              private encargadoService: EncargadoService, 
-              private router: Router,
-              private ninoService: NinoService,
-              private authService: UserAuthenticationService){}
+  constructor(
+    private encargadoService: EncargadoService, 
+    private router: Router,
+    private ninoService: NinoService,
+    private authService: UserAuthenticationService
+  ){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();

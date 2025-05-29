@@ -173,6 +173,15 @@
         background-color: #3d8b40;
       }
     }
+
+    &.chat {
+      background-color: #2196f3;
+      color: white;
+  
+      &:hover:not(:disabled) {
+        background-color: #0b7dda;
+      }
+    }
   
     &.reject {
       background-color: #f44336;

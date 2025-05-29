@@ -22,6 +22,7 @@
       <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
     </div>
     <button class="agendar-visita-btn" (click)="agendarVisita()">Agendar Visita</button>
+    <button class="agendar-visita-btn" (click)="irChat()">Chat</button>
     <div *ngIf="encargado.ninos?.length" class="necesidades-container">
       <h3>Necesidades del hogar:</h3>
       <ul class="necesidades-lista">
