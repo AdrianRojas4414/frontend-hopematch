@@ -134,7 +134,7 @@ export class HomePadrinoComponent implements OnInit {
     localStorage.setItem("encargadoId", encargadoId.toString());
     const dialogRef = this.dialog.open(RegistroDonacionComponent, {
       width: '500px',
-      height: '90%'
+      height: 'fit-content%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -161,7 +161,7 @@ export class HomePadrinoComponent implements OnInit {
     localStorage.setItem("donacionId", donacionId.toString());
     const dialogRef = this.dialog.open(DetalleDonacionComponent, {
       width: '500px',
-      height: '90%',
+      height: 'fit-content',
       data: donacionId
     });
 
