@@ -9,7 +9,7 @@ import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-home-encargado',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home-encargado.component.html',
   styleUrl: './home-encargado.component.scss'
 })
@@ -17,11 +17,11 @@ export class HomeEncargadoComponent implements OnInit{
   public texts = TEXTOS;
   encargado: any = null;
 
-  constructor(private route:ActivatedRoute, 
-                  private router: Router,
-                  private encargadoService: EncargadoService,
-                  private authService: UserAuthenticationService
-                ){}
+  constructor(
+    private router: Router,
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
+  ){}
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
@@ -31,14 +31,13 @@ export class HomeEncargadoComponent implements OnInit{
         this.router.navigate(['#']);
     }
 
-
     if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
         },
         error: (err) => {
-          console.error('Error al obtener encargado:', err);
+          console.error('Error al obtener datos del encargado:', err);
         }
       });
     }

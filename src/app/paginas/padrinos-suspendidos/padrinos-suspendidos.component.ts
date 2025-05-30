@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-padrinos-suspendidos',
@@ -15,11 +16,21 @@ export class PadrinosSuspendidosComponent implements OnInit {
 
   constructor(
     private padrinoService: PadrinoService,
-    private router: Router
+    private router: Router,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.cargarPadrinosSuspendidos();
+    const id = this.authService.getUserId();
+    const isAdmin= this.authService.isUserType('administrador');
+
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+
+    if(isAdmin){
+      this.cargarPadrinosSuspendidos();
+    }
   }
 
   cargarPadrinosSuspendidos(): void {
@@ -36,11 +47,11 @@ export class PadrinosSuspendidosComponent implements OnInit {
   }
 
   ponerEnRevision(padrino: any): void {
-    if (confirm('¿Estás seguro de poner esta cuenta en revisión?')) {
+    if (confirm('¿Estás seguro de poner esta cuenta En Revisión?')) {
       padrino.estado = 'En revision';
       this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
         next: () => {
-          alert('Padrino aprobado exitosamente');
+          alert('El Padrino ha sido agregado a la lista de revisiones');
           this.cargarPadrinosSuspendidos();
         },
         error: (error) => {

@@ -46,13 +46,14 @@
           [placeholder]="texts.inputDescripcion" class="input-field">
         </textarea>
       </div>
-      <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
+      <p>{{ encargado.descripcion.length || 0 }}/500 caracteres</p>
 
       <div class="input-group">
         <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" class="input-field" required>
       </div>
 
       <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
+      <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">Cancelar</button>
     </form>
 
     <img class="register-image" src="imgs/RegisterPicture.png" alt="Hola">

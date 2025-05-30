@@ -23,12 +23,10 @@ export class UserAuthenticationService {
   login(email: string, password: string, userType: string): Observable<any> {
     const body = { email: email, contrasenia: password };
     const loginURL = `${this.baseURL}${userType}/login`
-    //console.log("Acceso a Login");
     return this.http.post(loginURL, body).pipe(
       tap((response:any) => {
         if(response.token){
           localStorage.setItem(this.tokenKey, response.token);
-          //console.log("Sesion guardada");
         }
       })
     );
