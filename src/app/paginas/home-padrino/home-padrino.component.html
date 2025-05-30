@@ -28,7 +28,7 @@
     <div class="field--column-elements">
       <h5 style="color: var(--color-primary-base-dark-60);">Tus donaciones</h5>
       <div class="card--scrollable-list">
-        <div *ngIf="donaciones.length === 0" class="card--general">
+        <div *ngIf="donaciones.length === 0" class="card--general donacion">
           <p>Aun no has realizado donaciones</p>
           <p>En el panel de la derecha busca un hogar y regala una esperanza.</p>
         </div>
@@ -61,7 +61,7 @@
         <input class="input-field" type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
       </div>
       <div class="card--scrollable-list">
-        <div class="card--general" *ngFor="let encargado of encargadosFiltrados()">
+        <div class="card--general hogar" *ngFor="let encargado of encargadosFiltrados()">
           <div class="field--row-card-elements">
             <div class="encargado-foto">
               <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
