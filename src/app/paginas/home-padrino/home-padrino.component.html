@@ -41,7 +41,7 @@
                 <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
               </div>
               <div class="field--row-card-elements">
-                <button class="btn btn--secondary-button" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+                <button class="btn btn--secondary-button" (click)="abrirDetallesDialogo(donacion.id)">Ver detalles</button>
                 <button class="btn btn--secondary-button" [disabled]="!haDonadoA(donacion.encargado.id)" (click)="verHogar(donacion.encargado.id)">Ver Hogar</button>
               </div>
             </div>

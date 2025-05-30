@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-detalle-donacion',
@@ -16,6 +17,7 @@ export class DetalleDonacionComponent implements OnInit {
   isLoading = true;
 
   constructor(
+    public dialogRef: MatDialogRef<DetalleDonacionComponent>,
     private router: Router,
     private donacionService: DonacionService,
     private authService: UserAuthenticationService
@@ -54,6 +56,6 @@ export class DetalleDonacionComponent implements OnInit {
 
   volverAHome(): void {
     localStorage.removeItem("donacionId");
-    window.history.back();
+    this.dialogRef.close();
   }
 }

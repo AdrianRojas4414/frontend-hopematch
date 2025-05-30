@@ -1,5 +1,7 @@
 .btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-width: 110px;
     font-weight: var(--font-weight-normal);
@@ -18,6 +20,12 @@
     transition: var(--transition-base);
     box-shadow: var(--box-shadow-sm);
     font-family: var(--font-family-base);
+
+    .icon {
+      margin-right: var(--space-xs); // Espacio entre el icono y el texto (si hay texto)
+      font-size: inherit; // Para que el icono herede el tamaño de fuente
+      line-height: 1; // Para mejor alineación vertical del icono
+    }
   
     &:disabled,
     &.disabled {
@@ -70,6 +78,37 @@
       &:hover:not(:disabled):not(.disabled) {
          color: var(--color-third-base);
          text-decoration: underline;
+      }
+    }
+    
+    &--close-button {
+      min-width: auto;
+      width: auto;
+      height: auto;
+      padding: var(--space-xs);
+      border: none;
+      background-color: transparent;
+      color: var(--color-neutral-base-black-light-40);
+      box-shadow: none;
+      font-size: var(--font-size-lg);
+      line-height: 1;
+
+      .icon {
+        margin-right: 0;
+      }
+
+      &:hover:not(:disabled):not(.disabled) {
+        color: var(--color-neutral-base-black);
+      }
+    }
+
+    &--icon-only {
+      min-width: auto;
+      width: auto;
+      padding: var(--space-sm);
+
+      .icon {
+        margin-right: 0;
       }
     }
   }

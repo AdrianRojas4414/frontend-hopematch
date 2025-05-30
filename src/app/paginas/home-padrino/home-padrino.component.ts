@@ -8,10 +8,12 @@ import { DonacionService } from '../../servicios/donacion.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { NinoService } from '../../servicios/nino.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DetalleDonacionComponent } from '../detalle-donacion/detalle-donacion.component';
 
 @Component({
   selector: 'app-home-padrino',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatDialogModule],
   templateUrl: './home-padrino.component.html',
   styleUrl: './home-padrino.component.scss'
 })
@@ -31,7 +33,8 @@ export class HomePadrinoComponent implements OnInit {
     private encargadoService: EncargadoService,
     private donacionService: DonacionService,
     private authService: UserAuthenticationService,
-    private ninoService: NinoService
+    private ninoService: NinoService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -149,5 +152,18 @@ export class HomePadrinoComponent implements OnInit {
 
   irAdministradores(): void{
     this.router.navigate(['/administradores']);
+  }
+
+  abrirDetallesDialogo(donacionId: number): void {
+    localStorage.setItem("donacionId", donacionId.toString());
+    const dialogRef = this.dialog.open(DetalleDonacionComponent, {
+      width: '500px',
+      height: '90%',
+      data: donacionId
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
   }
 }

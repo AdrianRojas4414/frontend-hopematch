@@ -1,0 +1,15 @@
+.dialog{
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--color-primary-base);
+        width: 100%;
+        h1 {
+            color: var(--color-primary-base);
+        }
+    }
+}
