@@ -7,6 +7,7 @@ import { NinoService } from '../../servicios/nino.service';
 import { TEXTOS } from '../../config/constants';
 import {MatRadioModule} from '@angular/material/radio';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registro-donacion',
@@ -33,7 +34,8 @@ export class RegistroDonacionComponent implements OnInit {
     private donacionService: DonacionService,
     private ninoService: NinoService,
     private router: Router,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<RegistroDonacionComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -109,17 +111,20 @@ export class RegistroDonacionComponent implements OnInit {
         alert('Donación registrada con éxito');
         localStorage.removeItem("padrinoId");
         localStorage.removeItem("encargadoId");
-        this.router.navigate(['/home-padrino']);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/home-padrino']);
+        });
       },
       error: (error) => {
         console.error('Error al registrar donación:', error);
         alert('Error al registrar donación: ' + (error.error?.message || error.message));
       }
     });
+    this.dialogRef.close();
   }
   cancelar(): void {
     localStorage.removeItem("padrinoId");
     localStorage.removeItem("encargadoId");
-    this.router.navigate(['/home-padrino']);
+    this.dialogRef.close();
   }
 }

@@ -10,6 +10,7 @@ import { NinoService } from '../../servicios/nino.service';
 import { TEXTOS } from '../../config/constants';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DetalleDonacionComponent } from '../detalle-donacion/detalle-donacion.component';
+import { RegistroDonacionComponent } from '../registro-donacion/registro-donacion.component';
 
 @Component({
   selector: 'app-home-padrino',
@@ -128,15 +129,17 @@ export class HomePadrinoComponent implements OnInit {
     this.router.navigate([`/detalle-hogar`]);
   }
 
-  verDetallesDonacion(donacionId: number): void {
-    localStorage.setItem("donacionId", donacionId.toString());
-    this.router.navigate([`/detalle-donacion`]);
-  }
-
   irARegistroDonacion(padrinoId: number, encargadoId: number): void {
     localStorage.setItem("padrinoId", padrinoId.toString());
     localStorage.setItem("encargadoId", encargadoId.toString());
-    this.router.navigate(['/registro-donacion']);
+    const dialogRef = this.dialog.open(RegistroDonacionComponent, {
+      width: '500px',
+      height: '90%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
   }
 
   encargadosFiltrados(): any[] {
