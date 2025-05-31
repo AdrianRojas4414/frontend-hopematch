@@ -32,10 +32,8 @@ export interface Visita {
 })
 export class EncargadoVisitasComponent implements OnInit {
   todasLasVisitas: Visita[] = [];
-<<<<<<<<< Temporary merge branch 1
-=========
+
   public texts = TEXTOS;
->>>>>>>>> Temporary merge branch 2
 
   constructor(
     private visitaService: VisitaService,

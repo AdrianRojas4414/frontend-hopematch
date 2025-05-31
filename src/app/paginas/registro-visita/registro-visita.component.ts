@@ -15,7 +15,7 @@ import { TEXTOS } from '../../config/constants';
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
-<<<<<<<<< Temporary merge branch 1
+
   visita = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,
@@ -23,9 +23,8 @@ export class RegistroVisitaComponent implements OnInit {
     hora_visita: ''
   };
 
-=========
   public texts = TEXTOS;
->>>>>>>>> Temporary merge branch 2
+
   encargado: any = null;
   horariosDisponibles = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
   minDate: string;
