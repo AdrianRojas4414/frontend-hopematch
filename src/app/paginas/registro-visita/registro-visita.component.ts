@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VisitaService } from '../../servicios/visita.service';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { VisitaService } from '../../servicios/visita.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
@@ -11,73 +11,60 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-registro-visita',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './registro-visita.component.html',
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
+  visita = {
+    padrino_id: null as number | null,
+    encargado_id: null as number | null,
+    fecha_visita: '',
+    hora_visita: ''
+  };
+
   public texts = TEXTOS;
   encargado: any = null;
-  fechaSeleccionada: string = '';
-  horarioSeleccionado: string = '';
-  horariosDisponibles: string[] = [];
-  isLoading: boolean = false;
+  horariosDisponibles = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+  minDate: string = '';
+  isLoading = false;
   mensajeError: string | null = null;
   mensajeExito: string | null = null;
-  idPadrino: any = null;
 
   constructor(
     private visitaService: VisitaService,
-    private router: Router,
     private encargadoService: EncargadoService,
     private authService: UserAuthenticationService,
+    private router: Router,
     public dialogRef: MatDialogRef<RegistroVisitaComponent>,
-  ) {}
+  ) {const today = new Date();
+    this.minDate = today.toISOString().split('T')[0];}
 
   ngOnInit(): void {
-    const id_hogar = localStorage.getItem('idHogarVisita');
-    const id = this.authService.getUserId();
-    const isPadrino= this.authService.isUserType('padrino');
+    const padrinoId = this.authService.getUserId();
+    const encargadoId = localStorage.getItem('encargadoId');
 
-    if(id === 0  || !isPadrino){
-      this.router.navigate(['#']);
-    }
+    if (padrinoId && encargadoId) {
+      this.visita.padrino_id = +padrinoId;
+      this.visita.encargado_id = +encargadoId;
 
-    if (id_hogar && isPadrino) {
-      this.encargadoService.getEncargadoById(+id_hogar).subscribe({
-        next: (data) => {
-          this.encargado = data;
-          this.idPadrino = id;
-        },
-        error: (err) => {
-          console.error('Error al obtener hogar:', err);
+      this.encargadoService.getEncargadoById(this.visita.encargado_id).subscribe({
+        next: (data: any) => this.encargado = data,
+        error: (err: any) => {
+          console.error('Error al obtener encargado:', err);
+          this.mensajeError = 'Error al cargar información del hogar';
         }
       });
     }
-    this.cargarHorariosDisponibles();
   }
 
-  cargarHorariosDisponibles(): void {
-    this.isLoading = true;
-    this.visitaService.getHorariosDisponibles().subscribe({
-      next: (horarios) => {
-        this.horariosDisponibles = horarios;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error al cargar horarios', err);
-        this.mensajeError = 'No se pudieron cargar los horarios disponibles';
-        this.isLoading = false;
-      }
-    });
-  }
-
-  enviarSolicitud(): void {
-    if (!this.fechaSeleccionada || !this.horarioSeleccionado) {
-      this.mensajeError = 'Por favor selecciona una fecha y un horario';
+  registrarVisita(): void {
+    if (!this.visita.fecha_visita || !this.visita.hora_visita) {
+      this.mensajeError = 'Por favor complete todos los campos';
       return;
     }
 
+    this.isLoading = true;
     this.mensajeError = null;
     this.mensajeExito = null;
     this.isLoading = true;
@@ -85,23 +72,30 @@ export class RegistroVisitaComponent implements OnInit {
     const currentUrl = this.router.url;
 
     const visitaData = {
-      fecha: this.fechaSeleccionada,
-      hora: this.horarioSeleccionado
+      fechaVisita: this.visita.fecha_visita,
+      horaVisita: this.visita.hora_visita,
+      padrinoId: this.visita.padrino_id,
+      encargadoId: this.visita.encargado_id
     };
 
-    this.visitaService.crearVisita(visitaData).subscribe({
+    this.visitaService.registrarVisita(visitaData).subscribe({
       next: () => {
         this.isLoading = false;
+        this.mensajeExito = 'Visita agendada correctamente. Estará pendiente de aprobación.';
+        setTimeout(() => {
+          localStorage.removeItem('encargadoId');
+          this.router.navigate(['/mis-visitas']);
+        }, 2000);
         this.mensajeExito = 'Visita agendada correctamente';
         setTimeout(() => this.router.navigate(['/mis-visitas']), 1500);
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([currentUrl]);
         });
       },
-      error: (err) => {
-        console.error('Error al enviar solicitud', err);
+      error: (error) => {
+        console.error('Error al agendar visita:', error);
         this.isLoading = false;
-        this.mensajeError = 'Error al agendar la visita. Por favor intenta nuevamente.';
+        this.mensajeError = 'Error al agendar visita. Por favor intente nuevamente.';
       }
     });
     this.dialogRef.close();
