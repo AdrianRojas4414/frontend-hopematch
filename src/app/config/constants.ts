@@ -20,12 +20,15 @@ export const TEXTOS = {
     aboutVisionText: "Construir un mundo donde cada niño tenga acceso a oportunidades, recursos y una red de apoyo afectiva.",
     // NAV BUTTONS
     buttonHome: 'Home',
-    buttonAboutUs: 'AboutUs',
+    buttonAboutUs: 'About Us',
     buttonSignUp: 'Sign Up',
     buttonLogIn: 'Log In',
     buttonContact: 'Contact',
     buttonVolver: 'Volver a Home',
     buttonCerrarSesion: 'Cerrar Sesion',
+    buttonPerfil: 'Perfil',
+    buttonSignOut: 'Sign Out',
+    buttonSoporte: 'Soporte Técnico',
     // SIGN UP OPTIONS
     padrinoOption: 'QUIERO SER PADRINO',
     encargadoOption: 'QUIERO REGISTRAR A MI HOGAR',
@@ -73,11 +76,13 @@ export const TEXTOS = {
     modalAgregarFotosProgreso: 'Agregar Fotos de Progreso',
     fotosAEnviar: 'Fotos a enviar',
     maxFotosAlerta: 'Has alcanzado el límite máximo de 8 fotos',
+    mensajeChatAdministradores: '¡Los Administradores de Hopematch te pueden ayudar!',
     
-    // DONATION BUTTONS
+    // BUTTONS
     cancelar: 'Cancelar',
     enviar: 'Enviar',
     agregar: 'Agregar',
+    chat: 'Chat',
     
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',

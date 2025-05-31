@@ -1,18 +1,27 @@
-<div class="home-encargado-container" *ngIf="encargado">
-    <div class="home-encargado-header">
-        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-        <nav class="perfil-nav">
-            <a (click)="irPerfil()" style="color: #e65c4f; cursor: pointer;">Ver Perfil</a>
-            <a routerLink="#" style="color: #e65c4f;">Cerrar Sesión</a>
-        </nav>
+<header *ngIf="encargado">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+                <button class="btn btn--third-button" (click)="irAdministradores()"> {{texts.buttonSoporte}}</button>
+                <img [src]="encargado.foto" 
+                    alt="Foto del Encargado" 
+                    class="admin-foto" />
+                <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+                <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="full-layout-section home-encargado" *ngIf="encargado">
+    <div class="grettings-text">
+        <h2>¡Hola {{ encargado.nombre }}!</h2>
+        <h5>¿Qué deseas hacer hoy?</h5>
     </div>
-
-    <div class="saludo">
-        <h2>Hola {{ encargado.nombre }}! ¿Qué deseas hacer hoy?</h2>
-    </div>
-
-    <div class="opciones-grid">
-        <div (click)="irHogar()" class="opcion-card">
+    <div class="field--grid">
+        <div (click)="irHogar()" class="card--selectable">
             <div class="icono">
                 <img src="imgs/house-icon.png" alt="Mi Hogar">
             </div>
@@ -25,7 +34,7 @@
             </div>
         </div>
 
-        <div (click)="irNinos()" class="opcion-card">
+        <div (click)="irNinos()" class="card--selectable">
             <div class="icono">
                 <img src="imgs/sun-icon.png" alt="Mis Niños">
             </div>
@@ -38,7 +47,7 @@
             </div>
         </div>
 
-        <div class="opcion-card">
+        <div class="card--selectable">
             <div class="icono">
                 <img src="imgs/agenda-icon.png" alt="Agenda y Contacto">
             </div>
@@ -51,7 +60,7 @@
             </div>
         </div>
 
-        <div (click)="irDonaciones()" class="opcion-card">
+        <div (click)="irDonaciones()" class="card--selectable">
             <div class="icono">
                 <img src="imgs/heart-icon.png" alt="Donaciones">
             </div>
@@ -77,4 +86,32 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>

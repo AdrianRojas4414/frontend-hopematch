@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { NinoService } from '../../servicios/nino.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-hogar-encargado',
@@ -16,16 +17,21 @@ export class HogarEncargadoComponent implements OnInit{
   isLoading = false;
 
   constructor(
-    private route: ActivatedRoute, 
     private encargadoService: EncargadoService, 
     private router: Router, 
-    private ninoService: NinoService){}
+    private ninoService: NinoService, 
+    private authService: UserAuthenticationService
+  ){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log(id)
+    const id = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    if (id) {
+    if(id === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
+
+    if (isEncargado) {
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
@@ -39,8 +45,15 @@ export class HogarEncargadoComponent implements OnInit{
     }
   }
 
+  volverHome(): void {
+    this.router.navigate(['/home-encargado']);
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
+
   cargarNecesidades(): void {
-    
     this.isLoading = true;
     console.log(this.encargado.id)
     this.ninoService.getNecesidadesByEncargado(this.encargado.id).subscribe({
@@ -54,7 +67,6 @@ export class HogarEncargadoComponent implements OnInit{
         },
         error: () => this.isLoading = false
     });
-
   }
 
   toggleNecesidad(necesidadId: number) {
@@ -72,13 +84,13 @@ export class HogarEncargadoComponent implements OnInit{
   irEditarPerfil(): void{
     console.log("irse");
     if (this.encargado) {
-      this.router.navigate([`/editar-perfil-encargado/${this.encargado.id}`]);
+      this.router.navigate([`/editar-perfil-encargado`]);
     }
   }
 
   irMisNinos(): void{
     if (this.encargado) {
-      this.router.navigate([`/ninos-hogar/${this.encargado.id}`]);
+      this.router.navigate([`/ninos-hogar`]);
     }
   }
 }

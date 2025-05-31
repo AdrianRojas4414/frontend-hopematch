@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { CommonModule } from '@angular/common';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-detalle-donacion',
@@ -15,15 +16,22 @@ export class DetalleDonacionComponent implements OnInit {
   isLoading = true;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private donacionService: DonacionService
+    private donacionService: DonacionService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = localStorage.getItem('donacionId');
+
+    const idPadrino = this.authService.getUserId();
+    const isPadrino = this.authService.isUserType('padrino');
+
+    if(idPadrino === 0  || !isPadrino){
+      this.router.navigate(['#']);
+    }
     
-    if (id) {
+    if (id && isPadrino) {
       this.donacionService.getDonacionById(+id).subscribe({
         next: (data) => {
           this.donacion = data;
@@ -45,6 +53,7 @@ export class DetalleDonacionComponent implements OnInit {
   }
 
   volverAHome(): void {
-    this.router.navigate(['/home-padrino']);
+    localStorage.removeItem("donacionId");
+    window.history.back();
   }
 }

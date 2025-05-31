@@ -19,6 +19,7 @@
           <div class="nino-card" *ngFor="let nino of encargado.ninos">
             <div class="nino-detalles">
               <h4>{{ nino.nombre }}</h4>
+              <div><strong>CI:</strong> {{ nino.ci }}</div>
               <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
               <div>
                 <strong>Necesidades:</strong>
@@ -27,7 +28,7 @@
                 </ul>
               </div>
               <div class="nino-buttons">
-                <button class="btn-editar-nino" (click)="editarNino(nino.id, encargado.id)">Editar Datos</button>
+                <button class="btn-editar-nino" (click)="editarNino(nino.id)">Editar Datos</button>
                 <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
                   <i class="fas fa-trash-alt"></i> Eliminar
                 </button>

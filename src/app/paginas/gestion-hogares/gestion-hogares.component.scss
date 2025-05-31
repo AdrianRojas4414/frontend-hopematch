@@ -36,7 +36,7 @@
     margin-top: 15px;
     text-align: center;
     font-size: 1.8rem;
-    color: #e65c4f;
+    color: #3f51b5;
   }
 
   h2{
@@ -59,7 +59,7 @@
   .estado-columna h3 {
     text-align: center;
     margin-bottom: 10px;
-    color: #e65c4f;
+    color: #3f51b5;
   }
   
   .encargados-lista {
@@ -139,7 +139,7 @@
     color: #555;
   }
 
-  .btn-ver-perfil, .btn-aprobar, .btn-suspender,  .btn-rechazar{
+  .btn-ver-perfil, .btn-aprobar, .btn-suspender,  .btn-rechazar, .btn-chat{
     padding: 0.75rem 1.5rem;
     margin-top: 1rem;
     border: none;
@@ -150,13 +150,19 @@
 
   .btn-ver-perfil {
     margin-right: 10px;
-    background-color: #e65c4f;
+    background-color: #3f51b5;
     color: white;
   }
 
   .btn-aprobar{
     background-color: #18c015;
     color: white;
+  }
+
+  .btn-chat{
+    background-color: #3f51b5;
+    color: white;
+    margin-left: 10px;
   }
 
   .btn-suspender {

@@ -6,7 +6,6 @@ import { LoginComponent } from './paginas/login/login.component';
 import { PerfilEncargadoComponent } from './paginas/perfil-encargado/perfil-encargado.component';
 import { PerfilPadrinoComponent } from './paginas/perfil-padrino/perfil-padrino.component';
 import { CrearNinoComponent } from './paginas/crear-nino/crear-nino.component';
-import { PerfilNinoComponent } from './paginas/perfil-nino/perfil-nino.component';
 import { EditarEncargadoComponent } from './paginas/editar-encargado/editar-encargado.component';
 import { EditarNinoComponent } from './paginas/editar-nino/editar-nino.component';
 import { EditarPadrinoComponent } from './paginas/editar-padrino/editar-padrino.component';
@@ -26,43 +25,44 @@ import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visi
 import { EncargadoVisitasComponent } from './paginas/encargado-visitas/encargado-visitas.component';
 import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
 import { GestionPadrinosComponent } from './paginas/gestion-padrinos/gestion-padrinos.component';
-import { DetallePadrinoComponent } from './paginas/detalle-padrino/detalle-padrino.component';
 import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/padrinos-suspendidos.component';
 import { GestionHogaresComponent } from './paginas/gestion-hogares/gestion-hogares.component';
 import { HogaresSuspendidosComponent } from './paginas/hogares-suspendidos/hogares-suspendidos.component';
+import { ChatComponent } from './paginas/chat/chat.component';
+import { AdministradorService } from './servicios/administrador.service';
+import { AdministradoresComponent } from './paginas/administradores/administradores.component';
 
 export const routes: Routes = [
-    {path:'', component: InicioComponent, title:"Pagina de Inicio"},
-    {path:'crearpadrino', component: CrearPadrinoComponent, title:"Forulario para la creacion de un Padrino"},
-    {path:'crearencargado', component: CrearEncargadoComponent, title:"Forulario para la creacion de un Encargado"},
-    {path:'crear-nino/:idEncargado', component: CrearNinoComponent, title: "Formulario de creacion de nino"},
-    {path:'perfil-encargado/:id', component: PerfilEncargadoComponent, title: "Encargado"},
-    {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Padrino'},
-    {path:'perfil-nino/:ci', component: PerfilNinoComponent, title:'Nino'},
-    {path:'editar-perfil-encargado/:id', component: EditarEncargadoComponent, title: "Editar Encargado"},
-    {path:'editar-perfil-padrino/:id', component: EditarPadrinoComponent, title: 'Padrino'},
-    {path:'home-padrino', component: HomePadrinoComponent, title:'Pagina Padrino'},
-    {path:'home-encargado', component: HomeEncargadoComponent, title:'Pagina Encargado'},
-    {path:'editar-nino/:id', component: EditarNinoComponent, title:'Nino'},
-    {path:'detalle-hogar/:id', component:DetalleHogarComponent, title:'Detales del Hogar'},
+    {path:'', component: InicioComponent, title:"Hopematch"},
+    {path:'crearpadrino', component: CrearPadrinoComponent, title:"Formulario Creacion Padrino"},
+    {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario Creacion Encargado"},
+    {path:'crear-nino', component: CrearNinoComponent, title: "Formulario Creacion Nino"},
+    {path:'perfil-encargado', component: PerfilEncargadoComponent, title: "Perfil Encargado"},
+    {path:'perfil-padrino', component: PerfilPadrinoComponent, title: 'Perfil Padrino'},
+    {path:'editar-perfil-encargado', component: EditarEncargadoComponent, title: "Edicion Perfil Encargado"},
+    {path:'editar-perfil-padrino', component: EditarPadrinoComponent, title: 'Edicion Perfil Padrino'},
+    {path:'home-padrino', component: HomePadrinoComponent, title:'Home Padrino'},
+    {path:'home-encargado', component: HomeEncargadoComponent, title:'Home Encargado'},
+    {path:'editar-nino', component: EditarNinoComponent, title:'Edicion Datos Nino'},
+    {path:'detalle-hogar', component:DetalleHogarComponent, title:'Detalles de Hogar'},
     {path:'login', component: LoginComponent, title: "Log in"},
-    {path:'registro-donacion/:padrinoId/:encargadoId', component: RegistroDonacionComponent },
-    {path:'detalle-donacion/:id', component: DetalleDonacionComponent, title: 'Detalle de Donación' },
-    {path:'hogar-encargado/:id', component: HogarEncargadoComponent, title: 'Mi Hogar' },
-    {path:'ninos-hogar/:id', component: NinosHogarComponent, title: 'Ninos'},
-    {path:'encargado-donacion/:id', component: EncargadoDonacionComponent},
-    {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario para la creación de un Encargado"},
-    {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario para la creación de un Administrador"},
-    {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Panel de Administrador' },
-    {path: 'perfil-administrador/:id', component: PerfilAdministradorComponent, title: 'Perfil de Administrador' },
-    {path: 'editar-perfil-administrador/:id', component: EditarAdministradorComponent, title: 'Editar Perfil de Administrador' },
-    {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestión de Padrinos'},
-    {path: 'detalle-padrino/:id', component: DetallePadrinoComponent, title: 'Detalle de Padrinos'},
-    {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestión de Cuentas Suspendidas'},
-    { path: 'registro-visita/:idHogar', component: RegistroVisitaComponent, title: 'Registrar Visita' },
-    {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion de Hogares'},
-    {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Hogares Suspendidos'},
-    { path: 'registro-visita/:idEncargado', component: RegistroVisitaComponent, title: 'Registrar Visita' },
-    { path: 'encargado-visitas', component: EncargadoVisitasComponent, title: 'Solicitudes de Visita' },
+    {path:'registro-donacion', component: RegistroDonacionComponent, title:'Registro Donacion' },
+    {path:'detalle-donacion', component: DetalleDonacionComponent, title: 'Detalle Donación' },
+    {path:'hogar-encargado', component: HogarEncargadoComponent, title: 'Mi Hogar' },
+    {path:'ninos-hogar', component: NinosHogarComponent, title: 'Ninos del Hogar'},
+    {path:'encargado-donacion', component: EncargadoDonacionComponent, title: 'Donaciones'},
+    {path:'crearencargado', component: CrearEncargadoComponent, title:"Formulario Creacion Encargado"},
+    {path:'crear-administrador', component: CrearAdministradorComponent, title:"Formulario Creacion Administrador"},
+    {path: 'home-administrador', component: HomeAdministradorComponent, title: 'Home Administrador' },
+    {path: 'perfil-administrador', component: PerfilAdministradorComponent, title: 'Perfil Administrador' },
+    {path: 'editar-perfil-administrador', component: EditarAdministradorComponent, title: 'Edicion Perfil Administrador' },
+    {path: 'gestion-padrinos', component: GestionPadrinosComponent, title: 'Gestion Padrinos'},
+    {path: 'padrinos-suspendidos', component: PadrinosSuspendidosComponent, title: 'Gestion Padrinos Suspendidos'},
+    {path: 'gestion-hogares', component: GestionHogaresComponent, title: 'Gestion Hogares'},
+    {path: 'hogares-suspendidos', component: HogaresSuspendidosComponent, title: 'Gestion Hogares Suspendidos'},
+    {path: 'registro-visita', component: RegistroVisitaComponent, title: 'Registrar Visita' },
+    {path: 'gestion-ninos', component:GestionNinosComponent, title: 'Gestion Ninos'},
+    {path: 'chat', component: ChatComponent, title: 'Chat Hopematch'},
+    {path: 'administradores', component: AdministradoresComponent, title: 'Administradores'},
     {path:'**', redirectTo:'', pathMatch: 'full'}
 ]; 

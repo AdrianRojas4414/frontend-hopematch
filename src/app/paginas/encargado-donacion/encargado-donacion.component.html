@@ -1,4 +1,11 @@
 <div class="encargado-container">
+  <div class="perfil-header">
+    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+    <nav class="perfil-nav">
+      <a (click)="volverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
+    </nav>
+  </div>
+  
   <div class="header">
     <h1>{{ texts.donacionesRecibidas }}</h1>
   </div>
@@ -50,6 +57,8 @@
             <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
               {{ texts.agregarFotosProgreso }}
             </button>
+
+            <button class="btn-chat" (click)="irChat(donacion.padrino?.id)">Chat</button>
           </div>
         </div>
       </div>

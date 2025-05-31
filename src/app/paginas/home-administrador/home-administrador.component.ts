@@ -16,7 +16,7 @@ interface TokenData {
 @Component({
   selector: 'app-home-administrador',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './home-administrador.component.html',
   styleUrls: ['./home-administrador.component.scss']
 })
@@ -24,7 +24,6 @@ export class HomeAdministradorComponent implements OnInit {
   administrador: any = null;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private adminService: AdministradorService,
     private authService: UserAuthenticationService
@@ -32,26 +31,30 @@ export class HomeAdministradorComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.authService.getUserId();
-    const isAdministrador = this.authService.isUserType("administrador");
+    const isAdministrador = this.authService.isUserType('administrador');
+
+    if(id === 0 || !isAdministrador){
+        this.router.navigate(['#']);
+    }
+
     if (isAdministrador) {
       this.adminService.getAdministradorById(+id).subscribe({
         next: (data) => {
           this.administrador = data;
         },
         error: (err) => {
-          console.error('Error al obtener administrador:', err);
+          console.error('Error al obtener datos del administrador:', err);
         }
       });
     }
   }
 
   irPerfil(): void {
-    const id = this.authService.getUserId();
-    this.router.navigate([`/perfil-administrador/${id}`]);
+    this.router.navigate([`/perfil-administrador`]);
   }
 
   cerrarSesion(): void {
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   irEncargados(): void {

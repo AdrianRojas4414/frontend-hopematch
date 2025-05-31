@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NinoService } from '../../servicios/nino.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-editar-nino',
@@ -17,21 +18,82 @@ export class EditarNinoComponent {
   nuevaNecesidad: string = ''; 
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private ninoService: NinoService
+    private ninoService: NinoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.idEncargado = Number(this.route.snapshot.queryParamMap.get('encargado'));
+    const id = localStorage.getItem('idNino');
+    this.idEncargado = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
 
-    this.ninoService.getNinoById(id).subscribe((data: any) => {
-      this.nino = data;
-      if (!this.nino.necesidades) {
-        this.nino.necesidades = []; 
-      }
-    });
+    if(this.idEncargado === 0  || !isEncargado){
+      this.router.navigate(['#']);
+    }
+
+    if(id && isEncargado){
+      this.ninoService.getNinoById(+id).subscribe((data: any) => {
+        this.nino = data;
+        if (!this.nino.necesidades) {
+          this.nino.necesidades = []; 
+        }
+      });
+    }
+  }
+  
+  private validarCampoRequerido(valor: any, campo: string): boolean {
+    if (!valor && valor !== 0) {
+      alert(`El campo ${campo} es obligatorio`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarSoloNumeros(valor: string, campo: string): boolean {
+    if (!/^[0-9]+$/.test(valor)) {
+      alert(`El campo ${campo} debe contener solo números`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor?.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarFechaNacimiento(fecha: string): boolean {
+    const fechaNac = new Date(fecha);
+    const minDate = new Date('2007-01-01');
+    const maxDate = new Date('2024-12-31');
+    
+    if (fechaNac < minDate || fechaNac > maxDate) {
+      alert('La fecha de nacimiento debe estar entre 2007-2024 (1-18 años)');
+      return false;
+    }
+    return true;
+  }
+
+  private validarNecesidades(necesidades: any[]): boolean {
+    if (!necesidades || necesidades.length === 0) {
+      alert('Debe agregar al menos una necesidad');
+      return false;
+    }
+    return true;
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.nino.ci, 'CI') &&
+           this.validarSoloNumeros(this.nino.ci, 'CI') &&
+           this.validarCampoRequerido(this.nino.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.nino.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.nino.fechaNacimiento, 'fecha de nacimiento') &&
+           this.validarFechaNacimiento(this.nino.fechaNacimiento) &&
+           this.validarNecesidades(this.nino.necesidades);
   }
 
   agregarNecesidad(): void {
@@ -46,10 +108,26 @@ export class EditarNinoComponent {
   }
 
   updateNino(): void {
-    this.ninoService.updateNino(this.nino.id, this.nino).subscribe(() => {
-      alert('Niño actualizado correctamente');
-      this.router.navigate([`/ninos-hogar/${this.idEncargado}`]);
+    if (!this.validarFormulario()) return;
+    
+    this.ninoService.updateNino(this.nino.id, this.nino).subscribe({
+      next: () => {
+        alert('Niño actualizado correctamente');
+        localStorage.removeItem("idNino");
+        this.router.navigate([`/ninos-hogar`]);
+      },
+      error: (err) => {
+        console.error('Error al actualizar niño:', err);
+        alert('Error al actualizar el niño');
+      }
     });
+  }
+
+  cancelarEdicion(): void {
+    if (this.idEncargado) {
+      localStorage.removeItem("idNino");
+      this.router.navigate([`/ninos-hogar`]);
+    }
   }
 }
 

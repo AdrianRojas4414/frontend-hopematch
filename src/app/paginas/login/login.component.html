@@ -1,27 +1,35 @@
-<div class="login-container">
-    <div class="login-box">
+<section class="full-layout-section login-container">
+    <form (ngSubmit)="onLogin()" class="card--form">
       <div class="footer__brand">
         <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
       </div>
-      <form (ngSubmit)="onLogin()">
-        <div class="input-group">
-          <i class="fa fa-user"></i>
-          <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" class="input-field" required>
-        </div>
-        
-        <div class="input-group">
-          <i class="fa fa-lock"></i>
-          <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" class="input-field" required>
-        </div>
-  
-        <div class="input-group">
-          <mat-radio-group aria-label="Select an option" [(ngModel)]="userType" name="userType">
-            <mat-radio-button value="padrino">{{ texts.userPadrino }}</mat-radio-button>
-            <mat-radio-button value="encargado">{{ texts.userEncargado }}</mat-radio-button>
-            <mat-radio-button value="administrador">{{ texts.userAdmin }}</mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <button class="btn btn--primary-button">{{ texts.buttonLogIn }}</button>      
-      </form>
-    </div>
-</div>
+
+      <div class="login-text">
+        <h4>Ingresa a tu cuenta.</h4>
+        <p>¡Bienvenido! Selecciona tu tipo de cuenta para ingresar.</p>
+      </div>
+
+      <div class="input-group">
+        <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" class="input-field" required>
+      </div>
+      
+      <div class="input-group">
+        <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" class="input-field" required>
+      </div>
+
+      <div class="input-group">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="userType" name="userType">
+          <mat-radio-button value="padrino">{{ texts.userPadrino }}</mat-radio-button>
+          <mat-radio-button value="encargado">{{ texts.userEncargado }}</mat-radio-button>
+          <mat-radio-button value="administrador">{{ texts.userAdmin }}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <button class="btn btn--primary-button">{{ texts.buttonLogIn }}</button>
+      <button type="button" class="btn btn--cancel-button" (click)="cancelLogin()">Cancelar</button>      
+
+    </form>
+
+    <img class="login-image" src="imgs/LogInPicture.png" alt="Hola">
+
+</section>

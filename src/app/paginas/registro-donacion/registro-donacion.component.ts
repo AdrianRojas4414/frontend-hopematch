@@ -4,15 +4,19 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
+import { TEXTOS } from '../../config/constants';
+import {MatRadioModule} from '@angular/material/radio';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-registro-donacion',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatRadioModule],
   templateUrl: './registro-donacion.component.html',
   styleUrls: ['./registro-donacion.component.scss']
 })
 export class RegistroDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donacion = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,
@@ -26,22 +30,33 @@ export class RegistroDonacionComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private route: ActivatedRoute,
     private donacionService: DonacionService,
     private ninoService: NinoService,
-    private router: Router
+    private router: Router,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    const padrinoId = this.route.snapshot.paramMap.get('padrinoId');
-    const encargadoId = this.route.snapshot.paramMap.get('encargadoId');
+    const padrinoId = localStorage.getItem('padrinoId');
+    const encargadoId = localStorage.getItem('encargadoId');
 
-    if (padrinoId && encargadoId) {
-      this.donacion.padrino_id = +padrinoId;
-      this.donacion.encargado_id = +encargadoId;
+    const id = this.authService.getUserId();
+    const isPadrino= this.authService.isUserType('padrino');
+
+    if(id === 0  || !isPadrino){
+      this.router.navigate(['#']);
     }
 
-    this.cargarNecesidades();
+    if(isPadrino){
+      if (padrinoId && encargadoId) {
+        this.donacion.padrino_id = +padrinoId;
+        this.donacion.encargado_id = +encargadoId;
+      }
+      else{
+        console.log("No se encontro el padrino id o encargado id");
+      }
+      this.cargarNecesidades();
+    }
   }
 
   cargarNecesidades(): void {
@@ -92,6 +107,8 @@ export class RegistroDonacionComponent implements OnInit {
       next: (response) => {
         console.log('Donación registrada:', response);
         alert('Donación registrada con éxito');
+        localStorage.removeItem("padrinoId");
+        localStorage.removeItem("encargadoId");
         this.router.navigate(['/home-padrino']);
       },
       error: (error) => {
@@ -99,5 +116,10 @@ export class RegistroDonacionComponent implements OnInit {
         alert('Error al registrar donación: ' + (error.error?.message || error.message));
       }
     });
+  }
+  cancelar(): void {
+    localStorage.removeItem("padrinoId");
+    localStorage.removeItem("encargadoId");
+    this.router.navigate(['/home-padrino']);
   }
 }

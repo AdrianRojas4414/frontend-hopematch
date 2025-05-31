@@ -23,21 +23,20 @@ export class UserAuthenticationService {
   login(email: string, password: string, userType: string): Observable<any> {
     const body = { email: email, contrasenia: password };
     const loginURL = `${this.baseURL}${userType}/login`
-    //console.log("Acceso a Login");
     return this.http.post(loginURL, body).pipe(
       tap((response:any) => {
         if(response.token){
           localStorage.setItem(this.tokenKey, response.token);
-          //console.log("Sesion guardada");
         }
       })
     );
   }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/']);
-    //console.log("Se cerro la sesion");
+    this.router.navigate(['/inicio'], { replaceUrl: true });
   }
+
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }

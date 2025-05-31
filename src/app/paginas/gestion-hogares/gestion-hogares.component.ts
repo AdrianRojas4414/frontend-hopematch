@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 @Component({
   selector: 'app-gestion-hogares',
@@ -11,27 +12,38 @@ import { EncargadoService } from '../../servicios/encargado.service';
   styleUrl: './gestion-hogares.component.scss'
 })
 export class GestionHogaresComponent implements OnInit{
-
   encargados: any[] = [];
   encargadosEnRevision: any[] = [];
   encargadosAprobados: any[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private encargadoService: EncargadoService
+    private encargadoService: EncargadoService,
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.encargadoService.getEncargados().subscribe(
-      data => {
-        this.encargados = data;
-        this.encargadosEnRevision = data.filter((e: any) => e.estado === 'En revision');
-        this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
-      },
-      error => console.log(error),
-      () => console.log('Encargados Obtenidos Exitosamente!')
-    );
+    const id = this.authService.getUserId();
+    const isAdmin= this.authService.isUserType('administrador');
+
+    if(id === 0  || !isAdmin){
+      this.router.navigate(['#']);
+    }
+
+    if(isAdmin){
+      this.encargadoService.getEncargados().subscribe(
+        data => {
+          this.encargados = data;
+          this.encargadosEnRevision = data.filter((e: any) => e.estado === 'En revision');
+          this.encargadosAprobados = data.filter((e: any) => e.estado === 'Aprobado');
+        },
+        error => console.log(error),
+      );
+    }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   getNecesidadesAsString(encargado: any): string {
@@ -41,8 +53,9 @@ export class GestionHogaresComponent implements OnInit{
     return 'No hay necesidades registradas.';
   }
 
-  irPerfil(idEncargado: number): void{
-    this.router.navigate([`/perfil-encargado/${idEncargado}`]);
+  verDetalles(idEncargado: number): void{
+    localStorage.setItem("idEncargado_gestion", idEncargado.toString());
+    this.router.navigate([`/perfil-encargado`]);
   }
 
   aprobarHogar(encargado: any):void{
@@ -54,22 +67,32 @@ export class GestionHogaresComponent implements OnInit{
   }
 
   rechazarHogar(encargado: any):void{
-    encargado.estado = "Rechazado";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido rechazado.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
 
   suspenderHogar(encargado: any):void{
-    encargado.estado = "En suspencion";
+    encargado.estado = "Suspendido";
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
-      alert('El Hogar ha sido suspendido.');
+      alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
     })
   }
 
   irHogaresSuspendidos(): void {
     this.router.navigate(['/hogares-suspendidos']);
+  }
+
+  volverHome(){
+    this.router.navigate(['/home-administrador']);
+  }
+
+  irChat(idEncargado: any): void{
+    localStorage.setItem("idConversacion", idEncargado.toString());
+    localStorage.setItem("tipoConversacion",'encargado');
+    this.router.navigate(['/chat']);
   }
 }

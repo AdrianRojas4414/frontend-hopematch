@@ -3,7 +3,8 @@
         <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
         <nav class="admin-nav">
             <a (click)="irHogaresSuspendidos()" style="color: #3f51b5; cursor: pointer;">Hogares Suspendidos</a>
-            <a routerLink="#" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
+            <a (click)="volverHome()" style="color: #3f51b5; cursor: pointer;">Volver a Home</a>
+            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
         </nav>
     </div>
 
@@ -37,9 +38,10 @@
                         <strong>No hay necesidades registradas.</strong>
                     </p>
                     <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                    <button class="btn-ver-perfil" (click)="irPerfil(encargado.id)">Revisar Perfil</button>
+                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
                     <button class="btn-aprobar" (click)="aprobarHogar(encargado)">Aprobar</button>
                     <button class="btn-rechazar" (click)="rechazarHogar(encargado)">Rechazar</button>
+                    <button class="btn-chat" (click)="irChat(encargado.id)">Chat</button>
                     </div>
                 </div>
             </div>
@@ -71,8 +73,9 @@
                         <strong>No hay necesidades registradas.</strong>
                     </p>
                     <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                    <button class="btn-ver-perfil" (click)="irPerfil(encargado.id)">Revisar Perfil</button>
+                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
                     <button class="btn-suspender" (click)="suspenderHogar(encargado)">Suspender</button>
+                    <button class="btn-chat" (click)="irChat(encargado.id)">Chat</button>
                     </div>
                 </div>
             </div>

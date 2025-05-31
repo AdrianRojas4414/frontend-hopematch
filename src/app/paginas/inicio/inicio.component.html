@@ -2,83 +2,77 @@
     <nav class="navbar">
         <div class="navbar__container">
             <div class="navbar__brand">
-                <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
             </div>
-            <ul class="navbar__links">
-            <li><button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button></li>
-            <button class="btn btn--third-button" (click)="scrollToSection('footer-content')">{{ texts.buttonContact }}</button>
-            <li><button class="btn btn--third-button" [routerLink]="['/login']"> {{ texts.buttonLogIn }} </button></li>
-            <li><button class="btn btn--primary-button" (click)="scrollToSection('register-section')"> {{ texts.buttonSignUp }} </button></li>
-            </ul>
+            <div class="navbar__links">
+                <button class="btn btn--third-button" routerLink="/">{{ texts.buttonHome }}</button>
+                <button class="btn btn--third-button" (click)="scrollToSection('about-us')">{{ texts.buttonAboutUs }}</button>
+                <button class="btn btn--third-button" (click)="scrollToSection('footer-content')">{{ texts.buttonContact }}</button>
+                <button class="btn btn--third-button" [routerLink]="['/login']"> {{ texts.buttonLogIn }} </button>
+                <button class="btn btn--primary-button" (click)="scrollToSection('register-section')"> {{ texts.buttonSignUp }} </button>
+            </div>
         </div>
     </nav>
 </header>
     
-    <section class="hero">
-    <div class="hero-content">
-        <h1 class="main-title"></h1>
-        <p class="subtitle"></p>
-        <p class="dreams"></p>
+<section class="full-layout-section landing"></section>
+
+<section id="about-us" class="full-layout-section about-us">
+    <div class="about-content">
+        <h2>{{ texts.aboutTitle }}</h2>
+        <div class="about-text">
+            <p>{{ texts.aboutDescription }}</p>
+            <p>{{ texts.aboutDescription2 }}</p>
+            <p>{{ texts.aboutDescription3 }}</p>
+            <p>{{ texts.aboutDescription4 }}</p>
+        </div>
+        <div class="about-columns">
+        <div class="card--simple-text">
+            <h3>{{ texts.aboutMissionTitle }}</h3>
+            <p>{{ texts.aboutMissionText }}</p>
+        </div>
+        <div class="card--simple-text">
+            <h3>{{ texts.aboutVisionTitle }}</h3>
+            <p>{{ texts.aboutVisionText }}</p>
+        </div>
+        </div>
     </div>
-    </section>
-
-    <section id="about-us" class="about-us">
-        <div class="about-content">
-            <h2>{{ texts.aboutTitle }}</h2>
-            <div class="about-text">
-                <p>{{ texts.aboutDescription }}</p>
-                <p>{{ texts.aboutDescription2 }}</p>
-                <p>{{ texts.aboutDescription3 }}</p>
-                <p>{{ texts.aboutDescription4 }}</p>
-            </div>
-          <div class="about-columns">
-            <div class="about-column">
-              <h3>{{ texts.aboutMissionTitle }}</h3>
-              <p>{{ texts.aboutMissionText }}</p>
-            </div>
-            <div class="about-column">
-              <h3>{{ texts.aboutVisionTitle }}</h3>
-              <p>{{ texts.aboutVisionText }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+</section>
     
-    <section id="register-section" class="register-section">
-        <div class="card card--signup-image-bg bg-padrino">
-            <div class="card__content">
-                <h3 class="card__title">{{ texts.padrinoOption }}</h3>
-            </div>
-            <div class="card__actions">
-                <button class="btn btn--primary-button" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
-            </div>
+<section id="register-section" class="full-layout-section register-section">
+    <div class="card card--signup-image-bg bg-padrino">
+        <div class="card__content">
+            <h3 class="card__title">{{ texts.padrinoOption }}</h3>
         </div>
+        <div class="card__actions">
+            <button class="btn btn--primary-button" [routerLink]="['/crearpadrino']">{{ texts.buttonSignUp }}</button>
+        </div>
+    </div>
 
-        <div class="card card--signup-image-bg bg-encargado">
-            <div class="card__content">
-                <h3 class="card__title" style="color: black;">{{ texts.encargadoOption }}</h3>
-            </div>
-            <div class="card__actions">
-                <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
-            </div>
+    <div class="card card--signup-image-bg bg-encargado">
+        <div class="card__content">
+            <h3 class="card__title" style="color: black;">{{ texts.encargadoOption }}</h3>
         </div>
+        <div class="card__actions">
+            <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
+        </div>
+    </div>
 
-        <div class="card card--signup-image-bg bg-administrador">
-            <div class="card__content">
-                <h3 class="card__title" style="color: black;">{{ texts.adminOption }}</h3>
-            </div>
-            <div class="card__actions">
-                <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
-            </div>
+    <div class="card card--signup-image-bg bg-administrador">
+        <div class="card__content">
+            <h3 class="card__title" style="color: black;">{{ texts.adminOption }}</h3>
         </div>
-        
-    </section>
+        <div class="card__actions">
+            <button class="btn btn--primary-button" [routerLink]="['/crear-administrador']">{{ texts.buttonSignUp }}</button>
+        </div>
+    </div>
+</section>
     
 <footer class="footer">
     <div id="footer-content" class="footer__vertical_container">
         <div class="footer__horizontal_container">
             <div class="footer__brand">
-                <img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
             </div>
             <div class="footer__contact-info">
                 <div>
@@ -93,11 +87,11 @@
         </div>
         <hr />
         <div class="footer__social_container">
-            <ul class="social-links">
+            <div class="social-links">
                 <button class="btn btn--third-button"> {{ texts.facebook }} </button>
                 <button class="btn btn--third-button"> {{ texts.instragram }} </button>
                 <button class="btn btn--third-button"> {{ texts.twitter }} </button>
-            </ul>
+            </div>
         </div>
     </div>
 </footer>
