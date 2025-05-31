@@ -19,8 +19,7 @@ export class EncargadoDonacionComponent implements OnInit {
   mostrarFormulario = false;
   nuevoComentario = '';
   donacionSeleccionadaId: number | null = null;
-  public texts = TEXTOS;
-
+    
   mostrarFormFoto = false;
   nuevaFotoUrl = '';
   donacionIdParaFoto: number | null = null;
