@@ -10,6 +10,7 @@ import { TEXTOS } from '../../config/constants';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RegistroDonacionComponent } from '../registro-donacion/registro-donacion.component';
+import { RegistroVisitaComponent } from '../registro-visita/registro-visita.component';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -68,7 +69,14 @@ export class DetalleHogarComponent implements OnInit{
 
   agendarVisita(): void {
     localStorage.setItem("idHogarVisita", this.encargado.id.toString());
-    this.router.navigate(['/registro-visita']);
+    const dialogRef = this.dialog.open(RegistroVisitaComponent, {
+      width: '500px',
+      height: 'fit-content%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
   }
 
   irChat(): void{

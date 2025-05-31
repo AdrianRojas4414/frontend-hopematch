@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registro-visita',
@@ -14,6 +16,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
+  public texts = TEXTOS;
   encargado: any = null;
   fechaSeleccionada: string = '';
   horarioSeleccionado: string = '';
@@ -27,7 +30,8 @@ export class RegistroVisitaComponent implements OnInit {
     private visitaService: VisitaService,
     private router: Router,
     private encargadoService: EncargadoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<RegistroVisitaComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +82,8 @@ export class RegistroVisitaComponent implements OnInit {
     this.mensajeExito = null;
     this.isLoading = true;
 
+    const currentUrl = this.router.url;
+
     const visitaData = {
       fecha: this.fechaSeleccionada,
       hora: this.horarioSeleccionado
@@ -88,6 +94,9 @@ export class RegistroVisitaComponent implements OnInit {
         this.isLoading = false;
         this.mensajeExito = 'Visita agendada correctamente';
         setTimeout(() => this.router.navigate(['/mis-visitas']), 1500);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+        });
       },
       error: (err) => {
         console.error('Error al enviar solicitud', err);
@@ -95,6 +104,7 @@ export class RegistroVisitaComponent implements OnInit {
         this.mensajeError = 'Error al agendar la visita. Por favor intenta nuevamente.';
       }
     });
+    this.dialogRef.close();
   }
 
   limpiarMensajes(): void {
@@ -102,8 +112,8 @@ export class RegistroVisitaComponent implements OnInit {
     this.mensajeExito = null;
   }
 
-  volverAtras() {
+  cancelar() {
     localStorage.removeItem("idHogarVisita");
-    window.history.back();
+    this.dialogRef.close();
   }
 }
