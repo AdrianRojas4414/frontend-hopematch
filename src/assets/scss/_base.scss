@@ -33,6 +33,16 @@ html, body {
   overflow: hidden;
 }
 
+.less-layout-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
 header {
   position: fixed;
   width: 100%;

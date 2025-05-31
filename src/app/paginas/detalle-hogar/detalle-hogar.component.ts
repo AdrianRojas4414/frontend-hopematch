@@ -6,6 +6,8 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
+import { PadrinoService } from '../../servicios/padrino.service';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -14,6 +16,8 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './detalle-hogar.component.scss'
 })
 export class DetalleHogarComponent implements OnInit{
+  public texts = TEXTOS;
+  padrino: any = null;
   encargado: any = null;
   donaciones: any[] = [];
   donacionActual: any = null;
@@ -23,6 +27,7 @@ export class DetalleHogarComponent implements OnInit{
   constructor(
     private router: Router,
     private encargadoService: EncargadoService,
+    private padrinoService: PadrinoService,
     private donacionService: DonacionService,
     private authService: UserAuthenticationService
   ) {}
@@ -47,8 +52,16 @@ export class DetalleHogarComponent implements OnInit{
           console.error('Error al obtener hogar:', err);
         }
       });
-    }
+      this.padrinoService.getPadrinoById(+idPadrino).subscribe({
+        next: (data) => {
+          this.padrino = data;
+        },
+        error: (err) => {
+          console.error('Error al obtener datos del padrino:', err);
+        }
+    });
   }
+}
 
   agendarVisita(): void {
     localStorage.setItem("idHogarVisita", this.encargado.id.toString());
@@ -107,8 +120,26 @@ export class DetalleHogarComponent implements OnInit{
     return necesidadesOrdenadas;
   }
 
+  irPerfil(): void {
+    if (this.padrino) {
+      this.router.navigate(['/perfil-padrino']);
+    }
+  }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
+
   volverAtras() {
     localStorage.removeItem("idHogar");
     this.router.navigate(['/home-padrino']);
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
+
+  get backgroundImageUrl(): string {
+    return `url(${this.encargado.foto_hogar || 'assets/default-home.jpg'})`;
   }
 }

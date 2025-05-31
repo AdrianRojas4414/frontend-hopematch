@@ -1,3 +1,53 @@
+.full-layout-section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  flex-direction: column;
+  justify-content: flex-end;
+  h1{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.less-layout-section{
+  padding-left: 120px;
+  padding-right: 120px;
+  justify-content: center;
+  gap: 10px;
+  .encargado-foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .encargado-datos {
+    width: 30%;
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+.expanded-layout-section{
+  background: var(--color-secondary-base);
+}
+
+.field--column-card-elements{
+  justify-content: center;
+  width: 20%;
+}
+
+.admin-foto {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
 .detalle-hogar-container {
   display: flex;
   flex-direction: column;
@@ -94,21 +144,7 @@
     }
   }
 
-  .encargado-datos {
-    flex: 1;
-    width: 500px;
-    margin: 5px;
-
-    p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-      color: #555;
-
-      strong {
-        color: #333;
-      }
-    }
-  }
+  
 }
 
 .agendar-visita-btn {

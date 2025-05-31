@@ -85,6 +85,18 @@
         color: #444;
         text-align: left;
       }
+      ul {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        li {
+          background: var(--color-secondary-base);
+          color: var(--color-neutral-base-black);
+          padding: 0.5rem 1rem;
+          border-radius: var(--border-radius-lg);
+        }
+      }
   }
   &--form{
     background-color: var(--color-neutral-base-white);
