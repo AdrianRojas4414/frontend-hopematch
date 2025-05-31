@@ -45,10 +45,11 @@
 </div>
 
 <div class="expanded-layout-section" *ngIf="encargado">
-  <div *ngIf="donaciones.length > 0" class="donaciones-container">
-    <h2>Mis Donaciones</h2>
+  <h2>Mis Donaciones</h2>
+  <div *ngIf="donaciones.length > 0" class="card--general">
     
-    <div class="carrusel">
+    
+    <div class="carrusel-donacion">
       <button class="flecha flecha-izquierda" (click)="anteriorDonacion()">❮</button>
       
       <div class="donacion-actual">
@@ -62,14 +63,17 @@
             <p>Lo sentimos, parece que aún no hay una foto de la donación</p>
           </div>
         </ng-template>
-        <p class="fecha-donacion">{{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }}</p>
-        <p class="monto-donacion">{{ donacionActual.cantidadDonacion }} $</p>
+          <div class="donacion-line-container">
+            <p class="text-donacion">El {{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }} donaste {{ donacionActual.cantidadDonacion }} $</p>
+            <p class="text-donacion" *ngIf="donacionActual.necesidadesSeleccionadas">para {{ donacionActual.necesidadesSeleccionadas }}.</p>
+            <button class="btn btn--third-button in-text">Seguir ayudando.</button>
+          </div>
       </div>
       
       <button class="flecha flecha-derecha" (click)="siguienteDonacion()">❯</button>
     </div>
 
-    <div class="progreso-container">
+    <div class="progreso-card">
       <h2>Progreso de la donación</h2>
       
       <div *ngIf="donacionActual.fotosProgreso?.length > 0; else sinProgreso" class="fotos-progreso-grid">
