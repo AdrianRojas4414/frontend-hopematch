@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VisitaService } from '../../servicios/visita.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+
 import { TEXTOS } from '../../config/constants';
 
 export interface Visita {
@@ -30,6 +31,7 @@ export interface Visita {
 })
 export class EncargadoVisitasComponent implements OnInit {
   todasLasVisitas: Visita[] = [];
+
   public texts = TEXTOS;
 
   constructor(

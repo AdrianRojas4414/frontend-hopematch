@@ -43,33 +43,60 @@ export class EditarNinoComponent {
       });
     }
   }
-
-  validarCampos(): boolean {
-    if (!this.nino.ci || !/^[0-9]+$/.test(this.nino.ci)) {
+  
+  private validarCampoRequerido(valor: any, campo: string): boolean {
+    if (!valor && valor !== 0) {
+      alert(`El campo ${campo} es obligatorio`);
       return false;
     }
-
-    if (!this.nino.nombre || this.nino.nombre.trim().length < 3) {
-      return false;
-    }
-
-    if (!this.nino.fechaNacimiento) {
-      return false;
-    }
-    const fechaNac = new Date(this.nino.fechaNacimiento);
-    const minDate = new Date('2007-01-01');
-    const maxDate = new Date('2024-12-31');
-    if (fechaNac < minDate || fechaNac > maxDate) {
-      return false;
-    }
-
-    if (!this.nino.necesidades || this.nino.necesidades.length === 0) {
-      return false;
-    }
-
     return true;
   }
 
+  private validarSoloNumeros(valor: string, campo: string): boolean {
+    if (!/^[0-9]+$/.test(valor)) {
+      alert(`El campo ${campo} debe contener solo números`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor?.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarFechaNacimiento(fecha: string): boolean {
+    const fechaNac = new Date(fecha);
+    const minDate = new Date('2007-01-01');
+    const maxDate = new Date('2024-12-31');
+    
+    if (fechaNac < minDate || fechaNac > maxDate) {
+      alert('La fecha de nacimiento debe estar entre 2007-2024 (1-18 años)');
+      return false;
+    }
+    return true;
+  }
+
+  private validarNecesidades(necesidades: any[]): boolean {
+    if (!necesidades || necesidades.length === 0) {
+      alert('Debe agregar al menos una necesidad');
+      return false;
+    }
+    return true;
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.nino.ci, 'CI') &&
+           this.validarSoloNumeros(this.nino.ci, 'CI') &&
+           this.validarCampoRequerido(this.nino.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.nino.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.nino.fechaNacimiento, 'fecha de nacimiento') &&
+           this.validarFechaNacimiento(this.nino.fechaNacimiento) &&
+           this.validarNecesidades(this.nino.necesidades);
+  }
 
   agregarNecesidad(): void {
     if (this.nuevaNecesidad.trim()) {
@@ -83,10 +110,7 @@ export class EditarNinoComponent {
   }
 
   updateNino(): void {
-    if (!this.validarCampos()) {
-      alert('Por favor complete todos los campos correctamente');
-      return;
-    }
+    if (!this.validarFormulario()) return;
     
     this.ninoService.updateNino(this.nino.id, this.nino).subscribe({
       next: () => {

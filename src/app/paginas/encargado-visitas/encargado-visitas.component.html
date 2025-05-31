@@ -22,7 +22,9 @@
   
           <div class="visita-body">
             <div class="info">
+
               <p><strong> {{texts.padrino}} </strong> {{ visita.padrino?.nombre || 'Padrino Desconocido' }}</p>
+
               <p *ngIf="visita.fechaCreacion">
                 <strong>Fecha Creación:</strong> {{ visita.fechaCreacion | date:'short' }}
               </p>

@@ -22,6 +22,7 @@ import { HomeAdministradorComponent } from './paginas/home-administrador/home-ad
 import { PerfilAdministradorComponent } from './paginas/perfil-administrador/perfil-administrador.component';
 import { EditarAdministradorComponent } from './paginas/editar-administrador/editar-administrador.component';
 import { RegistroVisitaComponent } from './paginas/registro-visita/registro-visita.component';
+import { EncargadoVisitasComponent } from './paginas/encargado-visitas/encargado-visitas.component';
 import { GestionNinosComponent } from './paginas/gestion-ninos/gestion-ninos.component';
 import { GestionPadrinosComponent } from './paginas/gestion-padrinos/gestion-padrinos.component';
 import { PadrinosSuspendidosComponent } from './paginas/padrinos-suspendidos/padrinos-suspendidos.component';
