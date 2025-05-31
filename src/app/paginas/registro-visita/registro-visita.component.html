@@ -1,60 +1,42 @@
-<div class="visita-container">
-    <div class="visita-card">
-      <h2 class="visita-title">Agendar Nueva Visita al hogar {{encargado.nombre_hogar}} ID padrino: {{idPadrino}}, ID encargado: {{encargado.id}}</h2>
-      <p class="visita-subtitle">Selecciona fecha y hora para tu visita</p>
-  
-      <div *ngIf="mensajeError" class="alert error">
-        {{ mensajeError }}
-        <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
-      </div>
-  
-      <div *ngIf="mensajeExito" class="alert success">
-        {{ mensajeExito }}
-        <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
-      </div>
-  
-      <form class="visita-form">
-        <div class="form-group">
-          <label for="fecha">Fecha de visita</label>
-          <input 
-            type="date" 
-            id="fecha" 
-            [(ngModel)]="fechaSeleccionada" 
-            name="fecha"
-            (click)="limpiarMensajes()"
-            [disabled]="isLoading"
-            required>
+<section class="full-layout-section register-container">
+    <form (ngSubmit)="registrarVisita()" *ngIf="!isLoading" class="card--form">
+        <div class="footer__brand">
+            <img src="imgs/logo light variant.png" alt="HopeMatch Logo" class="logo">
         </div>
-  
-        <div class="form-group">
-          <label for="horario">Horario disponible</label>
-          <select 
-            id="horario" 
-            [(ngModel)]="horarioSeleccionado" 
-            name="horario"
-            (click)="limpiarMensajes()"
-            [disabled]="isLoading || !horariosDisponibles.length"
-            required>
-            <option value="" disabled selected>Selecciona un horario</option>
-            <option *ngFor="let hora of horariosDisponibles" [value]="hora">{{ hora }}</option>
-          </select>
+        <div class="register-text">
+            <h2>Agendar Visita al Hogar {{encargado?.nombre_hogar}}</h2>
         </div>
-  
-        <button 
-          type="button" 
-          (click)="enviarSolicitud()" 
-          [disabled]="!fechaSeleccionada || !horarioSeleccionado || isLoading"
-          class="submit-btn">
-          <span *ngIf="!isLoading">Enviar Solicitud</span>
-          <span *ngIf="isLoading" class="loading-spinner"></span>
-        </button>
         
-        <button 
-          type="button"
-          (click)="volverAtras()"
-          class="cancel-btn">
-          {{texts.cancelar}}
+        <input type="hidden" [(ngModel)]="visita.padrino_id" name="padrino_id">
+        <input type="hidden" [(ngModel)]="visita.encargado_id" name="encargado_id">
+
+        <div *ngIf="mensajeError" class="alert error">
+            {{ mensajeError }}
+            <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
+        </div>
+
+        <div *ngIf="mensajeExito" class="alert success">
+            {{ mensajeExito }}
+            <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
+        </div>
+
+        <div class="input-group">
+            <label>Fecha de visita:</label>
+            <input type="date" [(ngModel)]="visita.fecha_visita" name="fecha_visita" 
+                   [min]="minDate" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label>Hora de visita:</label>
+            <select [(ngModel)]="visita.hora_visita" name="hora_visita" class="input-field" required>
+                <option value="" disabled selected>Seleccione una hora</option>
+                <option *ngFor="let hora of horariosDisponibles" [value]="hora">{{hora}}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn--primary-button" [disabled]="!visita.fecha_visita || !visita.hora_visita">
+            Agendar Visita
         </button>
-      </form>
-    </div>
-</div>
+        <button type="button" class="cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
+    </form>
+</section>
