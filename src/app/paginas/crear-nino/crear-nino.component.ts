@@ -13,7 +13,7 @@ import { TEXTOS } from '../../config/constants';
   styleUrl: './crear-nino.component.scss'
 })
 export class CrearNinoComponent implements OnInit {
-
+  public texts = TEXTOS;
   ninoForm!: FormGroup;
   idEncargado!: number;
   necesidadesArray!: FormArray;

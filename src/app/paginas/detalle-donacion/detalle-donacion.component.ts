@@ -12,7 +12,9 @@ import { TEXTOS } from '../../config/constants';
   templateUrl: './detalle-donacion.component.html',
   styleUrls: ['./detalle-donacion.component.scss']
 })
+
 export class DetalleDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donacion: any = null;
   isLoading = true;
 

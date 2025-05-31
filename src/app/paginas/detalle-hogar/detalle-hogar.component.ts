@@ -15,6 +15,7 @@ import { TEXTOS } from '../../config/constants';
   styleUrl: './detalle-hogar.component.scss'
 })
 export class DetalleHogarComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
   donaciones: any[] = [];
   donacionActual: any = null;

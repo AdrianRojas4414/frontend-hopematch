@@ -1,0 +1,40 @@
+<div class="visitas-container">
+    <div class="header">
+      <h1>Todas las Solicitudes de Visita</h1>
+      <button (click)="volverAHome()" class="btn-volver">Volver a Inicio</button>
+    </div>
+  
+    <ng-container>
+      <div *ngIf="todasLasVisitas.length === 0" class="no-visitas-message">
+        No hay solicitudes de visita registradas para tu hogar.
+      </div>
+  
+      <div *ngIf="todasLasVisitas.length > 0" class="visitas-list">
+        <div *ngFor="let visita of todasLasVisitas" class="visita-card">
+          <div class="visita-header">
+            <span class="fecha-hora">
+              {{ visita.fecha | date:'dd/MM/yyyy' }} - {{ visita.hora }}
+            </span>
+            <span class="estado" [ngClass]="getEstadoClass(visita.estado)">
+              {{ visita.estado }}
+            </span>
+          </div>
+  
+          <div class="visita-body">
+            <div class="info">
+              <p><strong> {{texts.padrino}} </strong> {{ visita.padrino?.nombre || 'Padrino Desconocido' }}</p>
+              <p *ngIf="visita.fechaCreacion">
+                <strong>Fecha Creación:</strong> {{ visita.fechaCreacion | date:'short' }}
+              </p>
+            </div>
+  
+            <div *ngIf="mostrarAcciones(visita.estado)" class="visita-acciones">
+              <button (click)="acceptVisita(visita.id)" class="btn-aceptar">Aceptar</button>
+              <button (click)="denyVisita(visita.id)" class="btn-denegar">Denegar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  

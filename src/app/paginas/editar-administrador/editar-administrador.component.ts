@@ -14,6 +14,7 @@ import { TEXTOS } from '../../config/constants';
   styleUrls: ['./editar-administrador.component.scss']
 })
 export class EditarAdministradorComponent implements OnInit {
+  public texts = TEXTOS;
   administrador: any = {};
 
   constructor(
