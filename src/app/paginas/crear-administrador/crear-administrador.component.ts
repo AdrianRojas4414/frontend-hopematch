@@ -27,84 +27,85 @@ export class CrearAdministradorComponent {
     private authService: UserAuthenticationService
   ) {}
 
-  validarFormulario(): boolean {
-    if (!this.administrador.nombre.trim()) {
-      alert('El nombre es obligatorio');
-      return false;
-    } else if (this.administrador.nombre.length < 3) {
-      alert('El nombre debe tener al menos 3 caracteres');
+  private validarCampoRequerido(valor: string, campo: string): boolean {
+    if (!valor.trim()) {
+      alert(`El campo ${campo} es obligatorio`);
       return false;
     }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!this.administrador.email.trim()) {
-      alert('El email es obligatorio');
-      return false;
-    } else if (!emailRegex.test(this.administrador.email)) {
-      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
-      return false;
-    }
-
-    if (!this.administrador.contrasenia) {
-      alert('La contraseña es obligatoria');
-      return false;
-    } else if (this.administrador.contrasenia.length < 8) {
-      alert('La contraseña debe tener al menos 8 caracteres');
-      return false;
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(this.administrador.contrasenia)) {
-      alert('La contraseña debe contener al menos:\n- Una letra mayúscula\n- Una letra minúscula\n- Un número\n- Un carácter especial (@$!%*?&)');
-      return false;
-    }
-
     return true;
   }
 
-  verificarEmailUnico(email: string): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.administradorService.getAdministradores().subscribe({
-        next: (administradores) => {
-          const existe = administradores.some((admin: any) => admin.email === email);
-          resolve(!existe);
-        },
-        error: () => {
-          resolve(true);
-        }
-      });
-    });
+  private validarLongitudMinima(valor: string, campo: string, longitud: number): boolean {
+    if (valor.trim().length < longitud) {
+      alert(`El campo ${campo} debe tener al menos ${longitud} caracteres`);
+      return false;
+    }
+    return true;
+  }
+
+  private validarEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      alert('Ingrese un email válido (ejemplo: usuario@dominio.com)');
+      return false;
+    }
+    return true;
+  }
+
+  private validarContrasenia(contrasenia: string): boolean {
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(contrasenia)) {
+      alert('La contraseña debe contener al menos:\n- Una letra mayúscula\n- Una letra minúscula\n- Un número\n- Un carácter especial (@$!%*?&)');
+      return false;
+    }
+    return true;
+  }
+
+  private async verificarEmailUnico(email: string): Promise<boolean> {
+    try {
+      const administradores = await this.administradorService.getAdministradores().toPromise();
+      const existe = administradores.some((admin: any) => admin.email === email);
+      if (existe) {
+        alert('Este email ya está registrado. Por favor use otro.');
+      }
+      return !existe;
+    } catch {
+      return true;
+    }
+  }
+    
+  cancelarRegistro(): void {
+    this.router.navigate(['/inicio']);
+  }
+
+  private validarFormulario(): boolean {
+    return this.validarCampoRequerido(this.administrador.nombre, 'nombre') &&
+           this.validarLongitudMinima(this.administrador.nombre, 'nombre', 3) &&
+           this.validarCampoRequerido(this.administrador.email, 'email') &&
+           this.validarEmail(this.administrador.email) &&
+           this.validarCampoRequerido(this.administrador.contrasenia, 'contraseña') &&
+           this.validarLongitudMinima(this.administrador.contrasenia, 'contraseña', 8) &&
+           this.validarContrasenia(this.administrador.contrasenia);
   }
 
    async registrarAdministrador(): Promise<void> {
-    if (!this.validarFormulario()) {
-      return;
-    }
-
-    const emailUnico = await this.verificarEmailUnico(this.administrador.email);
-    if (!emailUnico) {
-      alert('Este email ya está registrado. Por favor use otro.');
-      return;
-    }
+    if (!this.validarFormulario()) return;
+    if (!await this.verificarEmailUnico(this.administrador.email)) return;
 
     this.administradorService.createAdministrador(this.administrador).subscribe({
       next: (response) => {
-        console.log('Administrador registrado con éxito!', response);
         alert('Administrador registrado con éxito!');
         this.authService.login(this.administrador.email, this.administrador.contrasenia, 'administrador').subscribe({
-          next: () => {
-            this.router.navigate(['/home-administrador']);
-          },
+          next: () => this.router.navigate(['/home-administrador']),
           error: (err) => {
-            console.error('Error al iniciar sesión después del registro:', err);
-            alert('Registro exitoso, pero hubo un error al iniciar sesión.');
+            console.error('Error al iniciar sesión:', err);
+            alert('Registro exitoso, pero error al iniciar sesión.');
           }
         });
       },
       error: (err) => {
-        console.error('Error al registrar administrador:', err);
-        alert('Error al registrar administrador. Por favor, intente nuevamente.');
+        console.error('Error al registrar:', err);
+        alert('Error al registrar administrador. Intente nuevamente.');
       }
     });
-  }
-  cancelarRegistro(): void {
-    this.router.navigate(['/inicio']);
   }
 }

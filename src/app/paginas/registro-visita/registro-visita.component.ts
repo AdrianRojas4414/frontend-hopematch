@@ -21,8 +21,9 @@ export class RegistroVisitaComponent implements OnInit {
     fecha_visita: '',
     hora_visita: ''
   };
-  
+
   public texts = TEXTOS;
+
   encargado: any = null;
   horariosDisponibles = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
   minDate: string;

@@ -30,8 +30,8 @@ export interface Visita {
 })
 export class EncargadoVisitasComponent implements OnInit {
   todasLasVisitas: Visita[] = [];
-  public texts = TEXTOS;
-
+  public texts = TEXTOS; 
+  
   constructor(
     private visitaService: VisitaService,
     private router: Router,
@@ -105,3 +105,4 @@ export class EncargadoVisitasComponent implements OnInit {
     }
   }
 }
+
