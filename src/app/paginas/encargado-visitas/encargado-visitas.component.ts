@@ -96,7 +96,7 @@ export class EncargadoVisitasComponent implements OnInit {
       case 'PENDIENTE':
         return 'estado-pendiente';
       case 'ACEPTADA':
-        return 'estado-aceptada';
+        return 'estado-aceptada';a
       case 'RECHAZADA':
         return 'estado-rechazada';
       case 'CANCELADA':
