@@ -36,6 +36,7 @@
 
         <button type="submit" class="btn btn--primary-button" [disabled]="!visita.fecha_visita || !visita.hora_visita">
             Agendar Visita
+
         </button>
         <button type="button" class="cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
     </form>

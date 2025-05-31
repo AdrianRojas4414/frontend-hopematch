@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { VisitaService } from '../../servicios/visita.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<<<< Temporary merge branch 1
+=========
 import { TEXTOS } from '../../config/constants';
 
 export interface Visita {
@@ -30,8 +32,11 @@ export interface Visita {
 })
 export class EncargadoVisitasComponent implements OnInit {
   todasLasVisitas: Visita[] = [];
-  public texts = TEXTOS; 
-  
+<<<<<<<<< Temporary merge branch 1
+=========
+  public texts = TEXTOS;
+>>>>>>>>> Temporary merge branch 2
+
   constructor(
     private visitaService: VisitaService,
     private router: Router,
