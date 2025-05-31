@@ -13,6 +13,7 @@ import { TEXTOS } from '../../config/constants';
   styleUrl: './hogares-suspendidos.component.scss'
 })
 export class HogaresSuspendidosComponent implements OnInit {
+  public texts = TEXTOS;
   encargados: any[] = [];
   encargadosSuspendidos: any[] = [];
 

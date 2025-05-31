@@ -15,7 +15,7 @@
           <h2>{{encargado.nombre_hogar}}</h2>
           <p><strong>Descripción:</strong>  {{encargado.descripcion}}  </p>
           <p><strong>Número de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
-          <button class="btn edit-btn" (click)="irEditarPerfil()">Editar</button>
+          <button class="btn edit-btn" (click)="irEditarPerfil()">{{texts.editar}}</button>
           <button class="btn mis-ninos-btn" (click)="irMisNinos()">Mis niños</button>
         </div>
       </div>
