@@ -10,16 +10,26 @@ export class VisitaService {
 
   constructor(private http: HttpClient) {}
 
-  getHorariosDisponibles(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.backendUrl}/horarios-disponibles`);
+  registrarVisita(visitaData: any): Observable<any> {
+    const payload = {
+      fechaVisita: visitaData.fechaVisita,
+      horaVisita: visitaData.horaVisita,
+      padrinoId: visitaData.padrinoId,
+      encargadoId: visitaData.encargadoId
+    };
+    return this.http.post(`${this.backendUrl}/agendar`, payload);
   }
 
-  crearVisita(visitaData: any): Observable<any> {
-    return this.http.post(`${this.backendUrl}/agendar`, visitaData);
+  getVisitasByPadrino(padrinoId: number): Observable<any> {
+    return this.http.get(`${this.backendUrl}/by-padrino/${padrinoId}`);
   }
 
-  getMisVisitas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.backendUrl}/mine/padrino`);
+  getVisitasByEncargado(encargadoId: number): Observable<any> {
+    return this.http.get(`${this.backendUrl}/by-encargado/${encargadoId}`);
+  }
+
+  actualizarEstadoVisita(visitaId: number, estado: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/${visitaId}/estado`, { estado });
   }
 
   getAllVisitasForEncargado(): Observable<any[]> {
@@ -37,3 +47,4 @@ export class VisitaService {
     return this.http.put(`${this.backendUrl}/deny/${visitaId}`, {}, { responseType: 'text' });
   }
 }
+
