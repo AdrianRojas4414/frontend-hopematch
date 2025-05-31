@@ -9,6 +9,7 @@ import { MensajeService } from '../../servicios/mensaje.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-chat',
@@ -17,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent implements OnInit{
+  public texts = TEXTOS;
   idUsuario: number = 0;
   tipoUsuario: any = null;
   idConversacion: any = null;

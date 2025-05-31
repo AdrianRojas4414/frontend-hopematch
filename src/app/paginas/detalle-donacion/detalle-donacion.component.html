@@ -2,10 +2,10 @@
     <div class="header">
       <h1>Detalle de Donación</h1>
       <button (click)="volverAHome()" class="btn-volver">
-        <i class="fas fa-arrow-left"></i> Volver
+        <i class="fas fa-arrow-left"></i> {{texts.volver}}
       </button>
     </div>
-  
+     
     <div *ngIf="donacion" class="donacion-card">
       <div class="donacion-header">
         <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>

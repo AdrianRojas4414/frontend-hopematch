@@ -14,12 +14,12 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./encargado-donacion.component.scss']
 })
 export class EncargadoDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donaciones: any[] = [];
   mostrarFormulario = false;
   nuevoComentario = '';
   donacionSeleccionadaId: number | null = null;
-  public texts = TEXTOS;
-
+    
   mostrarFormFoto = false;
   nuevaFotoUrl = '';
   donacionIdParaFoto: number | null = null;

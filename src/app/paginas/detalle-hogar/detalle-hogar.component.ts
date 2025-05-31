@@ -6,6 +6,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { DonacionService } from '../../servicios/donacion.service';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -14,6 +15,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './detalle-hogar.component.scss'
 })
 export class DetalleHogarComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
   donaciones: any[] = [];
   donacionActual: any = null;

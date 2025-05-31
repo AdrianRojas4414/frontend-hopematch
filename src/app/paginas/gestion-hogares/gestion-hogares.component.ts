@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-gestion-hogares',
@@ -12,6 +13,8 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './gestion-hogares.component.scss'
 })
 export class GestionHogaresComponent implements OnInit{
+
+  public texts = TEXTOS;
   encargados: any[] = [];
   encargadosEnRevision: any[] = [];
   encargadosAprobados: any[] = [];

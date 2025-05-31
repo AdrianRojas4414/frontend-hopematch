@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-ninos-hogar',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './ninos-hogar.component.scss'
 })
 export class NinosHogarComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
   
   constructor(

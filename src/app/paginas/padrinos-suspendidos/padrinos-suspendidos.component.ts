@@ -3,6 +3,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-padrinos-suspendidos',
@@ -11,6 +12,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   imports: [CommonModule]
 })
 export class PadrinosSuspendidosComponent implements OnInit {
+  public texts = TEXTOS;
   padrinosSuspendidos: any[] = [];
   isLoading: boolean = true;
 

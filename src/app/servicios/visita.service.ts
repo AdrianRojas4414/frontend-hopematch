@@ -47,4 +47,3 @@ export class VisitaService {
     return this.http.put(`${this.backendUrl}/deny/${visitaId}`, {}, { responseType: 'text' });
   }
 }
-

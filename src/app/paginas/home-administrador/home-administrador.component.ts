@@ -5,6 +5,7 @@ import { AdministradorService } from '../../servicios/administrador.service';
 import { RouterLink } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 interface TokenData {
   sub: string;
@@ -21,6 +22,8 @@ interface TokenData {
   styleUrls: ['./home-administrador.component.scss']
 })
 export class HomeAdministradorComponent implements OnInit {
+  public texts = TEXTOS;
+  
   administrador: any = null;
 
   constructor(

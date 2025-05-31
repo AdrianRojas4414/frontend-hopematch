@@ -14,7 +14,7 @@
       <label for="necesidad">Necesidades:</label>
       <div class="necesidades">
         <input id="necesidad" type="text" #necesidadInput>
-        <button type="button" (click)="addNecesidad(necesidadInput)">Agregar</button>
+        <button type="button" (click)="addNecesidad(necesidadInput)">{{texts.agregar}}</button>
       </div>
 
       <ul>
@@ -26,6 +26,6 @@
   
       <button type="submit" [disabled]="ninoForm.invalid">Registrar Niño</button>
 
-      <button type="button" class="cancel-button" (click)="cancelarRegistro()">Cancelar</button>
+      <button type="button" class="cancel-button" (click)="cancelarRegistro()">{{texts.cancelar}}</button>
     </form>
   </div>

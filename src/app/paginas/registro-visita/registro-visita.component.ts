@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { VisitaService } from '../../servicios/visita.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-registro-visita',
@@ -14,12 +15,15 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
+
   visita = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,
     fecha_visita: '',
     hora_visita: ''
   };
+
+  public texts = TEXTOS;
 
   encargado: any = null;
   horariosDisponibles = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];

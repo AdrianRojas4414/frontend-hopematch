@@ -35,7 +35,7 @@
                 <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
                 <button class="btn-enviar" (click)="revisarHogar(encargado)">Enviar a Revision</button>
                 <button class="btn-ver-perfil " (click)="verDetalles(encargado.id)">Ver Detalles</button>
-                <button class="btn-chat" (click)="irChat(encargado.id)">Chat</button>
+                <button class="btn-chat" (click)="irChat(encargado.id)">{{texts.chat}}</button>
                 </div>
             </div>
         </div>

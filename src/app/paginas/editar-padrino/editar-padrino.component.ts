@@ -4,6 +4,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-padrino',
@@ -13,6 +14,8 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './editar-padrino.component.scss'
 })
 export class EditarPadrinoComponent implements OnInit {
+  
+  public texts = TEXTOS;
   padrino: any = {}; 
 
   constructor(

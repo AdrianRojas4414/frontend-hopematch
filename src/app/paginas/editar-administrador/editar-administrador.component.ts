@@ -4,6 +4,7 @@ import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-administrador',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./editar-administrador.component.scss']
 })
 export class EditarAdministradorComponent implements OnInit {
+  public texts = TEXTOS;
   administrador: any = {};
 
   constructor(
