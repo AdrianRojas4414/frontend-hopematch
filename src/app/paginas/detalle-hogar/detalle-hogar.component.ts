@@ -8,6 +8,8 @@ import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
 import { PadrinoService } from '../../servicios/padrino.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { RegistroDonacionComponent } from '../registro-donacion/registro-donacion.component';
 
 @Component({
   selector: 'app-detalle-hogar',
@@ -29,7 +31,8 @@ export class DetalleHogarComponent implements OnInit{
     private encargadoService: EncargadoService,
     private padrinoService: PadrinoService,
     private donacionService: DonacionService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -141,5 +144,18 @@ export class DetalleHogarComponent implements OnInit{
 
   get backgroundImageUrl(): string {
     return `url(${this.encargado.foto_hogar || 'assets/default-home.jpg'})`;
+  }
+
+  irARegistroDonacion(padrinoId: number, encargadoId: number): void {
+    localStorage.setItem("padrinoId", padrinoId.toString());
+    localStorage.setItem("encargadoId", encargadoId.toString());
+    const dialogRef = this.dialog.open(RegistroDonacionComponent, {
+      width: '500px',
+      height: 'fit-content%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
   }
 }

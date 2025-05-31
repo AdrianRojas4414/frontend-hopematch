@@ -34,7 +34,7 @@
   <div class="field--column-card-elements">
     <button class="btn btn--secondary-button" (click)="agendarVisita()">Visitar</button>
     <button class="btn btn--secondary-button" (click)="irChat()">Chat</button>
-    <button class="btn btn--primary-button">Volver a Donar</button>
+    <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Volver a Donar</button>
   </div>
   <div *ngIf="encargado.ninos?.length" class="card--simple-text">
     <h3>Necesidades del hogar:</h3>
@@ -66,7 +66,7 @@
           <div class="donacion-line-container">
             <p class="text-donacion">El {{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }} donaste {{ donacionActual.cantidadDonacion }} $</p>
             <p class="text-donacion" *ngIf="donacionActual.necesidadesSeleccionadas">para {{ donacionActual.necesidadesSeleccionadas }}.</p>
-            <button class="btn btn--third-button in-text">Seguir ayudando.</button>
+            <button class="btn btn--third-button in-text" (click)="irARegistroDonacion(padrino.id, encargado.id)">Seguir ayudando.</button>
           </div>
       </div>
       

@@ -105,6 +105,8 @@ export class RegistroDonacionComponent implements OnInit {
       necesidadesSeleccionadas: necesidadesSeleccionadas.join(', ')
     };
 
+    const currentUrl = this.router.url;
+
     this.donacionService.registrarDonacion(donacionData).subscribe({
       next: (response) => {
         console.log('Donación registrada:', response);
@@ -112,7 +114,7 @@ export class RegistroDonacionComponent implements OnInit {
         localStorage.removeItem("padrinoId");
         localStorage.removeItem("encargadoId");
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/home-padrino']);
+          this.router.navigate([currentUrl]);
         });
       },
       error: (error) => {
