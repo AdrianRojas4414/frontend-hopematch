@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { VisitaService } from '../../servicios/visita.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<<<< Temporary merge branch 1
-=========
 import { TEXTOS } from '../../config/constants';
 
 export interface Visita {
