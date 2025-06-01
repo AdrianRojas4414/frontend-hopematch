@@ -13,8 +13,16 @@
         <input type="email" [placeholder]="texts.inputEmail" name="email" [(ngModel)]="email" class="input-field" required>
       </div>
       
-      <div class="input-group">
-        <input type="password" [placeholder]="texts.inputPassword" name="password" [(ngModel)]="password" class="input-field" required>
+      <div class="input-group input-group--icon-right">
+          <input [type]="mostrarContrasenia ? 'text' : 'password'"
+                  [(ngModel)]="password"
+                  name="password"
+                  [placeholder]="texts.inputPassword"
+                  class="input-field" required>
+          <div class="input-group-icon icon-right" (click)="mostrarContrasenia = !mostrarContrasenia">
+            <img *ngIf="!mostrarContrasenia" src="imgs/noview_icon.png" alt="Mostrar" style="width: 20px; height: 20px;">
+            <img *ngIf="mostrarContrasenia" src="imgs/view_icon.png" alt="Ocultar" style="width: 20px; height: 20px;">
+          </div>
       </div>
 
       <div class="input-group">
