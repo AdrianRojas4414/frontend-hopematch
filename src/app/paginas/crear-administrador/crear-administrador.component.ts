@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { TEXTOS } from '../../config/constants';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-administrador',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './crear-administrador.component.html',
   styleUrls: ['./crear-administrador.component.scss']
 })
@@ -20,6 +21,7 @@ export class CrearAdministradorComponent {
     email: '',
     contrasenia: ''
   };
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private administradorService: AdministradorService, 
