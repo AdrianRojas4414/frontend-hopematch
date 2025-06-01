@@ -5,10 +5,11 @@ import { Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { TEXTOS } from '../../config/constants';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-padrino',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './crear-padrino.component.html',
   styleUrl: './crear-padrino.component.scss'
 })
@@ -22,6 +23,7 @@ export class CrearPadrinoComponent {
     contrasenia: '',
     estado: 'En revision'
   };
+  mostrarContrasenia: boolean = false;
   
   constructor(
     private padrinoService: PadrinoService, 
