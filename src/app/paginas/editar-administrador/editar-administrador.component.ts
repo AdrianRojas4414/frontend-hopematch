@@ -16,6 +16,8 @@ import { TEXTOS } from '../../config/constants';
 export class EditarAdministradorComponent implements OnInit {
   public texts = TEXTOS;
   administrador: any = {};
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -51,7 +53,7 @@ export class EditarAdministradorComponent implements OnInit {
   }
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -81,6 +83,12 @@ export class EditarAdministradorComponent implements OnInit {
   }
 
   updateAdministrador(): void {
+    if (this.nuevaContrasenia) {
+      this.administrador.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.administrador.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
 
     this.adminService.updateAdministrador(this.administrador.id, this.administrador)

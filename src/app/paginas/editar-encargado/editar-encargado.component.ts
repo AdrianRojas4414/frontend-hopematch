@@ -16,6 +16,8 @@ import { TEXTOS } from '../../config/constants';
 export class EditarEncargadoComponent implements OnInit {
   public texts = TEXTOS;
   encargado: any = {};
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -39,7 +41,7 @@ export class EditarEncargadoComponent implements OnInit {
   }
 
   private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -82,6 +84,12 @@ export class EditarEncargadoComponent implements OnInit {
   }
 
   updateEncargado(): void {
+    if (this.nuevaContrasenia) {
+      this.encargado.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.encargado.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
 
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)

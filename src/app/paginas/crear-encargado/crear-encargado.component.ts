@@ -4,10 +4,11 @@ import { Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { TEXTOS } from '../../config/constants';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-encargado',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './crear-encargado.component.html',
   styleUrl: './crear-encargado.component.scss'
 })
@@ -25,6 +26,7 @@ export class CrearEncargadoComponent {
     foto_hogar: '',
     descripcion:''
   }
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private encargadoService: EncargadoService, 
