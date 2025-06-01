@@ -17,6 +17,8 @@ export class EditarPadrinoComponent implements OnInit {
   
   public texts = TEXTOS;
   padrino: any = {}; 
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,7 +42,7 @@ export class EditarPadrinoComponent implements OnInit {
   }
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -80,6 +82,12 @@ export class EditarPadrinoComponent implements OnInit {
   }
 
   updatePadrino(): void {
+    if (this.nuevaContrasenia) {
+      this.padrino.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.padrino.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
     
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
