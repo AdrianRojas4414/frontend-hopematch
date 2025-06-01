@@ -108,6 +108,7 @@ export class EditarEncargadoComponent implements OnInit {
   eliminarEncargado(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
       this.encargado.estado = "Suspendido";
+      delete this.encargado.contrasenia;
       this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(()=> {
         alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");

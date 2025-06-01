@@ -52,6 +52,7 @@ export class HogaresSuspendidosComponent implements OnInit {
 
     revisarHogar(encargado: any):void{
       encargado.estado = 'En revision';
+      delete encargado.contrasenia;
       this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
         alert('El Hogar ha sido agregado a la lista de revisiones');
         this.ngOnInit();

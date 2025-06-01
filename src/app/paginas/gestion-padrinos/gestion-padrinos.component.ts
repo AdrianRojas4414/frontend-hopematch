@@ -55,6 +55,7 @@ export class GestionPadrinosComponent implements OnInit {
 
   aprobarPadrino(padrino: any): void {
     padrino.estado = 'Aprobado';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('Padrino Aprobado exitosamente');
@@ -69,6 +70,7 @@ export class GestionPadrinosComponent implements OnInit {
   
   rechazarPadrino(padrino: any): void {
     padrino.estado = 'Suspendido';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');
@@ -83,6 +85,7 @@ export class GestionPadrinosComponent implements OnInit {
   
   suspenderPadrino(padrino: any): void {
     padrino.estado = 'Suspendido';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');

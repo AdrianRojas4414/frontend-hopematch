@@ -106,6 +106,7 @@ export class EditarPadrinoComponent implements OnInit {
   eliminarPadrino(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
       this.padrino.estado = "Suspendido";
+      delete this.padrino.contrasenia;
       this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(()=> {
         alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");

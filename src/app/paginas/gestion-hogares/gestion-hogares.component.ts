@@ -63,6 +63,7 @@ export class GestionHogaresComponent implements OnInit{
 
   aprobarHogar(encargado: any):void{
     encargado.estado = "Aprobado";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar ha sido aprobado y puede recibir donaciones');
       this.ngOnInit();
@@ -71,6 +72,7 @@ export class GestionHogaresComponent implements OnInit{
 
   rechazarHogar(encargado: any):void{
     encargado.estado = "Suspendido";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
@@ -79,6 +81,7 @@ export class GestionHogaresComponent implements OnInit{
 
   suspenderHogar(encargado: any):void{
     encargado.estado = "Suspendido";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
