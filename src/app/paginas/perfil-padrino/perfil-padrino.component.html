@@ -1,12 +1,23 @@
-<div class="perfil-container" *ngIf="padrino">
-  <div class="perfil-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a *ngIf="mostrarBotonEditar"  (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
-      <a *ngIf="mostrarBotonEditar"  (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">Cerrar Sesión</a>
-      <a *ngIf="!mostrarBotonEditar"  (click)="VolverAHomeAdmin()" style="color: #3f51b5; cursor: pointer;">Volver a Gestion</a>
+<header *ngIf="padrino">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHome()">Home</button>
+              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="this.irAdministradores()"> {{texts.buttonSoporte}}</button>
+                <img *ngIf="mostrarBotonEditar" [src]="padrino.foto" 
+                    alt="Foto del Encargado" 
+                    class="admin-foto" />
+                <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+                <button *ngIf="!mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHomeAdmin()"> Volver a Gestion </button>
+            </div>
+        </div>
     </nav>
-  </div>
+</header>
+
+<div class="perfil-container full-layout-section" *ngIf="padrino">
 
   <div class="perfil-content">
     <div class="perfil-info">
@@ -20,7 +31,7 @@
         <p><strong>E-mail:</strong> {{ padrino.email }}</p>
         <p><strong>Celular:</strong> {{ padrino.celular }}</p>
         <p><strong>Estado:</strong> {{ padrino.estado }}</p>
-        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">Editar Datos</button>
+        <button *ngIf="mostrarBotonEditar" class="btn btn--primary-button" (click)="irEditarPerfil()">Editar Datos</button>
       </div>
     </div>
 
@@ -30,3 +41,31 @@
 <div *ngIf="!padrino">
   <p>Cargando datos...</p>
 </div>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>

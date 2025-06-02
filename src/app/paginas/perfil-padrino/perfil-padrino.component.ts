@@ -3,7 +3,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TEXTOS } from '../../config/constants';
+import { EditarPadrinoComponent } from '../editar-padrino/editar-padrino.component';
 
 @Component({
   selector: 'app-perfil-padrino',
@@ -19,7 +21,8 @@ export class PerfilPadrinoComponent implements OnInit{
   constructor(
     private padrinoService: PadrinoService, 
     private authService: UserAuthenticationService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -64,7 +67,13 @@ export class PerfilPadrinoComponent implements OnInit{
 
   irEditarPerfil(): void{
     if (this.padrino) {
-      this.router.navigate([`/editar-perfil-padrino`]);
+    const dialogRef = this.dialog.open(EditarPadrinoComponent, {
+          width: '500px',
+          height: 'fit-content%'
+        });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
     }
   }
 
@@ -77,5 +86,9 @@ export class PerfilPadrinoComponent implements OnInit{
   VolverAHomeAdmin(){
     localStorage.removeItem("id_padrino");
     this.router.navigate([`/gestion-padrinos`]);
+  }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
   }
 }

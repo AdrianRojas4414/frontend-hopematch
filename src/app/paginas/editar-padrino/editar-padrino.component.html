@@ -1,38 +1,45 @@
-<div class="container">
-    <h2 style="color: #e65c4f;">Editar Perfil de Padrino</h2>
-    <form (ngSubmit)="updatePadrino()">
+
+<form (ngSubmit)="updatePadrino()" class="dialog--form">
+    <h2>Editar Perfil de Padrino</h2>
+    <div class="input-group">
         <label>Nombre:</label>
-        <input type="text" [(ngModel)]="padrino.nombre" name="nombre" required>
+        <input type="text" [(ngModel)]="padrino.nombre" name="nombre" class="input-field" required>
+    </div>
 
+    <div class="input-group">
         <label>Celular:</label>
-        <input type="text" [(ngModel)]="padrino.celular" name="celular" placeholder="+### ####" required>
+        <input type="text" [(ngModel)]="padrino.celular" name="celular" placeholder="+### ####" class="input-field" required>
+    </div>
 
+    <div class="input-group">
         <label>Email:</label>
-        <input type="email" [(ngModel)]="padrino.email" name="email" disabled>
+        <input type="email" [(ngModel)]="padrino.email" name="email" class="input-field" disabled>
+    </div>
 
+    <div class="input-group">
         <label>Foto URL:</label>
-        <input type="text" [(ngModel)]="padrino.foto" name="foto">
+        <input type="text" [(ngModel)]="padrino.foto" name="foto" class="input-field">
+    </div>
 
-        <label>Nueva Contraseña (dejar en blanco si no deseas cambiarla):</label>
-        <div style="position: relative;">
-            <input [type]="mostrarContrasenia ? 'text' : 'password'"
-                    [(ngModel)]="nuevaContrasenia"
-                    name="nuevaContrasenia"
-                    placeholder="Nueva contraseña"
-                    style="width: 100%; padding-right: 2.5rem;">
-            <button type="button"
-                    (click)="mostrarContrasenia = !mostrarContrasenia"
-                    style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);
-                            border: none; background: transparent; cursor: pointer; font-size: 1rem;">
-                <img *ngIf="!mostrarContrasenia" src="imgs/noview_icon.png" alt="Mostrar" style="width: 20px; height: 20px;">
-                <img *ngIf="mostrarContrasenia" src="imgs/view_icon.png" alt="Ocultar" style="width: 20px; height: 20px;">
-            </button>
-        </div>
+    <label>Nueva Contraseña (dejar en blanco si no deseas cambiarla):</label>
+    <div class="input-group input-group--icon-right">
+        <input [type]="mostrarContrasenia ? 'text' : 'password'"
+                [(ngModel)]="nuevaContrasenia"
+                name="nuevaContrasenia"
+                placeholder="Nueva contraseña"
+                style="width: 100%; padding-right: 2.5rem;">
+        <button type="button"
+                (click)="mostrarContrasenia = !mostrarContrasenia"
+                style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);
+                        border: none; background: transparent; cursor: pointer; font-size: 1rem;">
+            <img *ngIf="!mostrarContrasenia" src="imgs/noview_icon.png" alt="Mostrar" style="width: 20px; height: 20px;">
+            <img *ngIf="mostrarContrasenia" src="imgs/view_icon.png" alt="Ocultar" style="width: 20px; height: 20px;">
+        </button>
+    </div>
 
-        <button type="submit" class="primary-button">Guardar Cambios</button>
-        
-        <button type="button" class="secondary-button" (click)="eliminarPadrino()">Eliminar Cuenta</button>
+    <button type="submit" class="btn btn--primary-button">Guardar Cambios</button>
+    
+    <button type="button" class="btn btn--secondary-button" (click)="eliminarPadrino()">Eliminar Cuenta</button>
 
-        <button type="button" class="cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
-    </form>
-</div>
+    <button type="button" class="btn btn--cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
+</form>
