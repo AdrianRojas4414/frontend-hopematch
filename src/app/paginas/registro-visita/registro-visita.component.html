@@ -30,5 +30,5 @@
         </select>
       </div>
         <button type="submit" [disabled]="!visita.fecha_visita || !visita.hora_visita || isLoading" class="btn btn--primary-button">Agendar</button>
-        <button type="button" class="btn btn--cancel-button" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn--cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
     </form>
