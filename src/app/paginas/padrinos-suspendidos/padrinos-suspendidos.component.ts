@@ -3,6 +3,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-padrinos-suspendidos',
@@ -11,6 +12,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   imports: [CommonModule]
 })
 export class PadrinosSuspendidosComponent implements OnInit {
+  public texts = TEXTOS;
   padrinosSuspendidos: any[] = [];
   isLoading: boolean = true;
 
@@ -49,6 +51,7 @@ export class PadrinosSuspendidosComponent implements OnInit {
   ponerEnRevision(padrino: any): void {
     if (confirm('¿Estás seguro de poner esta cuenta En Revisión?')) {
       padrino.estado = 'En revision';
+      delete padrino.contrasenia;
       this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
         next: () => {
           alert('El Padrino ha sido agregado a la lista de revisiones');

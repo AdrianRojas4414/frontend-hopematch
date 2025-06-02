@@ -16,6 +16,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./registro-visita.component.scss']
 })
 export class RegistroVisitaComponent implements OnInit {
+
   visita = {
     padrino_id: null as number | null,
     encargado_id: null as number | null,

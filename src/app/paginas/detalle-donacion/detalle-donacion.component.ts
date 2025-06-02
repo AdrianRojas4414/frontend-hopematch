@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DonacionService } from '../../servicios/donacion.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -12,7 +13,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './detalle-donacion.component.html',
   styleUrls: ['./detalle-donacion.component.scss']
 })
+
 export class DetalleDonacionComponent implements OnInit {
+  public texts = TEXTOS;
   donacion: any = null;
   isLoading = true;
 

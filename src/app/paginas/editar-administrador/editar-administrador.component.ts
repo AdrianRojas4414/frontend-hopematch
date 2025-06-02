@@ -4,6 +4,7 @@ import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-administrador',
@@ -13,7 +14,10 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrls: ['./editar-administrador.component.scss']
 })
 export class EditarAdministradorComponent implements OnInit {
+  public texts = TEXTOS;
   administrador: any = {};
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -49,7 +53,7 @@ export class EditarAdministradorComponent implements OnInit {
   }
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -79,6 +83,12 @@ export class EditarAdministradorComponent implements OnInit {
   }
 
   updateAdministrador(): void {
+    if (this.nuevaContrasenia) {
+      this.administrador.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.administrador.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
 
     this.adminService.updateAdministrador(this.administrador.id, this.administrador)

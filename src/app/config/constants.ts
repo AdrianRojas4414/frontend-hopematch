@@ -83,7 +83,10 @@ export const TEXTOS = {
     enviar: 'Enviar',
     agregar: 'Agregar',
     chat: 'Chat',
-    
+    volver: 'Volver',
+    editar: 'Editar',
+    suspender: 'Suspender',
+
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
     comentarioError: 'Error al enviar el comentario',

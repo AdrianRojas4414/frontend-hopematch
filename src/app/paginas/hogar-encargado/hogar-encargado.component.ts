@@ -4,6 +4,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-hogar-encargado',
@@ -12,6 +13,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './hogar-encargado.component.scss'
 })
 export class HogarEncargadoComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null
   necesidades: any[] = [];
   isLoading = false;

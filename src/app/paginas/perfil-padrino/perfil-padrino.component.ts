@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-perfil-padrino',
@@ -11,6 +12,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './perfil-padrino.component.scss'
 })
 export class PerfilPadrinoComponent implements OnInit{
+  public texts = TEXTOS;
   padrino: any = null;
   mostrarBotonEditar: boolean = true;
 

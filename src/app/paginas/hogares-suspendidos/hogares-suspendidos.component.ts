@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-hogares-suspendidos',
@@ -12,6 +13,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './hogares-suspendidos.component.scss'
 })
 export class HogaresSuspendidosComponent implements OnInit {
+  public texts = TEXTOS;
   encargados: any[] = [];
   encargadosSuspendidos: any[] = [];
 
@@ -50,6 +52,7 @@ export class HogaresSuspendidosComponent implements OnInit {
 
     revisarHogar(encargado: any):void{
       encargado.estado = 'En revision';
+      delete encargado.contrasenia;
       this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
         alert('El Hogar ha sido agregado a la lista de revisiones');
         this.ngOnInit();

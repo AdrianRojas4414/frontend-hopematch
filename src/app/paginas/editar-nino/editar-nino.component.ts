@@ -4,6 +4,7 @@ import { NinoService } from '../../servicios/nino.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-nino',
@@ -13,6 +14,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './editar-nino.component.scss'
 })
 export class EditarNinoComponent {
+  public texts = TEXTOS;
   nino: any = { necesidades: [] };
   idEncargado: number | null = null;
   nuevaNecesidad: string = ''; 

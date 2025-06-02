@@ -4,6 +4,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-encargado',
@@ -13,7 +14,10 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './editar-encargado.component.scss'
 })
 export class EditarEncargadoComponent implements OnInit {
+  public texts = TEXTOS;
   encargado: any = {};
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -37,7 +41,7 @@ export class EditarEncargadoComponent implements OnInit {
   }
 
   private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -80,6 +84,12 @@ export class EditarEncargadoComponent implements OnInit {
   }
 
   updateEncargado(): void {
+    if (this.nuevaContrasenia) {
+      this.encargado.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.encargado.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
 
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
@@ -98,6 +108,7 @@ export class EditarEncargadoComponent implements OnInit {
   eliminarEncargado(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
       this.encargado.estado = "Suspendido";
+      delete this.encargado.contrasenia;
       this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe(()=> {
         alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");

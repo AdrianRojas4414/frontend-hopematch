@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-gestion-padrinos',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class GestionPadrinosComponent implements OnInit {
+  public texts = TEXTOS;
   padrinosPendientes: any[] = [];
   padrinosAprobados: any[] = [];
   isLoading = true;
@@ -53,6 +55,7 @@ export class GestionPadrinosComponent implements OnInit {
 
   aprobarPadrino(padrino: any): void {
     padrino.estado = 'Aprobado';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('Padrino Aprobado exitosamente');
@@ -67,6 +70,7 @@ export class GestionPadrinosComponent implements OnInit {
   
   rechazarPadrino(padrino: any): void {
     padrino.estado = 'Suspendido';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');
@@ -81,6 +85,7 @@ export class GestionPadrinosComponent implements OnInit {
   
   suspenderPadrino(padrino: any): void {
     padrino.estado = 'Suspendido';
+    delete padrino.contrasenia;
     this.padrinoService.updatePadrino(padrino.id, padrino).subscribe({
       next: () => {
         alert('El Padrino fue Suspendido, puede ver los Padrinos Suspendidos en el apartado "Padrinos Suspendidos"');

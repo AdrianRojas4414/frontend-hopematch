@@ -4,6 +4,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-editar-padrino',
@@ -13,7 +14,11 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './editar-padrino.component.scss'
 })
 export class EditarPadrinoComponent implements OnInit {
+  
+  public texts = TEXTOS;
   padrino: any = {}; 
+  nuevaContrasenia: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private router: Router,
@@ -37,7 +42,7 @@ export class EditarPadrinoComponent implements OnInit {
   }
 
    private validarCampoRequerido(valor: string, campo: string): boolean {
-    if (!valor?.trim()) {
+    if (!String(valor)?.trim()) {
       alert(`El campo ${campo} es obligatorio`);
       return false;
     }
@@ -77,6 +82,12 @@ export class EditarPadrinoComponent implements OnInit {
   }
 
   updatePadrino(): void {
+    if (this.nuevaContrasenia) {
+      this.padrino.contrasenia = this.nuevaContrasenia;
+    } else {
+      delete this.padrino.contrasenia;
+    }
+
     if (!this.validarFormulario()) return;
     
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
@@ -95,6 +106,7 @@ export class EditarPadrinoComponent implements OnInit {
   eliminarPadrino(): void{
     if(confirm('¿Estas seguro que deseas eliminar la cuenta?')){
       this.padrino.estado = "Suspendido";
+      delete this.padrino.contrasenia;
       this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe(()=> {
         alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");

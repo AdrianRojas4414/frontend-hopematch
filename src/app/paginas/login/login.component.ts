@@ -8,6 +8,7 @@ import { TEXTOS } from '../../config/constants';
 import { PadrinoService } from '../../servicios/padrino.service';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { AdministradorService } from '../../servicios/administrador.service';
+import { CommonModule } from '@angular/common';
 
 interface TokenData {
   sub: string;
@@ -18,7 +19,7 @@ interface TokenData {
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, MatRadioModule],
+  imports: [FormsModule, MatRadioModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -32,6 +33,7 @@ export class LoginComponent {
   padrino: any = null;
   encargado: any = null;
   estado: string = '';
+  mostrarContrasenia: boolean = false;
 
   constructor(
     private authService: UserAuthenticationService, 

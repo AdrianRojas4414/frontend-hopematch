@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-gestion-hogares',
@@ -12,6 +13,8 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   styleUrl: './gestion-hogares.component.scss'
 })
 export class GestionHogaresComponent implements OnInit{
+
+  public texts = TEXTOS;
   encargados: any[] = [];
   encargadosEnRevision: any[] = [];
   encargadosAprobados: any[] = [];
@@ -60,6 +63,7 @@ export class GestionHogaresComponent implements OnInit{
 
   aprobarHogar(encargado: any):void{
     encargado.estado = "Aprobado";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar ha sido aprobado y puede recibir donaciones');
       this.ngOnInit();
@@ -68,6 +72,7 @@ export class GestionHogaresComponent implements OnInit{
 
   rechazarHogar(encargado: any):void{
     encargado.estado = "Suspendido";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();
@@ -76,6 +81,7 @@ export class GestionHogaresComponent implements OnInit{
 
   suspenderHogar(encargado: any):void{
     encargado.estado = "Suspendido";
+    delete encargado.contrasenia;
     this.encargadoService.updateEncargado(encargado.id, encargado).subscribe(()=>{
       alert('El Hogar fue Suspendido, puede ver los Hogares Suspendidos en el apartado "Hogares Suspendidos"');
       this.ngOnInit();

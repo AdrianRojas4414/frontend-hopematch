@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 @Component({
   selector: 'app-perfil-encargado',
@@ -11,7 +12,9 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
   templateUrl: './perfil-encargado.component.html',
   styleUrl: './perfil-encargado.component.scss'
 })
+
 export class PerfilEncargadoComponent implements OnInit{
+  public texts = TEXTOS;
   encargado: any = null;
   mostrarBotonEditar: boolean = true;
 

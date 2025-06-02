@@ -48,12 +48,20 @@
       </div>
       <p>{{ encargado.descripcion.length || 0 }}/500 caracteres</p>
 
-      <div class="input-group">
-        <input type="password" id="password" [placeholder]="texts.inputPassword" [(ngModel)]="encargado.contrasenia" name="contrasenia" class="input-field" required>
+      <div class="input-group input-group--icon-right">
+          <input [type]="mostrarContrasenia ? 'text' : 'password'"
+                  [(ngModel)]="encargado.contrasenia"
+                  name="password"
+                  [placeholder]="texts.inputPassword"
+                  class="input-field" required>
+          <div class="input-group-icon icon-right" (click)="mostrarContrasenia = !mostrarContrasenia">
+            <img *ngIf="!mostrarContrasenia" src="imgs/noview_icon.png" alt="Mostrar" style="width: 20px; height: 20px;">
+            <img *ngIf="mostrarContrasenia" src="imgs/view_icon.png" alt="Ocultar" style="width: 20px; height: 20px;">
+          </div>
       </div>
 
       <button type="submit" class="btn btn--primary-button"> {{ texts.buttonSignUp }} </button>
-      <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">Cancelar</button>
+      <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">{{texts.cancelar}}</button>
     </form>
 
     <img class="register-image" src="imgs/RegisterPicture.png" alt="Hola">
