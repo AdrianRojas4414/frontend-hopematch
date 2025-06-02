@@ -50,7 +50,6 @@ export class DetalleHogarComponent implements OnInit{
       this.encargadoService.getEncargadoById(+id).subscribe({
         next: (data) => {
           this.encargado = data;
-          this.cargarDonaciones(+id);
         },
         error: (err) => {
           console.error('Error al obtener hogar:', err);
@@ -59,6 +58,7 @@ export class DetalleHogarComponent implements OnInit{
       this.padrinoService.getPadrinoById(+idPadrino).subscribe({
         next: (data) => {
           this.padrino = data;
+          this.cargarDonaciones(+idPadrino);
         },
         error: (err) => {
           console.error('Error al obtener datos del padrino:', err);
@@ -85,8 +85,8 @@ export class DetalleHogarComponent implements OnInit{
     this.router.navigate(['/chat']);
   }
 
-  cargarDonaciones(encargadoId: number): void {
-    this.donacionService.getDonacionesByEncargado(encargadoId).subscribe({
+  cargarDonaciones(padrinoId: number): void {
+    this.donacionService.getDonacionesByPadrino(padrinoId).subscribe({
       next: (data) => {
         this.donaciones = data;
         if (this.donaciones.length > 0) {
