@@ -98,10 +98,8 @@ export class RegistroVisitaComponent implements OnInit {
         this.mensajeExito = 'Visita agendada correctamente. Estará pendiente de aprobación.';
         setTimeout(() => {
           localStorage.removeItem('encargadoId');
-          this.router.navigate(['/mis-visitas']);
         }, 2000);
         this.mensajeExito = 'Visita agendada correctamente';
-        setTimeout(() => this.router.navigate(['/mis-visitas']), 1500);
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([currentUrl]);
         });

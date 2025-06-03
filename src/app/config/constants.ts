@@ -24,7 +24,7 @@ export const TEXTOS = {
     buttonSignUp: 'Sign Up',
     buttonLogIn: 'Log In',
     buttonContact: 'Contact',
-    buttonVolver: 'Volver a Home',
+    buttonVolver: 'Volver',
     buttonCerrarSesion: 'Cerrar Sesion',
     buttonPerfil: 'Perfil',
     buttonSignOut: 'Sign Out',
