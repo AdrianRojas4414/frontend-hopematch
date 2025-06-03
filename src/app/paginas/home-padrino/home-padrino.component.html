@@ -28,7 +28,7 @@
     <div class="field--column-elements">
       <h5 style="color: var(--color-primary-base-dark-60);">Tus donaciones</h5>
       <div class="card--scrollable-list">
-        <div *ngIf="donaciones.length === 0" class="card--general">
+        <div *ngIf="donaciones.length === 0" class="card--general donacion">
           <p>Aun no has realizado donaciones</p>
           <p>En el panel de la derecha busca un hogar y regala una esperanza.</p>
         </div>
@@ -41,7 +41,7 @@
                 <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
               </div>
               <div class="field--row-card-elements">
-                <button class="btn btn--secondary-button" (click)="verDetallesDonacion(donacion.id)">Ver detalles</button>
+                <button class="btn btn--secondary-button" (click)="abrirDetallesDialogo(donacion.id)">Ver detalles</button>
                 <button class="btn btn--secondary-button" [disabled]="!haDonadoA(donacion.encargado.id)" (click)="verHogar(donacion.encargado.id)">Ver Hogar</button>
               </div>
             </div>
@@ -61,7 +61,7 @@
         <input class="input-field" type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
       </div>
       <div class="card--scrollable-list">
-        <div class="card--general" *ngFor="let encargado of encargadosFiltrados()">
+        <div class="card--general hogar" *ngFor="let encargado of encargadosFiltrados()">
           <div class="field--row-card-elements">
             <div class="encargado-foto">
               <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
@@ -117,9 +117,9 @@
         <hr />
         <div class="footer__social_container">
             <div class="social-links">
-                <button class="btn btn--third-button"> {{ texts.facebook }} </button>
-                <button class="btn btn--third-button"> {{ texts.instragram }} </button>
-                <button class="btn btn--third-button"> {{ texts.twitter }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
             </div>
         </div>
     </div>

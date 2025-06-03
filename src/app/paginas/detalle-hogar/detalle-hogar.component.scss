@@ -1,310 +1,79 @@
-.detalle-hogar-container {
-  display: flex;
+.full-layout-section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   flex-direction: column;
-  padding: 1rem;
-  background-color: #f6f6f6;
-  min-height: 100vh;
-}
-
-/* Header */
-.detalle-hogar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
-  margin-bottom: 1rem;
-
-  .logo {
-    max-width: 80px;
-  }
-
-  .perfil-nav {
-    display: flex;
-    gap: 1rem;
-
-    a {
-      text-decoration: none;
-      font-size: 1rem;
-      color: #333;
-      cursor: pointer;
-
-      &:hover {
-        color: #e65c4f;
-      }
-    }
-  }
-}
-
-/* Imagen del hogar */
-.hogar-imagen-container {
-  position: relative;
-  width: 100%;
-  height: 600px;
-  margin-bottom: 2rem;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  .hogar-imagen {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hogar-nombre-imagen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  justify-content: flex-end;
+  h1{
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    font-size: 2.5rem;
+    padding: 20px;
     text-align: center;
     width: 100%;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 }
 
-/* Información del encargado */
-.encargado-info {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  gap: 1.5rem;
-  position: relative;
-
-  .encargado-foto-container {
+.less-layout-section{
+  padding-left: 120px;
+  padding-right: 120px;
+  justify-content: center;
+  gap: 10px;
+  .encargado-foto {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-right: 1.5rem;
-    border: 3px solid #e65c4f;
-
-    .encargado-foto {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    object-fit: cover;
   }
-
   .encargado-datos {
-    flex: 1;
-    width: 500px;
-    margin: 5px;
-
+    width: 30%;
     p {
       margin: 0.5rem 0;
-      font-size: 1.1rem;
-      color: #555;
-
-      strong {
-        color: #333;
-      }
     }
   }
 }
 
-.agendar-visita-btn {
-  background-color: #e65c4f;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: auto;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-self: center;
-  
-  &:hover {
-    background-color: #d04a3e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
+.expanded-layout-section{
+  background: var(--color-secondary-base);
 }
 
-/* Necesidades */
-.necesidades-container {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 400px;
-
-  h3 {
-    margin-top: 0;
-    color: #e65c4f;
-  }
-
-  .necesidades-lista {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-
-    li {
-      background: #e65c4f;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-    }
-  }
-}
-
-/* Donaciones */
-.donaciones-container {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    text-align: center;
-    color: #e65c4f;
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* Carrusel */
-.carrusel {
-  display: flex;
-  align-items: center;
+.field--column-card-elements{
   justify-content: center;
-  margin-bottom: 2rem;
-  position: relative;
-
-  .flecha {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #e65c4f;
-    cursor: pointer;
-    padding: 0 1rem;
-    transition: all 0.3s;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
-
-  .donacion-actual {
-    height: 450px;
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-
-    .comprobante-imagen {
-      width: 500px;
-      height: 300px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      margin-bottom: 1rem;
-      object-fit: cover;
-    }
-
-    .fecha-donacion {
-      font-size: 1.1rem;
-      color: #555;
-      font-style: italic;
-    }
-
-    .monto-donacion{
-      font-size: 1.1rem;
-      color: #555;
-      font-style: italic;
-    }
-  }
+  width: 20%;
 }
 
-/* Fotos de progreso */
-.progreso-container {
-  h2 {
-    text-align: center;
-    color: #e65c4f;
-    margin-bottom: 1.5rem;
-  }
-
-  .fotos-progreso-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-
-    .foto-progreso-item {
-      height: 150px;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .foto-progreso {
-        width: 100%;
-        height: 100%;
+.admin-foto {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
         object-fit: cover;
       }
-    }
-  }
 
-  .sin-progreso {
-    text-align: center;
-    color: #777;
-    font-style: italic;
-    padding: 1rem;
-  }
+.card--general{
+  background-color: rgba(255, 255, 255, 0.6);
+  flex-direction: column;
+  padding-left: 120px;
+  padding-right: 120px;
 }
 
-.sin-donaciones {
-  text-align: center;
-  color: #777;
-  font-style: italic;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.expanded-layout-section{
+  flex-direction: column;
 }
 
-.sin-comprobante {
-  height: 450px;
-  width: 600px;
+h2{
+  padding: 20px;
+}
+
+.donacion-line-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  border: 2px dashed #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
-
-  p {
-    color: #777;
-    font-style: italic;
-    text-align: center;
-    padding: 1rem;
-  }
+  gap: 8px;
+  
+  flex-direction: row;
 }
+
+.in-text {
+  padding: 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+

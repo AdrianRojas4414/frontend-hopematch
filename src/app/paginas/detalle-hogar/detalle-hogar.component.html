@@ -1,43 +1,55 @@
-<div class="detalle-hogar-container" *ngIf="encargado">
-  <div class="detalle-hogar-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a (click)="volverAtras()" style="color: #e65c4f; cursor: pointer;">{{texts.volver}}</a>
+<header *ngIf="padrino">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button class="btn btn--third-button" (click)="volverAtras()">Home</button>
+              <button class="btn btn--third-button" (click)="this.irAdministradores()"> {{texts.buttonSoporte}}</button>
+                <img [src]="padrino.foto" 
+                    alt="Foto del Encargado" 
+                    class="admin-foto" />
+                <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+                <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
     </nav>
+</header>
+
+<section class="full-layout-section" [style.background-image]="backgroundImageUrl">
+  <h1 class="name">{{ encargado.nombre_hogar }}</h1>
+</section>
+
+<div class="less-layout-section" *ngIf="encargado">
+  <div class="encargado-foto-container">
+    <img [src]="encargado.foto" alt="Foto del Encargado" class="encargado-foto">
   </div>
-
-  <div class="hogar-imagen-container">
-    <img [src]="encargado.foto_hogar || 'assets/default-home.jpg'" alt="Foto del Hogar" class="hogar-imagen">
-    <h1 class="hogar-nombre-imagen">{{ encargado.nombre_hogar }}</h1>
+  <div class="encargado-datos">
+    <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
+    <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
+    <p><strong>Descripcion:</strong> {{ encargado.descripcion }}</p>
+    <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
   </div>
-
-  <div class="encargado-info">
-    <div class="encargado-foto-container">
-      <img [src]="encargado.foto" alt="Foto del Encargado" class="encargado-foto">
-    </div>
-    <div class="encargado-datos">
-      <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
-      <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
-      <p><strong>Descripcion:</strong> {{ encargado.descripcion }}</p>
-      <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
-    </div>
-    <button class="agendar-visita-btn" (click)="agendarVisita()">Agendar Visita</button>
-    <button class="agendar-visita-btn" (click)="irChat()">Chat</button>
-    <div *ngIf="encargado.ninos?.length" class="necesidades-container">
-      <h3>Necesidades del hogar:</h3>
-      <ul class="necesidades-lista">
-        <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
-      </ul>
-    </div>
-
+  <div class="field--column-card-elements">
+    <button class="btn btn--secondary-button" (click)="agendarVisita()">Visitar</button>
+    <button class="btn btn--secondary-button" (click)="irChat()">Chat</button>
+    <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Volver a Donar</button>
   </div>
+  <div *ngIf="encargado.ninos?.length" class="card--simple-text">
+    <h3>Necesidades del hogar:</h3>
+    <ul>
+      <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
+    </ul>
+  </div>
+</div>
 
-  
-
-  <div *ngIf="donaciones.length > 0" class="donaciones-container">
-    <h2>Mis Donaciones</h2>
+<div class="expanded-layout-section" *ngIf="padrino">
+  <h2>Mis Donaciones</h2>
+  <div *ngIf="donaciones.length > 0" class="card--general">
     
-    <div class="carrusel">
+    
+    <div class="carrusel-donacion">
       <button class="flecha flecha-izquierda" (click)="anteriorDonacion()">❮</button>
       
       <div class="donacion-actual">
@@ -51,14 +63,17 @@
             <p>Lo sentimos, parece que aún no hay una foto de la donación</p>
           </div>
         </ng-template>
-        <p class="fecha-donacion">{{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }}</p>
-        <p class="monto-donacion">{{ donacionActual.cantidadDonacion }} $</p>
+          <div class="donacion-line-container">
+            <p class="text-donacion">El {{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }} donaste {{ donacionActual.cantidadDonacion }} $</p>
+            <p class="text-donacion" *ngIf="donacionActual.necesidadesSeleccionadas">para {{ donacionActual.necesidadesSeleccionadas }}.</p>
+            <button class="btn btn--third-button in-text" (click)="irARegistroDonacion(padrino.id, encargado.id)">Seguir ayudando.</button>
+          </div>
       </div>
       
       <button class="flecha flecha-derecha" (click)="siguienteDonacion()">❯</button>
     </div>
 
-    <div class="progreso-container">
+    <div class="progreso-card">
       <h2>Progreso de la donación</h2>
       
       <div *ngIf="donacionActual.fotosProgreso?.length > 0; else sinProgreso" class="fotos-progreso-grid">
@@ -77,3 +92,32 @@
     <p>No hay donaciones registradas para este hogar</p>
   </div>
 </div>
+
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>

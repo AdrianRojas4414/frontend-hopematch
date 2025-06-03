@@ -1,0 +1,30 @@
+.dialog{
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--color-primary-base);
+        width: 100%;
+        h1 {
+            color: var(--color-primary-base);
+        }
+    }
+    &--form{
+    background-color: var(--color-neutral-base-white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    
+    height: fit-content;
+    
+    gap: 10px;
+    p{
+      text-align: left;
+    }
+  }
+}

@@ -6,21 +6,17 @@
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  height: 92vh;
+  height: 100%;
 }
 
-.perfil-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    .logo {
-      max-width: 80px;
-    }
 
     .perfil-nav {
       display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding-left: 120px;
+      padding-right: 120px;
+      align-items: center;
       gap: 2rem;
 
       a {
@@ -30,7 +26,13 @@
         cursor: pointer;
       }
     }
-  }
+
+    .buttons{
+      width: 20%;
+      gap: 10px;
+      display: flex;
+      flex-direction: row;
+    }
 
 .mensajes {
   flex: 1;
@@ -100,7 +102,7 @@
     margin-top: 15px;
     text-align: center;
     font-size: 1.8rem;
-    color: #3f51b5;
+    color: var(--color-primary-base-dark-60);
   }
 
   h2{

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-padrino',
@@ -23,7 +24,8 @@ export class EditarPadrinoComponent implements OnInit {
   constructor(
     private router: Router,
     private padrinoService: PadrinoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<EditarPadrinoComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -89,18 +91,23 @@ export class EditarPadrinoComponent implements OnInit {
     }
 
     if (!this.validarFormulario()) return;
+
+    const currentUrl = this.router.url;
     
     this.padrinoService.updatePadrino(this.padrino.id, this.padrino)
       .subscribe({
         next: () => {
           alert('Padrino actualizado correctamente');
-          this.router.navigate([`/perfil-padrino`]);
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+          });
         },
         error: (err) => {
           console.error('Error al actualizar padrino:', err);
           alert('Error al actualizar el perfil');
         }
       });
+      this.dialogRef.close();
   }
 
   eliminarPadrino(): void{
@@ -112,7 +119,7 @@ export class EditarPadrinoComponent implements OnInit {
         alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
         this.authService.logout();
         console.log(this.padrino)
-        this.router.navigate([`/perfil-padrino`]);
+        this.dialogRef.close();
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 500);
@@ -121,6 +128,7 @@ export class EditarPadrinoComponent implements OnInit {
   }
 
   cancelarEdicion(): void {
-    this.router.navigate(['/perfil-padrino']);
+    localStorage.removeItem("padrinoId");
+    this.dialogRef.close();
   }
 }

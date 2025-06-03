@@ -1,15 +1,8 @@
 <div class="chat-container">
-  <div class="perfil-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">Agendar Visita</a>
-      <a (click)="volverAtras()" style="color: #3f51b5;">{{texts.buttonVolver}}</a>
-    </nav>
-  </div>
 
   
-
-    <div class="saludo">
+  <nav class="perfil-nav">
+      <div class="saludo">
         <h2 *ngIf="tipoConversacion == 'encargado'">
         Chat con {{ encargado?.nombre }}, encargado del hogar: {{ encargado?.nombre_hogar }}
         </h2>
@@ -19,7 +12,12 @@
         <h2 *ngIf="tipoConversacion == 'administrador'">
           Chat con el administrador de Hopematch: {{ administrador?.nombre }}
         </h2>
-    </div>
+      </div>
+      <div class="buttons">
+        <button class="btn btn--secondary-button" *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">Agendar Visita</button>
+        <button class="btn btn--secondary-button" (click)="volverAtras()">{{texts.buttonVolver}}</button>
+      </div>
+    </nav>
 
     
   <div class="mensajes">

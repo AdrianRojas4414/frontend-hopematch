@@ -1,34 +1,23 @@
-<div class="detalle-container">
-    <div class="header">
-      <h1>Detalle de Donación</h1>
-      <button (click)="volverAHome()" class="btn-volver">
-        <i class="fas fa-arrow-left"></i> {{texts.volver}}
-      </button>
-    </div>
-     
-    <div *ngIf="donacion" class="donacion-card">
-      <div class="donacion-header">
-        <span class="fecha">{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</span>
-        <br>
-        <span class="monto">${{ donacion.cantidadDonacion | number:'1.2-2' }}</span>
-      </div>
-  
-      <div class="donacion-body">
-        <div class="seccion">
-          <h3>Para el hogar:</h3>
-          <p>{{ donacion.encargado?.nombre_hogar }}</p>
-        </div>
-  
-        <div class="seccion" *ngIf="donacion.necesidadesSeleccionadas">
-          <h3>Necesidades cubiertas:</h3>
-          <p>{{ donacion.necesidadesSeleccionadas }}</p>
-        </div>
-  
-        <div class="seccion" *ngIf="donacion.comentarioEncargado">
-          <h3>Comentario del encargado:</h3>
-        <p class="comentario">{{ donacion.comentarioEncargado?.comentario }}</p>
-        </div>
-  
-      </div>
+<section class="dialog">
+  <div class="header">
+    <h1>Detalle de Donación</h1>
+    <button (click)="volverAHome()" class="btn btn--close-button" aria-label="Cerrar">
+      <span class="icon" aria-hidden="true">&times;</span> 
+    </button>
+  </div>
+
+  <div *ngIf="donacion" class="card--general">
+    <div class="card--column-card-elements">
+      <h5>Fecha:</h5>
+      <p>{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</p>
+      <h5>Monto:</h5>
+      <p>${{ donacion.cantidadDonacion | number:'1.2-2' }}</p>
+      <h5>Para el hogar:</h5>
+      <p>{{ donacion.encargado?.nombre_hogar }}</p>
+      <h5 *ngIf="donacion.necesidadesSeleccionadas">Necesidades cubiertas:</h5>
+      <p>{{ donacion.necesidadesSeleccionadas }}</p>
+      <h5 *ngIf="donacion.comentarioEncargado">Comentario del encargado:</h5>
+      <p class="comentario">{{ donacion.comentarioEncargado?.comentario }}</p>
     </div>
   </div>
+</section>

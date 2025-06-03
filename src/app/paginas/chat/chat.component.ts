@@ -9,7 +9,9 @@ import { MensajeService } from '../../servicios/mensaje.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialog } from '@angular/material/dialog';
 import { TEXTOS } from '../../config/constants';
+import { RegistroVisitaComponent } from '../registro-visita/registro-visita.component';
 
 @Component({
   selector: 'app-chat',
@@ -37,7 +39,8 @@ export class ChatComponent implements OnInit{
     private padrinoService: PadrinoService,
     private encargadoService: EncargadoService,
     private administradorService: AdministradorService,
-    private mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -155,7 +158,14 @@ export class ChatComponent implements OnInit{
 
   agendarVisita(): void {
     localStorage.setItem("idHogarVisita", this.encargado.id.toString());
-    this.router.navigate(['/registro-visita']);
+    const dialogRef = this.dialog.open(RegistroVisitaComponent, {
+      width: '500px',
+      height: 'fit-content%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+    });
   }
 
 }

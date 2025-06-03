@@ -1,5 +1,5 @@
-<section class="full-layout-section register-container">
-    <form (ngSubmit)="registrarDonacion()" *ngIf="!isLoading" class="card--form">
+
+    <form (ngSubmit)="registrarDonacion()" *ngIf="!isLoading" class="dialog--form">
         <div class="footer__brand">
             <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
         </div>
@@ -17,12 +17,13 @@
 
         <div class="input-group">
         <label>Selecciona las necesidades:</label>
+            <div class="input-scrollable-list">
                 <mat-radio-group aria-label="Select an option" name="necesidades" *ngFor="let necesidad of necesidades" class="necesidades">
                     <mat-radio-button [id]="'necesidad_' + necesidad.id" [value]="necesidad.id" (change)="seleccionarNecesidad(necesidad.id)" [checked]="donacion.necesidades[0] === necesidad.id" name="necesidadesGroup">{{necesidad.nombre}}</mat-radio-button>
                 </mat-radio-group>            
+            </div>
         </div>
 
         <button type="submit" class="btn btn--primary-button">Guardar Donación</button>
-        <button type="button" class="cancel-button" (click)="cancelar()">{{texts.buttonVolver}}</button>
+        <button type="button" class="btn btn--cancel-button" (click)="cancelar()">Cancelar</button>
     </form>
-</section>

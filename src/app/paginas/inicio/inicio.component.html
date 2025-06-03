@@ -18,24 +18,22 @@
 <section class="full-layout-section landing"></section>
 
 <section id="about-us" class="full-layout-section about-us">
-    <div class="about-content">
-        <h2>{{ texts.aboutTitle }}</h2>
-        <div class="about-text">
-            <p>{{ texts.aboutDescription }}</p>
-            <p>{{ texts.aboutDescription2 }}</p>
-            <p>{{ texts.aboutDescription3 }}</p>
-            <p>{{ texts.aboutDescription4 }}</p>
-        </div>
-        <div class="about-columns">
-        <div class="card--simple-text">
-            <h3>{{ texts.aboutMissionTitle }}</h3>
-            <p>{{ texts.aboutMissionText }}</p>
-        </div>
-        <div class="card--simple-text">
-            <h3>{{ texts.aboutVisionTitle }}</h3>
-            <p>{{ texts.aboutVisionText }}</p>
-        </div>
-        </div>
+    <h2>{{ texts.aboutTitle }}</h2>
+    <div class="about-text">
+        <p>{{ texts.aboutDescription }}</p>
+        <p>{{ texts.aboutDescription2 }}</p>
+        <p>{{ texts.aboutDescription3 }}</p>
+        <p>{{ texts.aboutDescription4 }}</p>
+    </div>
+    <div class="about-columns">
+    <div class="card--simple-text">
+        <h3>{{ texts.aboutMissionTitle }}</h3>
+        <p>{{ texts.aboutMissionText }}</p>
+    </div>
+    <div class="card--simple-text">
+        <h3>{{ texts.aboutVisionTitle }}</h3>
+        <p>{{ texts.aboutVisionText }}</p>
+    </div>
     </div>
 </section>
     
@@ -51,7 +49,7 @@
 
     <div class="card card--signup-image-bg bg-encargado">
         <div class="card__content">
-            <h3 class="card__title" style="color: black;">{{ texts.encargadoOption }}</h3>
+            <h3 class="card__title">{{ texts.encargadoOption }}</h3>
         </div>
         <div class="card__actions">
             <button class="btn btn--primary-button" [routerLink]="['/crearencargado']">{{ texts.buttonSignUp }}</button>
@@ -88,9 +86,9 @@
         <hr />
         <div class="footer__social_container">
             <div class="social-links">
-                <button class="btn btn--third-button"> {{ texts.facebook }} </button>
-                <button class="btn btn--third-button"> {{ texts.instragram }} </button>
-                <button class="btn btn--third-button"> {{ texts.twitter }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
             </div>
         </div>
     </div>

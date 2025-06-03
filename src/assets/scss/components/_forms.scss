@@ -37,7 +37,6 @@
   .input-group {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
@@ -117,5 +116,19 @@
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  .input-scrollable-list{
+    max-height: 120px;
+    background-color: var(--color-neutral-base-white);
+    padding: 10px 10px;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
   }
   
