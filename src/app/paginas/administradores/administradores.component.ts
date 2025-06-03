@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
 import { PadrinoService } from '../../servicios/padrino.service';
+import { EncargadoService } from '../../servicios/encargado.service';
 
 @Component({
   selector: 'app-administradores',
@@ -16,6 +17,7 @@ import { PadrinoService } from '../../servicios/padrino.service';
 export class AdministradoresComponent implements OnInit {
   public texts = TEXTOS;
   padrino: any = null;
+  encargado: any = null;
   administradores: any[] = [];
   encargadosEnRevision: any[] = [];
   encargadosAprobados: any[] = [];
@@ -25,6 +27,7 @@ export class AdministradoresComponent implements OnInit {
     private administradorService: AdministradorService,
     private authService: UserAuthenticationService,
     private padrinoService: PadrinoService,
+    private encargadoService: EncargadoService,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +56,17 @@ export class AdministradoresComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al obtener datos del padrino:', err);
+        }
+      });
+    }
+    if (isEncargado) {
+        console.log("Es encargado");
+      this.encargadoService.getEncargadoById(+id).subscribe({
+        next: (data) => {
+          this.encargado = data;
+        },
+        error: (err) => {
+          console.error('Error al obtener datos del encargado:', err);
         }
       });
     }

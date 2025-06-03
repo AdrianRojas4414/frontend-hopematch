@@ -17,6 +17,25 @@
     </nav>
 </header>
 
+<header *ngIf="encargado">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button class="btn btn--third-button" (click)="volverAHome()"> {{ texts.buttonHome }} </button>
+                <img [src]="encargado.foto" 
+                    alt="Foto del Encargado" 
+                    class="admin-foto" />
+                <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+                <button class="btn btn--third-button" (click)="volver()"> Volver</button>
+                <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
 <div class="full-layout-section perfil-container">
     <div class="saludo">
         <h2>{{texts.mensajeChatAdministradores}}</h2>
