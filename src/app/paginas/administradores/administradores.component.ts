@@ -83,6 +83,9 @@ export class AdministradoresComponent implements OnInit {
     if (this.padrino) {
       this.router.navigate(['/perfil-padrino']);
     }
+    if (this.encargado) {
+      this.router.navigate(['/perfil-encargado']);
+    }
   }
 
   volver():void{
@@ -96,6 +99,9 @@ export class AdministradoresComponent implements OnInit {
   volverAHome():void{
     if (this.padrino) {
       this.router.navigate([`/home-padrino`]);
+    }
+    if (this.encargado) {
+      this.router.navigate([`/home-encargado`]);
     }
   }
 }
