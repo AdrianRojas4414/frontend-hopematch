@@ -95,4 +95,13 @@ export class HogarEncargadoComponent implements OnInit{
       this.router.navigate([`/ninos-hogar`]);
     }
   }
+  irPerfil(): void {
+    if (this.encargado) {
+      this.router.navigate(['/perfil-encargado']);
+    }
+  }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
 }
