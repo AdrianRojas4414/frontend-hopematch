@@ -1,4 +1,4 @@
-<form (ngSubmit)="registrarVisita()" *ngIf="!isLoading" class="dialog--form">
+<form (ngSubmit)="enviarSolicitud()" *ngIf="!isLoading" class="dialog--form">
         <div class="footer__brand">
             <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
         </div>
@@ -19,16 +19,16 @@
 
       <div class="input-group">
         <label for="fecha">Fecha de visita</label>
-        <input type="date" [(ngModel)]="visita.fecha_visita" name="fecha_visita" 
+        <input type="date" [(ngModel)]="fechaSeleccionada" name="fecha_visita" 
                    [min]="minDate" class="input-field" required>
       </div>
       <div class="input-group">
         <label for="horario">Horario disponible</label>
-        <select [(ngModel)]="visita.hora_visita" name="hora_visita" class="input-field" required>
+        <select [(ngModel)]="horarioSeleccionado" name="hora_visita" class="input-field" required>
           <option disabled selected>Seleccione una hora</option>
           <option *ngFor="let hora of horariosDisponibles" [value]="hora">{{hora}}</option>
         </select>
       </div>
-        <button type="submit" [disabled]="!visita.fecha_visita || !visita.hora_visita || isLoading" class="btn btn--primary-button">Agendar</button>
+        <button type="submit" [disabled]="!fechaSeleccionada || !horarioSeleccionado || isLoading" class="btn btn--primary-button">Agendar</button>
         <button type="button" class="btn btn--cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
     </form>

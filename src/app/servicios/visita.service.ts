@@ -10,40 +10,26 @@ export class VisitaService {
 
   constructor(private http: HttpClient) {}
 
-  registrarVisita(visitaData: any): Observable<any> {
-    const payload = {
-      fechaVisita: visitaData.fechaVisita,
-      horaVisita: visitaData.horaVisita,
-      padrinoId: visitaData.padrinoId,
-      encargadoId: visitaData.encargadoId
-    };
-    return this.http.post(`${this.backendUrl}/agendar`, payload);
+  crearVisita(visitaData: any): Observable<any> {
+    return this.http.post(`${this.backendUrl}/agendar`, visitaData);
   }
 
-  getVisitasByPadrino(padrinoId: number): Observable<any> {
-    return this.http.get(`${this.backendUrl}/by-padrino/${padrinoId}`);
-  }
-
-  getVisitasByEncargado(encargadoId: number): Observable<any> {
-    return this.http.get(`${this.backendUrl}/by-encargado/${encargadoId}`);
-  }
-
-  actualizarEstadoVisita(visitaId: number, estado: string): Observable<any> {
-    return this.http.put(`${this.backendUrl}/${visitaId}/estado`, { estado });
+  getMisVisitas(): Observable<any[]> {
+    const padrinoId = Number(localStorage.getItem('userId'));
+    return this.http.get<any[]>(`${this.backendUrl}/by-padrino/${padrinoId}`);
   }
 
   getAllVisitasForEncargado(): Observable<any[]> {
-    console.log('Obteniendo TODAS las visitas para el encargado...');
-    return this.http.get<any[]>(`${this.backendUrl}/all/encargado`);
+    const encargadoId = Number(localStorage.getItem('userId'));
+    return this.http.get<any[]>(`${this.backendUrl}/by-encargado/${encargadoId}`);
   }
 
-  acceptVisita(visitaId: number): Observable<string> {
-    console.log(`Aceptando visita con ID: ${visitaId}`);
-    return this.http.put(`${this.backendUrl}/accept/${visitaId}`, {}, { responseType: 'text' });
+  acceptVisita(visitaId: number): Observable<any> {
+    return this.http.put(`${this.backendUrl}/${visitaId}/estado`, { estado: 'ACEPTADA' });
   }
 
-  denyVisita(visitaId: number): Observable<string> {
-    console.log(`Denegando visita con ID: ${visitaId}`);
-    return this.http.put(`${this.backendUrl}/deny/${visitaId}`, {}, { responseType: 'text' });
+  denyVisita(visitaId: number): Observable<any> {
+    return this.http.put(`${this.backendUrl}/${visitaId}/estado`, { estado: 'RECHAZADA' });
   }
 }
+
