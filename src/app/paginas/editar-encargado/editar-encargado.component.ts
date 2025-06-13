@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-encargado',
@@ -22,7 +23,8 @@ export class EditarEncargadoComponent implements OnInit {
   constructor(
     private router: Router,
     private encargadoService: EncargadoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<EditarEncargadoComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -92,17 +94,22 @@ export class EditarEncargadoComponent implements OnInit {
 
     if (!this.validarFormulario()) return;
 
+    const currentUrl = this.router.url;
+    
     this.encargadoService.updateEncargado(this.encargado.id, this.encargado)
       .subscribe({
         next: () => {
           alert('Encargado actualizado correctamente');
-          window.history.back();
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+          });
         },
         error: (err) => {
           console.error('Error al actualizar encargado:', err);
           alert('Error al actualizar el perfil');
         }
       });
+      this.dialogRef.close();
   }
 
   eliminarEncargado(): void{
@@ -115,6 +122,7 @@ export class EditarEncargadoComponent implements OnInit {
         this.authService.logout();
         console.log(this.encargado)
         window.history.back();
+        this.dialogRef.close();
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 500);
@@ -123,6 +131,6 @@ export class EditarEncargadoComponent implements OnInit {
   }
   
   cancelarEdicion(): void {
-    this.router.navigate([`/perfil-encargado`]);
+    this.dialogRef.close();
   }
 }

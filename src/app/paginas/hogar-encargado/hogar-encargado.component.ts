@@ -4,7 +4,9 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TEXTOS } from '../../config/constants';
+import { EditarEncargadoComponent } from '../editar-encargado/editar-encargado.component';
 
 @Component({
   selector: 'app-hogar-encargado',
@@ -22,7 +24,8 @@ export class HogarEncargadoComponent implements OnInit{
     private encargadoService: EncargadoService, 
     private router: Router, 
     private ninoService: NinoService, 
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -86,7 +89,13 @@ export class HogarEncargadoComponent implements OnInit{
   irEditarPerfil(): void{
     console.log("irse");
     if (this.encargado) {
-      this.router.navigate([`/editar-perfil-encargado`]);
+      const dialogRef = this.dialog.open(EditarEncargadoComponent, {
+                width: '500px',
+                height: 'fit-content%'
+              });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('El diálogo se cerró');
+          });
     }
   }
 
