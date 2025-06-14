@@ -79,4 +79,16 @@ export class NinosHogarComponent implements OnInit{
       });
     }
   }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
+  irPerfil(): void {
+    if (this.encargado) {
+      this.router.navigate(['/perfil-encargado']);
+    }
+  }
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
 }
