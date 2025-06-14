@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,12 @@ export class DonacionService {
     return this.http.post(`${this.backendUrl}/add`, donacionData);
   }
 
-  getDonacionesByPadrino(padrinoId: number): Observable<any> {
-    return this.http.get(`${this.backendUrl}/by-padrino/${padrinoId}`);
+  getDonacionesByPadrino(padrinoId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.backendUrl}/by-padrino/${padrinoId}`).pipe(
+      map(donaciones => donaciones.sort((a, b) => 
+        new Date(b.fechaDonacion).getTime() - new Date(a.fechaDonacion).getTime()
+      ))
+    );
   }
 
   getDonacionById(id: number): Observable<any> {
