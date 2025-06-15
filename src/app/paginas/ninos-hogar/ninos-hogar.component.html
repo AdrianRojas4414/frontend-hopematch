@@ -28,8 +28,8 @@
                 </ul>
               </div>
               <div class="nino-buttons">
-                <button class="btn-editar-nino" (click)="editarNino(nino.id)">Editar Datos</button>
-                <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
+                <button class="btn-editar-nino" [disabled]="encargado.estado == 'Suspendido'" (click)="editarNino(nino.id)">Editar Datos</button>
+                <button class="btn-eliminar-nino" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
                   <i class="fas fa-trash-alt"></i> Eliminar
                 </button>
               </div>
