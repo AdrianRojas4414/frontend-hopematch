@@ -89,6 +89,7 @@ export const TEXTOS = {
     editar: 'Editar',
     suspender: 'Suspender',
     eliminar: 'Eliminar',
+    cerrar: 'Cerrar',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -123,14 +124,41 @@ export const TEXTOS = {
     formEncargadoDescripcionResguardo: 'Tu información será resguardada.',
     inputDescripcionContador: '/500 caracteres',
 
-    //PADRINO
+    // PADRINO
     tituloRegistroPadrino: 'Estás a unos pasos de cambiar vidas.',
 
-    // NIÑO
+    // CHILD
     registrarNino: 'Registrar Niño',
 
-    // CAMPOS EN FORMULARIOS
+    // FORM FIELDS
     fechaNacimiento: 'Fecha de Nacimiento:',
-    campoCI: 'CI:'
+    campoCI: 'CI:',
+
+    // DETALLE DONACION
+    detalleDonacionTitulo: 'Detalle de Donación',
+    detalleDonacionFecha: 'Fecha:',
+    detalleDonacionMonto: 'Monto:',
+    detalleDonacionHogar: 'Para el hogar:',
+    detalleDonacionNecesidades: 'Necesidades cubiertas:',
+    detalleDonacionComentarioEncargado: 'Comentario del encargado:',
+
+    // DETALLE HOGAR
+detalleHogarTitulo: 'Mis Donaciones',
+detalleHogarEncargado: 'Encargado:',
+detalleHogarDireccion: 'Dirección:',
+detalleHogarDescripcion: 'Descripcion:',
+detalleHogarCantidadNinos: 'Cantidad de niños:',
+detalleHogarBotonVisitar: 'Visitar',
+detalleHogarBotonChat: 'Chat',
+detalleHogarBotonDonar: 'Volver a Donar',
+detalleHogarNecesidadesTitulo: 'Necesidades del hogar:',
+detalleHogarSinComprobante: 'Lo sentimos, parece que aún no hay una foto de la donación',
+detalleHogarTextoDonacion: 'El',
+detalleHogarTextoDonacionSufijo: 'donaste',
+detalleHogarTextoDonacionPara: 'para',
+detalleHogarSeguirAyudando: 'Seguir ayudando.',
+detalleHogarProgresoTitulo: 'Progreso de la donación',
+detalleHogarSinProgreso: 'Aún no se han subido fotos de tu progreso',
+detalleHogarNoDonaciones: 'No hay donaciones registradas para este hogar'
 };
   
