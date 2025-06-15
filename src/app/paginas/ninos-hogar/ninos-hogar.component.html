@@ -10,7 +10,7 @@
   <div class="perfil-content">
     <h1 style="color: #e65c4f;">Niños del Hogar</h1>
     <div class="boton-container">
-      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
+      <button class="btn-crear-nino" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">Crear Niño</button>
     </div>
 
     <div class="ninos-del-hogar">
