@@ -104,6 +104,15 @@ export const TEXTOS = {
     footerEmailDireccion: 'hopematch@email.com',
 
     // ALT TEXT
-    altFotoEncargado: 'Foto del Encargado'
+    altFotoEncargado: 'Foto del Encargado',
+
+    // CHAT
+    chatConEncargado: 'Chat con',
+    encargadoDelHogar: 'encargado del hogar:',
+    chatConPadrino: 'Chat con el padrino',
+    chatConAdministrador: 'Chat con el administrador de Hopematch:',
+    agendarVisita: 'Agendar Visita',
+    noHayMensajes: 'No hay mensajes en esta conversación.',
+    placeholderMensaje: 'Escribe tu mensaje...'
 };
   
