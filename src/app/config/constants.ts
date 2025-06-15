@@ -77,6 +77,8 @@ export const TEXTOS = {
     fotosAEnviar: 'Fotos a enviar',
     maxFotosAlerta: 'Has alcanzado el límite máximo de 8 fotos',
     mensajeChatAdministradores: '¡Los Administradores de Hopematch te pueden ayudar!',
+    placeholderMostrar: 'Mostrar',
+    placeholderOcultar: 'Ocultar',
     
     // BUTTONS
     cancelar: 'Cancelar',
@@ -105,6 +107,7 @@ export const TEXTOS = {
 
     // ALT TEXT
     altFotoEncargado: 'Foto del Encargado',
+    altImagenRegistro: 'Imagen de registro',
 
     // CHAT
     chatConEncargado: 'Chat con',
@@ -113,6 +116,10 @@ export const TEXTOS = {
     chatConAdministrador: 'Chat con el administrador de Hopematch:',
     agendarVisita: 'Agendar Visita',
     noHayMensajes: 'No hay mensajes en esta conversación.',
-    placeholderMensaje: 'Escribe tu mensaje...'
+    placeholderMensaje: 'Escribe tu mensaje...',
+
+    // ENCARGADO
+    formEncargadoDescripcionResguardo: 'Tu información será resguardada.',
+    inputDescripcionContador: '/500 caracteres',
 };
   
