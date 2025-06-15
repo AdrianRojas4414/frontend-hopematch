@@ -123,11 +123,13 @@ export const TEXTOS = {
     formEncargadoDescripcionResguardo: 'Tu información será resguardada.',
     inputDescripcionContador: '/500 caracteres',
 
+    //PADRINO
+    tituloRegistroPadrino: 'Estás a unos pasos de cambiar vidas.',
+
     // NIÑO
     registrarNino: 'Registrar Niño',
 
     // CAMPOS EN FORMULARIOS
-
     fechaNacimiento: 'Fecha de Nacimiento:',
     campoCI: 'CI:'
 };
