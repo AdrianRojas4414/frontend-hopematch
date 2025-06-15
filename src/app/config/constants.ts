@@ -92,6 +92,8 @@ export const TEXTOS = {
     cerrar: 'Cerrar',
     guardar: 'Guardar Cambios',
     eliminarCuenta: 'Eliminar Cuenta',
+    aceptar: 'Aceptar',
+    denegar: 'Denegar',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -190,6 +192,12 @@ export const TEXTOS = {
     editarEncargadoContadorDescripcion: '/500 caracteres',
 
     // EDITAR PADRINO
-    editarPadrinoTitulo: 'Editar Perfil de Padrino'
+    editarPadrinoTitulo: 'Editar Perfil de Padrino',
+
+    // VISITS
+    tituloTodasSolicitudesVisita: 'Todas las Solicitudes de Visita',
+    mensajeNoSolicitudesVisita: 'No hay solicitudes de visita registradas para tu hogar.',
+    padrinoDesconocido: 'Padrino Desconocido',
+    fechaCreacion: 'Fecha Creación:'
 };
   
