@@ -95,6 +95,15 @@ export const TEXTOS = {
     
     // VALIDATIONS
     urlInvalida: 'Por favor ingresa una URL válida',
-    maxFotos: 'Máximo 8 fotos permitidas'
+    maxFotos: 'Máximo 8 fotos permitidas',
+
+    // FOOTER
+    footerTelefono: 'Teléfono',
+    footerTelefonoNumero: '(123) 45678',
+    footerEmail: 'Email',
+    footerEmailDireccion: 'hopematch@email.com',
+
+    // ALT TEXT
+    altFotoEncargado: 'Foto del Encargado'
 };
   
