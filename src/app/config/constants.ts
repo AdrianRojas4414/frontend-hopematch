@@ -90,6 +90,8 @@ export const TEXTOS = {
     suspender: 'Suspender',
     eliminar: 'Eliminar',
     cerrar: 'Cerrar',
+    guardar: 'Guardar Cambios',
+    eliminarCuenta: 'Eliminar Cuenta',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -129,6 +131,9 @@ export const TEXTOS = {
 
     // CHILD
     registrarNino: 'Registrar Niño',
+    editarNinoTitulo: 'Editar Niño',
+    placeholderNuevaNecesidad: 'Añadir necesidad',
+
 
     // FORM FIELDS
     fechaNacimiento: 'Fecha de Nacimiento:',
@@ -143,22 +148,48 @@ export const TEXTOS = {
     detalleDonacionComentarioEncargado: 'Comentario del encargado:',
 
     // DETALLE HOGAR
-detalleHogarTitulo: 'Mis Donaciones',
-detalleHogarEncargado: 'Encargado:',
-detalleHogarDireccion: 'Dirección:',
-detalleHogarDescripcion: 'Descripcion:',
-detalleHogarCantidadNinos: 'Cantidad de niños:',
-detalleHogarBotonVisitar: 'Visitar',
-detalleHogarBotonChat: 'Chat',
-detalleHogarBotonDonar: 'Volver a Donar',
-detalleHogarNecesidadesTitulo: 'Necesidades del hogar:',
-detalleHogarSinComprobante: 'Lo sentimos, parece que aún no hay una foto de la donación',
-detalleHogarTextoDonacion: 'El',
-detalleHogarTextoDonacionSufijo: 'donaste',
-detalleHogarTextoDonacionPara: 'para',
-detalleHogarSeguirAyudando: 'Seguir ayudando.',
-detalleHogarProgresoTitulo: 'Progreso de la donación',
-detalleHogarSinProgreso: 'Aún no se han subido fotos de tu progreso',
-detalleHogarNoDonaciones: 'No hay donaciones registradas para este hogar'
+    detalleHogarTitulo: 'Mis Donaciones',
+    detalleHogarEncargado: 'Encargado:',
+    detalleHogarDireccion: 'Dirección:',
+    detalleHogarDescripcion: 'Descripcion:',
+    detalleHogarCantidadNinos: 'Cantidad de niños:',
+    detalleHogarBotonVisitar: 'Visitar',
+    detalleHogarBotonChat: 'Chat',
+    detalleHogarBotonDonar: 'Volver a Donar',
+    detalleHogarNecesidadesTitulo: 'Necesidades del hogar:',
+    detalleHogarSinComprobante: 'Lo sentimos, parece que aún no hay una foto de la donación',
+    detalleHogarTextoDonacion: 'El',
+    detalleHogarTextoDonacionSufijo: 'donaste',
+    detalleHogarTextoDonacionPara: 'para',
+    detalleHogarSeguirAyudando: 'Seguir ayudando.',
+    detalleHogarProgresoTitulo: 'Progreso de la donación',
+    detalleHogarSinProgreso: 'Aún no se han subido fotos de tu progreso',
+    detalleHogarNoDonaciones: 'No hay donaciones registradas para este hogar',
+
+    // ADMIN
+    editarAdministradorTitulo: 'Editar Perfil de Administrador',
+    editarAdministradorLabelContrasenia: 'Nueva Contraseña (dejar en blanco si no deseas cambiarla):',
+    editarAdministradorPlaceholderContrasenia: 'Nueva contraseña',
+    editarAdministradorBotonGuardar: 'Guardar Cambios',
+
+    // EDIT INPUT
+    inputEditName: 'Nombre:',
+    inputEditEmail: 'Email:',
+    inputEditPhone: 'Celular:',
+    inputEditLabelPhoto: 'Foto URL:',
+
+    // EDITAR ENCARGADO
+    editarEncargadoTitulo: 'Editar Encargado',
+    editarEncargadoLabelNuevaContrasenia: 'Nueva Contraseña (dejar en blanco si no deseas cambiarla):',
+    editarEncargadoPlaceholderContrasenia: 'Nueva contraseña',
+    editarEncargadoLabelNombreHogar: 'Nombre del Hogar:',
+    editarEncargadoLabelDireccionHogar: 'Dirección del Hogar:',
+    editarEncargadoLabelFotoHogar: 'Foto del Hogar URL:',
+    editarEncargadoLabelDescripcionHogar: 'Descripción del Hogar:',
+    editarEncargadoPlaceholderDescripcionHogar: 'Escribe una descripción detallada del hogar (máx. 500 caracteres)',
+    editarEncargadoContadorDescripcion: '/500 caracteres',
+
+    // EDITAR PADRINO
+    editarPadrinoTitulo: 'Editar Perfil de Padrino'
 };
   

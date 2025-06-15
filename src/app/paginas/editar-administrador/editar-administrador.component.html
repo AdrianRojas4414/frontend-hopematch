@@ -1,13 +1,13 @@
 <div class="container">
-    <h2 style="color: #3f51b5;">Editar Perfil de Administrador</h2>
+    <h2 style="color: #3f51b5;">{{ texts.editarAdministradorTitulo }}</h2>
     <form (ngSubmit)="updateAdministrador()">
-        <label>Nombre:</label>
+        <label>{{ texts.inputEditName }}</label>
         <input type="text" [(ngModel)]="administrador.nombre" name="nombre" required>
 
-        <label>Email:</label>
+        <label>{{ texts.inputEditEmail }}</label>
         <input type="email" [(ngModel)]="administrador.email" name="email" disabled>
 
-        <label>Nueva Contraseña (dejar en blanco si no deseas cambiarla):</label>
+        <label>{{ texts.editarAdministradorLabelContrasenia }}</label>
         <div style="position: relative;">
             <input [type]="mostrarContrasenia ? 'text' : 'password'"
                     [(ngModel)]="nuevaContrasenia"
@@ -23,7 +23,7 @@
             </button>
         </div>
 
-        <button type="submit" class="primary-button">Guardar Cambios</button>
+        <button type="submit" class="primary-button">{{ texts.editarAdministradorBotonGuardar }}</button>
 
         <button type="button" class="cancel-button" (click)="cancelarEdicion()">{{texts.volver}}</button>
     </form>
