@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TEXTOS } from '../../config/constants';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { EncargadoService } from '../../servicios/encargado.service';
 
 @Component({
   selector: 'app-encargado-donacion',
@@ -19,6 +20,7 @@ export class EncargadoDonacionComponent implements OnInit {
   mostrarFormulario = false;
   nuevoComentario = '';
   donacionSeleccionadaId: number | null = null;
+  encargado: any  = null;
     
   mostrarFormFoto = false;
   nuevaFotoUrl = '';
@@ -33,7 +35,8 @@ export class EncargadoDonacionComponent implements OnInit {
     private donacionService: DonacionService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    private encargadoService: EncargadoService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +56,14 @@ export class EncargadoDonacionComponent implements OnInit {
     this.donacionService.getDonacionesByEncargado(encargadoId).subscribe({
       next: (data) => {
         this.donaciones = data;
+        this.encargadoService.getEncargadoById(encargadoId).subscribe({
+          next:(data) => {
+            this.encargado = data;
+          },
+          error:(err)=>{
+            console.error('Error al cargar encargado:', err);
+          }
+        })
       },
       error: (err) => {
         console.error('Error al cargar donaciones:', err);

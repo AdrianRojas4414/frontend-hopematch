@@ -150,10 +150,12 @@ export class HomePadrinoComponent implements OnInit {
       return this.encargadosAprobados;
     }
 
-    const texto = this.busqueda.toLowerCase();
-    return this.encargadosAprobados.filter(encargado =>
-      encargado.nombre_hogar.toLowerCase().startsWith(texto)
-    );
+    const palabrasBusqueda = this.busqueda.toLowerCase().split(/\s+/);
+
+    return this.encargadosAprobados.filter(encargado => {
+      const nombreHogar = encargado.nombre_hogar.toLowerCase();
+      return palabrasBusqueda.some(palabra => nombreHogar.includes(palabra));
+    });
   }
 
   irAdministradores(): void{
