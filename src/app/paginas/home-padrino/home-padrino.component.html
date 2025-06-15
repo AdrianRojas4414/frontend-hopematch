@@ -48,7 +48,7 @@
             <hr>
             <div class="field--column-card-elements amount-block">
               <p>${{ donacion.cantidadDonacion |  number:'1.2-2' }}</p>
-              <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, donacion.encargado.id)">Volver a Donar</button>
+              <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision'" (click)="irARegistroDonacion(padrino.id, donacion.encargado.id)">Volver a Donar</button>
             </div>
           </div>
           
@@ -86,8 +86,8 @@
     
               <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
               <div class="field--row-card-elements">
-                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(encargado.id)" (click)="verHogar(encargado.id)">Ver Hogar</button>
-                <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
+                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(encargado.id) || padrino.estado == 'En revision'" (click)="verHogar(encargado.id)">Ver Hogar</button>
+                <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision'" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
               </div>
             </div>
           </div>
