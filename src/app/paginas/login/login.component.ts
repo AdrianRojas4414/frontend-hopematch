@@ -96,7 +96,9 @@ export class LoginComponent {
     }
 
     if(estado === 'Suspendido'){
-      alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
+      if(this.padrino){
+        alert("Su cuenta se encuentra SUSPENDIDA.\n No puede:\n DONAR, CHATEAR, AGENDAR VISITA, VOLVER A DONAR o VER a NINGUN HOGAR.\n Por favor contáctese con Soporte Técnico.");
+      }
     }
   }
   cancelLogin() {
