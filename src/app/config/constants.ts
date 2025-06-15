@@ -88,6 +88,7 @@ export const TEXTOS = {
     volver: 'Volver',
     editar: 'Editar',
     suspender: 'Suspender',
+    eliminar: 'Eliminar',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -121,5 +122,13 @@ export const TEXTOS = {
     // ENCARGADO
     formEncargadoDescripcionResguardo: 'Tu información será resguardada.',
     inputDescripcionContador: '/500 caracteres',
+
+    // NIÑO
+    registrarNino: 'Registrar Niño',
+
+    // CAMPOS EN FORMULARIOS
+
+    fechaNacimiento: 'Fecha de Nacimiento:',
+    campoCI: 'CI:'
 };
   
