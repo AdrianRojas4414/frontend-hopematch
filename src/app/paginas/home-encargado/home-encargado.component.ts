@@ -71,6 +71,12 @@ export class HomeEncargadoComponent implements OnInit{
     }
   }
 
+  irVisitas(): void{
+    if (this.encargado) {
+      this.router.navigate([`/encargado-visitas`])
+    }
+  }
+
   irAdministradores(): void{
     this.router.navigate(['/administradores']);
   }

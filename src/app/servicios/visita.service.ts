@@ -19,9 +19,13 @@ export class VisitaService {
     return this.http.get<any[]>(`${this.backendUrl}/by-padrino/${padrinoId}`);
   }
 
-  getAllVisitasForEncargado(): Observable<any[]> {
-    const encargadoId = Number(localStorage.getItem('userId'));
-    return this.http.get<any[]>(`${this.backendUrl}/by-encargado/${encargadoId}`);
+  getAllVisitasForEncargado(encargadoId: number): Observable<any[]> { 
+    console.log('VisitaService: ID de Encargado recibido como parámetro:', encargadoId);
+
+    const requestUrl = `${this.backendUrl}/by-encargado/${encargadoId}`;
+    console.log('VisitaService: URL final de la petición al backend:', requestUrl); 
+
+    return this.http.get<any[]>(requestUrl);
   }
 
   acceptVisita(visitaId: number): Observable<any> {
