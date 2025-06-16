@@ -20,8 +20,8 @@
 <div class="full-layout-section" *ngIf="encargado">
   <div class="field--row-elements">
     <div class="grettings-text">
-      <h2>Niños del Hogar</h2>
-      <button class="btn btn--primary-button" (click)="irCrearNino()">Registrar Niño</button>
+      <h2>{{ texts.ninosHogar }}</h2>
+      <button class="btn btn--primary-button" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">{{ texts.crearNino }}</button>
     </div>
     <div class="field--column-elements">
       <div *ngIf="encargado?.ninos?.length > 0; else noNinos">
@@ -29,18 +29,18 @@
           <div class="card--general" *ngFor="let nino of encargado.ninos">
             <div class="field--column-card-elements">
               <h4>{{ nino.nombre }}</h4>
-              <div><strong>CI:</strong> {{ nino.ci }}</div>
-              <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
+              <div><strong>{{ texts.campoCI }}</strong> {{ nino.ci }}</div>
+              <div><strong>{{ texts.fechaNacimiento }}</strong> {{ nino.fechaNacimiento }}</div>
               <div>
-                <strong>Necesidades:</strong>
+                <strong>{{ texts.necesidades }}</strong>
                 <ul>
                   <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
                 </ul>
               </div>
               <div class="field--row-card-elements">
-                <button class="btn btn--primary-button" (click)="editarNino(nino.id)">Editar Datos</button>
-                <button class="btn btn--secondary-button" (click)="eliminarNino(nino.id)">
-                  <i class="fas fa-trash-alt"></i> Eliminar
+                <button class="btn btn--primary-button" [disabled]="encargado.estado == 'Suspendido'" (click)="editarNino(nino.id)">Editar Datos</button>
+                <button class="btn btn--secondary-button" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
+                  <i class="fas fa-trash-alt"></i> {{ texts.eliminar }}
                 </button>
               </div>
             </div>
@@ -49,7 +49,7 @@
       </div>
 
       <ng-template #noNinos>
-        <p>No hay niños registrados.</p>
+        <p>{{ texts.noNinos }}</p>
       </ng-template>
   </div>
   </div>

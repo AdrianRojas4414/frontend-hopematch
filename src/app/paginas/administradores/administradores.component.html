@@ -7,10 +7,10 @@
             <div class="navbar__links">
               <button class="btn btn--third-button" (click)="volverAHome()"> {{ texts.buttonHome }} </button>
                 <img [src]="padrino.foto" 
-                    alt="Foto del Encargado" 
+                    alt="{{ texts.altFotoEncargado }}" 
                     class="admin-foto" />
                 <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
-                <button class="btn btn--third-button" (click)="volver()"> Volver</button>
+                <button class="btn btn--third-button" (click)="volver()"> {{ texts.volver }} </button>
                 <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     alt="Foto del Encargado" 
                     class="admin-foto" />
                 <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
-                <button class="btn btn--third-button" (click)="volver()"> Volver</button>
+                <button class="btn btn--third-button" (click)="volver()"> {{ texts.volver }} </button>
                 <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
             </div>
         </div>
@@ -57,12 +57,12 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{ texts.footerTelefono }}</b></p>
+                    <p>{{ texts.footerTelefonoNumero }}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{ texts.footerEmail }}</b></p>
+                    <p>{{ texts.footerEmailDireccion }}</p>
                 </div>
             </div>
         </div>

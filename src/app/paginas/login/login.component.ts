@@ -90,11 +90,21 @@ export class LoginComponent {
 
   mensajes(estado:any):void{
     if(estado === 'En revision'){
-      alert("Su cuenta se encuentra EN REVISIÓN, por favor contáctese con Soporte Técnico.");
+      if(this.padrino){
+        alert("Su cuenta se encuentra EN REVISIÓN.\n No puede:\n DONAR, CHATEAR, AGENDAR VISITA o VOLVER A DONAR a NINGUN HOGAR.\n Por favor contáctese con Soporte Técnico.");
+      }
+      if(this.encargado){
+        alert("Su cuenta se encuentra EN REVISIÓN.\n No puede:\n RECIBIR DONACIONES, CHATEAR CON PADRINOS ni REGISTRAR NUEVOS NIÑOS.\n Por favor contáctese con Soporte Técnico.");
+      }
     }
 
     if(estado === 'Suspendido'){
-      alert("Su cuenta se encuentra SUSPENDIDA, por favor contáctese con Soporte Técnico.");
+      if(this.padrino){
+        alert("Su cuenta se encuentra SUSPENDIDA.\n No puede:\n DONAR, CHATEAR, AGENDAR VISITA, VOLVER A DONAR o VER a NINGUN HOGAR.\n Por favor contáctese con Soporte Técnico.");
+      }
+      if(this.encargado){
+        alert("Su cuenta se encuentra SUSPENDIDA.\n No puede:\n RECIBIR DONACIONES, CHATEAR CON PADRINOS, REGISTRAR, EDITAR o ELIMINAR NIÑOS, ENVIAR COMENTARIOS ni SUBIR FOTOS de las DONACIONES.\n Por favor contáctese con Soporte Técnico.");
+      }
     }
   }
   cancelLogin() {

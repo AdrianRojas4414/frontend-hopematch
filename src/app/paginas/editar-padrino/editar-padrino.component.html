@@ -1,32 +1,32 @@
 
 <form (ngSubmit)="updatePadrino()" class="dialog--form">
-    <h2>Editar Perfil de Padrino</h2>
+    <h2>{{texts.editarPadrinoTitulo}}</h2>
     <div class="input-group">
-        <label>Nombre:</label>
+        <label>{{texts.inputEditName}}</label>
         <input type="text" [(ngModel)]="padrino.nombre" name="nombre" class="input-field" required>
     </div>
 
     <div class="input-group">
-        <label>Celular:</label>
+        <label>{{texts.inputEditPhone}}</label>
         <input type="text" [(ngModel)]="padrino.celular" name="celular" placeholder="+### ####" class="input-field" required>
     </div>
 
     <div class="input-group">
-        <label>Email:</label>
+        <label>{{texts.inputEditEmail}}</label>
         <input type="email" [(ngModel)]="padrino.email" name="email" class="input-field" disabled>
     </div>
 
     <div class="input-group">
-        <label>Foto URL:</label>
+        <label>{{texts.inputEditLabelPhoto}}</label>
         <input type="text" [(ngModel)]="padrino.foto" name="foto" class="input-field">
     </div>
 
-    <label>Nueva Contraseña (dejar en blanco si no deseas cambiarla):</label>
+    <label>{{texts.editarAdministradorLabelContrasenia}}</label>
     <div class="input-group input-group--icon-right">
         <input [type]="mostrarContrasenia ? 'text' : 'password'"
                 [(ngModel)]="nuevaContrasenia"
                 name="nuevaContrasenia"
-                placeholder="Nueva contraseña"
+                [placeholder]="texts.editarAdministradorPlaceholderContrasenia"
                 style="width: 100%; padding-right: 2.5rem;">
         <button type="button"
                 (click)="mostrarContrasenia = !mostrarContrasenia"
@@ -37,9 +37,9 @@
         </button>
     </div>
 
-    <button type="submit" class="btn btn--primary-button">Guardar Cambios</button>
+    <button type="submit" class="btn btn--primary-button">{{texts.guardar}}</button>
     
-    <button type="button" class="btn btn--secondary-button" (click)="eliminarPadrino()">Eliminar Cuenta</button>
+    <button type="button" class="btn btn--secondary-button" (click)="eliminarPadrino()">{{texts.eliminarCuenta}}</button>
 
     <button type="button" class="btn btn--cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
 </form>

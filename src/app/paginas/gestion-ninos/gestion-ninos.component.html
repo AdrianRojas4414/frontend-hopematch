@@ -8,25 +8,25 @@
     </div>
   
     <div class="saludo">
-      <h2>Niños registrados en Hopematch</h2>
+      <h2>{{ texts.saludoNinosRegistrados }}</h2>
     </div>
   
     <div class="ninos-container">
       <div class="nino-card" *ngFor="let nino of todosLosNinos">
         <div class="nino-detalles">
           <h4>{{ nino.nombre }}</h4>
-          <div><strong>CI:</strong> {{ nino.ci }}</div>
-          <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
-          <div><strong>Hogar:</strong> {{ nino.nombreHogar }}</div>
-          <div><strong>Encargado:</strong> {{ nino.nombreEncargado }}</div>
+          <div><strong>{{ texts.campoCI }}</strong> {{ nino.ci }}</div>
+          <div><strong>{{ texts.fechaNacimiento }}</strong> {{ nino.fechaNacimiento }}</div>
+          <div><strong>{{ texts.inputHogarName }}</strong> {{ nino.nombreHogar }}</div>
+          <div><strong>{{ texts.detalleHogarEncargado }}</strong> {{ nino.nombreEncargado }}</div>
           <div>
-            <strong>Necesidades:</strong>
+            <strong>{{ texts.necesidades }}</strong>
             <ul>
               <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
             </ul>
           </div>
           <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
-            <i class="fas fa-trash-alt"></i> Eliminar
+            <i class="fas fa-trash-alt"></i> {{ texts.eliminar }}
           </button>
         </div>
       </div>

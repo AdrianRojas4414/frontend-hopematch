@@ -1,34 +1,34 @@
 <form (ngSubmit)="enviarSolicitud()" *ngIf="!isLoading" class="dialog--form">
-        <div class="footer__brand">
-            <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
-        </div>
-        <div class="register-text">
-            <h2>Agendar Visita</h2>
-            <p>Selecciona fecha y hora para tu visita</p>
-        </div>
-        
-        <div *ngIf="mensajeError" class="alert error">
-        {{ mensajeError }}
-        <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
-      </div>
-  
-      <div *ngIf="mensajeExito" class="alert success">
-        {{ mensajeExito }}
-        <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
-      </div>
+    <div class="footer__brand">
+        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+    </div>
+    <div class="register-text">
+        <h2>{{texts.agendarVisita}}</h2>
+        <p>{{texts.seleccionarFechaHora}}</p>
+    </div>
+    
+    <div *ngIf="mensajeError" class="alert error">
+    {{ mensajeError }}
+    <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
+    </div>
 
-      <div class="input-group">
-        <label for="fecha">Fecha de visita</label>
+    <div *ngIf="mensajeExito" class="alert success">
+    {{ mensajeExito }}
+    <button (click)="limpiarMensajes()" class="close-btn">&times;</button>
+    </div>
+
+    <div class="input-group">
+        <label for="fecha">{{texts.fechaVisitaLabel}}</label>
         <input type="date" [(ngModel)]="fechaSeleccionada" name="fecha_visita" 
-                   [min]="minDate" class="input-field" required>
-      </div>
-      <div class="input-group">
-        <label for="horario">Horario disponible</label>
+                [min]="minDate" class="input-field" required>
+    </div>
+    <div class="input-group">
+        <label for="horario">{{texts.horarioDisponibleLabel}}</label>
         <select [(ngModel)]="horarioSeleccionado" name="hora_visita" class="input-field" required>
-          <option disabled selected>Seleccione una hora</option>
-          <option *ngFor="let hora of horariosDisponibles" [value]="hora">{{hora}}</option>
+        <option disabled selected>{{texts.seleccioneHora}}</option>
+        <option *ngFor="let hora of horariosDisponibles" [value]="hora">{{hora}}</option>
         </select>
-      </div>
-        <button type="submit" [disabled]="!fechaSeleccionada || !horarioSeleccionado || isLoading" class="btn btn--primary-button">Agendar</button>
-        <button type="button" class="btn btn--cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
-    </form>
+    </div>
+    <button type="submit" [disabled]="!fechaSeleccionada || !horarioSeleccionado || isLoading" class="btn btn--primary-button">{{texts.agendarVisita}}</button>
+    <button type="button" class="btn btn--cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
+</form>

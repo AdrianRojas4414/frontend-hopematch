@@ -19,19 +19,19 @@
 
 <div class="full-layout-section" *ngIf="encargado">
   <div class="container">
-      <h1>Mi hogar</h1>
+      <h1>{{ texts.detalleHogarTitulo }}</h1>
       <div class="hogar-container">
         <img [src]="encargado.foto_hogar" [alt]="encargado.nombre_hogar" class="hogar-img">
         <div class="hogar-info">
           <h2>{{encargado.nombre_hogar}}</h2>
-          <p><strong>Descripción:</strong>  {{encargado.descripcion}}  </p>
-          <p><strong>Número de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
+          <p><strong>{{ texts.detalleHogarDescripcion }}</strong>  {{encargado.descripcion}}  </p>
+          <p><strong>{{ texts.detalleHogarCantidadNinos }}</strong> {{ encargado.ninos?.length || 0 }}</p>
           <button class="btn btn--secondary-button" (click)="irEditarPerfil()">{{texts.editar}}</button>
-          <button class="btn btn--primary-button" (click)="irMisNinos()">Mis niños</button>
+          <button class="btn btn--primary-button" (click)="irMisNinos()">{{ texts.misNinos }}</button>
         </div>
       </div>
     
-      <h2>Necesidades de mi hogar</h2>
+      <h2>{{ texts.detalleHogarNecesidadesTitulo }}</h2>
     
       <div class="necesidades-container">
           <div class="necesidades">
@@ -51,12 +51,12 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{ texts.footerTelefono }}</b></p>
+                    <p>{{ texts.footerTelefonoNumero }}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{ texts.footerEmail }}</b></p>
+                    <p>{{ texts.footerEmailDireccion }}</p>
                 </div>
             </div>
         </div>

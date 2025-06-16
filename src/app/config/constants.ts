@@ -8,6 +8,11 @@ export const TEXTOS = {
     userPadrino: 'Padrino',
     userEncargado: 'Encargado del hogar',
     userAdmin: 'Administrador',
+
+    // LOGIN
+    ingresaCuenta: 'Ingresa a tu cuenta.',
+    tipoCuenta: '¡Bienvenido! Selecciona tu tipo de cuenta para ingresar.',
+
     //ABOUT US
     aboutTitle: "¿Quiénes somos?",
     aboutDescription: "Hopematch conecta a padrinos con niños vulnerables para transformar vidas mediante empatía y compromiso. Buscamos transformar vidas a través del compromiso humano, la empatía y el amor al prójimo.",
@@ -77,6 +82,8 @@ export const TEXTOS = {
     fotosAEnviar: 'Fotos a enviar',
     maxFotosAlerta: 'Has alcanzado el límite máximo de 8 fotos',
     mensajeChatAdministradores: '¡Los Administradores de Hopematch te pueden ayudar!',
+    placeholderMostrar: 'Mostrar',
+    placeholderOcultar: 'Ocultar',
     
     // BUTTONS
     cancelar: 'Cancelar',
@@ -86,6 +93,17 @@ export const TEXTOS = {
     volver: 'Volver',
     editar: 'Editar',
     suspender: 'Suspender',
+    eliminar: 'Eliminar',
+    cerrar: 'Cerrar',
+    guardar: 'Guardar Cambios',
+    eliminarCuenta: 'Eliminar Cuenta',
+    aceptar: 'Aceptar',
+    denegar: 'Denegar',
+    aprobar: 'Aprobar',
+    rechazar: 'Rechazar',
+    volverHome: 'Volver a Home',
+    verDetalles: 'Ver Detalles',
+    editarDatos: 'Editar Datos',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -95,6 +113,196 @@ export const TEXTOS = {
     
     // VALIDATIONS
     urlInvalida: 'Por favor ingresa una URL válida',
-    maxFotos: 'Máximo 8 fotos permitidas'
+    maxFotos: 'Máximo 8 fotos permitidas',
+
+    // FOOTER
+    footerTelefono: 'Teléfono',
+    footerTelefonoNumero: '(123) 45678',
+    footerEmail: 'Email',
+    footerEmailDireccion: 'hopematch@email.com',
+
+    // ALT TEXT
+    altFotoEncargado: 'Foto del Encargado',
+    altImagenRegistro: 'Imagen de registro',
+    altEncargados: 'Encargados',
+    altPadrinos: 'Padrinos',
+    altNinos: 'Niños',
+    altFotoPadrino: 'Foto del Padrino',
+    altFotoHogar: 'Foto del Hogar',
+    altFotoPerfil: 'Foto de perfil',
+
+    // CHAT
+    chatConEncargado: 'Chat con',
+    encargadoDelHogar: 'encargado del hogar:',
+    chatConPadrino: 'Chat con el padrino',
+    chatConAdministrador: 'Chat con el administrador de Hopematch:',
+    agendarVisita: 'Agendar Visita',
+    noHayMensajes: 'No hay mensajes en esta conversación.',
+    placeholderMensaje: 'Escribe tu mensaje...',
+
+    // ENCARGADO
+    formEncargadoDescripcionResguardo: 'Tu información será resguardada.',
+    inputDescripcionContador: '/500 caracteres',
+
+    // PADRINO
+    tituloRegistroPadrino: 'Estás a unos pasos de cambiar vidas.',
+
+    // CHILD
+    registrarNino: 'Registrar Niño',
+    editarNinoTitulo: 'Editar Niño',
+    placeholderNuevaNecesidad: 'Añadir necesidad',
+    ninos: 'Niños: ',
+    misNinos: 'Mis niños',
+    noNinos: 'No hay niños registrados.',
+    ninosHogar: 'Niños del Hogar',
+    crearNino: 'Crear Niño',
+
+    // FORM FIELDS
+    fechaNacimiento: 'Fecha de Nacimiento:',
+    campoCI: 'CI:',
+
+    // DETALLE DONACION
+    detalleDonacionTitulo: 'Detalle de Donación',
+    detalleDonacionFecha: 'Fecha:',
+    detalleDonacionMonto: 'Monto:',
+    detalleDonacionHogar: 'Para el hogar:',
+    detalleDonacionNecesidades: 'Necesidades cubiertas:',
+    detalleDonacionComentarioEncargado: 'Comentario del encargado:',
+
+    // DETALLE HOGAR
+    detalleHogarTitulo: 'Mis Donaciones',
+    detalleHogarEncargado: 'Encargado:',
+    detalleHogarDireccion: 'Dirección:',
+    detalleHogarDescripcion: 'Descripcion:',
+    detalleHogarCantidadNinos: 'Cantidad de niños:',
+    detalleHogarBotonVisitar: 'Visitar',
+    detalleHogarBotonChat: 'Chat',
+    detalleHogarBotonDonar: 'Volver a Donar',
+    detalleHogarNecesidadesTitulo: 'Necesidades del hogar:',
+    detalleHogarSinComprobante: 'Lo sentimos, parece que aún no hay una foto de la donación',
+    detalleHogarTextoDonacion: 'El',
+    detalleHogarTextoDonacionSufijo: 'donaste',
+    detalleHogarTextoDonacionPara: 'para',
+    detalleHogarSeguirAyudando: 'Seguir ayudando.',
+    detalleHogarProgresoTitulo: 'Progreso de la donación',
+    detalleHogarSinProgreso: 'Aún no se han subido fotos de tu progreso',
+    detalleHogarNoDonaciones: 'No hay donaciones registradas para este hogar',
+
+    // ADMIN
+    editarAdministradorTitulo: 'Editar Perfil de Administrador',
+    editarAdministradorLabelContrasenia: 'Nueva Contraseña (dejar en blanco si no deseas cambiarla):',
+    editarAdministradorPlaceholderContrasenia: 'Nueva contraseña',
+    editarAdministradorBotonGuardar: 'Guardar Cambios',
+
+    // EDIT INPUT
+    inputEditName: 'Nombre:',
+    inputEditEmail: 'Email:',
+    inputEditPhone: 'Celular:',
+    inputEditLabelPhoto: 'Foto URL:',
+
+    // EDITAR ENCARGADO
+    editarEncargadoTitulo: 'Editar Encargado',
+    editarEncargadoLabelNuevaContrasenia: 'Nueva Contraseña (dejar en blanco si no deseas cambiarla):',
+    editarEncargadoPlaceholderContrasenia: 'Nueva contraseña',
+    editarEncargadoLabelNombreHogar: 'Nombre del Hogar:',
+    editarEncargadoLabelDireccionHogar: 'Dirección del Hogar:',
+    editarEncargadoLabelFotoHogar: 'Foto del Hogar URL:',
+    editarEncargadoLabelDescripcionHogar: 'Descripción del Hogar:',
+    editarEncargadoPlaceholderDescripcionHogar: 'Escribe una descripción detallada del hogar (máx. 500 caracteres)',
+    editarEncargadoContadorDescripcion: '/500 caracteres',
+
+    // EDITAR PADRINO
+    editarPadrinoTitulo: 'Editar Perfil de Padrino',
+
+    // VISITS
+    tituloTodasSolicitudesVisita: 'Todas las Solicitudes de Visita',
+    mensajeNoSolicitudesVisita: 'No hay solicitudes de visita registradas para tu hogar.',
+    padrinoDesconocido: 'Padrino Desconocido',
+    fechaCreacion: 'Fecha Creación:',
+
+    // GESTION
+    hogaresSuspendidos: 'Hogares Suspendidos',
+    saludoHogaresRegistrados: 'Hogares registrados en Hopematch',
+    estadoEnRevision: 'En Revisión',
+    estadoAprobados: 'Aprobados',
+    administradoPor: 'Administrado por ',
+    sinDescripcion: 'Sin descripcion',
+    noHayNecesidadesRegistradas: 'No hay necesidades registradas.',
+    saludoNinosRegistrados: 'Niños registrados en Hopematch',
+    gestionPadrinosTitulo: 'Gestión de Padrinos',
+    gestionPadrinosSolicitudes: 'Solicitudes de Padrinos',
+    gestionPadrinosNoSolicitudes: 'No hay solicitudes pendientes',
+    gestionPadrinosRegistrados: 'Padrinos Registrados',
+    gestionPadrinosNoRegistrados: 'No hay padrinos registrados',
+    padrinosSuspendidos: 'Padrinos Suspendidos',
+    enviarARevision: 'Enviar a Revisión', 
+
+    // ADMIN HOME
+    homeAdminSaludo: '¡Hola de nuevo',
+    homeAdminPanel: 'Este es tu Panel de Administración',
+    homeAdminEncargadosTitulo: 'Encargados/Hogares',
+    homeAdminEncargadosDescripcion1: 'Aprueba/Rechaza registro de Hogares',
+    homeAdminEncargadosDescripcion2: 'Suspende cuentas de Hogares',
+    homeAdminEncargadosDescripcion3: 'Elimina las cuentas suspendidas',
+    homeAdminPadrinosTitulo: 'Padrinos',
+    homeAdminPadrinosDescripcion: 'Administra los padrinos registrados',
+    homeAdminNinosTitulo: 'Niños',
+    homeAdminNinosDescripcion: 'Administra los niños registrados',
+
+    // HOME ENCARGADO
+    homeEncargadoSaludo: '¡Hola',
+    homeEncargadoPregunta: '¿Qué deseas hacer hoy?',
+    homeEncargadoMiHogarTitulo: 'Mi Hogar',
+    homeEncargadoMiHogarDescripcion: 'Administra y edita tu hogar',
+    homeEncargadoMisNinosTitulo: 'Mis Niños',
+    homeEncargadoMisNinosDescripcion: 'Gestiona y visualiza los niños a tu cargo',
+    homeEncargadoMisNinosAltImagen: 'Kids',
+    homeEncargadoAgendaTitulo: 'Agenda y Contacto',
+    homeEncargadoAgendaDescripcion: 'Habla con los padrinos de tu hogar y gestiona actividades programadas',
+    homeEncargadoAgendaAltImagen: 'Contacto',
+    homeEncargadoDonacionesTitulo: 'Donaciones',
+    homeEncargadoDonacionesDescripcion: 'Administra y publica contenido relacionado a las donaciones recibidas',
+    homeEncargadoDonacionesAltImagen: 'Donation',
+
+    // HOME PADRINO
+    homePadrinoSaludo: 'Hola',
+    homePadrinoPregunta: '¿qué quieres hacer hoy?',
+    homePadrinoAyudaEsperanza: 'Tu ayuda es su esperanza. Dona ahora.',
+    homePadrinoTusDonaciones: 'Tus donaciones',
+    homePadrinoNoDonaciones: 'Aun no has realizado donaciones',
+    homePadrinoBuscarHogar: 'En el panel de la derecha busca un hogar y regala una esperanza.',
+    homePadrinoBuscarPlaceholder: 'Buscar Hogar...',
+    homePadrinoBotonDonar: 'Donar',
+
+    // PADRINOS SUSPENDIDOS
+    volverAGestion: 'Volver a Gestión',
+    cargandoCuentasSuspendidas: 'Cargando cuentas suspendidas...',
+    noCuentasSuspendidas: 'No hay cuentas suspendidas actualmente',
+
+    // PERFIL
+    miPerfilTitulo: 'Mi Perfil',
+    emailLabel: 'E-mail',
+    cargandoDatos: 'Cargando datos...',
+    perfilEncargadoTitulo: 'Perfil del Encargado',
+    estadoHogarLabel: 'Estado del Hogar',
+    cantidadNinosLabel: 'Cantidad de niños',
+    verNinosLabel: 'Ver Niños',
+
+    // PERFIL PADRINO
+    perfilPadrinoTitulo: 'Perfil del Padrino',
+    estadoLabel: 'Estado',
+
+    // REGISTRO DONACION
+    registrarDonacionTitulo: 'Registrar Donación',
+    montoDonarLabel: 'Monto a donar ($):',
+    ejemploMonto: 'Ej: 50.00',
+    seleccionarNecesidadesLabel: 'Selecciona las necesidades:',
+    guardarDonacion: 'Guardar Donación',
+
+    // REGISTRO VISITAS
+    seleccionarFechaHora: 'Selecciona fecha y hora para tu visita',
+    fechaVisitaLabel: 'Fecha de visita',
+    horarioDisponibleLabel: 'Horario disponible',
+    seleccioneHora: 'Seleccione una hora'
 };
   

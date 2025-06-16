@@ -2,12 +2,12 @@
     <div class="home-admin-header">
         <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
         <nav class="admin-nav">
-            <a (click)="volverAGestion()" style="color: #3f51b5; cursor: pointer;">Volver atras</a>
+            <a (click)="volverAGestion()" style="color: #3f51b5; cursor: pointer;">{{ texts.volver }}</a>
         </nav>
     </div>
 
     <div class="saludo">
-        <h2>Hogares Suspendidos de Hopematch</h2>
+        <h2>{{ texts.hogaresSuspendidos }}</h2>
     </div>
 
     <div class="encargados-lista">
@@ -19,7 +19,7 @@
                 <div class="encargado-detalles">
                 <h3>{{ encargado.nombre_hogar }}</h3>
                 <div class="admin-info">
-                    <span>Administrado por </span>
+                    <span>{{ texts.administradoPor }} </span>
                     <img [src]="encargado.foto" 
                         alt="Foto del Encargado" 
                         class="admin-foto" />
@@ -27,14 +27,14 @@
                 </div>
                 <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
                 <p *ngIf="encargado.necesidades && encargado.necesidades.length">
-                    <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+                    <strong>{{ texts.necesidades }} </strong>{{ getNecesidadesAsString(encargado) }}
                 </p>
                 <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
-                    <strong>No hay necesidades registradas.</strong>
+                    <strong>{{ texts.noHayNecesidadesRegistradas }}</strong>
                 </p>
-                <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                <button class="btn-enviar" (click)="revisarHogar(encargado)">Enviar a Revision</button>
-                <button class="btn-ver-perfil " (click)="verDetalles(encargado.id)">Ver Detalles</button>
+                <p><strong>{{ texts.ninos }} </strong> {{ encargado.ninos?.length || 0 }}</p>
+                <button class="btn-enviar" (click)="revisarHogar(encargado)">{{ texts.enviarARevision }}</button>
+                <button class="btn-ver-perfil " (click)="verDetalles(encargado.id)">{{ texts.verDetalles }}</button>
                 <button class="btn-chat" (click)="irChat(encargado.id)">{{texts.chat}}</button>
                 </div>
             </div>

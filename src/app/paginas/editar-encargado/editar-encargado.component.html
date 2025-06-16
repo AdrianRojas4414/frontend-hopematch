@@ -1,33 +1,32 @@
-
 <form (ngSubmit)="updateEncargado()" class="dialog--form-scrollable">
-  <h2>Editar Encargado</h2>
+  <h2>{{ texts.editarEncargadoTitulo }}</h2>
   <div class="input-group">
-    <label>Nombre:</label>
+    <label>{{ texts.inputEditName }}</label>
     <input type="text" [(ngModel)]="encargado.nombre" name="nombre" class="input-field" required>
   </div>
 
   <div class="input-group">
-    <label>Celular:</label>
+    <label>{{ texts.inputEditPhone }}</label>
     <input type="number" [(ngModel)]="encargado.celular" name="celular" class="input-field" required>
   </div>
 
   <div class="input-group">
-    <label>Email:</label>
+    <label>{{ texts.inputEditEmail }}</label>
     <input type="email" [(ngModel)]="encargado.email" name="email" class="input-field" disabled>
   </div>
 
   <div class="input-group">
-    <label>Foto URL:</label>
+    <label>{{ texts.inputEditLabelPhoto }}</label>
     <input type="text" [(ngModel)]="encargado.foto" name="foto" class="input-field">
   </div>
 
-  <label>Nueva Contraseña (dejar en blanco si no deseas cambiarla):</label>
+  <label>{{ texts.editarEncargadoLabelNuevaContrasenia }}</label>
   <div class="input-group input-group--icon-right">
     <div style="position: relative;">
         <input [type]="mostrarContrasenia ? 'text' : 'password'"
                 [(ngModel)]="nuevaContrasenia"
                 name="nuevaContrasenia"
-                placeholder="Nueva contraseña"
+                placeholder="texts.editarEncargadoPlaceholderContrasenia"
                 style="width: 100%; padding-right: 2.5rem;" class="input-field">
         <button type="button"
                 (click)="mostrarContrasenia = !mostrarContrasenia"
@@ -40,36 +39,36 @@
     </div>
 
   <div class="input-group">
-    <label>Nombre del Hogar:</label>
+    <label>{{ texts.editarEncargadoLabelNombreHogar }}</label>
     <input type="text" [(ngModel)]="encargado.nombre_hogar" name="nombre_hogar" disabled class="input-field">
   </div>
 
   <div class="input-group">
-    <label>Dirección del Hogar:</label>
+    <label>{{ texts.editarEncargadoLabelDireccionHogar }}</label>
     <input type="text" [(ngModel)]="encargado.direccion_hogar" name="direccion_hogar" class="input-field" required>
   </div>
 
   <div class="input-group">
-    <label>Foto del Hogar URL:</label>
+    <label>{{ texts.editarEncargadoLabelFotoHogar }}</label>
     <input type="text" [(ngModel)]="encargado.foto_hogar" name="foto_hogar" class="input-field">
   </div>
 
   <div class="input-group">
-    <label for="descripcion_hogar">Descripción del Hogar:</label>
+    <label for="descripcion_hogar">{{ texts.editarEncargadoLabelDescripcionHogar }}</label>
   <textarea 
     id="descripcion_hogar"
     [(ngModel)]="encargado.descripcion" 
     name="descripcion_hogar" 
     maxlength="500"
     class="textarea-descripcion"
-    placeholder="Escribe una descripción detallada del hogar (máx. 500 caracteres)">
+    placeholder="texts.editarEncargadoPlaceholderDescripcionHogar">
   </textarea>
-  <p>{{ encargado.descripcion?.length || 0 }}/500 caracteres</p>
+  <p>{{ encargado.descripcion?.length || 0 }}{{ texts.inputDescripcionContador }}</p>
   </div>
 
-  <button type="submit" class="btn btn--primary-button">Guardar Cambios</button>
+  <button type="submit" class="btn btn--primary-button">{{ texts.guardar }}</button>
 
-  <button type="button" class="btn btn--secondary-button" (click)="eliminarEncargado()">Eliminar Cuenta</button>
+  <button type="button" class="btn btn--secondary-button" (click)="eliminarEncargado()">{{ texts.eliminarCuenta }}</button>
 
   <button type="button" class="btn btn--cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
 </form>

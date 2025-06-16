@@ -25,14 +25,14 @@
             
             <div *ngIf="donacion.fotoDonacion" class="foto-comprobante">
               <strong>{{ texts.fotoComprobante }}</strong>
-              <img [src]="donacion.fotoDonacion" alt="Foto comprobante" class="foto-preview">
+              <img [src]="donacion.fotoDonacion" [alt]="texts.fotoComprobante" class="foto-preview">
             </div>
             
             <div *ngIf="donacion.fotosProgreso?.length > 0" class="fotos-progreso-container">
               <strong>{{ texts.fotosProgreso }}</strong>
               <div class="fotos-grid">
                 <div *ngFor="let foto of donacion.fotosProgreso" class="foto-item">
-                  <img [src]="foto" alt="Foto de progreso" class="foto-preview">
+                  <img [src]="foto" [alt]="texts.fotosProgreso" class="foto-preview">
                 </div>
               </div>
             </div>
@@ -43,22 +43,22 @@
               (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
               [class.btn-comentar]="!donacion.comentarioEncargado"
               [class.btn-comentado]="donacion.comentarioEncargado"
-              [disabled]="donacion.comentarioEncargado">
+              [disabled]="donacion.comentarioEncargado || encargado.estado == 'Suspendido'">
               {{ donacion.comentarioEncargado ? texts.comentarioEnviado : texts.agregarComentario }}
             </button>
   
             <button (click)="mostrarFormularioFoto(donacion.id)" 
               [class.btn-foto]="!donacion.fotoDonacion"
               [class.btn-agregado]="donacion.fotoDonacion"
-              [disabled]="donacion.fotoDonacion">
+              [disabled]="donacion.fotoDonacion || encargado.estado == 'Suspendido' ">
               {{ donacion.fotoDonacion ? texts.fotoComprobanteEnviada : texts.agregarFotoComprobante }}
             </button>
             
-            <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
+            <button (click)="mostrarFormularioFotosProgreso(donacion.id)" [disabled]="encargado.estado == 'Suspendido' " class="btn-foto-progreso">
               {{ texts.agregarFotosProgreso }}
             </button>
 
-            <button class="btn-chat" (click)="irChat(donacion.padrino?.id)">{{texts.chat}}</button>
+            <button class="btn-chat" [disabled]="encargado.estado == 'Suspendido' || encargado.estado == 'En revision' " (click)="irChat(donacion.padrino?.id)">{{texts.chat}}</button>
           </div>
         </div>
       </div>
@@ -87,8 +87,8 @@
       <h3>{{ texts.modalAgregarFoto }}</h3>
       <input type="text" [(ngModel)]="nuevaFotoUrl" placeholder="Ingresa la URL de la foto...">
       <div class="modal-actions">
-        <button (click)="cancelarFoto()" class="btn-cancelar">Cancelar</button>
-        <button (click)="enviarFoto()" class="btn-enviar">Enviar</button>
+        <button (click)="cancelarFoto()" class="btn-cancelar">{{ texts.cancelar }}</button>
+        <button (click)="enviarFoto()" class="btn-enviar">{{ texts.enviar }}</button>
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@
       <h3>{{ texts.modalAgregarFotosProgreso }}</h3>
       <div *ngIf="fotosProgresoTemp.length < 8">
         <input type="text" [(ngModel)]="nuevaFotoProgresoUrl" placeholder="Ingresa la URL de la foto..." (keyup.enter)="agregarFotoTemp()">
-        <button (click)="agregarFotoTemp()" class="btn-agregar">Agregar</button>
+        <button (click)="agregarFotoTemp()" class="btn-agregar">{{ texts.agregar }}</button>
       </div>
       
       <div *ngIf="fotosProgresoTemp.length > 0" class="fotos-temp-container">

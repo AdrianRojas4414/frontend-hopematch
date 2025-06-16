@@ -2,23 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisitaService } from '../../servicios/visita.service';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { TEXTOS } from '../../config/constants';
+import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 
 export interface Visita {
   id: number;
-  fecha: string;
-  hora: string;
-  estado: 'PENDIENTE' | 'ACEPTADA' | 'RECHAZADA' | 'CANCELADA';
-  padrino: {
-    id: number;
-    nombre: string;
-  };
-  encargado: {
-    id: number;
-    nombre: string;
-  };
-  fechaCreacion: string;
+  padrinoId: number;
+  encargadoId: number;
+  fechaVisita: string; 
+  horaVisita: string;
+  estadoVisita: 'EN_REVISION' | 'ACEPTADA' | 'RECHAZADA';
 }
 
 @Component({
@@ -26,57 +18,66 @@ export interface Visita {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './encargado-visitas.component.html',
-  styleUrls: ['./encargado-visitas.component.scss']
+  styleUrls: ['./encargado-visitas.component.scss'] 
 })
 export class EncargadoVisitasComponent implements OnInit {
-  todasLasVisitas: Visita[] = [];
 
-  public texts = TEXTOS;
+  visitas: Visita[] = [];
 
   constructor(
     private visitaService: VisitaService,
     private router: Router,
-    private route: ActivatedRoute
+    private authService: UserAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.loadTodasLasVisitas();
+    const encargadoId = this.authService.getUserId();
+    const isEncargado = this.authService.isUserType('encargado');
+
+    if (encargadoId === 0 || !isEncargado) {
+      console.warn('usuario no autenticado...');
+      this.router.navigate(['/']);
+      return; 
+    }
+
+    this.cargarVisitas(encargadoId);
   }
- 
-  loadTodasLasVisitas(): void {
-    this.visitaService.getAllVisitasForEncargado().subscribe({
+
+  cargarVisitas(encargadoId: number): void {
+    this.visitaService.getAllVisitasForEncargado(encargadoId).subscribe({
       next: (data: Visita[]) => {
-        this.todasLasVisitas = data;
+        this.visitas = data;
+        if (this.visitas.length === 0) {
+          console.log('El array de visitas está vacío.');
+        }
       },
       error: (error: any) => {
-        console.error('Error al cargar todas las visitas:', error);
+        console.error('Error al cargar las visitas del encargado:', error);
         alert('Error al cargar las solicitudes de visita.');
       }
     });
   }
 
-  acceptVisita(visitaId: number): void {
-    this.visitaService.acceptVisita(visitaId).subscribe({
-      next: (response: string) => {
-        console.log('Visita aceptada:', response);
+  aceptarVisita(id: number): void {
+    this.visitaService.acceptVisita(id).subscribe({
+      next: () => {
         alert('Solicitud de visita aceptada.');
-        this.loadTodasLasVisitas();
+        this.cargarVisitas(this.authService.getUserId());
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error('Error al aceptar visita:', error);
         alert('Error al aceptar la solicitud de visita.');
       }
     });
   }
 
-  denyVisita(visitaId: number): void {
-    this.visitaService.denyVisita(visitaId).subscribe({
-      next: (response: string) => {
-        console.log('Visita denegada:', response);
+  rechazarVisita(id: number): void {
+    this.visitaService.denyVisita(id).subscribe({
+      next: () => {
         alert('Solicitud de visita denegada.');
-        this.loadTodasLasVisitas();
+        this.cargarVisitas(this.authService.getUserId());
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error('Error al denegar visita:', error);
         alert('Error al denegar la solicitud de visita.');
       }
@@ -87,23 +88,26 @@ export class EncargadoVisitasComponent implements OnInit {
     this.router.navigate(['/home-encargado']);
   }
 
-  mostrarAcciones(estado: string): boolean {
-    return estado === 'PENDIENTE';
+  mostrarAcciones(estadoVisita: string): boolean {
+    return estadoVisita === 'EN_REVISION';
   }
 
-  getEstadoClass(estado: string): string {
-    switch (estado) {
-      case 'PENDIENTE':
-        return 'estado-pendiente';
+  getEstadoClass(estadoVisita: string): string {
+    switch (estadoVisita) {
+      case 'EN_REVISION':
+        return 'status-in-review';
       case 'ACEPTADA':
-        return 'estado-aceptada';
+        return 'status-accepted';    
       case 'RECHAZADA':
-        return 'estado-rechazada';
-      case 'CANCELADA':
-        return 'estado-cancelada';
+        return 'status-rejected';
       default:
-        return '';
+        return ''; 
     }
   }
-}
 
+  irChat(padrinoId: number): void {
+    localStorage.setItem("idConversacion", padrinoId.toString());
+    localStorage.setItem("tipoConversacion", 'padrino');
+    this.router.navigate(['/chat']);
+  }
+}

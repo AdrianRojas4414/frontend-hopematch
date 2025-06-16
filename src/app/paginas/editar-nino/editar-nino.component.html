@@ -1,15 +1,15 @@
 <div class="container">
-    <h2>Editar Niño</h2>
+    <h2>{{texts.editarNinoTitulo}}</h2>
     <form (ngSubmit)="updateNino()">
-      <label>Cédula (CI):</label>
+      <label>{{texts.campoCI}}</label>
       <input type="text" [(ngModel)]="nino.ci" name="ci" required>
-      <label>Nombre:</label>
+      <label>{{texts.inputEditName}}</label>
       <input type="text" [(ngModel)]="nino.nombre" name="nombre" required>
   
-      <label>Fecha de Nacimiento:</label>
+      <label>{{texts.fechaNacimiento}}</label>
       <input type="date" [(ngModel)]="nino.fechaNacimiento" name="fechaNacimiento" required>
  
-      <label>Necesidades:</label>
+      <label>{{texts.necesidades}}</label>
       
        <div class="input-container">
         <input type="text" [(ngModel)]="nuevaNecesidad" name="nuevaNecesidad" placeholder="Añadir necesidad">
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-      <button type="submit">Guardar Cambios</button>
+      <button type="submit">{{texts.guardar}}</button>
 
       <button type="button" class="cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
     </form>
