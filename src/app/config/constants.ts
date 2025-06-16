@@ -103,6 +103,7 @@ export const TEXTOS = {
     rechazar: 'Rechazar',
     volverHome: 'Volver a Home',
     verDetalles: 'Ver Detalles',
+    editarDatos: 'Editar Datos',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -151,7 +152,9 @@ export const TEXTOS = {
     placeholderNuevaNecesidad: 'Añadir necesidad',
     ninos: 'Niños: ',
     misNinos: 'Mis niños',
-
+    noNinos: 'No hay niños registrados.',
+    ninosHogar: 'Niños del Hogar',
+    crearNino: 'Crear Niño',
 
     // FORM FIELDS
     fechaNacimiento: 'Fecha de Nacimiento:',
