@@ -2,19 +2,19 @@
     <div class="home-admin-header">
         <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
         <nav class="admin-nav">
-            <a (click)="irHogaresSuspendidos()" style="color: #3f51b5; cursor: pointer;">Hogares Suspendidos</a>
-            <a (click)="volverHome()" style="color: #3f51b5; cursor: pointer;">Volver a Home</a>
-            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
+            <a (click)="irHogaresSuspendidos()" style="color: #3f51b5; cursor: pointer;">{{ texts.hogaresSuspendidos }}</a>
+            <a (click)="volverHome()" style="color: #3f51b5; cursor: pointer;">{{ texts.volverHome }}</a>
+            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">{{ texts.buttonCerrarSesion }}</a>
         </nav>
     </div>
 
     <div class="saludo">
-        <h2>Hogares registrados en Hopematch</h2>
+        <h2>{{ texts.saludoHogaresRegistrados }}</h2>
     </div>
 
     <div class="encargados-field-doble">
         <div class="estado-columna">
-        <h3>En Revisión</h3>
+        <h3>{{ texts.estadoEnRevision }}</h3>
         <div class="encargados-lista">
             <div class="encargado-card" *ngFor="let encargado of encargadosEnRevision">
                 <div class="encargado-info">
@@ -24,7 +24,7 @@
                     <div class="encargado-detalles">
                     <h3>{{ encargado.nombre_hogar }}</h3>
                     <div class="admin-info">
-                        <span>Administrado por </span>
+                        <span>{{ texts.administradoPor }}</span>
                         <img [src]="encargado.foto" 
                             alt="Foto del Encargado" 
                             class="admin-foto" />
@@ -32,15 +32,15 @@
                     </div>
                     <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
                     <p *ngIf="encargado.necesidades && encargado.necesidades.length">
-                        <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+                        <strong>{{ texts.necesidades }} </strong>{{ getNecesidadesAsString(encargado) }}
                     </p>
                     <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
-                        <strong>No hay necesidades registradas.</strong>
+                        <strong>{{ texts.noHayNecesidadesRegistradas }}</strong>
                     </p>
-                    <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
-                    <button class="btn-aprobar" (click)="aprobarHogar(encargado)">Aprobar</button>
-                    <button class="btn-rechazar" (click)="rechazarHogar(encargado)">Rechazar</button>
+                    <p><strong>{{ texts.ninos }} </strong> {{ encargado.ninos?.length || 0 }}</p>
+                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">{{ texts.verDetalles }}</button>
+                    <button class="btn-aprobar" (click)="aprobarHogar(encargado)">{{ texts.aprobar }}</button>
+                    <button class="btn-rechazar" (click)="rechazarHogar(encargado)">{{ texts.rechazar }}</button>
                     <button class="btn-chat" (click)="irChat(encargado.id)">{{texts.chat}}</button>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         </div>
     
         <div class="estado-columna">
-          <h3>Aprobados</h3>
+          <h3>{{ texts.estadoAprobados }}</h3>
           <div class="encargados-lista">
             <div class="encargado-card" *ngFor="let encargado of encargadosAprobados">
                 <div class="encargado-info">
@@ -59,7 +59,7 @@
                     <div class="encargado-detalles">
                     <h3>{{ encargado.nombre_hogar }}</h3>
                     <div class="admin-info">
-                        <span>Administrado por </span>
+                        <span>{{ texts.administradoPor }} </span>
                         <img [src]="encargado.foto" 
                             alt="Foto del Encargado" 
                             class="admin-foto" />
@@ -67,14 +67,14 @@
                     </div>
                     <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
                     <p *ngIf="encargado.necesidades && encargado.necesidades.length">
-                        <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+                        <strong>{{ texts.necesidades}} </strong>{{ getNecesidadesAsString(encargado) }}
                     </p>
                     <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
-                        <strong>No hay necesidades registradas.</strong>
+                        <strong>{{ texts.noHayNecesidadesRegistradas }}</strong>
                     </p>
-                    <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
-                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">Ver Detalles</button>
-                    <button class="btn-suspender" (click)="suspenderHogar(encargado)">Suspender</button>
+                    <p><strong>{{ texts.ninos }} </strong> {{ encargado.ninos?.length || 0 }}</p>
+                    <button class="btn-ver-perfil" (click)="verDetalles(encargado.id)">{{ texts.verDetalles }}</button>
+                    <button class="btn-suspender" (click)="suspenderHogar(encargado)">{{ texts.suspender }}</button>
                     <button class="btn-chat" (click)="irChat(encargado.id)">{{texts.chat}}</button>
                     </div>
                 </div>

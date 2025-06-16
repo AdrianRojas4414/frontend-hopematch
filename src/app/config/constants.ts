@@ -94,6 +94,10 @@ export const TEXTOS = {
     eliminarCuenta: 'Eliminar Cuenta',
     aceptar: 'Aceptar',
     denegar: 'Denegar',
+    aprobar: 'Aprobar',
+    rechazar: 'Rechazar',
+    volverHome: 'Volver a Home',
+    verDetalles: 'Ver Detalles',
 
     // MESSAGES
     comentarioExito: '¡Comentario enviado con éxito!',
@@ -135,6 +139,8 @@ export const TEXTOS = {
     registrarNino: 'Registrar Niño',
     editarNinoTitulo: 'Editar Niño',
     placeholderNuevaNecesidad: 'Añadir necesidad',
+    ninos: 'Niños: ',
+    misNinos: 'Mis niños',
 
 
     // FORM FIELDS
@@ -198,6 +204,23 @@ export const TEXTOS = {
     tituloTodasSolicitudesVisita: 'Todas las Solicitudes de Visita',
     mensajeNoSolicitudesVisita: 'No hay solicitudes de visita registradas para tu hogar.',
     padrinoDesconocido: 'Padrino Desconocido',
-    fechaCreacion: 'Fecha Creación:'
+    fechaCreacion: 'Fecha Creación:',
+
+    // GESTION
+    hogaresSuspendidos: 'Hogares Suspendidos',
+    saludoHogaresRegistrados: 'Hogares registrados en Hopematch',
+    estadoEnRevision: 'En Revisión',
+    estadoAprobados: 'Aprobados',
+    administradoPor: 'Administrado por ',
+    sinDescripcion: 'Sin descripcion',
+    noHayNecesidadesRegistradas: 'No hay necesidades registradas.',
+    saludoNinosRegistrados: 'Niños registrados en Hopematch',
+    gestionPadrinosTitulo: 'Gestión de Padrinos',
+    gestionPadrinosSolicitudes: 'Solicitudes de Padrinos',
+    gestionPadrinosNoSolicitudes: 'No hay solicitudes pendientes',
+    gestionPadrinosRegistrados: 'Padrinos Registrados',
+    gestionPadrinosNoRegistrados: 'No hay padrinos registrados',
+    padrinosSuspendidos: 'Padrinos Suspendidos',
+    enviarARevision: 'Enviar a Revisión'
 };
   
