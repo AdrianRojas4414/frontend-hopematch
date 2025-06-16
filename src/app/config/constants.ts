@@ -129,6 +129,7 @@ export const TEXTOS = {
     altNinos: 'Niños',
     altFotoPadrino: 'Foto del Padrino',
     altFotoHogar: 'Foto del Hogar',
+    altFotoPerfil: 'Foto de perfil',
 
     // CHAT
     chatConEncargado: 'Chat con',
@@ -271,6 +272,11 @@ export const TEXTOS = {
     homePadrinoNoDonaciones: 'Aun no has realizado donaciones',
     homePadrinoBuscarHogar: 'En el panel de la derecha busca un hogar y regala una esperanza.',
     homePadrinoBuscarPlaceholder: 'Buscar Hogar...',
-    homePadrinoBotonDonar: 'Donar'
+    homePadrinoBotonDonar: 'Donar',
+
+    // PADRINOS SUSPENDIDOS
+    volverAGestion: 'Volver a Gestión',
+    cargandoCuentasSuspendidas: 'Cargando cuentas suspendidas...',
+    noCuentasSuspendidas: 'No hay cuentas suspendidas actualmente'
 };
   
