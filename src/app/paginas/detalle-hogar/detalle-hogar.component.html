@@ -5,7 +5,7 @@
                 <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
             </div>
             <div class="navbar__links">
-              <button class="btn btn--third-button" (click)="volverAtras()">Home</button>
+              <button class="btn btn--third-button" (click)="volverAtras()">{{ texts.buttonHome }}</button>
               <button class="btn btn--third-button" (click)="this.irAdministradores()"> {{texts.buttonSoporte}}</button>
                 <img [src]="padrino.foto" 
                     alt="Foto del Encargado" 
@@ -26,18 +26,18 @@
     <img [src]="encargado.foto" alt="Foto del Encargado" class="encargado-foto">
   </div>
   <div class="encargado-datos">
-    <p><strong>Encargado:</strong> {{ encargado.nombre }}</p>
-    <p><strong>Dirección:</strong> {{ encargado.direccion_hogar }}</p>
-    <p><strong>Descripcion:</strong> {{ encargado.descripcion }}</p>
-    <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
+    <p><strong>{{ texts.detalleHogarEncargado }}</strong> {{ encargado.nombre }}</p>
+    <p><strong>{{ texts.detalleHogarDireccion }}</strong> {{ encargado.direccion_hogar }}</p>
+    <p><strong>{{ texts.detalleHogarDescripcion }}</strong> {{ encargado.descripcion }}</p>
+    <p><strong>{{ texts.detalleHogarCantidadNinos }}</strong> {{ encargado.ninos?.length || 0 }}</p>
   </div>
   <div class="field--column-card-elements">
-    <button class="btn btn--secondary-button" (click)="agendarVisita()">Visitar</button>
-    <button class="btn btn--secondary-button" (click)="irChat()">Chat</button>
-    <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Volver a Donar</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="agendarVisita()">{{ texts.detalleHogarBotonVisitar }}</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="irChat()">{{ texts.detalleHogarBotonChat }}</button>
+    <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision'" (click)="irARegistroDonacion(padrino.id, encargado.id)">{{ texts.detalleHogarBotonDonar }}</button>
   </div>
   <div *ngIf="encargado.ninos?.length" class="card--simple-text">
-    <h3>Necesidades del hogar:</h3>
+    <h3>{{ texts.detalleHogarNecesidadesTitulo }}</h3>
     <ul>
       <li *ngFor="let necesidad of obtenerNecesidadesUnicas()">{{ necesidad }}</li>
     </ul>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="expanded-layout-section" *ngIf="padrino">
-  <h2>Mis Donaciones</h2>
+  <h2>{{ texts.detalleHogarTitulo }}</h2>
   <div *ngIf="donaciones.length > 0" class="card--general">
     
     
@@ -60,13 +60,13 @@
         </div>
         <ng-template #sinComprobante>
           <div class="sin-comprobante">
-            <p>Lo sentimos, parece que aún no hay una foto de la donación</p>
+            <p>{{ texts.detalleHogarSinComprobante }}</p>
           </div>
         </ng-template>
           <div class="donacion-line-container">
-            <p class="text-donacion">El {{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }} donaste {{ donacionActual.cantidadDonacion }} $</p>
-            <p class="text-donacion" *ngIf="donacionActual.necesidadesSeleccionadas">para {{ donacionActual.necesidadesSeleccionadas }}.</p>
-            <button class="btn btn--third-button in-text" (click)="irARegistroDonacion(padrino.id, encargado.id)">Seguir ayudando.</button>
+            <p class="text-donacion">{{ texts.detalleHogarTextoDonacion }} {{ donacionActual.fechaDonacion | date:'dd/MM/yyyy' }}  {{ texts.detalleHogarTextoDonacionSufijo }} {{ donacionActual.cantidadDonacion }} $</p>
+            <p class="text-donacion" *ngIf="donacionActual.necesidadesSeleccionadas">{{ texts.detalleHogarTextoDonacionPara }} {{ donacionActual.necesidadesSeleccionadas }}.</p>
+            <button class="btn btn--third-button in-text" (click)="irARegistroDonacion(padrino.id, encargado.id)">{{ texts.detalleHogarSeguirAyudando }}</button>
           </div>
       </div>
       
@@ -74,7 +74,7 @@
     </div>
 
     <div class="progreso-card">
-      <h2>Progreso de la donación</h2>
+      <h2>{{ texts.detalleHogarProgresoTitulo }}</h2>
       
       <div *ngIf="donacionActual.fotosProgreso?.length > 0; else sinProgreso" class="fotos-progreso-grid">
         <div *ngFor="let foto of donacionActual.fotosProgreso" class="foto-progreso-item">
@@ -83,13 +83,13 @@
       </div>
       
       <ng-template #sinProgreso>
-        <p class="sin-progreso">Aún no se han subido fotos de tu progreso</p>
+        <p class="sin-progreso">{{ texts.detalleHogarSinProgreso }}</p>
       </ng-template>
     </div>
   </div>
 
   <div *ngIf="donaciones.length === 0" class="sin-donaciones">
-    <p>No hay donaciones registradas para este hogar</p>
+    <p>{{ texts.detalleHogarNoDonaciones }}</p>
   </div>
 </div>
 
@@ -102,12 +102,12 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{ texts.footerTelefono }}</b></p>
+                    <p>{{ texts.footerTelefonoNumero }}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{ texts.footerEmail }}</b></p>
+                    <p>{{ texts.footerEmailDireccion }}</p>
                 </div>
             </div>
         </div>

@@ -1,20 +1,18 @@
 <div class="chat-container">
-
-  
   <nav class="perfil-nav">
       <div class="saludo">
         <h2 *ngIf="tipoConversacion == 'encargado'">
-        Chat con {{ encargado?.nombre }}, encargado del hogar: {{ encargado?.nombre_hogar }}
+        {{ texts.chatConEncargado }} {{ encargado?.nombre }}, {{ texts.encargadoDelHogar }} {{ encargado?.nombre_hogar }}
         </h2>
         <h2 *ngIf="tipoConversacion == 'padrino'">
-          Chat con el padrino {{ padrino?.nombre }}
+          {{ texts.chatConPadrino }} {{ padrino?.nombre }}
         </h2>
         <h2 *ngIf="tipoConversacion == 'administrador'">
-          Chat con el administrador de Hopematch: {{ administrador?.nombre }}
+          {{ texts.chatConAdministrador }} {{ administrador?.nombre }}
         </h2>
       </div>
       <div class="buttons">
-        <button class="btn btn--secondary-button" *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">Agendar Visita</button>
+        <button class="btn btn--secondary-button" *ngIf="tipoUsuario == 'padrino' && tipoConversacion == 'encargado'" (click)="agendarVisita()">{{ texts.agendarVisita }}</button>
         <button class="btn btn--secondary-button" (click)="volverAtras()">{{texts.buttonVolver}}</button>
       </div>
     </nav>
@@ -22,7 +20,7 @@
     
   <div class="mensajes">
     <div *ngIf="mensajesOrdenados.length === 0" class="sin-mensajes">
-      No hay mensajes en esta conversación.
+      {{ texts.noHayMensajes }}
     </div>
 
     <div *ngFor="let msg of mensajesOrdenados"
@@ -37,7 +35,7 @@
   </div>
 
   <form class="formulario-chat" (ngSubmit)="enviar()">
-    <textarea [(ngModel)]="nuevoMensaje" name="mensaje" required placeholder="Escribe tu mensaje..."></textarea>
+    <textarea [(ngModel)]="nuevoMensaje" name="mensaje" required [placeholder]=texts.placeholderMensaje></textarea>
     <button type="submit">{{texts.enviar}}</button>
   </form>
 </div>

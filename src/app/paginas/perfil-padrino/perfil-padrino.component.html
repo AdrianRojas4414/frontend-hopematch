@@ -5,41 +5,39 @@
                 <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
             </div>
             <div class="navbar__links">
-              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHome()">Home</button>
-              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="this.irAdministradores()"> {{texts.buttonSoporte}}</button>
+              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHome()">{{texts.buttonHome}}</button>
+              <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="this.irAdministradores()">{{texts.buttonSoporte}}</button>
                 <img *ngIf="mostrarBotonEditar" [src]="padrino.foto" 
-                    alt="Foto del Encargado" 
+                    [alt]="texts.altFotoPadrino" 
                     class="admin-foto" />
-                <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
-                <button *ngIf="!mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHomeAdmin()"> Volver a Gestion </button>
+                <button *ngIf="mostrarBotonEditar" class="btn btn--third-button" (click)="cerrarSesion()">{{texts.buttonSignOut}}</button>
+                <button *ngIf="!mostrarBotonEditar" class="btn btn--third-button" (click)="VolverAHomeAdmin()">{{texts.volverAGestion}}</button>
             </div>
         </div>
     </nav>
 </header>
 
 <div class="perfil-container full-layout-section" *ngIf="padrino">
-
   <div class="perfil-content">
     <div class="perfil-info">
       <div class="perfil-foto">
-        <img [src]="padrino.foto" alt="Foto del Encargado" />
+        <img [src]="padrino.foto" [alt]="texts.altFotoPadrino" />
       </div>
       <div class="perfil-detalles">
-        <h2 *ngIf="mostrarBotonEditar">Mi Perfil</h2>
-        <h2 *ngIf="!mostrarBotonEditar"  style="color: #3f51b5;">Perfil del Padrino</h2>
+        <h2 *ngIf="mostrarBotonEditar">{{texts.miPerfilTitulo}}</h2>
+        <h2 *ngIf="!mostrarBotonEditar" style="color: #3f51b5;">{{texts.perfilPadrinoTitulo}}</h2>
         <h3>{{ padrino.nombre }}</h3>
-        <p><strong>E-mail:</strong> {{ padrino.email }}</p>
-        <p><strong>Celular:</strong> {{ padrino.celular }}</p>
-        <p><strong>Estado:</strong> {{ padrino.estado }}</p>
-        <button *ngIf="mostrarBotonEditar" class="btn btn--primary-button" (click)="irEditarPerfil()">Editar Datos</button>
+        <p><strong>{{texts.inputEditEmail}}:</strong> {{ padrino.email }}</p>
+        <p><strong>{{texts.inputEditPhone}}:</strong> {{ padrino.celular }}</p>
+        <p><strong>{{texts.estadoLabel}}:</strong> {{ padrino.estado }}</p>
+        <button *ngIf="mostrarBotonEditar" class="btn btn--primary-button" (click)="irEditarPerfil()">{{texts.editarDatos}}</button>
       </div>
     </div>
-
   </div>
 </div>
 
 <div *ngIf="!padrino">
-  <p>Cargando datos...</p>
+  <p>{{texts.cargandoDatos}}</p>
 </div>
 
 <footer class="footer">
@@ -50,21 +48,21 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{texts.footerTelefono}}</b></p>
+                    <p>{{texts.footerTelefonoNumero}}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{texts.footerEmail}}</b></p>
+                    <p>{{texts.footerEmailDireccion}}</p>
                 </div>
             </div>
         </div>
         <hr />
         <div class="footer__social_container">
             <div class="social-links">
-                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
-                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
-                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')">{{texts.facebook}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')">{{texts.instragram}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')">{{texts.twitter}}</button>
             </div>
         </div>
     </div>

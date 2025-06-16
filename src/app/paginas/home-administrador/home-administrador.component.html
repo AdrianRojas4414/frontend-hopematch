@@ -1,56 +1,56 @@
 <div class="home-admin-container" *ngIf="administrador">
     <div class="home-admin-header">
-        <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
+        <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
         <nav class="admin-nav">
-            <a (click)="irPerfil()" style="color: #3f51b5; cursor: pointer;">Ver Perfil</a>
-            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">Cerrar Sesión</a>
+            <a (click)="irPerfil()" style="color: #3f51b5; cursor: pointer;">{{ texts.buttonPerfil }}</a>
+            <a (click)="cerrarSesion()" style="color: #3f51b5; cursor: pointer;">{{ texts.buttonCerrarSesion }}</a>
         </nav>
     </div>
 
     <div class="saludo">
-        <h2>¡Hola de nuevo {{ administrador.nombre }}!</h2>
-        <h4> Este es tu Panel de Administración</h4>
+        <h2>{{ texts.homeAdminSaludo }} {{ administrador.nombre }}!</h2>
+        <h4> {{ texts.homeAdminPanel }}</h4>
     </div>
 
     <div class="opciones-grid">
         <div (click)="irEncargados()" class="opcion-card">
             <div class="icono">
-                <img src="imgs/encargado-icon.png" alt="Encargados">
+                <img src="imgs/encargado-icon.png" [alt]="texts.altEncargados">
             </div>
             <div class="contenido">
-                <h3>Encargados/Hogares</h3>
-                <p>Aprueba/Rechaza registro de Hogares</p>
-                <p>Suspende cuentas de Hogares</p>
-                <p>Elimina las cuentas suspendidas</p>
+                <h3>{{ texts.homeAdminEncargadosTitulo }}</h3>
+                <p>{{ texts.homeAdminEncargadosDescripcion1 }}</p>
+                <p>{{ texts.homeAdminEncargadosDescripcion2 }}</p>
+                <p>{{ texts.homeAdminEncargadosDescripcion3 }}</p>
             </div>
             <div class="imagen">
-                <img src="imgs/encargados.jpg" alt="Encargados">
+                <img src="imgs/encargados.jpg" [alt]="texts.altEncargados">
             </div>
         </div>
 
         <div (click)="irPadrinos()" class="opcion-card">
             <div class="icono">
-                <img src="imgs/padrino-icon.png" alt="Padrinos">
+                <img src="imgs/padrino-icon.png" [alt]="texts.altPadrinos">
             </div>
             <div class="contenido">
-                <h3>Padrinos</h3>
-                <p>Administra los padrinos registrados</p>
+                <h3>{{ texts.homeAdminPadrinosTitulo }}</h3>
+                <p>{{ texts.homeAdminPadrinosDescripcion }}</p>
             </div>
             <div class="imagen">
-                <img src="imgs/padrinos.jpg" alt="Padrinos">
+                <img src="imgs/padrinos.jpg" [alt]="texts.altPadrinos">
             </div>
         </div>
 
         <div (click)="irNinos()" class="opcion-card">
             <div class="icono">
-                <img src="imgs/sun-icon.png" alt="Niños">
+                <img src="imgs/sun-icon.png" [alt]="texts.altNinos">
             </div>
             <div class="contenido">
-                <h3>Niños</h3>
-                <p>Administra los niños registrados</p>
+                <h3>{{ texts.homeAdminNinosTitulo }}</h3>
+                <p>{{ texts.homeAdminNinosDescripcion }}</p>
             </div>
             <div class="imagen">
-                <img src="imgs/kids.webp" alt="Niños">
+                <img src="imgs/kids.webp" [alt]="texts.altNinos">
             </div>
         </div>
     </div>

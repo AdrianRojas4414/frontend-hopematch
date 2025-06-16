@@ -1,29 +1,28 @@
+<form (ngSubmit)="registrarDonacion()" *ngIf="!isLoading" class="dialog--form">
+    <div class="footer__brand">
+        <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
+    </div>
+    <div class="register-text">
+        <h2>{{texts.registrarDonacionTitulo}}</h2>
+    </div>
+    
+    <input type="hidden" [(ngModel)]="donacion.padrino_id" name="padrino_id">
+    <input type="hidden" [(ngModel)]="donacion.encargado_id" name="encargado_id">
 
-    <form (ngSubmit)="registrarDonacion()" *ngIf="!isLoading" class="dialog--form">
-        <div class="footer__brand">
-            <img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo">
-        </div>
-        <div class="register-text">
-            <h2>Registrar Donación</h2>
-        </div>
-        
-        <input type="hidden" [(ngModel)]="donacion.padrino_id" name="padrino_id">
-        <input type="hidden" [(ngModel)]="donacion.encargado_id" name="encargado_id">
+    <div class="input-group">
+        <label>{{texts.montoDonarLabel}}</label>
+        <input type="number" [(ngModel)]="donacion.cantidad_donacion" name="cantidad_donacion" min="0.01" step="0.01" [placeholder]="texts.ejemploMonto" class="input-field" required>
+    </div>
 
-        <div class="input-group">
-            <label>Monto a donar ($):</label>
-            <input type="number" [(ngModel)]="donacion.cantidad_donacion" name="cantidad_donacion" min="0.01" step="0.01" placeholder="Ej: 50.00" class="input-field" required>
+    <div class="input-group">
+        <label>{{texts.seleccionarNecesidadesLabel}}</label>
+        <div class="input-scrollable-list">
+            <mat-radio-group aria-label="Select an option" name="necesidades" *ngFor="let necesidad of necesidades" class="necesidades">
+                <mat-radio-button [id]="'necesidad_' + necesidad.id" [value]="necesidad.id" (change)="seleccionarNecesidad(necesidad.id)" [checked]="donacion.necesidades[0] === necesidad.id" name="necesidadesGroup">{{necesidad.nombre}}</mat-radio-button>
+            </mat-radio-group>            
         </div>
+    </div>
 
-        <div class="input-group">
-        <label>Selecciona las necesidades:</label>
-            <div class="input-scrollable-list">
-                <mat-radio-group aria-label="Select an option" name="necesidades" *ngFor="let necesidad of necesidades" class="necesidades">
-                    <mat-radio-button [id]="'necesidad_' + necesidad.id" [value]="necesidad.id" (change)="seleccionarNecesidad(necesidad.id)" [checked]="donacion.necesidades[0] === necesidad.id" name="necesidadesGroup">{{necesidad.nombre}}</mat-radio-button>
-                </mat-radio-group>            
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn--primary-button">Guardar Donación</button>
-        <button type="button" class="btn btn--cancel-button" (click)="cancelar()">Cancelar</button>
-    </form>
+    <button type="submit" class="btn btn--primary-button">{{texts.guardarDonacion}}</button>
+    <button type="button" class="btn btn--cancel-button" (click)="cancelar()">{{texts.cancelar}}</button>
+</form>

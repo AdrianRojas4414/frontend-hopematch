@@ -1,17 +1,16 @@
-
-  <header *ngIf="padrino">
+<header *ngIf="padrino">
     <nav class="navbar">
         <div class="navbar__container">
             <div class="navbar__brand">
                 <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
             </div>
             <div class="navbar__links">
-              <button class="btn btn--third-button" (click)="irAdministradores()"> {{texts.buttonSoporte}}</button>
+              <button class="btn btn--third-button" (click)="irAdministradores()">{{texts.buttonSoporte}}</button>
                 <img [src]="padrino.foto" 
-                    alt="Foto del Encargado" 
+                    [alt]="texts.altFotoPadrino" 
                     class="admin-foto" />
-                <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
-                <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+                <button class="btn btn--third-button" (click)="irPerfil()">{{texts.buttonPerfil}}</button>
+                <button class="btn btn--third-button" (click)="cerrarSesion()">{{texts.buttonSignOut}}</button>
             </div>
         </div>
     </nav>
@@ -19,75 +18,74 @@
 
 <section class="full-layout-section home-padrino" *ngIf="padrino">
   <div class="grettings-text">
-    <h2>Hola {{ padrino.nombre }}, ¿qué quieres hacer hoy?</h2>
-    <h5>Tu ayuda es su esperanza. Dona ahora.</h5>
+    <h2>{{texts.homePadrinoSaludo}} {{ padrino.nombre }}, {{texts.homePadrinoPregunta}}</h2>
+    <h5>{{texts.homePadrinoAyudaEsperanza}}</h5>
   </div>
 
   <div class="field--row-elements">
-
     <div class="field--column-elements">
-      <h5 style="color: var(--color-primary-base-dark-60);">Tus donaciones</h5>
+      <h5 style="color: var(--color-primary-base-dark-60);">{{texts.homePadrinoTusDonaciones}}</h5>
       <div class="card--scrollable-list">
         <div *ngIf="donaciones.length === 0" class="card--general donacion">
-          <p>Aun no has realizado donaciones</p>
-          <p>En el panel de la derecha busca un hogar y regala una esperanza.</p>
+          <p>{{texts.homePadrinoNoDonaciones}}</p>
+          <p>{{texts.homePadrinoBuscarHogar}}</p>
         </div>
-        <div class="card--general" *ngFor="let donacion of donaciones">
+        <div class="card--general" [class.new-donation]="i === 0" *ngFor="let donacion of donaciones; let i = index">
+
           <div class="field--row-card-elements">
             <div class="field--column-card-elements">
               <div class="field--column-card-elements">
-                <p><strong>Fecha: </strong>{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</p>
-                <p><strong>Para: </strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
-                <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>Necesidad: </strong> {{ donacion.necesidadesSeleccionadas }} </p>
+                <p><strong>{{texts.detalleDonacionFecha}}</strong>{{ donacion.fechaDonacion | date:'dd/MM/yyyy' }}</p>
+                <p><strong>{{texts.detalleDonacionHogar}}</strong>  {{ getEncargadoName(donacion.encargado.id) }} </p>
+                <p *ngIf="donacion.necesidadesSeleccionadas"> <strong>{{texts.necesidades}}</strong> {{ donacion.necesidadesSeleccionadas }} </p>
               </div>
               <div class="field--row-card-elements">
-                <button class="btn btn--secondary-button" (click)="abrirDetallesDialogo(donacion.id)">Ver detalles</button>
-                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(donacion.encargado.id)" (click)="verHogar(donacion.encargado.id)">Ver Hogar</button>
+                <button class="btn btn--secondary-button" (click)="abrirDetallesDialogo(donacion.id)">{{texts.verDetalles}}</button>
+                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(donacion.encargado.id) || padrino.estado == 'Suspendido'" (click)="verHogar(donacion.encargado.id)">{{texts.detalleHogarBotonVisitar}}</button>
               </div>
             </div>
             <hr>
             <div class="field--column-card-elements amount-block">
               <p>${{ donacion.cantidadDonacion |  number:'1.2-2' }}</p>
-              <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, donacion.encargado.id)">Volver a Donar</button>
+              <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision' || padrino.estado == 'Suspendido'" (click)="irARegistroDonacion(padrino.id, donacion.encargado.id)">{{texts.detalleHogarBotonDonar}}</button>
             </div>
           </div>
-          
         </div> 
       </div>
     </div>
 
     <div class="field--column-elements">
       <div class="input-group">
-        <input class="input-field" type="text" [(ngModel)]="busqueda" placeholder="Buscar Hogar..." />
+        <input class="input-field" type="text" [(ngModel)]="busqueda" [placeholder]="texts.homePadrinoBuscarPlaceholder" />
       </div>
       <div class="card--scrollable-list">
         <div class="card--general hogar" *ngFor="let encargado of encargadosFiltrados()">
           <div class="field--row-card-elements">
             <div class="encargado-foto">
-              <img [src]="encargado.foto_hogar " alt="Foto del Hogar" />
+              <img [src]="encargado.foto_hogar" [alt]="texts.altFotoHogar" />
             </div>
             <div class="field--column-card-elements">
               <h5>{{ encargado.nombre_hogar }}</h5>
 
               <div class="field--row-card-elements encargado-info">
-                <span>Administrado por </span>
+                <span>{{texts.administradoPor}}</span>
                 <img [src]="encargado.foto" 
-                    alt="Foto del Encargado" 
+                    [alt]="texts.altFotoEncargado" 
                     class="admin-foto" />
                 <p>{{ encargado.nombre }}</p>
               </div>
-              <p class="descripcion-hogar">{{ encargado.descripcion || 'Sin descripcion'}}</p>
+              <p class="descripcion-hogar">{{ encargado.descripcion || texts.sinDescripcion}}</p>
               <p *ngIf="encargado.necesidades && encargado.necesidades.length">
-                <strong>Necesidades: </strong>{{ getNecesidadesAsString(encargado) }}
+                <strong>{{texts.detalleHogarNecesidadesTitulo}}</strong>{{ getNecesidadesAsString(encargado) }}
               </p>
               <p *ngIf="!encargado.necesidades || !encargado.necesidades.length">
-                <strong>No hay necesidades registradas.</strong>
+                <strong>{{texts.noHayNecesidadesRegistradas}}</strong>
               </p>
     
-              <p><strong>Niños: </strong> {{ encargado.ninos?.length || 0 }}</p>
+              <p><strong>{{texts.ninos}}</strong> {{ encargado.ninos?.length || 0 }}</p>
               <div class="field--row-card-elements">
-                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(encargado.id)" (click)="verHogar(encargado.id)">Ver Hogar</button>
-                <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Donar</button>
+                <button class="btn btn--secondary-button" [disabled]="!haDonadoA(encargado.id) || padrino.estado == 'En revision' || padrino.estado == 'Suspendido'" (click)="verHogar(encargado.id)">{{texts.detalleHogarBotonVisitar}}</button>
+                <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision' || padrino.estado == 'Suspendido'" (click)="irARegistroDonacion(padrino.id, encargado.id)">{{texts.homePadrinoBotonDonar}}</button>
               </div>
             </div>
           </div>
@@ -105,21 +103,21 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{texts.footerTelefono}}</b></p>
+                    <p>{{texts.footerTelefonoNumero}}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{texts.footerEmail}}</b></p>
+                    <p>{{texts.footerEmailDireccion}}</p>
                 </div>
             </div>
         </div>
         <hr />
         <div class="footer__social_container">
             <div class="social-links">
-                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
-                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
-                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')">{{texts.facebook}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')">{{texts.instragram}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')">{{texts.twitter}}</button>
             </div>
         </div>
     </div>

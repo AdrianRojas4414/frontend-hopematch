@@ -17,17 +17,17 @@
 </header>
 <section class="full-layout-section home-encargado" *ngIf="encargado">
     <div class="grettings-text">
-        <h2>¡Hola {{ encargado.nombre }}!</h2>
-        <h5>¿Qué deseas hacer hoy?</h5>
+        <h2>{{ texts.homeEncargadoSaludo }} {{ encargado.nombre }}!</h2>
+        <h5>{{ texts.homeEncargadoPregunta }}</h5>
     </div>
     <div class="field--grid">
         <div (click)="irHogar()" class="card--selectable">
             <div class="icono">
-                <img src="imgs/house-icon.png" alt="Mi Hogar">
+                <img src="imgs/house-icon.png" [alt]="texts.homeEncargadoMiHogarTitulo">
             </div>
             <div class="contenido">
-                <h3>Mi Hogar</h3>
-                <p>Administra y edita tu hogar</p>
+                <h3>{{ texts.homeEncargadoMiHogarTitulo }}</h3>
+                <p>{{ texts.homeEncargadoMiHogarDescripcion }}</p>
             </div>
             <div class="imagen">
                 <img src="imgs/hogar-m.jpg" alt="Hogar">
@@ -36,24 +36,24 @@
 
         <div (click)="irNinos()" class="card--selectable">
             <div class="icono">
-                <img src="imgs/sun-icon.png" alt="Mis Niños">
+                <img src="imgs/sun-icon.png" [alt]="texts.homeEncargadoMisNinosTitulo">
             </div>
             <div class="contenido">
-                <h3>Mis Niños</h3>
-                <p>Gestiona y visualiza los niños a tu cargo</p>
+                <h3>{{ texts.homeEncargadoMisNinosTitulo }}</h3>
+                <p>{{ texts.homeEncargadoMisNinosDescripcion }}</p>
             </div>
             <div class="imagen">
-                <img src="imgs/kids.webp" alt="Kids">
+                <img src="imgs/kids.webp" [alt]="texts.homeEncargadoMisNinosAltImagen">
             </div>
         </div>
 
         <div (click)="irVisitas()" class="card--selectable">
             <div class="icono">
-                <img src="imgs/agenda-icon.png" alt="Agenda y Contacto">
+                <img src="imgs/agenda-icon.png" [alt]="texts.homeEncargadoAgendaTitulo">
             </div>
             <div class="contenido">
-                <h3>Agenda Visitas</h3>
-                <p>Peticion de visitas al hogar</p>
+                <h3>{{ texts.homeEncargadoAgendaTitulo }}</h3>
+                <p>{{ texts.homeEncargadoAgendaDescripcion }}</p>
             </div>
             <div class="imagen">
                 <img src="imgs/contact.jpg" alt="Contacto">
@@ -65,8 +65,8 @@
                 <img src="imgs/heart-icon.png" alt="Donaciones">
             </div>
             <div class="contenido">
-                <h3>Donaciones</h3>
-                <p>Administra y publica contenido relacionado a las donaciones recibidas</p>
+                <h3>{{ texts.homeEncargadoDonacionesTitulo }}</h3>
+                <p>{{ texts.homeEncargadoDonacionesDescripcion }}</p>
             </div>
             <div class="imagen">
                 <img src="imgs/donacionees.jpg" alt="Donation">
@@ -83,12 +83,12 @@
             </div>
             <div class="footer__contact-info">
                 <div>
-                    <p><b>Telefono</b></p>
-                    <p>(123) 45678</p>
+                    <p><b>{{ texts.footerTelefono }}</b></p>
+                    <p>{{ texts.footerTelefonoNumero }}</p>
                 </div>
                 <div>
-                    <p><b>Email</b></p>
-                    <p>hopematch&#64;email.com</p>
+                    <p><b>{{ texts.footerEmail }}</b></p>
+                    <p>{{ texts.footerEmailDireccion }}</p>
                 </div>
             </div>
         </div>

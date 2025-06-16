@@ -3,14 +3,14 @@
   <div class="perfil-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="perfil-nav">
-      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">Volver a Home</a>
+      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">{{ texts.volverHome }}</a>
     </nav>
   </div>
 
   <div class="perfil-content">
-    <h1 style="color: #e65c4f;">Niños del Hogar</h1>
+    <h1 style="color: #e65c4f;">{{ texts.ninosHogar }}</h1>
     <div class="boton-container">
-      <button class="btn-crear-nino" (click)="irCrearNino()">Crear Niño</button>
+      <button class="btn-crear-nino" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">{{ texts.crearNino }}</button>
     </div>
 
     <div class="ninos-del-hogar">
@@ -19,18 +19,18 @@
           <div class="nino-card" *ngFor="let nino of encargado.ninos">
             <div class="nino-detalles">
               <h4>{{ nino.nombre }}</h4>
-              <div><strong>CI:</strong> {{ nino.ci }}</div>
-              <div><strong>Fecha de Nacimiento:</strong> {{ nino.fechaNacimiento }}</div>
+              <div><strong>{{ texts.campoCI }}</strong> {{ nino.ci }}</div>
+              <div><strong>{{ texts.fechaNacimiento }}</strong> {{ nino.fechaNacimiento }}</div>
               <div>
-                <strong>Necesidades:</strong>
+                <strong>{{ texts.necesidades }}</strong>
                 <ul>
                   <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
                 </ul>
               </div>
               <div class="nino-buttons">
-                <button class="btn-editar-nino" (click)="editarNino(nino.id)">Editar Datos</button>
-                <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
-                  <i class="fas fa-trash-alt"></i> Eliminar
+                <button class="btn-editar-nino" [disabled]="encargado.estado == 'Suspendido'"  (click)="editarNino(nino.id)">{{ texts.editarDatos }}</button>
+                <button class="btn-eliminar-nino" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
+                  <i class="fas fa-trash-alt"></i> {{ texts.eliminar }}
                 </button>
               </div>
             </div>
@@ -39,7 +39,7 @@
       </div>
 
       <ng-template #noNinos>
-        <p>No hay niños registrados.</p>
+        <p>{{ texts.noNinos }}</p>
       </ng-template>
     </div>
   </div>
