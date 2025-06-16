@@ -26,7 +26,7 @@
         <input [type]="mostrarContrasenia ? 'text' : 'password'"
                 [(ngModel)]="nuevaContrasenia"
                 name="nuevaContrasenia"
-                placeholder="texts.editarEncargadoPlaceholderContrasenia"
+                [placeholder]="texts.editarEncargadoPlaceholderContrasenia"
                 style="width: 100%; padding-right: 2.5rem;" class="input-field">
         <button type="button"
                 (click)="mostrarContrasenia = !mostrarContrasenia"
@@ -61,7 +61,7 @@
     name="descripcion_hogar" 
     maxlength="500"
     class="textarea-descripcion"
-    placeholder="texts.editarEncargadoPlaceholderDescripcionHogar">
+    [placeholder]="texts.editarEncargadoPlaceholderDescripcionHogar">
   </textarea>
   <p>{{ encargado.descripcion?.length || 0 }}{{ texts.inputDescripcionContador }}</p>
   </div>

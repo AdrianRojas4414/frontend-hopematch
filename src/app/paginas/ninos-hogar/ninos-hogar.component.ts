@@ -6,6 +6,8 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { NinoService } from '../../servicios/nino.service';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CrearNinoComponent } from '../crear-nino/crear-nino.component';
 
 @Component({
   selector: 'app-ninos-hogar',
@@ -21,7 +23,8 @@ export class NinosHogarComponent implements OnInit{
     private encargadoService: EncargadoService, 
     private router: Router,
     private ninoService: NinoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -51,7 +54,13 @@ export class NinosHogarComponent implements OnInit{
 
   irCrearNino(): void {
     if (this.encargado) {
-      this.router.navigate([`/crear-nino`]);
+      const dialogRef = this.dialog.open(CrearNinoComponent, {
+        width: '500px',
+        height: 'fit-content'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('El diálogo se cerró');
+    });
     }
   }
 

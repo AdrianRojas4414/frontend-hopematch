@@ -40,8 +40,9 @@
   
   
   
-  .necesidades-container {
-    margin-top: 20px;
+  .card--scrollable-list {
+    max-height: 200px;
+    background-color: var(--color-white-neutral);
   }
   
   .necesidad {

@@ -155,7 +155,7 @@ export const TEXTOS = {
     misNinos: 'Mis niños',
     noNinos: 'No hay niños registrados.',
     ninosHogar: 'Niños del Hogar',
-    crearNino: 'Crear Niño',
+    crearNino: 'Registrar Niño',
 
     // FORM FIELDS
     fechaNacimiento: 'Fecha de Nacimiento:',
