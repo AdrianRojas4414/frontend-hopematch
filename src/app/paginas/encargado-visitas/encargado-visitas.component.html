@@ -14,10 +14,10 @@
     <ng-container *ngIf="visitas.length > 0; else noVisitas">
       <div *ngFor="let visita of visitas" class="visita-card">
         <div class="visita-header">
-          <span class="fecha">{{ visita.fechaVisita | date:'dd/MM/yyyy' }}</span>
-          <span class="hora">{{ visita.horaVisita }}</span>
+          <span class="fecha"><strong>Fecha: </strong>{{ visita.fechaVisita | date:'dd/MM/yyyy' }}</span>
+          <span class="hora"><strong>Hora: </strong>{{ visita.horaVisita }}</span>
           <span class="estado" [ngClass]="getEstadoClass(visita.estadoVisita)">
-            {{ visita.estadoVisita }}
+            <strong>Estado: </strong>{{ visita.estadoVisita }}
           </span>
         </div>
 
