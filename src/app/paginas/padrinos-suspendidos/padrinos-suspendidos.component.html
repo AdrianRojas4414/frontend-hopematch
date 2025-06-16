@@ -1,33 +1,33 @@
 <div class="home-admin-header">
     <div class="header-content">
-      <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-      <h1>Cuentas Suspendidas</h1>
+      <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
+      <h1>{{texts.padrinosSuspendidos}}</h1>
     </div>
     <nav class="admin-nav">
-      <a (click)="volverAGestion()" class="nav-link">Volver a Gestión</a>
+      <a (click)="volverAGestion()" class="nav-link">{{texts.volverAGestion}}</a>
     </nav>
   </div>
   
   <div class="container">
     <div *ngIf="isLoading" class="loading">
-      <p>Cargando cuentas suspendidas...</p>
+      <p>{{texts.cargandoCuentasSuspendidas}}</p>
     </div>
   
     <div *ngIf="!isLoading" class="cards-container">
       <div *ngIf="padrinosSuspendidos.length === 0" class="empty-message">
-        No hay cuentas suspendidas actualmente
+        {{texts.noCuentasSuspendidas}}
       </div>
   
       <div *ngFor="let padrino of padrinosSuspendidos" class="card">
-        <img [src]="padrino.foto" alt="Foto de perfil" class="profile-img">
+        <img [src]="padrino.foto" [alt]="texts.altFotoPerfil" class="profile-img">
         <div class="info">
           <h3>{{ padrino.nombre }}</h3>
-          <p><strong>Celular:</strong> {{ padrino.celular }}</p>
-          <p><strong>Email:</strong> {{ padrino.email }}</p>
+          <p><strong>{{texts.inputEditPhone}}</strong> {{ padrino.celular }}</p>
+          <p><strong>{{texts.inputEditEmail}}</strong> {{ padrino.email }}</p>
         </div>
         <div class="actions">
           <button (click)="ponerEnRevision(padrino)" class="btn-revision">
-            Poner en Revisión
+            {{texts.enviarARevision}}
           </button>
           <button class="btn-chat" (click)="irChat(padrino.id)">{{texts.chat}}</button>
         </div>

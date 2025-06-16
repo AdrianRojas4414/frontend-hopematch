@@ -1,52 +1,52 @@
 <div class="home-admin-header">
     <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
     <nav class="admin-nav">
-      <a (click)="verSuspendidos()" class="nav-link"> Padrinos Suspendidos</a>
-      <a (click)="irPerfil()" class="nav-link">Ver Perfil</a>
-      <a (click)="volverAHome()" class="nav-link">Volver a Home</a>
-      <a (click)="cerrarSesion()" class="nav-link">Cerrar Sesión</a>
+      <a (click)="verSuspendidos()" class="nav-link">{{texts.padrinosSuspendidos}}</a>
+      <a (click)="irPerfil()" class="nav-link">{{texts.buttonPerfil}}</a>
+      <a (click)="volverAHome()" class="nav-link">{{texts.volverHome}}</a>
+      <a (click)="cerrarSesion()" class="nav-link">{{texts.buttonCerrarSesion}}</a>
     </nav>
   </div>
   
   <div class="container">
-    <h1 class="title">Gestión de Padrinos</h1>
+    <h1 class="title">{{texts.gestionPadrinosTitulo}}</h1>
   
     <div class="columns-container">
       <div class="column">
-        <h2>Solicitudes de Padrinos</h2>
+        <h2>{{texts.gestionPadrinosTitulo}}</h2>
         <div *ngIf="padrinosPendientes.length === 0" class="empty-message">
-          No hay solicitudes pendientes
+          {{texts.gestionPadrinosNoSolicitudes}}
         </div>
         <div *ngFor="let padrino of padrinosPendientes" class="card">
           <img [src]="padrino.foto" class="profile-img">
           <div class="info">
             <h3>{{ padrino.nombre }}</h3>
-            <p><strong>Teléfono:</strong> {{ padrino.celular }}</p>
-            <p><strong>Email:</strong> {{ padrino.email }}</p>
+            <p><strong>{{texts.inputCellPhone}}</strong> {{ padrino.celular }}</p>
+            <p><strong>{{texts.inputEmail}}</strong> {{ padrino.email }}</p>
           </div>
           <div class="actions">
-            <button (click)="aprobarPadrino(padrino)" class="btn approve">Aprobar</button>
-            <button (click)="rechazarPadrino(padrino)" class="btn reject">Rechazar</button>
-            <button class="btn chat" (click)="irChat(padrino.id)">Chat</button>
+            <button (click)="aprobarPadrino(padrino)" class="btn approve">{{texts.aprobar}}</button>
+            <button (click)="rechazarPadrino(padrino)" class="btn reject">{{texts.rechazar}}</button>
+            <button class="btn chat" (click)="irChat(padrino.id)">{{texts.chat}}</button>
           </div>
         </div>
       </div>
   
       <div class="column">
-        <h2>Padrinos Registrados</h2>
+        <h2>{{texts.gestionPadrinosRegistrados}}</h2>
         <div *ngIf="padrinosAprobados.length === 0" class="empty-message">
-          No hay padrinos registrados
+          {{texts.gestionPadrinosNoRegistrados}}
         </div>
         <div *ngFor="let padrino of padrinosAprobados" class="card">
             
         <img [src]="padrino.foto" alt="Foto del padrino" class="profile-img"/>
           <div class="info">
             <h3>{{ padrino.nombre }}</h3>
-            <p><strong>Teléfono:</strong> {{ padrino.celular }}</p>
-            <p><strong>Email:</strong> {{ padrino.email }}</p>
+            <p><strong>{{texts.inputCellPhone}}</strong> {{ padrino.celular }}</p>
+            <p><strong>{{texts.inputEmail}}</strong> {{ padrino.email }}</p>
           </div>
           <div class="actions">
-            <button (click)="verDetalles(padrino.id)" class="btn details">Ver Detalles</button>
+            <button (click)="verDetalles(padrino.id)" class="btn details">{{texts.verDetalles}}</button>
             <button (click)="suspenderPadrino(padrino)" class="btn suspend">{{texts.suspender}}</button>
             <button class="btn chat" (click)="irChat(padrino.id)">{{texts.editar}}</button>
           </div>

@@ -1,17 +1,17 @@
 <div class="container">
-    <h2 style="color: #e65c4f;">Registrar Niño</h2>
+    <h2 style="color: #e65c4f;">{{ texts.registrarNino }}</h2>
   
     <form [formGroup]="ninoForm" (ngSubmit)="onSubmit()">
-      <label for="ci">CI:</label>
+      <label for="ci">{{ texts.campoCI }}</label>
       <input id="ci" type="text" formControlName="ci" required>
   
-      <label for="nombre">Nombre:</label>
+      <label for="nombre">{{ texts.inputName }}</label>
       <input id="nombre" type="text" formControlName="nombre" required>
   
-      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <label for="fechaNacimiento">{{ texts.fechaNacimiento }}</label>
       <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" required>
   
-      <label for="necesidad">Necesidades:</label>
+      <label for="necesidad">{{ texts.necesidades }}</label>
       <div class="necesidades">
         <input id="necesidad" type="text" #necesidadInput>
         <button type="button" (click)="addNecesidad(necesidadInput)">{{texts.agregar}}</button>
@@ -24,7 +24,7 @@
         </li>
       </ul>
   
-      <button type="submit" [disabled]="ninoForm.invalid">Registrar Niño</button>
+      <button type="submit" [disabled]="ninoForm.invalid">{{ texts.registrarNino }}</button>
 
       <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">{{texts.cancelar}}</button>
     </form>
