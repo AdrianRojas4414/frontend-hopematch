@@ -43,22 +43,22 @@
               (click)="!donacion.comentarioEncargado && mostrarFormularioComentario(donacion.id)" 
               [class.btn-comentar]="!donacion.comentarioEncargado"
               [class.btn-comentado]="donacion.comentarioEncargado"
-              [disabled]="donacion.comentarioEncargado">
+              [disabled]="donacion.comentarioEncargado || encargado.estado == 'Suspendido'">
               {{ donacion.comentarioEncargado ? texts.comentarioEnviado : texts.agregarComentario }}
             </button>
   
             <button (click)="mostrarFormularioFoto(donacion.id)" 
               [class.btn-foto]="!donacion.fotoDonacion"
               [class.btn-agregado]="donacion.fotoDonacion"
-              [disabled]="donacion.fotoDonacion">
+              [disabled]="donacion.fotoDonacion || encargado.estado == 'Suspendido' ">
               {{ donacion.fotoDonacion ? texts.fotoComprobanteEnviada : texts.agregarFotoComprobante }}
             </button>
             
-            <button (click)="mostrarFormularioFotosProgreso(donacion.id)" class="btn-foto-progreso">
+            <button (click)="mostrarFormularioFotosProgreso(donacion.id)" [disabled]="encargado.estado == 'Suspendido' " class="btn-foto-progreso">
               {{ texts.agregarFotosProgreso }}
             </button>
 
-            <button class="btn-chat" (click)="irChat(donacion.padrino?.id)">{{texts.chat}}</button>
+            <button class="btn-chat" [disabled]="encargado.estado == 'Suspendido' || encargado.estado == 'En revision' " (click)="irChat(donacion.padrino?.id)">{{texts.chat}}</button>
           </div>
         </div>
       </div>

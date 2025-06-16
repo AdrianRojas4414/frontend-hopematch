@@ -10,7 +10,7 @@
   <div class="perfil-content">
     <h1 style="color: #e65c4f;">{{ texts.ninosHogar }}</h1>
     <div class="boton-container">
-      <button class="btn-crear-nino" (click)="irCrearNino()">{{ texts.crearNino }}</button>
+      <button class="btn-crear-nino" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">{{ texts.crearNino }}</button>
     </div>
 
     <div class="ninos-del-hogar">
@@ -28,8 +28,8 @@
                 </ul>
               </div>
               <div class="nino-buttons">
-                <button class="btn-editar-nino" (click)="editarNino(nino.id)">{{ texts.editarDatos }}</button>
-                <button class="btn-eliminar-nino" (click)="eliminarNino(nino.id)">
+                <button class="btn-editar-nino" [disabled]="encargado.estado == 'Suspendido'"  (click)="editarNino(nino.id)">{{ texts.editarDatos }}</button>
+                <button class="btn-eliminar-nino" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
                   <i class="fas fa-trash-alt"></i> {{ texts.eliminar }}
                 </button>
               </div>

@@ -62,7 +62,7 @@ export class HomePadrinoComponent implements OnInit {
 
   cerrarSesion(): void {
     this.authService.logout();
-  }
+  } 
 
   obtenerEncargados(): void {
     this.encargadoService.getEncargados().subscribe({
@@ -78,16 +78,17 @@ export class HomePadrinoComponent implements OnInit {
   }
 
   obtenerDonaciones(padrinoId: number): void {
-    this.donacionService.getDonacionesByPadrino(padrinoId).subscribe({
-      next: (data) => {
-        this.donaciones = data;
-      },
-      error: (err) => {
-        console.error('Error al obtener donaciones:', err);
-      }
-    });
+      this.donacionService.getDonacionesByPadrino(padrinoId).subscribe({
+        next: (data) => {
+          // Ordena por id_donacion (el número más alto primero)
+          this.donaciones = data.sort((a, b) => b.id - a.id);
+        },
+        error: (err) => {
+          console.error('Error al obtener donaciones:', err);
+        }
+      });
   }
-
+    
   getEncargadoName(encargadoId: number): string {
     const encargado = this.encargados.find(e => e.id === encargadoId);
     return encargado ? encargado.nombre_hogar : 'Encargado desconocido';
@@ -134,11 +135,13 @@ export class HomePadrinoComponent implements OnInit {
     localStorage.setItem("encargadoId", encargadoId.toString());
     const dialogRef = this.dialog.open(RegistroDonacionComponent, {
       width: '500px',
-      height: 'fit-content%'
+      height: 'fit-content'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El diálogo se cerró');
+      if (result === 'success') {
+        this.obtenerDonaciones(this.padrino.id);
+      }
     });
   }
 
@@ -147,10 +150,12 @@ export class HomePadrinoComponent implements OnInit {
       return this.encargadosAprobados;
     }
 
-    const texto = this.busqueda.toLowerCase();
-    return this.encargadosAprobados.filter(encargado =>
-      encargado.nombre_hogar.toLowerCase().startsWith(texto)
-    );
+    const palabrasBusqueda = this.busqueda.toLowerCase().split(/\s+/);
+
+    return this.encargadosAprobados.filter(encargado => {
+      const nombreHogar = encargado.nombre_hogar.toLowerCase();
+      return palabrasBusqueda.some(palabra => nombreHogar.includes(palabra));
+    });
   }
 
   irAdministradores(): void{

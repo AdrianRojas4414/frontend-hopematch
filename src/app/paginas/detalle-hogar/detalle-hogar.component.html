@@ -32,9 +32,9 @@
     <p><strong>{{ texts.detalleHogarCantidadNinos }}</strong> {{ encargado.ninos?.length || 0 }}</p>
   </div>
   <div class="field--column-card-elements">
-    <button class="btn btn--secondary-button" (click)="agendarVisita()">{{ texts.detalleHogarBotonVisitar }}</button>
-    <button class="btn btn--secondary-button" (click)="irChat()">{{ texts.detalleHogarBotonChat }}</button>
-    <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">{{ texts.detalleHogarBotonDonar }}</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="agendarVisita()">{{ texts.detalleHogarBotonVisitar }}</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="irChat()">{{ texts.detalleHogarBotonChat }}</button>
+    <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision'" (click)="irARegistroDonacion(padrino.id, encargado.id)">{{ texts.detalleHogarBotonDonar }}</button>
   </div>
   <div *ngIf="encargado.ninos?.length" class="card--simple-text">
     <h3>{{ texts.detalleHogarNecesidadesTitulo }}</h3>
