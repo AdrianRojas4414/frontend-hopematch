@@ -118,6 +118,11 @@ export const TEXTOS = {
     // ALT TEXT
     altFotoEncargado: 'Foto del Encargado',
     altImagenRegistro: 'Imagen de registro',
+    altEncargados: 'Encargados',
+    altPadrinos: 'Padrinos',
+    altNinos: 'Niños',
+    altFotoPadrino: 'Foto del Padrino',
+    altFotoHogar: 'Foto del Hogar',
 
     // CHAT
     chatConEncargado: 'Chat con',
@@ -221,6 +226,43 @@ export const TEXTOS = {
     gestionPadrinosRegistrados: 'Padrinos Registrados',
     gestionPadrinosNoRegistrados: 'No hay padrinos registrados',
     padrinosSuspendidos: 'Padrinos Suspendidos',
-    enviarARevision: 'Enviar a Revisión'
+    enviarARevision: 'Enviar a Revisión', 
+
+    // ADMIN HOME
+    homeAdminSaludo: '¡Hola de nuevo',
+    homeAdminPanel: 'Este es tu Panel de Administración',
+    homeAdminEncargadosTitulo: 'Encargados/Hogares',
+    homeAdminEncargadosDescripcion1: 'Aprueba/Rechaza registro de Hogares',
+    homeAdminEncargadosDescripcion2: 'Suspende cuentas de Hogares',
+    homeAdminEncargadosDescripcion3: 'Elimina las cuentas suspendidas',
+    homeAdminPadrinosTitulo: 'Padrinos',
+    homeAdminPadrinosDescripcion: 'Administra los padrinos registrados',
+    homeAdminNinosTitulo: 'Niños',
+    homeAdminNinosDescripcion: 'Administra los niños registrados',
+
+    // HOME ENCARGADO
+    homeEncargadoSaludo: '¡Hola',
+    homeEncargadoPregunta: '¿Qué deseas hacer hoy?',
+    homeEncargadoMiHogarTitulo: 'Mi Hogar',
+    homeEncargadoMiHogarDescripcion: 'Administra y edita tu hogar',
+    homeEncargadoMisNinosTitulo: 'Mis Niños',
+    homeEncargadoMisNinosDescripcion: 'Gestiona y visualiza los niños a tu cargo',
+    homeEncargadoMisNinosAltImagen: 'Kids',
+    homeEncargadoAgendaTitulo: 'Agenda y Contacto',
+    homeEncargadoAgendaDescripcion: 'Habla con los padrinos de tu hogar y gestiona actividades programadas',
+    homeEncargadoAgendaAltImagen: 'Contacto',
+    homeEncargadoDonacionesTitulo: 'Donaciones',
+    homeEncargadoDonacionesDescripcion: 'Administra y publica contenido relacionado a las donaciones recibidas',
+    homeEncargadoDonacionesAltImagen: 'Donation',
+
+    // HOME PADRINO
+    homePadrinoSaludo: 'Hola',
+    homePadrinoPregunta: '¿qué quieres hacer hoy?',
+    homePadrinoAyudaEsperanza: 'Tu ayuda es su esperanza. Dona ahora.',
+    homePadrinoTusDonaciones: 'Tus donaciones',
+    homePadrinoNoDonaciones: 'Aun no has realizado donaciones',
+    homePadrinoBuscarHogar: 'En el panel de la derecha busca un hogar y regala una esperanza.',
+    homePadrinoBuscarPlaceholder: 'Buscar Hogar...',
+    homePadrinoBotonDonar: 'Donar'
 };
   
