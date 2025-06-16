@@ -8,6 +8,11 @@ export const TEXTOS = {
     userPadrino: 'Padrino',
     userEncargado: 'Encargado del hogar',
     userAdmin: 'Administrador',
+
+    // LOGIN
+    ingresaCuenta: 'Ingresa a tu cuenta.',
+    tipoCuenta: '¡Bienvenido! Selecciona tu tipo de cuenta para ingresar.',
+
     //ABOUT US
     aboutTitle: "¿Quiénes somos?",
     aboutDescription: "Hopematch conecta a padrinos con niños vulnerables para transformar vidas mediante empatía y compromiso. Buscamos transformar vidas a través del compromiso humano, la empatía y el amor al prójimo.",
