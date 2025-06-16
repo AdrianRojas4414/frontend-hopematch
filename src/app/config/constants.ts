@@ -290,6 +290,19 @@ export const TEXTOS = {
 
     // PERFIL PADRINO
     perfilPadrinoTitulo: 'Perfil del Padrino',
-    estadoLabel: 'Estado'
+    estadoLabel: 'Estado',
+
+    // REGISTRO DONACION
+    registrarDonacionTitulo: 'Registrar Donación',
+    montoDonarLabel: 'Monto a donar ($):',
+    ejemploMonto: 'Ej: 50.00',
+    seleccionarNecesidadesLabel: 'Selecciona las necesidades:',
+    guardarDonacion: 'Guardar Donación',
+
+    // REGISTRO VISITAS
+    seleccionarFechaHora: 'Selecciona fecha y hora para tu visita',
+    fechaVisitaLabel: 'Fecha de visita',
+    horarioDisponibleLabel: 'Horario disponible',
+    seleccioneHora: 'Seleccione una hora'
 };
   
