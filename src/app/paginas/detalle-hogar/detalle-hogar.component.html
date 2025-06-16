@@ -32,9 +32,9 @@
     <p><strong>Cantidad de niños:</strong> {{ encargado.ninos?.length || 0 }}</p>
   </div>
   <div class="field--column-card-elements">
-    <button class="btn btn--secondary-button" (click)="agendarVisita()">Visitar</button>
-    <button class="btn btn--secondary-button" (click)="irChat()">Chat</button>
-    <button class="btn btn--primary-button" (click)="irARegistroDonacion(padrino.id, encargado.id)">Volver a Donar</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="agendarVisita()">Visitar</button>
+    <button class="btn btn--secondary-button" [disabled]="padrino.estado == 'En revision'" (click)="irChat()">Chat</button>
+    <button class="btn btn--primary-button" [disabled]="padrino.estado == 'En revision'" (click)="irARegistroDonacion(padrino.id, encargado.id)">Volver a Donar</button>
   </div>
   <div *ngIf="encargado.ninos?.length" class="card--simple-text">
     <h3>Necesidades del hogar:</h3>
