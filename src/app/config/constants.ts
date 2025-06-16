@@ -277,6 +277,19 @@ export const TEXTOS = {
     // PADRINOS SUSPENDIDOS
     volverAGestion: 'Volver a Gestión',
     cargandoCuentasSuspendidas: 'Cargando cuentas suspendidas...',
-    noCuentasSuspendidas: 'No hay cuentas suspendidas actualmente'
+    noCuentasSuspendidas: 'No hay cuentas suspendidas actualmente',
+
+    // PERFIL
+    miPerfilTitulo: 'Mi Perfil',
+    emailLabel: 'E-mail',
+    cargandoDatos: 'Cargando datos...',
+    perfilEncargadoTitulo: 'Perfil del Encargado',
+    estadoHogarLabel: 'Estado del Hogar',
+    cantidadNinosLabel: 'Cantidad de niños',
+    verNinosLabel: 'Ver Niños',
+
+    // PERFIL PADRINO
+    perfilPadrinoTitulo: 'Perfil del Padrino',
+    estadoLabel: 'Estado'
 };
   
