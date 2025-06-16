@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editar-nino',
@@ -22,7 +23,8 @@ export class EditarNinoComponent {
   constructor(
     private router: Router,
     private ninoService: NinoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<EditarNinoComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -111,25 +113,30 @@ export class EditarNinoComponent {
 
   updateNino(): void {
     if (!this.validarFormulario()) return;
+
+    const currentUrl = this.router.url;
     
     this.ninoService.updateNino(this.nino.id, this.nino).subscribe({
       next: () => {
         alert('Niño actualizado correctamente');
         localStorage.removeItem("idNino");
-        this.router.navigate([`/ninos-hogar`]);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+        });
       },
       error: (err) => {
         console.error('Error al actualizar niño:', err);
         alert('Error al actualizar el niño');
       }
     });
+    this.dialogRef.close();
   }
 
   cancelarEdicion(): void {
     if (this.idEncargado) {
-      localStorage.removeItem("idNino");
-      this.router.navigate([`/ninos-hogar`]);
+      localStorage.removeItem("idNino");      
     }
+    this.dialogRef.close();
   }
 }
 

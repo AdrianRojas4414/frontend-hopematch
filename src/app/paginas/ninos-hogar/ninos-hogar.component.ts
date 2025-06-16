@@ -8,6 +8,7 @@ import { UserAuthenticationService } from '../../servicios/user-authentication.s
 import { TEXTOS } from '../../config/constants';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrearNinoComponent } from '../crear-nino/crear-nino.component';
+import { EditarNinoComponent } from '../editar-nino/editar-nino.component';
 
 @Component({
   selector: 'app-ninos-hogar',
@@ -49,7 +50,15 @@ export class NinosHogarComponent implements OnInit{
 
   editarNino(idNino: number): void {
     localStorage.setItem("idNino", idNino.toString());
-    this.router.navigate([`/editar-nino`]);
+    if (this.encargado) {
+      const dialogRef = this.dialog.open(EditarNinoComponent, {
+        width: '500px',
+        height: 'fit-content'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('El diálogo se cerró');
+    });
+    }
   }
 
   irCrearNino(): void {

@@ -1,31 +1,39 @@
-<div class="container">
+<form (ngSubmit)="updateNino()" class="dialog--form">
+  <div class="register-text">
     <h2>{{texts.editarNinoTitulo}}</h2>
-    <form (ngSubmit)="updateNino()">
-      <label>{{texts.campoCI}}</label>
-      <input type="text" [(ngModel)]="nino.ci" name="ci" required>
-      <label>{{texts.inputEditName}}</label>
-      <input type="text" [(ngModel)]="nino.nombre" name="nombre" required>
-  
-      <label>{{texts.fechaNacimiento}}</label>
-      <input type="date" [(ngModel)]="nino.fechaNacimiento" name="fechaNacimiento" required>
- 
-      <label>{{texts.necesidades}}</label>
-      
-       <div class="input-container">
-        <input type="text" [(ngModel)]="nuevaNecesidad" name="nuevaNecesidad" placeholder="Añadir necesidad">
-        <button type="button" (click)="agregarNecesidad()">➕</button>
-    </div>
-
-     <div class="necesidades-lista">
-        <div *ngFor="let necesidad of nino.necesidades; let i = index" class="necesidad-item">
-            {{ necesidad }}
-            <button type="button" (click)="eliminarNecesidad(i)">❌</button>
-        </div>
-    </div>
-
-      <button type="submit">{{texts.guardar}}</button>
-
-      <button type="button" class="cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
-    </form>
+  </div>
+  <div class="input-group">
+    <label>{{texts.campoCI}}</label>
+    <input type="text" [(ngModel)]="nino.ci" name="ci" class="input-field" required>
   </div>
   
+  <div class="input-group">
+    <label>{{texts.inputEditName}}</label>
+    <input type="text" [(ngModel)]="nino.nombre" name="nombre" class="input-field" required>
+  </div>
+
+  <div class="input-group">
+    <label>{{texts.fechaNacimiento}}</label>
+    <input type="date" [(ngModel)]="nino.fechaNacimiento" name="fechaNacimiento" class="input-field" required>
+  </div>
+
+  <div class="input-group">
+    <label>{{texts.necesidades}}</label>
+  
+    <div class="input-container">
+      <input type="text" [(ngModel)]="nuevaNecesidad" name="nuevaNecesidad" placeholder="Añadir necesidad" class="input-field">
+      <button type="button" (click)="agregarNecesidad()">➕</button>
+    </div>
+  </div>
+
+  <div class="input-scrollable-list">
+    <div *ngFor="let necesidad of nino.necesidades; let i = index" class="necesidad-item">
+        {{ necesidad }}
+        <button type="button" (click)="eliminarNecesidad(i)" class="removeNecesidadButton">❌</button>
+    </div>
+</div>
+
+  <button type="submit" class="btn btn--primary-button">{{texts.guardar}}</button>
+
+  <button type="button" class="btn btn--cancel-button" (click)="cancelarEdicion()">{{texts.cancelar}}</button>
+</form>
