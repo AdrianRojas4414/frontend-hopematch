@@ -1,16 +1,28 @@
-<div class="encargado-container">
-  <div class="perfil-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a (click)="volverAHome()" style="color: #e65c4f; cursor: pointer;">{{texts.buttonVolver}}</a>
+<header *ngIf="encargado">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button class="btn btn--third-button" (click)="volverAHome()"> {{ texts.buttonHome }} </button>
+              <button class="btn btn--third-button" (click)="irAdministradores()"> {{texts.buttonSoporte}}</button>
+              <img [src]="encargado.foto" 
+                  alt="Foto del Encargado" 
+                  class="admin-foto" />
+              <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+              <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
     </nav>
-  </div>
-  
-  <div class="header">
-    <h1>{{ texts.donacionesRecibidas }}</h1>
-  </div>
+</header>
 
-  <div class="donaciones-list">
+<div class="full-layout-section">
+
+  <div class="field--row-elements">
+    <h1>{{ texts.donacionesRecibidas }}</h1>
+
+  <div class="card--scrollable-list donaciones-list">
     <ng-container *ngIf="donaciones.length > 0; else noDonaciones">
       <div *ngFor="let donacion of donaciones" class="donacion-card">
         <div class="donacion-header">
@@ -122,3 +134,32 @@
     </div>
   </div>
 </div>
+  </div>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>{{ texts.footerTelefono }}</b></p>
+                    <p>{{ texts.footerTelefonoNumero }}</p>
+                </div>
+                <div>
+                    <p><b>{{ texts.footerEmail }}</b></p>
+                    <p>{{ texts.footerEmailDireccion }}</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>
