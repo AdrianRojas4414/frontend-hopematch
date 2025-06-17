@@ -205,6 +205,20 @@ export class EncargadoDonacionComponent implements OnInit {
     this.router.navigate(['/home-encargado']);
   }
 
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
+
+  irPerfil(): void {
+    if (this.encargado) {
+      this.router.navigate(['/perfil-encargado']);
+    }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
+  }
+
   irChat(idPadrino: any): void{
     localStorage.setItem("idConversacion", idPadrino.toString());
     localStorage.setItem("tipoConversacion",'padrino');

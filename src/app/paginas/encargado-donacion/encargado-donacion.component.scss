@@ -1,43 +1,11 @@
-.encargado-container {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-.perfil-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.field--row-elements{
+  justify-content: center;
   align-items: center;
-  padding: 10px;
+  flex-direction: column;
+  padding-top: 80px;
 }
-
-.logo {
-  max-width: 80px;
-}
-
-.perfil-nav {
-  display: flex;
-  gap: 1rem;
-}
-
-.perfil-nav a {
-  text-decoration: none;
-  font-size: 1rem;
-  color: #333;
-}
-
-.header {
-  margin-bottom: 2rem;
-  text-align: center;
-  
-  h1 {
-    color: #e65c4f;
-  }
-}
-
 .donaciones-list {
-  display: grid;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
@@ -47,10 +15,11 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
+  width: 500px;
 }
 
 .donacion-header {
-  background: #e65c4f;
+  background: var(--color-third-base);
   color: white;
   padding: 1rem;
   display: flex;

@@ -1,23 +1,33 @@
-<!-- ninos-del-hogar.component.html -->
-<div class="perfil-container">
-  <div class="perfil-header">
-    <img src="imgs/hopematch-logo.png" alt="HopeMatch Logo" class="logo">
-    <nav class="perfil-nav">
-      <a (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">{{ texts.volverHome }}</a>
+<header *ngIf="encargado">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button class="btn btn--third-button" (click)="VolverAHome()"> {{ texts.buttonHome }} </button>
+              <button class="btn btn--third-button" (click)="irAdministradores()"> {{texts.buttonSoporte}}</button>
+              <img [src]="encargado.foto" 
+                  alt="Foto del Encargado" 
+                  class="admin-foto" />
+              <button class="btn btn--third-button" (click)="irPerfil()"> {{ texts.buttonPerfil }} </button>
+              <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
     </nav>
-  </div>
+</header>
 
-  <div class="perfil-content">
-    <h1 style="color: #e65c4f;">{{ texts.ninosHogar }}</h1>
-    <div class="boton-container">
-      <button class="btn-crear-nino" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">{{ texts.crearNino }}</button>
+<div class="full-layout-section" *ngIf="encargado">
+  <div class="field--row-elements">
+    <div class="grettings-text">
+      <h2>{{ texts.ninosHogar }}</h2>
+      <button class="btn btn--primary-button" [disabled]="encargado.estado == 'En revision' || encargado.estado == 'Suspendido'" (click)="irCrearNino()">{{ texts.crearNino }}</button>
     </div>
-
-    <div class="ninos-del-hogar">
+    <div class="field--column-elements">
       <div *ngIf="encargado?.ninos?.length > 0; else noNinos">
-        <div class="ninos-container">
-          <div class="nino-card" *ngFor="let nino of encargado.ninos">
-            <div class="nino-detalles">
+        <div class="card--scrollable-list">
+          <div class="card--general" *ngFor="let nino of encargado.ninos">
+            <div class="field--column-card-elements">
               <h4>{{ nino.nombre }}</h4>
               <div><strong>{{ texts.campoCI }}</strong> {{ nino.ci }}</div>
               <div><strong>{{ texts.fechaNacimiento }}</strong> {{ nino.fechaNacimiento }}</div>
@@ -27,9 +37,9 @@
                   <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
                 </ul>
               </div>
-              <div class="nino-buttons">
-                <button class="btn-editar-nino" [disabled]="encargado.estado == 'Suspendido'"  (click)="editarNino(nino.id)">{{ texts.editarDatos }}</button>
-                <button class="btn-eliminar-nino" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
+              <div class="field--row-card-elements">
+                <button class="btn btn--primary-button" [disabled]="encargado.estado == 'Suspendido'" (click)="editarNino(nino.id)">Editar Datos</button>
+                <button class="btn btn--secondary-button" [disabled]="encargado.estado == 'Suspendido'" (click)="eliminarNino(nino.id)">
                   <i class="fas fa-trash-alt"></i> {{ texts.eliminar }}
                 </button>
               </div>
@@ -41,6 +51,34 @@
       <ng-template #noNinos>
         <p>{{ texts.noNinos }}</p>
       </ng-template>
-    </div>
+  </div>
   </div>
 </div>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>Telefono</b></p>
+                    <p>(123) 45678</p>
+                </div>
+                <div>
+                    <p><b>Email</b></p>
+                    <p>hopematch&#64;email.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')"> {{ texts.facebook }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')"> {{ texts.instragram }} </button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')"> {{ texts.twitter }} </button>
+            </div>
+        </div>
+    </div>
+</footer>

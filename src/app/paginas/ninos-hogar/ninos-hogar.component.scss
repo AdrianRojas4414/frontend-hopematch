@@ -1,25 +1,30 @@
-.perfil-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: #f6f6f6;
+.grettings-text {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  gap: 10px;
+  margin-bottom: 10px;
+  h2{
+    margin-bottom: 4px;
+    color: var(--color-primary-base-dark-60);
   }
-  
-  .logo {
-    max-width: 80px;
+  h5{
+    margin-top: 0;
+    color: var(--color-primary-base-dark-72);
   }
-  
-  .perfil-nav {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .perfil-nav a {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #333;
-  }
+}
+
+.card--scrollable-list{
+  max-height: 500px;
+}
+
+.field--row-elements{
+  padding-top: 100px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
   
   .titulo-container {
     display: flex;

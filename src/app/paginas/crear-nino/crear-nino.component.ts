@@ -5,6 +5,7 @@ import { EncargadoService } from '../../servicios/encargado.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
 import { TEXTOS } from '../../config/constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-crear-nino',
@@ -22,7 +23,8 @@ export class CrearNinoComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private encargadoService: EncargadoService,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    public dialogRef: MatDialogRef<CrearNinoComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -109,20 +111,25 @@ export class CrearNinoComponent implements OnInit {
       return;
     }
 
+    const currentUrl = this.router.url;
+
     this.encargadoService.createNino(this.idEncargado, this.ninoForm.value).subscribe({
       next: () => {
         alert('Niño registrado con éxito');
-        this.router.navigate([`/ninos-hogar`]);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+        });
       },
       error: (error) => {
         console.error('Error al registrar:', error);
         alert('Hubo un error al registrar el niño');
       }
     });
+    this.dialogRef.close();
   }
   
   cancelarRegistro(): void {
-    this.router.navigate([`/ninos-hogar`]);
+    this.dialogRef.close();
   }
   
 }

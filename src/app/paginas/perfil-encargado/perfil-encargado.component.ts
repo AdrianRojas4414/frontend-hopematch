@@ -79,6 +79,10 @@ export class PerfilEncargadoComponent implements OnInit{
     this.router.navigate([`/home-encargado`]);
   }
 
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
+
   VolverAHomeAdmin(){
     localStorage.removeItem("idEncargado_gestion");
     window.history.back();

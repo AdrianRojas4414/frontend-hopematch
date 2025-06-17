@@ -1,31 +1,39 @@
-<div class="container">
-    <h2 style="color: #e65c4f;">{{ texts.registrarNino }}</h2>
-  
-    <form [formGroup]="ninoForm" (ngSubmit)="onSubmit()">
-      <label for="ci">{{ texts.campoCI }}</label>
-      <input id="ci" type="text" formControlName="ci" required>
-  
-      <label for="nombre">{{ texts.inputName }}</label>
-      <input id="nombre" type="text" formControlName="nombre" required>
-  
-      <label for="fechaNacimiento">{{ texts.fechaNacimiento }}</label>
-      <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" required>
-  
-      <label for="necesidad">{{ texts.necesidades }}</label>
-      <div class="necesidades">
-        <input id="necesidad" type="text" #necesidadInput>
-        <button type="button" (click)="addNecesidad(necesidadInput)">{{texts.agregar}}</button>
-      </div>
-
-      <ul>
-        <li *ngFor="let necesidad of necesidadesArray.controls; let i = index">
-          {{ necesidad.value }}
-          <button type="button" (click)="removeNecesidad(i)">X</button>
-        </li>
-      </ul>
-  
-      <button type="submit" [disabled]="ninoForm.invalid">{{ texts.registrarNino }}</button>
-
-      <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">{{texts.cancelar}}</button>
-    </form>
+<form [formGroup]="ninoForm" (ngSubmit)="onSubmit()" class="dialog--form">
+  <div class="register-text">
+    <h2>{{ texts.registrarNino }}</h2>
   </div>
+
+  <div class="input-group">
+    <label for="ci">{{ texts.campoCI }}</label>
+    <input id="ci" type="text" formControlName="ci" class="input-field" required>
+  </div>
+
+  <div class="input-group">
+    <label for="nombre">{{ texts.inputName }}</label>
+    <input id="nombre" type="text" formControlName="nombre" class="input-field" required>
+  </div>
+
+  <div class="input-group">
+    <label for="fechaNacimiento">{{ texts.fechaNacimiento }}</label>
+    <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" class="input-field" required>
+  </div>
+
+  <div class="input-group">
+    <label for="necesidad">{{ texts.necesidades }}</label>
+    <div class="necesidades">
+      <input id="necesidad" type="text" #necesidadInput class="input-field">
+      <button type="button" (click)="addNecesidad(necesidadInput)">{{texts.agregar}}</button>
+    </div>
+  </div>
+
+  <ul class="input-scrollable-list">
+    <li *ngFor="let necesidad of necesidadesArray.controls; let i = index">
+      {{ necesidad.value }}
+      <button type="button" (click)="removeNecesidad(i)">X</button>
+    </li>
+  </ul>
+
+  <button type="submit" class="btn btn--primary-button" [disabled]="ninoForm.invalid">{{ texts.registrarNino }}</button>
+
+  <button type="button" class="btn btn--cancel-button" (click)="cancelarRegistro()">{{texts.cancelar}}</button>
+</form>

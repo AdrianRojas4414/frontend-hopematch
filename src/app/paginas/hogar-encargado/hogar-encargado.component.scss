@@ -31,7 +31,7 @@
     h2 {
       font-size: 24px;
     }
-    p {
+    p, button {
       margin: 5px 0;
     }
   }
@@ -40,8 +40,9 @@
   
   
   
-  .necesidades-container {
-    margin-top: 20px;
+  .card--scrollable-list {
+    max-height: 200px;
+    background-color: var(--color-white-neutral);
   }
   
   .necesidad {
