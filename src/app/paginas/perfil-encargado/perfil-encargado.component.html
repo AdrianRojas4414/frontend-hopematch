@@ -1,15 +1,24 @@
-<!-- perfil-encargado.component.html -->
-<div class="perfil-container" *ngIf="encargado">
-  <div class="perfil-header">
-    <img src="imgs/hopematch-logo.png" [alt]="texts.messageLogo" class="logo">
-    <nav class="perfil-nav">
-      <a *ngIf="mostrarBotonEditar" (click)="VolverAHome()" style="color: #e65c4f; cursor: pointer;">{{texts.volverHome}}</a>
-      <a *ngIf="mostrarBotonEditar" (click)="cerrarSesion()" style="color: #e65c4f; cursor: pointer;">{{texts.buttonCerrarSesion}}</a>
-      <a *ngIf="!mostrarBotonEditar" (click)="VolverAHomeAdmin()" style="color: #3f51b5; cursor: pointer;">{{texts.volverAGestion}}</a>
+<header *ngIf="encargado">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
+                <a href="/"><img src="imgs/logo light variant.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="navbar__links">
+              <button class="btn btn--third-button" (click)="VolverAHome()"> {{ texts.buttonHome }} </button>
+              <button class="btn btn--third-button" (click)="irAdministradores()"> {{texts.buttonSoporte}}</button>
+              <img [src]="encargado.foto" 
+                  alt="Foto del Encargado" 
+                  class="admin-foto" />              
+              <button class="btn btn--third-button" (click)="cerrarSesion()"> {{ texts.buttonSignOut }} </button>
+            </div>
+        </div>
     </nav>
-  </div>
+</header>
 
-  <div class="perfil-content">
+<div class="full-layout-section perfil-container" *ngIf="encargado">
+
+  <div class="field--row-elements perfil-content">
     <div class="perfil-info">
       <div class="hogar-foto">
         <img [src]="encargado.foto_hogar" [alt]="texts.altFotoHogar" />
@@ -18,7 +27,7 @@
         <img [src]="encargado.foto" [alt]="texts.altFotoEncargado" />
       </div>
       <div class="perfil-detalles">
-        <h2 *ngIf="mostrarBotonEditar" style="color: #e65c4f;">{{texts.miPerfilTitulo}}</h2>
+        <h2 *ngIf="mostrarBotonEditar">{{texts.miPerfilTitulo}}</h2>
         <h2 *ngIf="!mostrarBotonEditar" style="color: #3f51b5;">{{texts.perfilEncargadoTitulo}}</h2>
         <h3>{{ encargado.nombre }}</h3>
         <p><strong>{{texts.inputEditEmail}}:</strong> {{ encargado.email }}</p>
@@ -28,38 +37,43 @@
         <p><strong>{{texts.estadoHogarLabel}}:</strong> {{encargado.estado}}</p>
         <p><strong>{{texts.inputDescripcion}}:</strong> {{encargado.descripcion}}</p>
         <p><strong>{{texts.cantidadNinosLabel}}:</strong> {{ encargado.ninos?.length || 0 }}</p>
-        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irEditarPerfil()">{{texts.editarDatos}}</button>
-        <button *ngIf="mostrarBotonEditar" class="btn-editar" (click)="irNinos()">{{texts.verNinosLabel}}</button>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="!mostrarBotonEditar" class="ninos-del-hogar">
-    <h2 *ngIf="!mostrarBotonEditar" style="color: #3f51b5; align-self: center;">{{texts.ninosHogar}}</h2>
-      <div *ngIf="encargado?.ninos?.length > 0; else noNinos">
-        <div class="ninos-container">
-          <div class="nino-card" *ngFor="let nino of encargado.ninos">
-            <div class="nino-detalles">
-              <h4>{{ nino.nombre }}</h4>
-              <div><strong>{{texts.campoCI}}:</strong> {{ nino.ci }}</div>
-              <div><strong>{{texts.fechaNacimiento}}:</strong> {{ nino.fechaNacimiento }}</div>
-              <div>
-                <strong>{{texts.necesidades}}:</strong>
-                <ul>
-                  <li *ngFor="let necesidad of nino.necesidades">{{ necesidad }}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="field--row-card-elements">
+          <button *ngIf="mostrarBotonEditar" class="btn btn--secondary-button" (click)="irEditarPerfil()">{{texts.editarDatos}}</button>
+          <button *ngIf="mostrarBotonEditar" class="btn btn--primary-button" (click)="irNinos()">{{texts.verNinosLabel}}</button>
         </div>
       </div>
-
-      <ng-template #noNinos>
-        <p>{{texts.noNinos}}</p>
-      </ng-template>
+    </div>
   </div>
 </div>
 
 <div *ngIf="!encargado">
   <p>{{texts.cargandoDatos}}</p>
 </div>
+
+<footer class="footer">
+    <div id="footer-content" class="footer__vertical_container">
+        <div class="footer__horizontal_container">
+            <div class="footer__brand">
+                <a href="/"><img src="imgs/logo light.png" [alt]="texts.messageLogo" class="logo"></a>
+            </div>
+            <div class="footer__contact-info">
+                <div>
+                    <p><b>{{texts.footerTelefono}}</b></p>
+                    <p>{{texts.footerTelefonoNumero}}</p>
+                </div>
+                <div>
+                    <p><b>{{texts.footerEmail}}</b></p>
+                    <p>{{texts.footerEmailDireccion}}</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="footer__social_container">
+            <div class="social-links">
+                <button class="btn btn--third-button" onclick="window.open('https://www.facebook.com/diegoalejandro.canedoballesteros', '_blank')">{{texts.facebook}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://www.instagram.com/diegodenac/', '_blank')">{{texts.instragram}}</button>
+                <button class="btn btn--third-button" onclick="window.open('https://x.com/Diegodenac', '_blank')">{{texts.twitter}}</button>
+            </div>
+        </div>
+    </div>
+</footer>
