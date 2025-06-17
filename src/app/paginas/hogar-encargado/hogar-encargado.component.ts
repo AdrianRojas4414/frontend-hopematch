@@ -16,7 +16,7 @@ import { EditarEncargadoComponent } from '../editar-encargado/editar-encargado.c
 })
 export class HogarEncargadoComponent implements OnInit{
   public texts = TEXTOS;
-  encargado: any = null
+  encargado: any = null;
   necesidades: any[] = [];
   isLoading = false;
 

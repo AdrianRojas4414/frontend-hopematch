@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisitaService } from '../../servicios/visita.service';
+import { EncargadoService } from '../../servicios/encargado.service';
 import { Router } from '@angular/router';
 import { UserAuthenticationService } from '../../servicios/user-authentication.service';
+import { TEXTOS } from '../../config/constants';
 
 export interface Visita {
   id: number;
@@ -23,11 +25,14 @@ export interface Visita {
 export class EncargadoVisitasComponent implements OnInit {
 
   visitas: Visita[] = [];
+  encargado: any = null;
+  public texts = TEXTOS;
 
   constructor(
     private visitaService: VisitaService,
     private router: Router,
-    private authService: UserAuthenticationService
+    private authService: UserAuthenticationService,
+    private encargadoService: EncargadoService,
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +43,18 @@ export class EncargadoVisitasComponent implements OnInit {
       console.warn('usuario no autenticado...');
       this.router.navigate(['/']);
       return; 
+    }
+
+    if (isEncargado) {
+      this.encargadoService.getEncargadoById(+encargadoId).subscribe({
+        next: (data) => {
+          this.encargado = data;
+          console.log(data)
+        },
+        error: (err) => {
+          console.error('Error al obtener encargado:', err);
+        }
+      });
     }
 
     this.cargarVisitas(encargadoId);
@@ -86,6 +103,20 @@ export class EncargadoVisitasComponent implements OnInit {
 
   volverAHome(): void {
     this.router.navigate(['/home-encargado']);
+  }
+
+  irAdministradores(): void{
+    this.router.navigate(['/administradores']);
+  }
+
+  irPerfil(): void {
+    if (this.encargado) {
+      this.router.navigate(['/perfil-encargado']);
+    }
+  }
+
+  cerrarSesion(): void {
+    this.authService.logout();
   }
 
   mostrarAcciones(estadoVisita: string): boolean {
